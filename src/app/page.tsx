@@ -9,8 +9,9 @@ import { HeroSection } from '@/components/sections/HeroSection';
 import { MarqueeSection } from '@/components/sections/MarqueeSection';
 import { SelectedWorkSection } from '@/components/sections/SelectedWorkSection';
 import { ServicePillarsSection } from '@/components/sections/ServicePillarsSection';
+import { StorytellingSection } from '@/components/sections/StorytellingSection';
 import { ProcessSection } from '@/components/sections/ProcessSection';
-import { WhyApexGenSection } from '@/components/sections/WhyApexGenSection';
+import { TechnologyTrustSection } from '@/components/sections/TechnologyTrustSection';
 import { PricingSection } from '@/components/sections/PricingSection';
 import { CtaBannerSection } from '@/components/sections/CtaBannerSection';
 import { InquiryFormSection } from '@/components/sections/InquiryFormSection';
@@ -31,49 +32,53 @@ export default function Home() {
 
   return (
     <>
-      {/* Minimalist Cinematic Intro Loader */}
+      {/* 1. Cinematic Loading Experience: APEXGEN, DIGITAL EXPERIENCES, [──────── 100%] */}
       <CinematicLoader />
 
-      {/* Interactive Desktop Custom Cursor */}
+      {/* 2. Interactive Desktop Custom Cursor (Morphs to VIEW PROJECT →) */}
       <CustomCursor />
 
-      {/* WhatsApp Quick Action */}
+      {/* WhatsApp Quick Action Button */}
       <WhatsAppButton />
 
       {/* Main Page Layout */}
-      <div className="relative min-h-screen bg-[#050507] text-[#f4f4f6] selection:bg-white selection:text-black">
+      <div className="relative min-h-screen bg-[#050505] text-[#F5F5F5] selection:bg-white selection:text-black">
+        {/* 2. Minimal Floating Navigation */}
         <Navbar />
 
         <main>
-          {/* 1. Hero Section */}
+          {/* 3 & 4. Hero Section — The Main Experience & Scroll Transition */}
           <HeroSection />
 
-          {/* Subtle Ticker Divider */}
+          {/* 7. Subtle Infinite Marquee: DESIGN — DEVELOP — LAUNCH — GROW */}
           <MarqueeSection />
 
-          {/* 2. Selected Work (Cargo Pizza, 69 Studio, DinePro Advisers) */}
+          {/* 5 & 6. Selected Work — Editorial Portfolio & Interactive Previews */}
           <SelectedWorkSection />
 
-          {/* 3. Services (6 Core Services) */}
+          {/* 8. Services — Digital Capabilities (Full-screen interactive list with spotlight) */}
           <ServicePillarsSection />
 
-          {/* 4. Process (5 Scroll-Animated Stages) */}
+          {/* 9. "Not Just a Website" Storytelling Presentation */}
+          <StorytellingSection />
+
+          {/* 10. Process — Cinematic Horizontal Process (01-05) */}
           <ProcessSection />
 
-          {/* 5. Why ApexGen (Editorial Split Layout) */}
-          <WhyApexGenSection />
+          {/* 11 & 12. Technology & Verified Social Proof / Trust */}
+          <TechnologyTrustSection />
 
-          {/* 6. Pricing (Starter, Business, Premium) */}
+          {/* 13. Pricing — Premium Expanding Horizontal Proposal Interface */}
           <PricingSection />
 
-          {/* 7. Dramatic Full-Width CTA Banner */}
+          {/* 14. Final CTA — Almost completely black, LET'S BUILD SOMETHING IMPOSSIBLE TO IGNORE. */}
           <CtaBannerSection />
 
-          {/* 8. Project Intake Form (Conversion Flow #contact) */}
+          {/* Direct Lead Intake Form for #contact */}
           <InquiryFormSection />
         </main>
 
-        {/* 9. Minimal Premium Footer */}
+        {/* 15. Minimal Luxury Footer with Massive Watermark */}
         <Footer />
       </div>
     </>

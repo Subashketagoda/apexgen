@@ -2,10 +2,8 @@
 
 import React, { useRef, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
-import { siteConfig } from '@/data/siteConfig';
-import { ArrowUpRight, MessageCircle } from 'lucide-react';
-import { formatWhatsAppUrl } from '@/lib/utils';
 import { MagneticButton } from '@/components/animation/MagneticButton';
+import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 
 export function CtaBannerSection() {
@@ -22,84 +20,95 @@ export function CtaBannerSection() {
     });
   };
 
+  const lines = [
+    "LET'S BUILD",
+    'SOMETHING',
+    'IMPOSSIBLE',
+    'TO IGNORE.',
+  ];
+
   return (
     <section
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="relative py-32 sm:py-44 md:py-52 border-b border-white/10 bg-[#050507] overflow-hidden select-none"
+      className="relative min-h-[90vh] flex flex-col justify-center items-center py-32 sm:py-44 border-b border-white/10 bg-[#050505] overflow-hidden select-none"
     >
-      {/* Subtle Mouse-Follow Ambient Glow */}
+      {/* Subtle Mouse-Follow Glow in deep near-black */}
       <div
-        className="pointer-events-none absolute w-[550px] h-[550px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-500/[0.04] blur-[140px] transition-all duration-300 ease-out"
+        className="pointer-events-none absolute w-[650px] h-[650px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-500/[0.035] blur-[150px] transition-all duration-300 ease-out"
         style={{ left: mousePos.x || '50%', top: mousePos.y || '50%' }}
         aria-hidden="true"
       />
 
-      {/* Cybernetic background grid line */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none" />
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-12 text-center">
-        <div className="max-w-4xl mx-auto space-y-8">
+      <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 md:px-12 text-center w-full">
+        <div className="max-w-5xl mx-auto space-y-10 sm:space-y-12">
           {/* Eyebrow */}
           <motion.div
             initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full border border-white/10 bg-white/[0.03] text-xs font-mono tracking-widest text-neutral-400 uppercase"
+            className="inline-flex items-center space-x-2.5 px-4 py-1.5 rounded-full border border-white/10 bg-white/[0.02] text-xs font-mono tracking-widest text-[#8A8A8A] uppercase"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-            <span>COMMISSIONS OPEN &bull; Q4 2026</span>
+            <span>DIRECT INITIATION</span>
           </motion.div>
 
-          {/* Exact Headline Required */}
-          <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-light tracking-[-0.04em] text-white leading-[1.0] uppercase">
-            Your next digital experience starts here.
+          {/* Huge Monolithic Typography: LET'S BUILD SOMETHING IMPOSSIBLE TO IGNORE. */}
+          <h2 className="text-4xl xs:text-5xl sm:text-7xl md:text-8xl lg:text-[7rem] font-light tracking-[-0.04em] text-[#F5F5F5] leading-[0.92] uppercase">
+            {lines.map((line, idx) => (
+              <span key={idx} className="block overflow-hidden py-0.5">
+                <motion.span
+                  className={`block will-change-transform ${
+                    idx === 2 ? 'text-gradient-iridescent font-light' : ''
+                  }`}
+                  initial={
+                    shouldReduceMotion
+                      ? { opacity: 0 }
+                      : { y: '105%', opacity: 0 }
+                  }
+                  whileInView={{ y: '0%', opacity: 1 }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{
+                    duration: 0.85,
+                    delay: idx * 0.1,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                >
+                  {line}
+                </motion.span>
+              </span>
+            ))}
           </h2>
 
-          {/* Exact Supporting Text Required */}
-          <motion.p
-            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 16 }}
+          {/* Small Text */}
+          <motion.div
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-base sm:text-xl text-neutral-300 font-light max-w-2xl mx-auto leading-relaxed"
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="space-y-1 text-base sm:text-xl text-[#8A8A8A] font-light max-w-lg mx-auto"
           >
-            Tell us what you&apos;re building. We&apos;ll turn the idea into something people remember.
-          </motion.p>
+            <p>Have an idea?</p>
+            <p className="text-neutral-300">Let&apos;s turn it into a digital experience.</p>
+          </motion.div>
 
-          {/* Action CTAs */}
+          {/* Magnetic CTA Button with Subtle Glow */}
           <motion.div
             initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.35 }}
-            className="pt-6 flex flex-wrap items-center justify-center gap-4 sm:gap-6"
+            transition={{ duration: 0.6, delay: 0.55 }}
+            className="pt-6 flex justify-center"
           >
-            {/* Primary CTA */}
-            <MagneticButton as="div" strength={0.25} ariaLabel="Start a project">
+            <MagneticButton as="div" strength={0.3} ariaLabel="Start a project">
               <Link
                 href="/#contact"
-                className="group inline-flex items-center space-x-3 px-9 py-4 rounded-full bg-white text-black font-mono text-xs uppercase tracking-wider font-semibold hover:bg-neutral-200 transition-all duration-300 shadow-[0_0_35px_rgba(255,255,255,0.25)] active:scale-95 cursor-pointer"
+                className="group relative inline-flex items-center space-x-3 px-10 py-5 rounded-full bg-white text-black font-mono text-xs uppercase tracking-wider font-semibold hover:bg-neutral-100 transition-all duration-300 shadow-[0_0_40px_rgba(255,255,255,0.35)] hover:shadow-[0_0_60px_rgba(255,255,255,0.6)] active:scale-95 cursor-pointer"
               >
-                <span>Start a Project →</span>
+                <span className="relative z-10">START A PROJECT →</span>
+                <ArrowUpRight className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
               </Link>
-            </MagneticButton>
-
-            {/* Secondary CTA: WhatsApp */}
-            <MagneticButton as="div" strength={0.2} ariaLabel="WhatsApp us">
-              <a
-                href={formatWhatsAppUrl(
-                  siteConfig.contact.whatsappNumber,
-                  "Hello ApexGen, let's build something people remember."
-                )}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center space-x-2.5 px-8 py-4 rounded-full border border-white/15 bg-white/[0.03] text-white font-mono text-xs uppercase tracking-wider hover:bg-white/10 hover:border-white/35 transition-all duration-300 active:scale-95"
-              >
-                <MessageCircle className="w-4 h-4 text-cyan-400" />
-                <span>WhatsApp Us</span>
-              </a>
             </MagneticButton>
           </motion.div>
         </div>

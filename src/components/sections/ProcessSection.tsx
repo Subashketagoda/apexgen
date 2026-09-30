@@ -1,88 +1,129 @@
 'use client';
 
 import React, { useRef } from 'react';
-import { motion, useScroll, useSpring, useReducedMotion } from 'framer-motion';
-import { siteConfig } from '@/data/siteConfig';
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
+
+const processSteps = [
+  {
+    number: '01',
+    title: 'DISCOVER',
+    description: 'Understand the business, commercial objectives, competitive landscape, and audience mental models.',
+    deliverable: 'Strategic Architecture & Roadmap',
+  },
+  {
+    number: '02',
+    title: 'DESIGN',
+    description: 'Create the experience. Editorial visual language, fluid micro-interactions, and responsive design systems.',
+    deliverable: 'Interactive High-Fidelity Prototype',
+  },
+  {
+    number: '03',
+    title: 'BUILD',
+    description: 'Engineer the product. Next.js 15, clean TypeScript, sub-second edge routing, and bulletproof security.',
+    deliverable: 'Production Codebase & CMS',
+  },
+  {
+    number: '04',
+    title: 'LAUNCH',
+    description: 'Deploy and optimize. Google Lighthouse 90+ performance audit, Schema.org SEO, and seamless live launch.',
+    deliverable: 'Global Edge Deployment & Analytics',
+  },
+  {
+    number: '05',
+    title: 'GROW',
+    description: 'Improve and scale. Data-driven conversion rate optimization, technical support, and continuous feature sprints.',
+    deliverable: 'Dedicated Partnership & Sprints',
+  },
+];
 
 export function ProcessSection() {
-  const containerRef = useRef<HTMLDivElement | null>(null);
+  const targetRef = useRef<HTMLDivElement | null>(null);
   const shouldReduceMotion = useReducedMotion();
 
   const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start center', 'end center'],
+    target: targetRef,
+    offset: ['start start', 'end end'],
   });
 
-  const progressScaleY = useSpring(scrollYProgress, {
-    stiffness: 120,
-    damping: 28,
-    restDelta: 0.001,
-  });
-
-  const steps = siteConfig.processSteps;
+  // Horizontal motion transform
+  const x = useTransform(scrollYProgress, [0, 1], ['0%', '-60%']);
 
   return (
-    <section id="process" className="relative py-28 sm:py-36 md:py-44 border-b border-white/10 bg-[#050507] scroll-mt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between pb-12 sm:pb-16 border-b border-white/10 gap-6">
-          <div className="space-y-4">
-            <div className="flex items-center space-x-2 text-xs font-mono tracking-widest text-neutral-500 uppercase">
+    <section
+      ref={targetRef}
+      id="process"
+      className="relative min-h-[260vh] bg-[#050505] border-b border-white/10"
+    >
+      <div className="sticky top-0 h-screen w-full flex flex-col justify-between p-6 sm:p-12 md:p-16 overflow-hidden">
+        {/* Top Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between pb-8 border-b border-white/10 gap-4">
+          <div className="space-y-2">
+            <div className="flex items-center space-x-2 text-xs font-mono tracking-widest text-[#8A8A8A] uppercase">
               <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-              <span>THE PROCESS &bull; 5 STAGES</span>
+              <span>THE METHODOLOGY &bull; 05 PHASES</span>
             </div>
-            <h2 className="text-4xl sm:text-6xl md:text-8xl font-light tracking-[-0.04em] text-white">
+            <h2 className="text-3xl sm:text-5xl md:text-6xl font-light tracking-[-0.03em] text-[#F5F5F5] uppercase">
               PROCESS
             </h2>
           </div>
 
-          <div className="max-w-md">
-            <p className="text-sm sm:text-base text-neutral-400 font-light leading-relaxed">
-              From initial discovery to post-launch growth. A disciplined execution methodology engineered for transparency, velocity, and measurable business outcomes.
-            </p>
+          <div className="text-xs font-mono text-[#8A8A8A] uppercase tracking-widest">
+            SCROLL TO INSPECT PHASES &rarr;
           </div>
         </div>
 
-        {/* Horizontal Card Row on Large Screens, Vertical Connected Timeline on Mobile */}
-        <div ref={containerRef} className="mt-16 sm:mt-24 space-y-8 sm:space-y-0 sm:grid sm:grid-cols-2 lg:grid-cols-5 sm:gap-6 relative">
-          {steps.map((step, index) => (
-            <motion.div
-              key={step.number}
-              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.7, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
-              className="relative p-6 sm:p-7 rounded-2xl bg-[#08080c] border border-white/10 hover:border-white/25 transition-all duration-300 flex flex-col justify-between group min-h-[260px]"
-            >
-              {/* Top Accent Node */}
-              <div>
-                <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/[0.08]">
-                  <span className="font-mono text-2xl font-light text-neutral-500 group-hover:text-cyan-400 transition-colors">
-                    {step.number}
-                  </span>
-                  <span className="text-[10px] font-mono tracking-widest text-neutral-500 uppercase">
-                    STAGE 0{index + 1}
-                  </span>
+        {/* Horizontal Moving Cards Track */}
+        <div className="relative my-auto overflow-hidden py-8">
+          <motion.div
+            style={shouldReduceMotion ? {} : { x }}
+            className="flex items-stretch space-x-6 sm:space-x-10 will-change-transform"
+          >
+            {processSteps.map((step, idx) => (
+              <div
+                key={step.number}
+                className="w-[82vw] sm:w-[480px] lg:w-[540px] shrink-0 rounded-2xl sm:rounded-3xl p-8 sm:p-12 bg-[#0B0B0B] border border-white/10 flex flex-col justify-between space-y-8 group hover:border-white/30 transition-all duration-500 shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
+              >
+                <div className="space-y-6">
+                  {/* Phase Number Header */}
+                  <div className="flex items-baseline justify-between pb-6 border-b border-white/[0.08]">
+                    <span className="font-mono text-3xl sm:text-5xl font-light text-cyan-400">
+                      {step.number}
+                    </span>
+                    <span className="text-xs font-mono tracking-widest text-[#8A8A8A] uppercase">
+                      PHASE 0{idx + 1}
+                    </span>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-3xl sm:text-5xl font-light tracking-tight text-white uppercase group-hover:text-cyan-400 transition-colors">
+                    {step.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-base sm:text-lg text-[#8A8A8A] font-light leading-relaxed">
+                    {step.description}
+                  </p>
                 </div>
 
-                <h3 className="text-xl sm:text-2xl font-light tracking-tight text-white uppercase mb-3">
-                  {step.title}
-                </h3>
-
-                <p className="text-sm text-neutral-400 font-light leading-relaxed">
-                  {step.description}
-                </p>
+                {/* Deliverable Pill */}
+                <div className="pt-6 border-t border-white/[0.08] flex items-center justify-between">
+                  <span className="text-xs font-mono text-neutral-300">
+                    {step.deliverable}
+                  </span>
+                  <span className="w-2 h-2 rounded-full bg-cyan-400/80 group-hover:scale-150 transition-transform" />
+                </div>
               </div>
+            ))}
+          </motion.div>
+        </div>
 
-              {/* Bottom Subtle Indicator */}
-              <div className="pt-6 mt-6 border-t border-white/[0.06] flex items-center justify-between">
-                <span className="text-[9px] font-mono text-neutral-500 uppercase tracking-widest">
-                  {index === 4 ? 'CONTINUOUS' : `PHASE 0${index + 1}`}
-                </span>
-                <span className="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-cyan-400 group-hover:scale-125 transition-all" />
-              </div>
-            </motion.div>
-          ))}
+        {/* Bottom Progress Bar */}
+        <div className="pt-4 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-[#8A8A8A]">
+          <span>01 DISCOVER</span>
+          <span>02 DESIGN</span>
+          <span>03 BUILD</span>
+          <span>04 LAUNCH</span>
+          <span className="text-cyan-400 font-medium">05 GROW</span>
         </div>
       </div>
     </section>
