@@ -112,6 +112,7 @@ export function ServicePillarsSection() {
                 <div
                   key={item.number}
                   onMouseEnter={() => setHoveredIdx(idx)}
+                  onClick={() => setHoveredIdx(idx)}
                   className={`group relative py-7 sm:py-9 transition-all duration-300 cursor-pointer ${
                     hasHover && !isHovered ? 'opacity-25 blur-[0.5px]' : 'opacity-100'
                   }`}

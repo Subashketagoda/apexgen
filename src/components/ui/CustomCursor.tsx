@@ -75,13 +75,14 @@ export function CustomCursor() {
   return (
     <div
       className="pointer-events-none fixed inset-0 z-[999] overflow-hidden select-none"
+      style={{ pointerEvents: 'none' }}
       aria-hidden="true"
     >
       {/* 1. Precise Center Dot (visible in default mode) */}
       {cursorMode === 'default' && (
         <motion.div
-          style={{ x: mouseX, y: mouseY, translateX: '-50%', translateY: '-50%' }}
-          className="fixed left-0 top-0 w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)]"
+          style={{ x: mouseX, y: mouseY, translateX: '-50%', translateY: '-50%', pointerEvents: 'none' }}
+          className="pointer-events-none fixed left-0 top-0 w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)]"
         />
       )}
 
@@ -90,12 +91,12 @@ export function CustomCursor() {
         {cursorMode === 'project' ? (
           <motion.div
             key="project-cursor"
-            style={{ x: followerX, y: followerY, translateX: '-50%', translateY: '-50%' }}
+            style={{ x: followerX, y: followerY, translateX: '-50%', translateY: '-50%', pointerEvents: 'none' }}
             initial={{ scale: 0.6, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.6, opacity: 0 }}
             transition={{ type: 'spring', damping: 24, stiffness: 350 }}
-            className="fixed left-0 top-0 px-4 py-2 rounded-full bg-white text-black flex items-center space-x-2 font-mono text-[10px] uppercase font-bold tracking-widest shadow-2xl backdrop-blur-md"
+            className="pointer-events-none fixed left-0 top-0 px-4 py-2 rounded-full bg-white text-black flex items-center space-x-2 font-mono text-[10px] uppercase font-bold tracking-widest shadow-2xl backdrop-blur-md"
           >
             <span>VIEW PROJECT</span>
             <span>&rarr;</span>
@@ -103,20 +104,20 @@ export function CustomCursor() {
         ) : cursorMode === 'pointer' ? (
           <motion.div
             key="pointer-cursor"
-            style={{ x: followerX, y: followerY, translateX: '-50%', translateY: '-50%' }}
+            style={{ x: followerX, y: followerY, translateX: '-50%', translateY: '-50%', pointerEvents: 'none' }}
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1.35, opacity: 1 }}
             exit={{ scale: 0.8, opacity: 0 }}
             transition={{ type: 'spring', damping: 25, stiffness: 380 }}
-            className="fixed left-0 top-0 w-8 h-8 rounded-full border border-white/50 bg-white/[0.08]"
+            className="pointer-events-none fixed left-0 top-0 w-8 h-8 rounded-full border border-white/50 bg-white/[0.08]"
           />
         ) : (
           <motion.div
             key="default-follower"
-            style={{ x: followerX, y: followerY, translateX: '-50%', translateY: '-50%' }}
+            style={{ x: followerX, y: followerY, translateX: '-50%', translateY: '-50%', pointerEvents: 'none' }}
             animate={{ scale: 1, opacity: 0.25 }}
             transition={{ type: 'spring', damping: 30, stiffness: 280 }}
-            className="fixed left-0 top-0 w-6 h-6 rounded-full border border-white/30"
+            className="pointer-events-none fixed left-0 top-0 w-6 h-6 rounded-full border border-white/30"
           />
         )}
       </AnimatePresence>

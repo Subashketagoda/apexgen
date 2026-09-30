@@ -7,6 +7,8 @@ import { ArrowDown, ArrowUpRight } from 'lucide-react';
 import { HeroBackground } from '@/components/ui/HeroBackground';
 import { InteractiveHeroHeadline } from '@/components/animation/InteractiveHeroHeadline';
 import { MagneticButton } from '@/components/animation/MagneticButton';
+import { HeroFloatingShowcase } from '@/components/ui/HeroFloatingShowcase';
+import { Hero3DModeSwitcher } from '@/components/ui/Hero3DModeSwitcher';
 
 export function HeroSection() {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -60,33 +62,59 @@ export function HeroSection() {
         {/* Massive Cinematic Headline */}
         <InteractiveHeroHeadline containerRef={containerRef} />
 
-        {/* Narrative & Action Line */}
-        <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row sm:items-end justify-between gap-6 pt-6 border-t border-white/[0.08]">
-          <motion.p
-            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.6 }}
-            className="text-sm sm:text-base text-[#8A8A8A] font-light max-w-lg leading-relaxed"
-          >
-            We combine high-level visual direction, bespoke Next.js engineering, and fluid motion to architect digital experiences that command immediate authority.
-          </motion.p>
+        {/* Narrative, Interactive 3D Controls & Floating Showcase */}
+        <div className="mt-8 sm:mt-12 pt-8 border-t border-white/[0.08] grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          {/* Left Column: Narrative, CTA, 3D Switcher */}
+          <div className="lg:col-span-7 space-y-6">
+            <motion.p
+              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.6 }}
+              className="text-sm sm:text-base text-[#8A8A8A] font-light max-w-xl leading-relaxed"
+            >
+              We combine high-level visual direction, bespoke Next.js engineering, and fluid motion to architect digital experiences that command immediate authority.
+            </motion.p>
 
-          <motion.div
-            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.75 }}
-            className="flex items-center space-x-4"
-          >
-            <MagneticButton as="div" strength={0.25} ariaLabel="Start a project">
+            <motion.div
+              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.75 }}
+              className="flex flex-wrap items-center gap-4"
+            >
+              <MagneticButton as="div" strength={0.25} ariaLabel="Start a project">
+                <Link
+                  href="/#contact"
+                  className="group inline-flex items-center space-x-2.5 px-7 py-3.5 rounded-full bg-white text-black font-mono text-xs uppercase tracking-wider font-semibold hover:bg-neutral-200 transition-all shadow-[0_0_30px_rgba(255,255,255,0.2)] active:scale-95 cursor-pointer"
+                >
+                  <span>START A PROJECT</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </Link>
+              </MagneticButton>
+
               <Link
-                href="/#contact"
-                className="group inline-flex items-center space-x-2.5 px-7 py-3.5 rounded-full bg-white text-black font-mono text-xs uppercase tracking-wider font-semibold hover:bg-neutral-200 transition-all shadow-[0_0_30px_rgba(255,255,255,0.2)] active:scale-95 cursor-pointer"
+                href="/#work"
+                className="inline-flex items-center space-x-2 px-6 py-3.5 rounded-full border border-white/15 bg-white/5 text-xs font-mono uppercase tracking-wider text-neutral-300 hover:text-white hover:border-white/30 transition-all cursor-pointer"
               >
-                <span>START A PROJECT</span>
-                <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <span>EXPLORE WORK</span>
+                <ArrowDown className="w-3 h-3 text-cyan-400" />
               </Link>
-            </MagneticButton>
-          </motion.div>
+            </motion.div>
+
+            {/* Interactive 3D Mode HUD Switcher */}
+            <motion.div
+              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.9 }}
+              className="pt-2 flex items-center"
+            >
+              <Hero3DModeSwitcher />
+            </motion.div>
+          </div>
+
+          {/* Right Column: Floating Real Projects Showcase */}
+          <div className="lg:col-span-5 flex justify-center lg:justify-end">
+            <HeroFloatingShowcase />
+          </div>
         </div>
       </motion.div>
 

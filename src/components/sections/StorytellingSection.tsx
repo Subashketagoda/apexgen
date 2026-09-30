@@ -1,91 +1,145 @@
 'use client';
 
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight, Sparkles, Shield, TrendingUp } from 'lucide-react';
+
+const acts = [
+  {
+    number: '01',
+    act: 'ACT I',
+    badge: 'THE REJECTION OF TEMPLATES',
+    headline: 'NOT JUST',
+    highlight: 'A WEBSITE.',
+    description:
+      'Generic website builders and drag-and-drop templates make every company look interchangeable. We engineer custom digital flagships from first principles with uncompromising art direction.',
+    icon: Sparkles,
+    color: 'from-neutral-400 to-white',
+  },
+  {
+    number: '02',
+    act: 'ACT II',
+    badge: 'THE STANDARD OF CRAFT',
+    headline: 'A DIGITAL',
+    highlight: 'EXPERIENCE.',
+    description:
+      'We combine editorial typography, sub-second edge runtimes, and fluid 3D micro-interactions to create digital spaces that command immediate prestige and respect.',
+    icon: Shield,
+    color: 'from-cyan-400 to-blue-400',
+  },
+  {
+    number: '03',
+    act: 'ACT III',
+    badge: 'COMMERCIAL IMPACT',
+    headline: 'BUILT FOR',
+    highlight: 'YOUR BUSINESS.',
+    description:
+      'A great digital flagship is a commercial growth engine. Designed to elevate brand positioning, capture high-value customer leads, and convert traffic into long-term enterprise value.',
+    icon: TrendingUp,
+    color: 'from-white to-cyan-300',
+  },
+];
 
 export function StorytellingSection() {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const shouldReduceMotion = useReducedMotion();
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end end'],
-  });
-
-  // Scroll typography transformations across 3 narrative beats
-  const opacityBeat1 = useTransform(scrollYProgress, [0, 0.25, 0.35], [1, 1, 0.15]);
-  const opacityBeat2 = useTransform(scrollYProgress, [0.25, 0.45, 0.65], [0.15, 1, 0.15]);
-  const opacityBeat3 = useTransform(scrollYProgress, [0.55, 0.75, 1], [0.15, 1, 1]);
+  const [activeAct, setActiveAct] = useState(0);
+  const current = acts[activeAct];
 
   return (
-    <section
-      ref={containerRef}
-      className="relative min-h-[220vh] bg-[#050505] text-[#F5F5F5] border-b border-white/10"
-    >
-      {/* Sticky presentation screen */}
-      <div className="sticky top-0 h-screen w-full flex flex-col justify-between p-6 sm:p-12 md:p-20 overflow-hidden">
-        {/* Top Eyebrow Tag */}
-        <div className="flex items-center justify-between text-xs font-mono tracking-widest text-[#8A8A8A] uppercase">
-          <div className="flex items-center space-x-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-            <span>APEXGEN MANIFESTO</span>
+    <section className="relative py-28 sm:py-36 md:py-44 bg-[#050505] text-[#F5F5F5] border-b border-white/10 overflow-hidden">
+      {/* Ambient background glow accent */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[450px] bg-cyan-500/[0.03] rounded-full blur-[140px] pointer-events-none" />
+
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-12 relative z-10">
+        {/* Top Header & Navigation Tabs */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between pb-10 sm:pb-12 border-b border-white/10 gap-6">
+          <div className="space-y-3">
+            <div className="flex items-center space-x-2 text-xs font-mono tracking-widest text-[#8A8A8A] uppercase">
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+              <span>APEXGEN MANIFESTO</span>
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-light tracking-[-0.03em] uppercase text-white">
+              PHILOSOPHY OF CRAFT
+            </h2>
           </div>
-          <span>03 ACTS OF CRAFT</span>
+
+          {/* Interactive Act Switcher Tabs */}
+          <div className="flex items-center space-x-2 bg-[#0B0B0B] p-1.5 rounded-full border border-white/10">
+            {acts.map((item, idx) => {
+              const isActive = activeAct === idx;
+              return (
+                <button
+                  key={item.number}
+                  type="button"
+                  onClick={() => setActiveAct(idx)}
+                  className={`px-4 sm:px-5 py-2 rounded-full text-xs font-mono tracking-wider uppercase transition-all duration-300 cursor-pointer ${
+                    isActive
+                      ? 'bg-white text-black font-semibold shadow-md'
+                      : 'text-[#8A8A8A] hover:text-white hover:bg-white/5'
+                  }`}
+                >
+                  <span className="hidden sm:inline">{item.act} &bull; </span>
+                  <span>{item.number}</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
 
-        {/* Center: Scroll-Based Huge Typography Reveals */}
-        <div className="max-w-[1400px] mx-auto w-full my-auto space-y-8 sm:space-y-12">
-          {/* BEAT 1: NOT JUST A WEBSITE. */}
-          <motion.div
-            style={shouldReduceMotion ? {} : { opacity: opacityBeat1 }}
-            className="transition-opacity duration-300"
-          >
-            <div className="text-[10px] font-mono tracking-[0.3em] text-[#8A8A8A] uppercase mb-2">
-              ACT I &bull; THE REJECTION OF TEMPLATES
-            </div>
-            <h2 className="text-4xl sm:text-7xl md:text-8xl lg:text-9xl font-light tracking-[-0.04em] uppercase leading-[0.9]">
-              NOT JUST<br />
-              <span className="text-[#8A8A8A]">A WEBSITE.</span>
-            </h2>
-          </motion.div>
+        {/* Center: Stage Presentation Card */}
+        <div className="mt-12 sm:mt-16 min-h-[380px] sm:min-h-[440px] flex flex-col justify-between">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={current.number}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="space-y-8 sm:space-y-12"
+            >
+              <div className="flex items-center space-x-3 text-xs font-mono tracking-[0.25em] text-cyan-400 uppercase">
+                <span>{current.act}</span>
+                <span>&bull;</span>
+                <span>{current.badge}</span>
+              </div>
 
-          {/* BEAT 2: A DIGITAL EXPERIENCE. */}
-          <motion.div
-            style={shouldReduceMotion ? {} : { opacity: opacityBeat2 }}
-            className="transition-opacity duration-300"
-          >
-            <div className="text-[10px] font-mono tracking-[0.3em] text-[#8A8A8A] uppercase mb-2">
-              ACT II &bull; THE STANDARD OF EXCELLENCE
-            </div>
-            <h2 className="text-4xl sm:text-7xl md:text-8xl lg:text-9xl font-light tracking-[-0.04em] uppercase leading-[0.9]">
-              A DIGITAL<br />
-              <span className="text-gradient-iridescent">EXPERIENCE.</span>
-            </h2>
-          </motion.div>
+              {/* Huge Monolithic Headline */}
+              <h3 className="text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] font-light tracking-[-0.04em] uppercase leading-[0.92]">
+                {current.headline}
+                <br />
+                <span
+                  className={
+                    activeAct === 1
+                      ? 'text-gradient-iridescent'
+                      : activeAct === 2
+                      ? 'text-white'
+                      : 'text-[#8A8A8A]'
+                  }
+                >
+                  {current.highlight}
+                </span>
+              </h3>
 
-          {/* BEAT 3: BUILT FOR YOUR BUSINESS. */}
-          <motion.div
-            style={shouldReduceMotion ? {} : { opacity: opacityBeat3 }}
-            className="transition-opacity duration-300"
-          >
-            <div className="text-[10px] font-mono tracking-[0.3em] text-[#8A8A8A] uppercase mb-2">
-              ACT III &bull; COMMERCIAL IMPACT
-            </div>
-            <h2 className="text-4xl sm:text-7xl md:text-8xl lg:text-9xl font-light tracking-[-0.04em] uppercase leading-[0.9]">
-              BUILT FOR<br />
-              <span className="text-white">YOUR BUSINESS.</span>
-            </h2>
-          </motion.div>
-        </div>
+              {/* Editorial Description & Next Act Control */}
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-12 pt-8 border-t border-white/10 items-end">
+                <p className="md:col-span-8 text-base sm:text-xl text-[#8A8A8A] font-light leading-relaxed max-w-3xl">
+                  {current.description}
+                </p>
 
-        {/* Bottom Editorial Narrative Note */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between text-xs font-mono text-[#8A8A8A] border-t border-white/10 pt-4 gap-4">
-          <p className="max-w-md font-light leading-relaxed">
-            Generic website builders make every company look interchangeable. We engineer custom digital flagships from first principles with uncompromising art direction.
-          </p>
-          <div className="tracking-widest uppercase text-cyan-400">
-            SCROLL TO CONTINUE &darr;
-          </div>
+                <div className="md:col-span-4 flex items-center md:justify-end">
+                  <button
+                    type="button"
+                    onClick={() => setActiveAct((prev) => (prev + 1) % acts.length)}
+                    className="inline-flex items-center space-x-2 px-6 py-3 rounded-full border border-white/15 bg-white/5 hover:bg-white hover:text-black font-mono text-xs uppercase tracking-wider transition-all duration-300 group cursor-pointer"
+                  >
+                    <span>
+                      {activeAct === acts.length - 1 ? 'REPLAY ACT I' : 'NEXT ACT'}
+                    </span>
+                    <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </section>

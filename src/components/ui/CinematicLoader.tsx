@@ -23,6 +23,18 @@ export function CinematicLoader({ onComplete }: CinematicLoaderProps) {
     }, 400);
   }, [onComplete]);
 
+  // Skip on mount if already loaded in this session
+  useEffect(() => {
+    try {
+      if (typeof window !== 'undefined' && sessionStorage.getItem('apexgen_loaded') === 'true') {
+        setIsDone(true);
+        onComplete?.();
+      }
+    } catch {
+      // ignore storage access errors
+    }
+  }, [onComplete]);
+
   // Keyboard shortcut listener to skip intro (Esc, Space, Enter)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -40,7 +52,7 @@ export function CinematicLoader({ onComplete }: CinematicLoaderProps) {
       return;
     }
 
-    const duration = 2400; // Fast, elegant cinematic duration
+    const duration = 2200; // Fast, elegant cinematic duration
     const startTime = Date.now();
 
     const interval = setInterval(() => {
@@ -79,7 +91,8 @@ export function CinematicLoader({ onComplete }: CinematicLoaderProps) {
               ease: [0.76, 0, 0.24, 1],
             },
           }}
-          className="fixed inset-0 z-[100] w-screen h-screen bg-[#050505] text-[#F5F5F5] flex flex-col items-center justify-center p-6 select-none cursor-default"
+          onClick={handleFinish}
+          className="fixed inset-0 z-[100] w-screen h-screen bg-[#050505] text-[#F5F5F5] flex flex-col items-center justify-center p-6 select-none cursor-pointer"
           aria-live="polite"
           aria-busy={!isDone}
         >
