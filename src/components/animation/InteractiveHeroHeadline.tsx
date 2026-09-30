@@ -32,8 +32,10 @@ function InteractiveWord({ word, isSpecial, isAccent, lineIndex, wordIndex }: Wo
         <motion.span
           key={charIdx}
           className={`inline-block transition-colors duration-300 ${
-            isSpecial
-              ? 'text-shimmer font-normal drop-shadow-[0_0_28px_rgba(255,255,255,0.4)]'
+            char === '.'
+              ? 'text-cyan-400 font-bold drop-shadow-[0_0_25px_rgba(34,211,238,0.9)]'
+              : isSpecial
+              ? 'text-gradient-iridescent font-medium'
               : isAccent
               ? 'text-white font-medium drop-shadow-[0_0_24px_rgba(255,255,255,0.3)]'
               : 'text-neutral-100 group-hover/word:text-white'

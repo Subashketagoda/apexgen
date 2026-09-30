@@ -57,12 +57,22 @@ export function HeroSection() {
           {/* Interactive 3D Kinetic Hero Headline */}
           <InteractiveHeroHeadline />
 
+          {/* Editorial Supporting Narrative */}
+          <motion.p
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.72, ease: 'easeOut' }}
+            className="mt-4 sm:mt-5 text-sm sm:text-base text-neutral-300 font-light max-w-2xl leading-relaxed text-pretty"
+          >
+            We combine high-level visual direction, cutting-edge Next.js architecture, and fluid 3D motion to engineer bespoke digital flagships that command immediate authority and accelerate business growth.
+          </motion.p>
+
           {/* Below Headline: Interactive Disciplines with Hover Scramble */}
           <motion.div
-            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 16 }}
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.8, ease: 'easeOut' }}
-            className="mt-5 sm:mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs sm:text-sm font-mono tracking-widest text-neutral-400 uppercase"
+            transition={{ duration: 0.7, delay: 0.85, ease: 'easeOut' }}
+            className="mt-4 sm:mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs sm:text-sm font-mono tracking-widest text-neutral-400 uppercase"
           >
             <span className="hover:text-white transition-colors cursor-default">
               <TextScramble text="Web Design" triggerOnHover={true} />
@@ -81,8 +91,8 @@ export function HeroSection() {
           <motion.div
             initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.95, ease: 'easeOut' }}
-            className="mt-7 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-5 w-full sm:w-auto"
+            transition={{ duration: 0.7, delay: 0.98, ease: 'easeOut' }}
+            className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-5 w-full sm:w-auto"
           >
             {/* Primary CTA */}
             <MagneticButton
@@ -118,21 +128,51 @@ export function HeroSection() {
               </Link>
             </MagneticButton>
           </motion.div>
+
+          {/* Telemetry Metrics Strip */}
+          <motion.div
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 1.1, ease: 'easeOut' }}
+            className="mt-7 sm:mt-8 pt-5 border-t border-white/[0.08] grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-8 max-w-xl"
+          >
+            <div className="flex flex-col">
+              <span className="text-[10px] font-mono tracking-widest text-neutral-500 uppercase">EDGE SPEED</span>
+              <div className="flex items-center space-x-1.5 mt-0.5">
+                <span className="text-base sm:text-lg font-mono font-medium text-white">&lt;0.5s</span>
+                <span className="text-[10px] text-cyan-400 font-mono tracking-wider">GLOBAL</span>
+              </div>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-[10px] font-mono tracking-widest text-neutral-500 uppercase">ENGINEERING</span>
+              <div className="flex items-center space-x-1.5 mt-0.5">
+                <span className="text-base sm:text-lg font-mono font-medium text-white">100%</span>
+                <span className="text-[10px] text-emerald-400 font-mono tracking-wider">BESPOKE</span>
+              </div>
+            </div>
+            <div className="hidden sm:flex flex-col">
+              <span className="text-[10px] font-mono tracking-widest text-neutral-500 uppercase">INQUIRY IMPACT</span>
+              <div className="flex items-center space-x-1.5 mt-0.5">
+                <span className="text-base sm:text-lg font-mono font-medium text-white">3.5&times;</span>
+                <span className="text-[10px] text-purple-400 font-mono tracking-wider">CONVERSION</span>
+              </div>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
 
-      {/* Subtle Bottom Scroll Indicator */}
+      {/* Subtle Bottom Scroll & Telemetry Indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 0.8 }}
-        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-12 w-full flex items-center justify-between text-[11px] font-mono tracking-widest text-neutral-600 uppercase pt-4 sm:pt-6"
+        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-12 w-full flex items-center justify-between text-[11px] font-mono tracking-widest text-neutral-500 uppercase pt-4 sm:pt-6"
       >
         <div className="flex items-center space-x-2">
-          <span className="w-1.5 h-1.5 rounded-full bg-white/40 animate-pulse" />
+          <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
           <span>SCROLL TO EXPLORE</span>
         </div>
-        <span className="hidden sm:inline">HIGH-END DIGITAL EXPERIENCES</span>
+        <span className="hidden sm:inline">6.9271&deg; N, 79.8612&deg; E &bull; HIGH-END DIGITAL FLAGSHIPS</span>
       </motion.div>
     </section>
   );

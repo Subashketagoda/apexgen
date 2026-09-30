@@ -161,6 +161,24 @@
   animation: text-shimmer 6s linear infinite;
 }
 
+/* Prismatic Chromatic Iridescent Glow Text */
+.text-gradient-iridescent {
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #e0e7ff 20%,
+    #38bdf8 45%,
+    #a855f7 75%,
+    #ffffff 100%
+  );
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: text-shimmer 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 30px rgba(56, 189, 248, 0.35));
+}
+
 /* Reduced motion accessibility */
 @media (prefers-reduced-motion: reduce) {
   *,
