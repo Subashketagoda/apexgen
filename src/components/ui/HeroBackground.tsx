@@ -93,6 +93,10 @@ export function HeroBackground() {
 
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
+      {/* Dynamic Atmospheric Glow Orbs */}
+      <div className="absolute top-[12%] right-[8%] w-[520px] h-[520px] bg-gradient-to-br from-cyan-500/12 via-blue-500/6 to-transparent rounded-full blur-[140px] pointer-events-none animate-pulse duration-[8000ms]" />
+      <div className="absolute bottom-[10%] left-[5%] w-[480px] h-[480px] bg-gradient-to-tr from-indigo-500/10 via-purple-500/5 to-transparent rounded-full blur-[130px] pointer-events-none" />
+
       {/* 3D WebGL Three.js Interactive Scene */}
       <Hero3DScene />
 
