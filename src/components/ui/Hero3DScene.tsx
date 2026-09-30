@@ -3,6 +3,14 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
+export type Hero3DMode = 'hologram' | 'wireframe' | 'neon' | 'explode';
+
+export function setHero3DMode(mode: Hero3DMode) {
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent('apexgen:3d-mode', { detail: { mode } }));
+  }
+}
+
 export function Hero3DScene() {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
@@ -302,6 +310,72 @@ export function Hero3DScene() {
     window.addEventListener('mousemove', handlePointerMove, { passive: true });
     window.addEventListener('touchmove', handlePointerMove, { passive: true });
 
+    // Interactive 3D Mode State
+    let currentMode: Hero3DMode = 'hologram';
+    let explodeScale = 1.0;
+    let targetExplodeScale = 1.0;
+
+    const handleModeChange = (e: Event) => {
+      const customEvent = e as CustomEvent<{ mode: Hero3DMode }>;
+      if (!customEvent.detail || !customEvent.detail.mode) return;
+      currentMode = customEvent.detail.mode;
+
+      if (currentMode === 'wireframe') {
+        innerMesh.visible = false;
+        wireMesh.visible = true;
+        wireMat.color.setHex(0x38bdf8);
+        wireMat.opacity = 0.85;
+        vertexPointsMat.color.setHex(0xffffff);
+        vertexPointsMat.size = 0.16;
+        heartLight.color.setHex(0x06b6d4);
+        heartLight.intensity = 4.5;
+        targetExplodeScale = 1.0;
+      } else if (currentMode === 'neon') {
+        innerMesh.visible = true;
+        innerMat.color.setHex(0x2e0854);
+        innerMat.emissive.setHex(0xa855f7);
+        innerMat.emissiveIntensity = 0.85;
+        wireMat.color.setHex(0xf43f5e);
+        wireMat.opacity = 0.65;
+        vertexPointsMat.color.setHex(0xfb7185);
+        heartLight.color.setHex(0xf43f5e);
+        heartLight.intensity = 6.5;
+        ringMat1.color.setHex(0xf43f5e);
+        ringMat2.color.setHex(0xa855f7);
+        ringMat3.color.setHex(0x38bdf8);
+        targetExplodeScale = 1.08;
+      } else if (currentMode === 'explode') {
+        innerMesh.visible = true;
+        innerMat.color.setHex(0x0f172a);
+        innerMat.emissive.setHex(0x0284c7);
+        innerMat.emissiveIntensity = 0.5;
+        wireMat.color.setHex(0x38bdf8);
+        wireMat.opacity = 0.7;
+        vertexPointsMat.size = 0.2;
+        heartLight.color.setHex(0x38bdf8);
+        heartLight.intensity = 5.5;
+        targetExplodeScale = 1.45;
+      } else {
+        // Hologram (default)
+        innerMesh.visible = true;
+        innerMat.color.setHex(0x0f172a);
+        innerMat.emissive.setHex(0x0284c7);
+        innerMat.emissiveIntensity = 0.25;
+        wireMat.color.setHex(0x93c5fd);
+        wireMat.opacity = 0.35;
+        vertexPointsMat.color.setHex(0xffffff);
+        vertexPointsMat.size = 0.12;
+        heartLight.color.setHex(0x38bdf8);
+        heartLight.intensity = 3.2;
+        ringMat1.color.setHex(0x38bdf8);
+        ringMat2.color.setHex(0xa855f7);
+        ringMat3.color.setHex(0xffffff);
+        targetExplodeScale = 1.0;
+      }
+    };
+
+    window.addEventListener('apexgen:3d-mode', handleModeChange);
+
     // Handle Resize
     const handleResize = () => {
       if (!container || isDisposed) return;
@@ -315,7 +389,7 @@ export function Hero3DScene() {
 
       const desktopNow = width >= 768;
       objectGroup.position.set(desktopNow ? 3.0 : 0, desktopNow ? 0.65 : -0.35, 0);
-      objectGroup.scale.setScalar(desktopNow ? 0.82 : 0.62);
+      objectGroup.scale.setScalar((desktopNow ? 0.82 : 0.62) * explodeScale);
     };
 
     window.addEventListener('resize', handleResize);
@@ -346,6 +420,11 @@ export function Hero3DScene() {
       // Smooth mouse lerping
       mouse.x += (mouse.targetX - mouse.x) * 0.05;
       mouse.y += (mouse.targetY - mouse.y) * 0.05;
+
+      // Smooth mode explode scaling
+      explodeScale += (targetExplodeScale - explodeScale) * 0.06;
+      const currentBaseScale = (width >= 768 ? 0.82 : 0.62) * explodeScale;
+      objectGroup.scale.setScalar(currentBaseScale);
 
       // Dynamic Interactive Mouse Light positioning
       mouseLight.position.x = mouse.x * 7;
@@ -447,6 +526,7 @@ export function Hero3DScene() {
       window.removeEventListener('mousemove', handlePointerMove);
       window.removeEventListener('touchmove', handlePointerMove);
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('apexgen:3d-mode', handleModeChange);
 
       // Dispose Geometries and Materials
       heartGeo.dispose();
