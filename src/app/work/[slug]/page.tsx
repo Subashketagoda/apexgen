@@ -35,10 +35,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const title = `${project.title} — ${project.category} | ApexGen Studio`;
   const description = project.description;
-  const canonicalUrl = `https://apexgen.online/work/${project.slug}`;
+  const canonicalUrl = `${siteConfig.siteUrl}/work/${project.slug}`;
   const ogImageUrl = project.heroImage.startsWith('http')
     ? project.heroImage
-    : `https://apexgen.online${project.heroImage}`;
+    : `${siteConfig.siteUrl}${project.heroImage}`;
 
   return {
     title,

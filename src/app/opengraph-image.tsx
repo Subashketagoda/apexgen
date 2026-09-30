@@ -119,7 +119,7 @@ export default function Image() {
             letterSpacing: '0.1em',
           }}
         >
-          <div style={{ display: 'flex' }}>APEXGEN.ONLINE</div>
+          <div style={{ display: 'flex' }}>APEXGEN.WEBSITE</div>
           <div style={{ display: 'flex' }}>WEB DESIGN &bull; NEXT.JS &bull; BOOKING ENGINES &bull; SEO</div>
         </div>
       </div>

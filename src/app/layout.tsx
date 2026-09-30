@@ -40,51 +40,60 @@ export const metadata: Metadata = {
   alternates: {
     canonical: siteConfig.siteUrl,
   },
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: siteConfig.siteUrl,
-    siteName: 'ApexGen',
-    title: 'ApexGen — Premium Web Design & Digital Experiences',
-    description:
-      'ApexGen builds premium websites and digital experiences for ambitious businesses.',
-    images: [
-      {
-        url: '/brand/apexgen-brand-kit.png',
-        width: 1200,
-        height: 630,
-        alt: 'ApexGen Studio — We Build Digital Experiences That Move Businesses Forward',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'ApexGen — Premium Web Design & Digital Experiences',
-    description:
-      'ApexGen builds premium websites and digital experiences for ambitious businesses.',
-    creator: '@apexgen_studio',
-    images: ['/brand/apexgen-brand-kit.png'],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+    openGraph: {
+      type: 'website',
+      locale: 'en_US',
+      url: siteConfig.siteUrl,
+      siteName: 'ApexGen',
+      title: 'ApexGen — Premium Web Design & Digital Experiences',
+      description:
+        'ApexGen builds premium websites and digital experiences for ambitious businesses.',
+      images: [
+        {
+          url: '/brand/apexgen-icon.png',
+          width: 512,
+          height: 512,
+          alt: 'ApexGen Official Emblem',
+        },
+        {
+          url: '/brand/apexgen-brand-kit.png',
+          width: 1200,
+          height: 630,
+          alt: 'ApexGen Studio — We Build Digital Experiences That Move Businesses Forward',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'ApexGen — Premium Web Design & Digital Experiences',
+      description:
+        'ApexGen builds premium websites and digital experiences for ambitious businesses.',
+      creator: '@apexgen_studio',
+      images: ['/brand/apexgen-brand-kit.png'],
+    },
+    robots: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
     },
-  },
-  icons: {
-    icon: [
-      { url: '/brand/apexgen-icon.png' },
-      { url: '/favicon.png' },
-    ],
-    shortcut: '/brand/apexgen-icon.png',
-    apple: '/brand/apexgen-icon.png',
-  },
-};
+    icons: {
+      icon: [
+        { url: '/favicon.ico', sizes: 'any' },
+        { url: '/brand/apexgen-icon.png', type: 'image/png', sizes: '512x512' },
+        { url: '/favicon.png', type: 'image/png' },
+      ],
+      shortcut: '/favicon.ico',
+      apple: [
+        { url: '/brand/apexgen-icon.png', sizes: '180x180', type: 'image/png' },
+      ],
+    },
+  };
 
 import { PageTransition } from '@/components/animation/PageTransition';
 

@@ -12,8 +12,8 @@ import {
 export const siteConfig = {
   name: 'APEXGEN',
   legalName: 'ApexGen Digital Studio',
-  domain: 'apexgen.online',
-  siteUrl: 'https://apexgen.online',
+  domain: 'apexgen.website',
+  siteUrl: 'https://www.apexgen.website',
   description:
     'ApexGen builds premium websites and digital experiences for ambitious businesses.',
   positioning: 'APEXGEN / DIGITAL STUDIO',
@@ -34,7 +34,7 @@ export const siteConfig = {
   },
 
   contact: {
-    email: 'contact@apexgen.online',
+    email: 'contact@apexgen.website',
     phone: '+94 78 965 6969',
     phoneNumber: '+94789656969',
     phoneDisplay: '+94 78 965 6969',

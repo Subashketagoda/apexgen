@@ -37,7 +37,7 @@ export function CaseStudyLiveSection({
 
   const cleanDomain = liveUrl
     ? liveUrl.replace(/^https?:\/\//, '').replace(/\/$/, '')
-    : `apexgen.online/work/${slug}`;
+    : `apexgen.website/work/${slug}`;
 
   const handleRefresh = () => {
     setIsLoading(true);
