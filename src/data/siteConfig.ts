@@ -17,9 +17,10 @@ export const siteConfig = {
   description:
     'ApexGen builds premium websites and digital experiences for ambitious businesses.',
   positioning: 'APEXGEN / DIGITAL STUDIO',
-  primaryStatement: 'WE BUILD DIGITAL EXPERIENCES THAT MOVE BUSINESSES FORWARD.',
+  primaryStatement: 'We Build Digital Experiences That Move Businesses.',
   supportingCopy:
-    'We combine strategy, design, technology and motion to build digital experiences that feel as strong as the businesses behind them.',
+    'Premium websites and digital experiences designed, engineered and optimized to help ambitious businesses grow.',
+  serviceLine: 'WEB DESIGN • DEVELOPMENT • DIGITAL EXPERIENCES',
   tagline: 'BUILD DIGITAL EXPERIENCES THAT PEOPLE REMEMBER.',
   brandStatement: {
     headline: 'GOOD DESIGN GETS ATTENTION. GREAT DIGITAL EXPERIENCES MOVE PEOPLE.',
@@ -57,42 +58,76 @@ export const siteConfig = {
     { label: 'SERVICES', href: '#services' },
     { label: 'PROCESS', href: '#process' },
     { label: 'PRICING', href: '#pricing' },
-    { label: 'ABOUT', href: '#about' },
+    { label: 'CONTACT', href: '#contact' },
   ] as NavItem[],
 
   marqueeItems: [
     'WEB DESIGN',
-    'DEVELOPMENT',
-    'MOTION',
-    'DIGITAL EXPERIENCES',
-    'WEB DESIGN',
-    'DEVELOPMENT',
+    'WEB DEVELOPMENT',
+    'E-COMMERCE',
+    'BOOKING & BUSINESS SYSTEMS',
+    'AUTOMATION',
+    'SEO & PERFORMANCE',
   ],
 
-  // 3 Core Services (Design, Technology, Growth)
+  // 6 Specified Services
+  servicesList: [
+    {
+      number: '01',
+      title: 'WEB DESIGN',
+      description: 'Modern UI/UX designed around the brand and customer journey.',
+      icon: 'Layout',
+      tags: ['Bespoke UI/UX', 'Art Direction', 'Design Systems', 'Micro-Interactions'],
+    },
+    {
+      number: '02',
+      title: 'WEB DEVELOPMENT',
+      description: 'Fast, responsive and scalable websites.',
+      icon: 'Code2',
+      tags: ['Next.js Architecture', 'Clean TypeScript', 'Sub-Second Speed', 'Scalable Code'],
+    },
+    {
+      number: '03',
+      title: 'E-COMMERCE',
+      description: 'Conversion-focused online stores.',
+      icon: 'ShoppingBag',
+      tags: ['Frictionless Checkout', 'Direct WhatsApp Commerce', 'Product Discovery', 'High Conversion'],
+    },
+    {
+      number: '04',
+      title: 'BOOKING & BUSINESS SYSTEMS',
+      description: 'Custom booking and business workflows.',
+      icon: 'Calendar',
+      tags: ['Reservation Engines', 'Client Intake Forms', 'Custom Workflows', 'Scheduling Sync'],
+    },
+    {
+      number: '05',
+      title: 'AUTOMATION',
+      description: 'Digital workflows that reduce repetitive work.',
+      icon: 'Zap',
+      tags: ['API Integrations', 'Lead Routing', 'Automated Notifications', 'Operational Efficiency'],
+    },
+    {
+      number: '06',
+      title: 'SEO & PERFORMANCE',
+      description: 'Technical optimization for visibility and speed.',
+      icon: 'TrendingUp',
+      tags: ['Core Web Vitals 90+', 'Schema.org JSON-LD', 'Search Visibility', 'Edge CDN Caching'],
+    },
+  ],
+
+  // Legacy alias for compatibility
   servicePillars: [
     {
       number: '01',
       title: 'DESIGN',
       category: 'VISUAL DIRECTION & INTERFACE',
-      shortDesc: 'Brand Websites, UI/UX, Creative Direction, Motion Design, Responsive Design.',
+      shortDesc: 'Modern UI/UX designed around the brand and customer journey.',
       fullDesc:
         'We design digital flagships that command immediate attention. Every typography choice, spacing rhythm, and interactive micro-gesture is art-directed to elevate brand prestige and convert passive interest into high-value customer loyalty.',
-      subDisciplines: [
-        'Brand Websites',
-        'UI/UX',
-        'Creative Direction',
-        'Motion Design',
-        'Responsive Design',
-      ],
+      subDisciplines: ['Brand Websites', 'UI/UX', 'Creative Direction', 'Motion Design', 'Responsive Design'],
       techPills: ['Figma', 'Art Direction', 'Design Systems', 'Micro-Interactions'],
-      deliverables: [
-        'Bespoke Visual Design Systems',
-        'High-Fidelity Interactive Prototypes',
-        'Responsive Mobile-First Architecture',
-        'Editorial Typography & Layouts',
-        'Custom Micro-Interactions & Motion',
-      ],
+      deliverables: ['Bespoke Visual Systems', 'Interactive Prototypes', 'Mobile-First Architecture'],
       iconName: 'Layout',
       featuredQuote: 'Design without purpose is decoration. Design with purpose moves businesses.',
     },
@@ -100,49 +135,25 @@ export const siteConfig = {
       number: '02',
       title: 'TECHNOLOGY',
       category: 'ENGINEERING & SYSTEMS',
-      shortDesc: 'Web Development, CMS, Booking Systems, API Integrations, Performance Optimization.',
+      shortDesc: 'Fast, responsive and scalable websites built with modern technologies.',
       fullDesc:
         'We engineer robust codebases using Next.js, React, TypeScript, and fine-tuned edge architecture. No brittle site-builders, no bloated plugins — just raw execution speed, security, and effortless scalability.',
-      subDisciplines: [
-        'Web Development',
-        'CMS',
-        'Booking Systems',
-        'API Integrations',
-        'Performance Optimization',
-      ],
+      subDisciplines: ['Web Development', 'E-Commerce', 'Booking Systems', 'API Integrations', 'Performance Optimization'],
       techPills: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Edge Runtime'],
-      deliverables: [
-        'Production Next.js App Router Architecture',
-        'Sub-Second Global Edge Loading Speeds',
-        'Frictionless WhatsApp & Direct Checkout Engines',
-        'Custom Reservation & Intake Systems',
-        'Headless CMS & Scalable API Integrations',
-      ],
+      deliverables: ['Production Next.js App Router', 'Sub-Second Global Speeds', 'Custom Reservation Systems'],
       iconName: 'Code2',
-      featuredQuote: 'Code is our craft. Clean architecture guarantees your website grows with you.',
+      featuredQuote: 'Clean architecture guarantees your website grows with you.',
     },
     {
       number: '03',
       title: 'GROWTH',
       category: 'VISIBILITY & CONVERSION',
-      shortDesc: 'SEO, Analytics, Conversion Optimization, Technical SEO, Ongoing Support.',
+      shortDesc: 'Technical optimization for visibility, speed, and business conversions.',
       fullDesc:
         'Launching a website is only step one. We optimize your digital presence for structured search discoverability, Core Web Vitals, and conversion funnels that turn daily traffic into quantifiable customer inquiries.',
-      subDisciplines: [
-        'SEO',
-        'Analytics',
-        'Conversion Optimization',
-        'Technical SEO',
-        'Ongoing Support',
-      ],
+      subDisciplines: ['SEO', 'Analytics', 'Conversion Optimization', 'Technical SEO', 'Ongoing Support'],
       techPills: ['Technical SEO', 'Core Web Vitals', 'Analytics', 'Conversion UX'],
-      deliverables: [
-        'Google Lighthouse 90+ Score Standards',
-        'Schema.org Structured Data & Rich Snippets',
-        'Privacy-Conscious Analytics & Funnel Tracking',
-        'Local Search Discoverability Tuning',
-        'Continuous Maintenance & Technical Sprints',
-      ],
+      deliverables: ['Lighthouse 90+ Standards', 'Schema.org Structured Data', 'Funnel Tracking'],
       iconName: 'TrendingUp',
       featuredQuote: 'Visibility brings visitors. Conversion brings customers. Growth sustains both.',
     },
@@ -153,19 +164,20 @@ export const siteConfig = {
     {
       id: 'cargo-pizzeria',
       slug: 'cargo-pizzeria',
-      title: 'CARGO PIZZERIA',
-      client: 'Cargo Pizzeria',
+      title: 'CARGO PIZZA',
+      client: 'Cargo Pizza',
       category: 'Food & Hospitality',
-      projectType: 'Website Design / Development / UX',
+      projectType: 'Web Design & Development',
       industry: 'Woodfired Pizza & Hospitality',
       tagline: 'A modern restaurant website designed around menu discovery, mobile experience and customer conversion.',
       badge: '01 / PRODUCTION',
       isReal: true,
       liveUrl: 'https://cargopizzeria.online/',
+      domain: 'cargopizzeria.online',
       description:
         'A modern restaurant website designed around menu discovery, mobile experience and customer conversion.',
       overview:
-        'Cargo Pizzeria is a handcrafted woodfired pizza destination in Sri Lanka, celebrated for stone-fired baking and generous offerings. The website provides an interactive menu exploration experience, showcase of artisanal varieties, and direct mobile customer ordering.',
+        'Cargo Pizza is a handcrafted woodfired pizza destination in Sri Lanka, celebrated for stone-fired baking and generous offerings. The website provides an interactive menu exploration experience, showcase of artisanal varieties, and direct mobile customer ordering.',
       challenge:
         'The restaurant needed a high-performance web experience to display their dynamic 20+ pizza varieties, communicate location and operating hours clearly, and channel mobile diners directly into takeaway and delivery ordering without third-party friction.',
       designApproach:
@@ -179,8 +191,8 @@ export const siteConfig = {
         'Location Map, Operating Hours & Dine-In Information',
         'Mobile-First Touch Architecture with Fast Edge Delivery',
       ],
-      technologies: ['HTML5 & Modern JavaScript', 'CSS3 Responsive Grid', 'WhatsApp Business Routing', 'Local Business Schema'],
-      services: ['Website Design', 'Web Development', 'UX Architecture', 'Local SEO'],
+      technologies: ['Next.js Architecture', 'Mobile-First UX', 'WhatsApp Commerce', 'Local SEO Schema'],
+      services: ['Web Design', 'Web Development', 'Conversion UX', 'Performance'],
       accentColor: '#f59e0b',
       year: '2026',
       heroImage: '/images/projects/cargo-pizzeria-screenshot.jpg',
@@ -189,15 +201,16 @@ export const siteConfig = {
     {
       id: '69-studio',
       slug: '69-studio',
-      title: '69 STUDIO',
+      title: '69 STUDIO BY SUBASH',
       client: '69 Studio by Subhash Ketagoda',
       category: 'Creative Studio',
-      projectType: 'Creative Direction / Web Design / Development / Motion',
+      projectType: 'Creative Direction & Web Development',
       industry: 'Creative Technology & POS Solutions',
       tagline: 'A cinematic digital experience created for a modern creative studio.',
       badge: '02 / PRODUCTION',
       isReal: true,
       liveUrl: 'https://69studiobysubash.online/',
+      domain: '69studiobysubash.online',
       description:
         'A cinematic digital experience created for a modern creative studio.',
       overview:
@@ -205,7 +218,7 @@ export const siteConfig = {
       challenge:
         '69 Studio required an avant-garde digital showcase that immediately communicated high technical sophistication, artistic daring, and their dual capabilities across creative digital design and software engineering.',
       designApproach:
-        'Obsidian cybernetic canvas accented by subtle neon wireframe visuals, cutting-edge typography pairing (Syne, Space Grotesk, Outfit), and dynamic micro-animations that communicate technical capability.',
+        'Obsidian cybernetic canvas accented by subtle wireframe visuals, cutting-edge typography pairing, and dynamic micro-animations that communicate technical capability.',
       solution:
         'Built a fluid, motion-driven studio portfolio highlighting their bespoke software solutions and web engineering capabilities with seamless multi-channel enquiry channels.',
       features: [
@@ -215,8 +228,8 @@ export const siteConfig = {
         'Multi-Channel Direct Inquiry Routing (WhatsApp & Social)',
         'Full Responsive Layout with High-Fidelity Desktop Depth',
       ],
-      technologies: ['Next.js / Modern Web Stack', 'CSS3 Animations & Motion', 'Google Web Fonts (Syne, Space Grotesk)', 'Structured Schema'],
-      services: ['Creative Direction', 'Web Design', 'Development', 'Motion'],
+      technologies: ['Next.js / TypeScript', 'Fluid Motion', 'Editorial Typography', 'Technical SEO'],
+      services: ['Creative Direction', 'Web Design', 'Full-Stack Development', 'Motion'],
       accentColor: '#00f0ff',
       year: '2026',
       heroImage: '/images/projects/69-studio-screenshot.png',
@@ -225,19 +238,20 @@ export const siteConfig = {
     {
       id: 'dinepro-advisors',
       slug: 'dinepro-advisors',
-      title: 'DINEPRO ADVISORS',
-      client: 'DinePro Advisors',
+      title: 'DINEPRO ADVISERS',
+      client: 'DinePro Advisers',
       category: 'Hospitality Consulting',
-      projectType: 'Web Design / Development / Conversion Experience',
+      projectType: 'Advisory Web Platform & Conversion Funnel',
       industry: 'Hospitality Strategy & Advisory',
       tagline: 'A premium hospitality consulting website focused on presenting services and driving consultation enquiries.',
       badge: '03 / PRODUCTION',
       isReal: true,
       liveUrl: 'https://dineproadvisors.online/',
+      domain: 'dineproadvisors.online',
       description:
         'A premium hospitality consulting website focused on presenting services and driving consultation enquiries.',
       overview:
-        'DinePro Advisors is a restaurant and hospitality advisory practice providing strategic restaurant consulting, concept development, operational reviews, staff training, and menu engineering to help hospitality businesses maximize profitability.',
+        'DinePro Advisers is a restaurant and hospitality advisory practice providing strategic restaurant consulting, concept development, operational reviews, staff training, and menu engineering to help hospitality businesses maximize profitability.',
       challenge:
         'The firm needed an authoritative digital presence to communicate consultative depth, demonstrate expertise across hospitality disciplines, and streamline appointment booking for restaurant owners seeking strategy sessions.',
       designApproach:
@@ -251,8 +265,8 @@ export const siteConfig = {
         'Direct WhatsApp Strategy Session Linkage',
         'Location & Direct Contact Integration',
       ],
-      technologies: ['Modern Web Architecture', 'Responsive Layouts', 'WhatsApp Conversion Funnel', 'SEO Optimization'],
-      services: ['Web Design', 'Development', 'Conversion Experience'],
+      technologies: ['Next.js Architecture', 'Booking Flow', 'Conversion UX', 'Speed Optimization'],
+      services: ['Web Design', 'Development', 'Booking Systems', 'Conversion Optimization'],
       accentColor: '#d4af37',
       year: '2026',
       heroImage: '/images/projects/dinepro-advisors-screenshot.png',
@@ -260,10 +274,155 @@ export const siteConfig = {
     },
   ] as ProjectCaseStudy[],
 
-  // Export projects array (consisting of the real verified projects)
   projects: [] as ProjectCaseStudy[],
 
-  // Large interactive typography industries
+  // 5 Specified Process Steps
+  processSteps: [
+    {
+      number: '01',
+      title: 'DISCOVER',
+      duration: 'Phase 01',
+      description: 'Understand the business, audience and goals.',
+      deliverables: ['Brand & commercial alignment', 'Audience & competitive research', 'Technical scope roadmap'],
+    },
+    {
+      number: '02',
+      title: 'DESIGN',
+      duration: 'Phase 02',
+      description: 'Create the visual direction and user experience.',
+      deliverables: ['Editorial visual language', 'Mobile-first UX wireframes', 'Interactive micro-interactions prototype'],
+    },
+    {
+      number: '03',
+      title: 'BUILD',
+      duration: 'Phase 03',
+      description: 'Develop the website with modern technologies.',
+      deliverables: ['Production Next.js codebase', 'Sub-second edge loading architecture', 'Responsive cross-device testing'],
+    },
+    {
+      number: '04',
+      title: 'LAUNCH',
+      duration: 'Phase 04',
+      description: 'Test, optimize and deploy.',
+      deliverables: ['Lighthouse 90+ speed audit', 'SEO schema & metadata deployment', 'Domain verification & live launch'],
+    },
+    {
+      number: '05',
+      title: 'GROW',
+      duration: 'Phase 05',
+      description: 'Improve performance, SEO and conversions.',
+      deliverables: ['Conversion funnel analysis', 'Search ranking optimization', 'Dedicated technical support'],
+    },
+  ] as ProcessStep[],
+
+  // Specified Why ApexGen Highlights
+  whyReasons: [
+    {
+      number: '01',
+      title: 'CUSTOM DESIGN',
+      description: 'Every layout is tailored to your brand identity. Zero off-the-shelf templates.',
+      highlight: 'Tailored Aesthetic',
+    },
+    {
+      number: '02',
+      title: 'RESPONSIVE DEVELOPMENT',
+      description: 'Over 80% of your audience visits via mobile. We engineer seamless touch experiences first.',
+      highlight: 'Touch-Optimized',
+    },
+    {
+      number: '03',
+      title: 'FAST PERFORMANCE',
+      description: 'Sub-second loading times powered by modern edge architecture for maximum conversion.',
+      highlight: 'Sub-Second Speed',
+    },
+    {
+      number: '04',
+      title: 'SEO READY',
+      description: 'Clean semantic HTML, Open Graph cards, and structured JSON-LD schemas out of the box.',
+      highlight: 'Search Visibility',
+    },
+    {
+      number: '05',
+      title: 'CONVERSION FOCUSED',
+      description: 'Engineered user flows, clear calls to action, and direct WhatsApp routing that converts.',
+      highlight: 'Direct Inquiries',
+    },
+    {
+      number: '06',
+      title: 'ONGOING SUPPORT',
+      description: 'Dedicated post-launch warranty, speed maintenance, and continuous technical advisory.',
+      highlight: 'Dedicated Partnership',
+    },
+  ] as WhyReason[],
+
+  // 3 Specified Pricing Tiers
+  pricingPlans: [
+    {
+      id: 'starter',
+      name: 'STARTER',
+      price: 'LKR 49,900+',
+      description: 'Clean, bespoke digital presence engineered to establish immediate credibility.',
+      idealFor: 'Emerging businesses, independent practices & single-location flagships.',
+      timeline: '5–7 Business Days',
+      revisions: '1 Revision',
+      supportDuration: '7 Days Support',
+      ctaText: 'Start a Project →',
+      features: [
+        '1–3 pages',
+        'Custom UI/UX',
+        'Responsive design',
+        'Basic animation',
+        'WhatsApp/contact forms',
+        'Google Maps',
+        'Basic SEO',
+      ],
+    },
+    {
+      id: 'business',
+      name: 'BUSINESS',
+      price: 'LKR 89,900+',
+      isPopular: true,
+      badge: 'MOST POPULAR',
+      description: 'Comprehensive digital flagship engineered to present complex services and drive daily inquiries.',
+      idealFor: 'Established restaurants, clinics, consulting firms & growing brands.',
+      timeline: '10–14 Business Days',
+      revisions: '2 Revisions',
+      supportDuration: '30 Days Support',
+      ctaText: 'Start a Project →',
+      features: [
+        '5–8 pages',
+        'Advanced animations',
+        'Analytics',
+        'CMS / booking options',
+        'Advanced SEO',
+        'Custom integrations',
+      ],
+    },
+    {
+      id: 'premium',
+      name: 'PREMIUM',
+      price: 'LKR 149,900+',
+      badge: 'HIGH-END FLAGSHIP',
+      description: 'The pinnacle of bespoke digital craft. Bespoke motion, full CMS, and frictionless booking.',
+      idealFor: 'High-end hospitality, luxury studios, multi-service companies & ambitious leaders.',
+      timeline: '2–3 Weeks',
+      revisions: '3 Revisions',
+      supportDuration: '60 Days Support',
+      ctaText: 'Start a Project →',
+      features: [
+        '8–15+ pages',
+        'Premium animations',
+        'CMS + booking',
+        'Advanced SEO',
+        'Custom functionality',
+        'Priority support',
+      ],
+    },
+  ] as PricingPlan[],
+
+  pricingDisclaimer: 'Prices are starting estimates. Final quote is customized to your exact project scope and features.',
+
+  // Industries for interactive overview
   industries: [
     {
       id: 'hospitality',
@@ -288,17 +447,6 @@ export const siteConfig = {
       accentColor: '#f4f4f6',
     },
     {
-      id: 'salons-beauty',
-      name: 'SALONS & BEAUTY',
-      category: 'Salons, Spas & Wellness',
-      icon: 'Scissors',
-      headline: 'Editorial digital sanctuaries for aesthetic and beauty brands.',
-      description: 'Sophisticated web experiences that reflect artistry, showcase treatment menus, and streamline appointments.',
-      keyServices: ['Treatment Price Lists', 'Visual Lookbooks', 'Appointment Booking Routing'],
-      typicalOutcomes: ['Higher ticket bookings', 'Enhanced brand prestige'],
-      accentColor: '#f4f4f6',
-    },
-    {
       id: 'creative-studios',
       name: 'CREATIVE STUDIOS',
       category: 'Agencies, Architecture & Media',
@@ -320,253 +468,11 @@ export const siteConfig = {
       typicalOutcomes: ['Pre-qualified inbound inquiries', 'Established institutional trust'],
       accentColor: '#f4f4f6',
     },
-    {
-      id: 'startups',
-      name: 'STARTUPS',
-      category: 'Technology & Ventures',
-      icon: 'Zap',
-      headline: 'Next-generation web presence for ambitious new ventures.',
-      description: 'Fast, bold product websites built with Next.js that communicate value propositions with precision.',
-      keyServices: ['Product Storytelling', 'High-Converting CTAs', 'Sub-Second Edge Speeds'],
-      typicalOutcomes: ['Investor & customer confidence', 'Rapid launch timelines'],
-      accentColor: '#f4f4f6',
-    },
-    {
-      id: 'local-brands',
-      name: 'LOCAL BRANDS',
-      category: 'Commerce & Flagships',
-      icon: 'ShoppingBag',
-      headline: 'Elevating regional champions to world-class digital standards.',
-      description: 'Websites that transform respected local businesses into iconic digital brands with modern conversion funnels.',
-      keyServices: ['Local SEO & Maps Schema', 'Mobile Conversion UX', 'Direct WhatsApp Commerce'],
-      typicalOutcomes: ['Dominant local search rankings', 'Increased direct customer contact'],
-      accentColor: '#f4f4f6',
-    },
   ] as IndustryItem[],
 
-  // 5 Process Steps
-  processSteps: [
-    {
-      number: '01',
-      title: 'DISCOVER',
-      duration: 'Phase 01',
-      description: 'Understand the business.',
-      deliverables: ['Brand & commercial goals alignment', 'Audience and competitive analysis', 'Project scope roadmap'],
-    },
-    {
-      number: '02',
-      title: 'STRATEGY',
-      duration: 'Phase 02',
-      description: 'Define structure, content and experience.',
-      deliverables: ['Information architecture', 'Content wireframes', 'Conversion touchpoint strategy'],
-    },
-    {
-      number: '03',
-      title: 'DESIGN',
-      duration: 'Phase 03',
-      description: 'Create the visual direction and interface.',
-      deliverables: ['Editorial visual language', 'Mobile & desktop responsive UI', 'Interactive micro-gestures & motion prototype'],
-    },
-    {
-      number: '04',
-      title: 'BUILD',
-      duration: 'Phase 04',
-      description: 'Develop the production-ready website.',
-      deliverables: ['Production Next.js codebase', 'Clean component architecture', 'Cross-browser & device testing'],
-    },
-    {
-      number: '05',
-      title: 'LAUNCH',
-      duration: 'Phase 05',
-      description: 'Optimize, test and launch.',
-      deliverables: ['Lighthouse performance optimization', 'Structured data & SEO deployment', 'Domain verification & live launch'],
-    },
-  ] as ProcessStep[],
-
-  // Editorial Why ApexGen
-  whyReasons: [
-    {
-      number: '01',
-      title: 'CUSTOM DESIGN',
-      description: 'Every layout is tailored to your brand identity. Zero off-the-shelf templates.',
-      highlight: 'Tailored Aesthetic',
-    },
-    {
-      number: '02',
-      title: 'NO TEMPLATES',
-      description: 'Handcrafted architecture built from first principles for your specific market position.',
-      highlight: '100% Bespoke',
-    },
-    {
-      number: '03',
-      title: 'MOBILE-FIRST',
-      description: 'Over 80% of your audience visits via mobile. We engineer touch experiences first.',
-      highlight: 'Touch Optimized',
-    },
-    {
-      number: '04',
-      title: 'PERFORMANCE',
-      description: 'Sub-second loading times powered by Next.js edge delivery for maximum conversion.',
-      highlight: 'Sub-Second Speed',
-    },
-    {
-      number: '05',
-      title: 'SEO READY',
-      description: 'Clean semantic HTML, Open Graph cards, and structured JSON-LD schemas out of the box.',
-      highlight: 'Search Dominance',
-    },
-    {
-      number: '06',
-      title: 'CONVERSION FOCUSED',
-      description: 'Engineered user flows, clear calls to action, and direct WhatsApp routing that converts.',
-      highlight: 'Direct Inquiries',
-    },
-  ] as WhyReason[],
-
-  // Verified Pricing
-  pricingPlans: [
-    {
-      id: 'starter',
-      name: 'STARTER',
-      price: 'LKR 49,900+',
-      description: 'For businesses seeking a clean, custom digital presence that builds immediate credibility.',
-      idealFor: 'Emerging businesses, independent practices & single-location flagships.',
-      timeline: '5–7 Business Days',
-      revisions: '1 Revision',
-      supportDuration: '7 Days Support',
-      ctaText: 'START A PROJECT →',
-      features: [
-        '1–3 Pages',
-        'Custom UI/UX',
-        'Responsive Design',
-        'Basic Animations',
-        'WhatsApp Integration',
-        'Contact Form',
-        'Google Maps',
-        'Basic SEO',
-        'Performance Optimization',
-        '1 Revision',
-        '7 Days Support',
-      ],
-    },
-    {
-      id: 'business',
-      name: 'BUSINESS',
-      price: 'LKR 89,900+',
-      isPopular: true,
-      badge: 'MOST POPULAR',
-      description: 'Comprehensive digital flagship engineered to present complex services and drive daily inquiries.',
-      idealFor: 'Established restaurants, clinics, consulting firms & growing brands.',
-      timeline: '10–14 Business Days',
-      revisions: '2 Revisions',
-      supportDuration: '30 Days Support',
-      ctaText: 'START A PROJECT →',
-      features: [
-        '5–8 Pages',
-        'Advanced UI/UX',
-        'Responsive Design',
-        'Advanced Animations',
-        'WhatsApp Integration',
-        'Contact Form',
-        'Google Maps',
-        'Advanced SEO',
-        'Analytics',
-        'CMS Optional',
-        'Booking Optional',
-        'Performance Optimization',
-        '2 Revisions',
-        '30 Days Support',
-      ],
-    },
-    {
-      id: 'premium',
-      name: 'PREMIUM',
-      price: 'LKR 149,900+',
-      description: 'The pinnacle of bespoke digital craft. Bespoke motion, full CMS, and friction-free booking.',
-      idealFor: 'High-end hospitality, luxury studios, multi-service companies & ambitious leaders.',
-      timeline: '2–3 Weeks',
-      revisions: '3 Revisions',
-      supportDuration: '60 Days Support',
-      ctaText: 'START A PROJECT →',
-      features: [
-        '8–15+ Pages',
-        'Premium UI/UX',
-        'Advanced Responsive Experience',
-        'Premium Animations',
-        'WhatsApp Integration',
-        'Contact Form',
-        'Google Maps',
-        'Advanced SEO',
-        'Analytics',
-        'CMS',
-        'Booking',
-        'Advanced Performance Optimization',
-        '3 Revisions',
-        '60 Days Support',
-      ],
-    },
-    {
-      id: 'custom',
-      name: 'CUSTOM PROJECTS',
-      price: '250,000+ LKR',
-      badge: 'BESPOKE PRODUCT',
-      description: 'Dedicated engineering for high-complexity digital platforms, web applications, and custom tools.',
-      idealFor: 'E-commerce flagships, web applications, dashboards & custom digital products.',
-      timeline: 'Bespoke Roadmap',
-      revisions: 'Milestone-Based',
-      supportDuration: 'Ongoing Partnership',
-      ctaText: 'DISCUSS YOUR PROJECT →',
-      features: [
-        'E-commerce',
-        'Advanced Booking',
-        'Web Applications',
-        'Dashboards',
-        'Custom Integrations',
-        'Complex Digital Products',
-      ],
-    },
-  ] as PricingPlan[],
-
-  pricingDisclaimer: 'Prices are starting prices. Final pricing depends on project scope.',
-
-  // Editorial Insights
-  insightsArticles: [
-    {
-      slug: 'why-cheap-websites-cost-more',
-      title: 'Why a Cheap Website Costs More Than You Think',
-      excerpt:
-        'A slow, template-driven website is not an asset — it is a silent leak in your marketing budget.',
-      category: 'COMMERCIAL STRATEGY',
-      readTime: '3 min read',
-      date: '2026',
-      keyTakeaway:
-        'A website should pay for itself through pre-qualified leads, brand credibility, and frictionless conversions.',
-      content: [
-        'When business owners look at web design, they frequently compare prices instead of comparing commercial outcomes.',
-        'A generic website template looks like every other competitor. It fails to convey why your offering commands premium prices.',
-        'High-performing websites pay for themselves within months by removing friction at the exact moment a prospect is ready to take action.',
-      ],
-    },
-    {
-      slug: 'the-death-of-generic-templates',
-      title: 'The Death of the Generic Template',
-      excerpt:
-        'Consumers instantly sense when a brand cut corners on its digital presence. Distinctiveness is the new prerequisite.',
-      category: 'DESIGN ARCHITECTURE',
-      readTime: '4 min read',
-      date: '2026',
-      keyTakeaway:
-        'In a crowded market, generic aesthetics make you invisible. Bespoke art direction creates instant prestige.',
-      content: [
-        'Modern audiences make subconscious evaluations of your business within 50 milliseconds of landing on your website.',
-        'When you use an off-the-shelf template, you inherit the same generic grid, typography, and stock feel as thousands of others.',
-        'Bespoke digital architecture signals craftsmanship, seriousness, and undeniable brand authority.',
-      ],
-    },
-  ] as InsightArticle[],
+  insightsArticles: [] as InsightArticle[],
   insights: [] as InsightArticle[],
 };
 
-// Initialize projects and insights aliases
+// Aliases
 siteConfig.projects = siteConfig.realProjects;
-siteConfig.insights = siteConfig.insightsArticles;

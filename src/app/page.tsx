@@ -9,13 +9,11 @@ import { HeroSection } from '@/components/sections/HeroSection';
 import { MarqueeSection } from '@/components/sections/MarqueeSection';
 import { SelectedWorkSection } from '@/components/sections/SelectedWorkSection';
 import { ServicePillarsSection } from '@/components/sections/ServicePillarsSection';
-import { InteractiveIndustriesSection } from '@/components/sections/InteractiveIndustriesSection';
 import { ProcessSection } from '@/components/sections/ProcessSection';
 import { WhyApexGenSection } from '@/components/sections/WhyApexGenSection';
 import { PricingSection } from '@/components/sections/PricingSection';
 import { CtaBannerSection } from '@/components/sections/CtaBannerSection';
 import { InquiryFormSection } from '@/components/sections/InquiryFormSection';
-import { AboutSection } from '@/components/sections/AboutSection';
 import { Footer } from '@/components/ui/Footer';
 
 export default function Home() {
@@ -30,9 +28,10 @@ export default function Home() {
       }
     }
   }, []);
+
   return (
     <>
-      {/* 0-100% Minimalist Cinematic Intro Loader */}
+      {/* Minimalist Cinematic Intro Loader */}
       <CinematicLoader />
 
       {/* Interactive Desktop Custom Cursor */}
@@ -49,38 +48,32 @@ export default function Home() {
           {/* 1. Hero Section */}
           <HeroSection />
 
-          {/* 2. Marquee immediately after hero */}
+          {/* Subtle Ticker Divider */}
           <MarqueeSection />
 
-          {/* 3. Selected Work (Cargo Pizzeria, 69 Studio, DinePro Advisors) */}
+          {/* 2. Selected Work (Cargo Pizza, 69 Studio, DinePro Advisers) */}
           <SelectedWorkSection />
 
-          {/* 4. What We Do (Design, Technology, Growth) */}
+          {/* 3. Services (6 Core Services) */}
           <ServicePillarsSection />
 
-          {/* 5. Built for Ambitious Businesses (Industries) */}
-          <InteractiveIndustriesSection />
-
-          {/* 6. From Idea to Digital Experience (5-Phase Process Timeline) */}
+          {/* 4. Process (5 Scroll-Animated Stages) */}
           <ProcessSection />
 
-          {/* 7. Not Just Another Website Agency (Why ApexGen) */}
+          {/* 5. Why ApexGen (Editorial Split Layout) */}
           <WhyApexGenSection />
 
-          {/* 8. Pricing (Starter, Business, Premium, Custom Projects) */}
+          {/* 6. Pricing (Starter, Business, Premium) */}
           <PricingSection />
 
-          {/* 9. Huge Cinematic Closing CTA Banner */}
+          {/* 7. Dramatic Full-Width CTA Banner */}
           <CtaBannerSection />
 
-          {/* 10. Project Intake Enquiry Form */}
+          {/* 8. Project Intake Form (Conversion Flow #contact) */}
           <InquiryFormSection />
-
-          {/* 11. We Build With Purpose (About) */}
-          <AboutSection />
         </main>
 
-        {/* 12. Studio Footer */}
+        {/* 9. Minimal Premium Footer */}
         <Footer />
       </div>
     </>

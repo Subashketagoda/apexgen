@@ -11,20 +11,17 @@ interface WordProps {
   word: string;
   isSpecial?: boolean;
   isAccent?: boolean;
-  lineIndex: number;
-  wordIndex: number;
 }
 
-function InteractiveWord({ word, isSpecial, isAccent, lineIndex, wordIndex }: WordProps) {
+function InteractiveWord({ word, isSpecial, isAccent }: WordProps) {
   const [isHovered, setIsHovered] = useState(false);
   const shouldReduceMotion = useReducedMotion();
 
-  // Split word into characters for micro-spring wave hover
   const letters = word.split('');
 
   return (
     <span
-      className="inline-block whitespace-nowrap cursor-default select-none mr-[0.26em] last:mr-0 group/word relative"
+      className="inline-block whitespace-nowrap cursor-default select-none mr-[0.24em] last:mr-0 group/word relative"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -33,11 +30,11 @@ function InteractiveWord({ word, isSpecial, isAccent, lineIndex, wordIndex }: Wo
           key={charIdx}
           className={`inline-block transition-colors duration-300 ${
             char === '.'
-              ? 'text-cyan-400 font-bold drop-shadow-[0_0_25px_rgba(34,211,238,0.9)]'
+              ? 'text-cyan-400 font-bold drop-shadow-[0_0_20px_rgba(34,211,238,0.8)]'
               : isSpecial
-              ? 'text-gradient-iridescent font-medium'
+              ? 'text-gradient-iridescent font-normal'
               : isAccent
-              ? 'text-white font-medium drop-shadow-[0_0_24px_rgba(255,255,255,0.3)]'
+              ? 'text-white font-normal'
               : 'text-neutral-100 group-hover/word:text-white'
           }`}
           animate={
@@ -45,23 +42,21 @@ function InteractiveWord({ word, isSpecial, isAccent, lineIndex, wordIndex }: Wo
               ? {}
               : isHovered
               ? {
-                  y: -7,
-                  scale: 1.06,
+                  y: -6,
+                  scale: 1.05,
                   color: '#ffffff',
-                  textShadow: '0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(129, 140, 248, 0.4)',
+                  textShadow: '0 0 20px rgba(255, 255, 255, 0.8), 0 0 35px rgba(56, 189, 248, 0.35)',
                   transition: {
                     type: 'spring',
                     stiffness: 450,
-                    damping: 14,
-                    delay: charIdx * 0.02,
+                    damping: 15,
+                    delay: charIdx * 0.015,
                   },
                 }
               : {
                   y: 0,
                   scale: 1,
-                  textShadow: isSpecial
-                    ? '0 0 24px rgba(255, 255, 255, 0.35)'
-                    : '0 0 0px rgba(0, 0, 0, 0)',
+                  textShadow: '0 0 0px rgba(0, 0, 0, 0)',
                   transition: {
                     type: 'spring',
                     stiffness: 300,
@@ -99,8 +94,7 @@ export function InteractiveHeroHeadline({ className = '' }: InteractiveHeroHeadl
   const lines = [
     { text: 'WE BUILD', special: false, accent: false },
     { text: 'DIGITAL EXPERIENCES', special: true, accent: false },
-    { text: 'THAT MOVE BUSINESSES', special: false, accent: false },
-    { text: 'FORWARD.', special: false, accent: true },
+    { text: 'THAT MOVE BUSINESSES.', special: false, accent: true },
   ];
 
   return (
@@ -108,15 +102,15 @@ export function InteractiveHeroHeadline({ className = '' }: InteractiveHeroHeadl
       ref={headlineRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={`relative text-[1.95rem] xs:text-[2.4rem] sm:text-5xl md:text-6xl lg:text-[4.75rem] font-light tracking-[-0.035em] leading-[0.98] sm:leading-[0.96] uppercase text-balance ${className}`}
+      className={`relative text-[2.2rem] xs:text-[2.75rem] sm:text-5xl md:text-6xl lg:text-[4.75rem] font-light tracking-[-0.035em] leading-[0.98] sm:leading-[0.95] uppercase text-balance ${className}`}
       style={{ perspective: '1200px' }}
     >
-      {/* Interactive Cursor Spotlight Sheen over letters */}
+      {/* Subtle cursor sheen spotlight */}
       <div
         className="pointer-events-none absolute -inset-8 transition-opacity duration-500 ease-out z-20 mix-blend-color-dodge hidden sm:block"
         style={{
-          opacity: mousePos.opacity * 0.7,
-          background: `radial-gradient(400px circle at ${mousePos.x + 32}px ${mousePos.y + 32}px, rgba(255, 255, 255, 0.22), rgba(129, 140, 248, 0.12) 40%, transparent 70%)`,
+          opacity: mousePos.opacity * 0.6,
+          background: `radial-gradient(350px circle at ${mousePos.x + 32}px ${mousePos.y + 32}px, rgba(255, 255, 255, 0.2), rgba(56, 189, 248, 0.12) 40%, transparent 70%)`,
         }}
         aria-hidden="true"
       />
@@ -134,8 +128,8 @@ export function InteractiveHeroHeadline({ className = '' }: InteractiveHeroHeadl
                   : {
                       y: '115%',
                       opacity: 0,
-                      rotateX: 25,
-                      filter: 'blur(10px)',
+                      rotateX: 20,
+                      filter: 'blur(8px)',
                     }
               }
               animate={
@@ -149,9 +143,9 @@ export function InteractiveHeroHeadline({ className = '' }: InteractiveHeroHeadl
                     }
               }
               transition={{
-                duration: 1.05,
-                delay: 0.22 + lineIdx * 0.14,
-                ease: [0.16, 1, 0.3, 1], // Luxury cubic-bezier settle
+                duration: 0.95,
+                delay: 0.2 + lineIdx * 0.12,
+                ease: [0.16, 1, 0.3, 1],
               }}
             >
               {words.map((word, wordIdx) => (
@@ -160,8 +154,6 @@ export function InteractiveHeroHeadline({ className = '' }: InteractiveHeroHeadl
                   word={word}
                   isSpecial={lineData.special}
                   isAccent={lineData.accent}
-                  lineIndex={lineIdx}
-                  wordIndex={wordIdx}
                 />
               ))}
             </motion.span>

@@ -37,6 +37,7 @@ export interface ProjectCaseStudy {
   accentColor: string;
   year: string;
   liveUrl?: string;
+  domain?: string;
   heroImage: string;
   galleryImages: string[];
   metrics?: ProjectMetric[];

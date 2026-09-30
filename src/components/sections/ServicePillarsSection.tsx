@@ -3,13 +3,22 @@
 import React, { useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { siteConfig } from '@/data/siteConfig';
-import { ArrowUpRight } from 'lucide-react';
+import { Layout, Code2, ShoppingBag, Calendar, Zap, TrendingUp, ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 
+const iconMap: Record<string, React.ElementType> = {
+  Layout,
+  Code2,
+  ShoppingBag,
+  Calendar,
+  Zap,
+  TrendingUp,
+};
+
 export function ServicePillarsSection() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(0);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const shouldReduceMotion = useReducedMotion();
-  const pillars = siteConfig.servicePillars;
+  const services = siteConfig.servicesList;
 
   return (
     <section
@@ -21,97 +30,87 @@ export function ServicePillarsSection() {
         <div className="flex flex-col md:flex-row md:items-end justify-between pb-12 sm:pb-16 border-b border-white/10 gap-6">
           <div className="space-y-4">
             <div className="flex items-center space-x-2 text-xs font-mono tracking-widest text-neutral-500 uppercase">
-              <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-              <span>CAPABILITIES &bull; CORE DISCIPLINES</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+              <span>CAPABILITIES &bull; BESPOKE EXPERTISE</span>
             </div>
             <h2 className="text-4xl sm:text-6xl md:text-8xl font-light tracking-[-0.04em] text-white">
-              WHAT WE DO
+              SERVICES
             </h2>
           </div>
 
           <div className="max-w-md">
             <p className="text-sm sm:text-base text-neutral-400 font-light leading-relaxed">
-              We engineer bespoke digital flagships combining creative direction, cutting-edge code, and conversion architecture.
+              We design, build, and optimize high-end digital experiences that help businesses look better, communicate better, and scale online.
             </p>
           </div>
         </div>
 
-        {/* 3 Interactive Large Typography Rows */}
-        <div className="mt-8 divide-y divide-white/10 border-b border-white/10">
-          {pillars.map((pillar, index) => {
+        {/* 6 Minimalist Luxury Editorial Service Rows */}
+        <div className="mt-6 divide-y divide-white/10 border-b border-white/10">
+          {services.map((service, index) => {
+            const Icon = iconMap[service.icon] || Layout;
             const isHovered = hoveredIndex === index;
 
             return (
               <div
-                key={pillar.number}
+                key={service.number}
                 onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(index)}
-                className={`group relative py-10 sm:py-16 transition-colors duration-500 ${
-                  isHovered ? 'bg-white/[0.02]' : 'bg-transparent'
+                onMouseLeave={() => setHoveredIndex(null)}
+                className={`group relative py-10 sm:py-12 px-2 sm:px-4 transition-colors duration-500 ${
+                  isHovered ? 'bg-white/[0.015]' : 'bg-transparent'
                 }`}
               >
-                {/* Dynamic animated line accent */}
-                <motion.div
-                  className="absolute bottom-0 left-0 h-[2px] bg-white pointer-events-none"
-                  initial={{ width: '0%' }}
-                  animate={{ width: isHovered ? '100%' : '0%' }}
-                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                {/* Subtle Left Accent Highlight */}
+                <div
+                  className={`absolute left-0 top-0 bottom-0 w-[2px] transition-all duration-300 ${
+                    isHovered ? 'bg-cyan-400 opacity-100' : 'bg-transparent opacity-0'
+                  }`}
                 />
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                  {/* Left: Number + Massive Typography */}
-                  <div className="lg:col-span-6 flex items-baseline space-x-6 sm:space-x-8">
-                    <motion.span
-                      animate={!shouldReduceMotion && isHovered ? { x: 8, color: '#ffffff' } : { x: 0 }}
-                      transition={{ type: 'spring', damping: 20 }}
-                      className="font-mono text-2xl sm:text-3xl font-light text-neutral-500 group-hover:text-white transition-colors duration-300"
-                    >
-                      {pillar.number}
-                    </motion.span>
-
-                    <div className="space-y-2">
-                      <h3 className="text-3xl sm:text-5xl md:text-6xl font-light tracking-tight text-white group-hover:text-neutral-200 transition-colors">
-                        {pillar.title}
-                      </h3>
-                      <p className="text-xs font-mono tracking-widest text-neutral-500 uppercase">
-                        {pillar.category}
-                      </p>
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+                  {/* Left: Number + Minimal Icon */}
+                  <div className="lg:col-span-2 flex items-center space-x-4">
+                    <span className="font-mono text-xs sm:text-sm text-neutral-500 group-hover:text-cyan-400 transition-colors duration-300">
+                      {service.number}
+                    </span>
+                    <div className="w-9 h-9 rounded-full border border-white/10 bg-white/[0.02] flex items-center justify-center text-neutral-400 group-hover:text-white group-hover:border-white/25 transition-all">
+                      <Icon className="w-4 h-4" />
                     </div>
                   </div>
 
-                  {/* Right: Sub-disciplines list & Overview */}
-                  <div className="lg:col-span-6 space-y-6 lg:pl-8">
-                    <p className="text-sm sm:text-base text-neutral-400 font-light leading-relaxed">
-                      {pillar.fullDesc}
+                  {/* Center: Service Title */}
+                  <div className="lg:col-span-4">
+                    <h3 className="text-2xl sm:text-3xl md:text-4xl font-light tracking-tight text-white group-hover:text-neutral-100 transition-colors uppercase">
+                      {service.title}
+                    </h3>
+                  </div>
+
+                  {/* Right: Description & Tags */}
+                  <div className="lg:col-span-5 space-y-2.5">
+                    <p className="text-sm sm:text-base text-neutral-300 font-light leading-relaxed">
+                      {service.description}
                     </p>
-
-                    {/* Sub-disciplines List */}
-                    <div className="space-y-2.5">
-                      <span className="text-[11px] font-mono uppercase tracking-widest text-neutral-500 block">
-                        SERVICES INCLUDED:
-                      </span>
-                      <div className="flex flex-wrap gap-2.5">
-                        {pillar.subDisciplines.map((item) => (
-                          <span
-                            key={item}
-                            className="px-3.5 py-1.5 rounded-full text-xs font-mono bg-white/5 border border-white/10 text-neutral-300 group-hover:border-white/20 transition-colors"
-                          >
-                            {item}
-                          </span>
-                        ))}
-                      </div>
+                    <div className="flex flex-wrap gap-2 pt-1">
+                      {service.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-white/[0.03] border border-white/[0.06] text-neutral-400 group-hover:border-white/15 transition-colors"
+                        >
+                          {tag}
+                        </span>
+                      ))}
                     </div>
+                  </div>
 
-                    {/* Action Link */}
-                    <div className="pt-2">
-                      <Link
-                        href="/#contact"
-                        className="inline-flex items-center space-x-2 text-xs font-mono text-white uppercase tracking-wider group-hover:underline underline-offset-4"
-                      >
-                        <span>INQUIRE FOR {pillar.title}</span>
-                        <ArrowUpRight className="w-3.5 h-3.5" />
-                      </Link>
-                    </div>
+                  {/* Far Right: Arrow Action */}
+                  <div className="lg:col-span-1 flex lg:justify-end">
+                    <Link
+                      href="/#contact"
+                      aria-label={`Inquire about ${service.title}`}
+                      className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-neutral-500 group-hover:text-white group-hover:border-white/30 group-hover:bg-white/5 transition-all"
+                    >
+                      <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </Link>
                   </div>
                 </div>
               </div>

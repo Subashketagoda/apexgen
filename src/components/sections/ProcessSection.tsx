@@ -19,6 +19,8 @@ export function ProcessSection() {
     restDelta: 0.001,
   });
 
+  const steps = siteConfig.processSteps;
+
   return (
     <section id="process" className="relative py-28 sm:py-36 md:py-44 border-b border-white/10 bg-[#050507] scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
@@ -26,81 +28,58 @@ export function ProcessSection() {
         <div className="flex flex-col md:flex-row md:items-end justify-between pb-12 sm:pb-16 border-b border-white/10 gap-6">
           <div className="space-y-4">
             <div className="flex items-center space-x-2 text-xs font-mono tracking-widest text-neutral-500 uppercase">
-              <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-              <span>THE SPRINT &bull; 5 PHASES</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+              <span>THE PROCESS &bull; 5 STAGES</span>
             </div>
             <h2 className="text-4xl sm:text-6xl md:text-8xl font-light tracking-[-0.04em] text-white">
-              FROM IDEA<br />TO DIGITAL EXPERIENCE.
+              PROCESS
             </h2>
           </div>
 
           <div className="max-w-md">
             <p className="text-sm sm:text-base text-neutral-400 font-light leading-relaxed">
-              A structured execution process engineered to eliminate unnecessary friction and deliver a production-ready website that drives measurable business outcomes.
+              From initial discovery to post-launch growth. A disciplined execution methodology engineered for transparency, velocity, and measurable business outcomes.
             </p>
           </div>
         </div>
 
-        {/* Scroll-based Progressive Timeline */}
-        <div ref={containerRef} className="relative mt-16 sm:mt-24 ml-3 sm:ml-6 md:ml-10 space-y-12 sm:space-y-16">
-          {/* Base Background Track Line */}
-          <div className="absolute left-0 top-3 bottom-6 w-[2px] bg-white/10 -translate-x-1/2" />
-
-          {/* Animated Filling Progress Line */}
-          {!shouldReduceMotion && (
-            <motion.div
-              style={{ scaleY: progressScaleY }}
-              className="absolute left-0 top-3 bottom-6 w-[2px] bg-white origin-top -translate-x-1/2 shadow-[0_0_12px_rgba(255,255,255,0.8)]"
-            />
-          )}
-
-          {siteConfig.processSteps.map((step, index) => (
+        {/* Horizontal Card Row on Large Screens, Vertical Connected Timeline on Mobile */}
+        <div ref={containerRef} className="mt-16 sm:mt-24 space-y-8 sm:space-y-0 sm:grid sm:grid-cols-2 lg:grid-cols-5 sm:gap-6 relative">
+          {steps.map((step, index) => (
             <motion.div
               key={step.number}
-              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.7, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="relative pl-8 sm:pl-12 md:pl-16 group"
+              transition={{ duration: 0.7, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
+              className="relative p-6 sm:p-7 rounded-2xl bg-[#08080c] border border-white/10 hover:border-white/25 transition-all duration-300 flex flex-col justify-between group min-h-[260px]"
             >
-              {/* Step Node */}
-              <div className="absolute -left-[9px] top-4 w-[18px] h-[18px] rounded-full bg-[#050507] border-2 border-white/30 group-hover:border-white group-hover:scale-125 transition-all duration-300 flex items-center justify-center z-10">
-                <div className="w-1.5 h-1.5 rounded-full bg-white opacity-40 group-hover:opacity-100 transition-opacity" />
-              </div>
-
-              {/* Step Card Content */}
-              <div className="p-6 sm:p-10 rounded-2xl sm:rounded-3xl bg-[#09090e] border border-white/10 hover:border-white/25 transition-all duration-300">
-                <div className="flex flex-col sm:flex-row sm:items-baseline justify-between pb-4 mb-4 border-b border-white/10 gap-2">
-                  <div className="flex items-baseline space-x-4">
-                    <span className="font-mono text-xl sm:text-2xl font-light text-neutral-500 group-hover:text-white transition-colors">
-                      {step.number}
-                    </span>
-                    <h3 className="text-2xl sm:text-3xl md:text-4xl font-light tracking-tight text-white uppercase">
-                      {step.title}
-                    </h3>
-                  </div>
-
-                  <span className="text-xs font-mono uppercase tracking-widest text-neutral-500">
-                    PHASE 0{index + 1}
+              {/* Top Accent Node */}
+              <div>
+                <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/[0.08]">
+                  <span className="font-mono text-2xl font-light text-neutral-500 group-hover:text-cyan-400 transition-colors">
+                    {step.number}
+                  </span>
+                  <span className="text-[10px] font-mono tracking-widest text-neutral-500 uppercase">
+                    STAGE 0{index + 1}
                   </span>
                 </div>
 
-                <p className="text-base sm:text-lg text-neutral-300 font-light leading-relaxed">
+                <h3 className="text-xl sm:text-2xl font-light tracking-tight text-white uppercase mb-3">
+                  {step.title}
+                </h3>
+
+                <p className="text-sm text-neutral-400 font-light leading-relaxed">
                   {step.description}
                 </p>
+              </div>
 
-                {step.deliverables && (
-                  <div className="flex flex-wrap gap-2.5 pt-6 mt-6 border-t border-white/5">
-                    {step.deliverables.map((item) => (
-                      <span
-                        key={item}
-                        className="px-3 py-1.5 rounded-full text-xs font-mono bg-white/5 border border-white/10 text-neutral-400"
-                      >
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                )}
+              {/* Bottom Subtle Indicator */}
+              <div className="pt-6 mt-6 border-t border-white/[0.06] flex items-center justify-between">
+                <span className="text-[9px] font-mono text-neutral-500 uppercase tracking-widest">
+                  {index === 4 ? 'CONTINUOUS' : `PHASE 0${index + 1}`}
+                </span>
+                <span className="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-cyan-400 group-hover:scale-125 transition-all" />
               </div>
             </motion.div>
           ))}

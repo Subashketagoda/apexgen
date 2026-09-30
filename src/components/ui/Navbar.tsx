@@ -39,7 +39,7 @@ export function Navbar() {
     { label: 'SERVICES', href: '/#services' },
     { label: 'PROCESS', href: '/#process' },
     { label: 'PRICING', href: '/#pricing' },
-    { label: 'ABOUT', href: '/#about' },
+    { label: 'CONTACT', href: '/#contact' },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
