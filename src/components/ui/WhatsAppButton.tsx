@@ -6,6 +6,7 @@ import { MessageSquare } from 'lucide-react';
 import { formatWhatsAppUrl } from '@/lib/utils';
 import { siteConfig } from '@/data/siteConfig';
 import { MagneticButton } from '@/components/animation/MagneticButton';
+import { trackWhatsAppClick } from '@/lib/analytics';
 
 export function WhatsAppButton() {
   const [isHovered, setIsHovered] = useState(false);
@@ -37,6 +38,7 @@ export function WhatsAppButton() {
           )}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackWhatsAppClick('floating_widget')}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           aria-label={`Chat with ApexGen on WhatsApp at ${siteConfig.contact.whatsappDisplay}`}

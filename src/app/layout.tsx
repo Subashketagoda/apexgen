@@ -93,8 +93,12 @@ export const metadata: Metadata = {
         { url: '/brand/apexgen-icon.png', sizes: '180x180', type: 'image/png' },
       ],
     },
+    verification: {
+      google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    },
   };
 
+import Script from 'next/script';
 import { PageTransition } from '@/components/animation/PageTransition';
 
 export default function RootLayout({
@@ -165,10 +169,32 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <>
+            <Script
+              strategy="afterInteractive"
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+            />
+            <Script
+              id="google-analytics-init"
+              strategy="afterInteractive"
+              dangerouslySetInnerHTML={{
+                __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}', {
+                    page_path: window.location.pathname,
+                  });
+                `,
+              }}
+            />
+          </>
+        )}
       </head>
       <body
         suppressHydrationWarning
-        className="bg-[#050507] text-[#f4f4f6] font-sans antialiased selection:bg-white selection:text-black"
+        className="bg-[#050507] text-[#f4f4f6] font-sans antialiased selection:bg-[#FF5E00] selection:text-white"
       >
         <PageTransition>{children}</PageTransition>
       </body>

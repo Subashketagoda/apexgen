@@ -97,9 +97,9 @@ export function HeroBackground() {
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,#000_70%,transparent_100%)] opacity-70" />
 
       {/* Dynamic Luminous Aurora Sweeps */}
-      <div className="absolute -top-[20%] right-[-10%] w-[700px] h-[700px] bg-gradient-to-br from-cyan-500/18 via-blue-600/8 to-transparent rounded-full blur-[150px] pointer-events-none animate-pulse duration-[7000ms]" />
-      <div className="absolute top-[30%] -left-[15%] w-[600px] h-[600px] bg-gradient-to-tr from-fuchsia-500/12 via-purple-600/6 to-transparent rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute -bottom-[10%] right-[20%] w-[550px] h-[550px] bg-gradient-to-t from-indigo-500/14 via-cyan-500/6 to-transparent rounded-full blur-[130px] pointer-events-none" />
+      <div className="absolute -top-[20%] right-[-10%] w-[700px] h-[700px] bg-gradient-to-br from-[#FF5E00]/16 via-[#FF8533]/8 to-transparent rounded-full blur-[150px] pointer-events-none animate-pulse duration-[7000ms]" />
+      <div className="absolute top-[30%] -left-[15%] w-[600px] h-[600px] bg-gradient-to-tr from-[#E64A00]/12 via-[#FF5E00]/6 to-transparent rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute -bottom-[10%] right-[20%] w-[550px] h-[550px] bg-gradient-to-t from-[#FF5E00]/10 via-amber-600/5 to-transparent rounded-full blur-[130px] pointer-events-none" />
 
       {/* 3D WebGL Three.js Interactive Scene */}
       <Hero3DScene />
@@ -109,12 +109,12 @@ export function HeroBackground() {
 
       {/* Architectural Corner HUD Crosshairs & Telemetry */}
       <div className="absolute top-24 left-6 sm:left-12 flex items-center space-x-2 text-[9px] font-mono tracking-widest text-neutral-600 select-none opacity-60">
-        <span className="text-cyan-400 font-bold">+</span>
+        <span className="text-[#FF5E00] font-bold">+</span>
         <span className="hidden sm:inline">APX-01 // COORD: 06&deg;55&apos;N</span>
       </div>
       <div className="absolute top-24 right-6 sm:right-12 flex items-center space-x-2 text-[9px] font-mono tracking-widest text-neutral-600 select-none opacity-60">
         <span className="hidden sm:inline">SYS // ARCHITECTURE</span>
-        <span className="text-cyan-400 font-bold">+</span>
+        <span className="text-[#FF5E00] font-bold">+</span>
       </div>
 
       {/* Film grain texture */}

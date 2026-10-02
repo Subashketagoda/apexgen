@@ -81,7 +81,7 @@ export function PricingSection() {
         <div className="flex flex-col md:flex-row md:items-end justify-between pb-12 sm:pb-16 border-b border-white/10 gap-6">
           <div className="space-y-4">
             <div className="flex items-center space-x-2 text-xs font-mono tracking-widest text-[#8A8A8A] uppercase">
-              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#FF5E00] animate-pulse" />
               <span>INVESTMENT &bull; TRANSPARENT PROPOSALS</span>
             </div>
             <h2 className="text-4xl sm:text-6xl md:text-8xl font-light tracking-[-0.04em] text-[#F5F5F5]">
@@ -110,7 +110,7 @@ export function PricingSection() {
                 transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                 className={`relative rounded-2xl sm:rounded-3xl p-8 sm:p-10 flex flex-col justify-between transition-all duration-500 cursor-pointer ${
                   isSelected
-                    ? 'lg:flex-[1.3] bg-[#0C0E14] border-2 border-cyan-400/40 shadow-[0_20px_50px_rgba(0,0,0,0.85),0_0_30px_rgba(0,240,255,0.06)]'
+                    ? 'lg:flex-[1.3] bg-[#0C0E14] border-2 border-[#FF5E00]/50 shadow-[0_20px_50px_rgba(0,0,0,0.85),0_0_35px_rgba(255,94,0,0.15)]'
                     : 'lg:flex-[0.85] bg-[#08080C] border border-white/10 hover:border-white/20'
                 }`}
               >
@@ -122,7 +122,7 @@ export function PricingSection() {
                 )}
 
                 {plan.id === 'premium' && (
-                  <div className="absolute -top-3.5 left-8 px-3 py-1 rounded-full bg-cyan-400 text-black font-mono text-[9px] uppercase font-bold tracking-widest">
+                  <div className="absolute -top-3.5 left-8 px-3 py-1 rounded-full bg-[#FF5E00] text-black font-mono text-[9px] uppercase font-bold tracking-widest">
                     BESPOKE FLAGSHIP
                   </div>
                 )}
@@ -133,7 +133,7 @@ export function PricingSection() {
                     <span className="text-[10px] font-mono tracking-widest text-[#8A8A8A] uppercase">
                       {plan.category}
                     </span>
-                    <span className="text-[10px] font-mono tracking-wider text-cyan-400 px-2 py-0.5 rounded-full bg-white/[0.04]">
+                    <span className="text-[10px] font-mono tracking-wider text-[#FF5E00] px-2 py-0.5 rounded-full bg-white/[0.04]">
                       {plan.scope}
                     </span>
                   </div>
@@ -159,7 +159,7 @@ export function PricingSection() {
                     </div>
                     {plan.features.map((feat) => (
                       <div key={feat} className="flex items-start space-x-2.5 text-xs sm:text-sm font-mono text-neutral-300">
-                        <Check className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
+                        <Check className="w-3.5 h-3.5 text-[#FF5E00] shrink-0 mt-0.5" />
                         <span>{feat}</span>
                       </div>
                     ))}
@@ -186,7 +186,7 @@ export function PricingSection() {
                     rel="noopener noreferrer"
                     className="w-full py-2.5 px-4 rounded-full border border-white/10 bg-transparent hover:bg-white/5 text-[#8A8A8A] hover:text-white font-mono text-[11px] uppercase tracking-wider flex items-center justify-center space-x-2 transition-colors"
                   >
-                    <MessageCircle className="w-3.5 h-3.5" />
+                    <MessageCircle className="w-3.5 h-3.5 text-[#FF5E00]" />
                     <span>INQUIRE VIA WHATSAPP</span>
                   </a>
                 </div>
@@ -195,9 +195,15 @@ export function PricingSection() {
           })}
         </div>
 
-        {/* Footnote */}
-        <div className="mt-12 text-center text-xs font-mono text-[#8A8A8A]">
-          Prices are starting estimates. Final quote is customized to your exact project scope and features.
+        {/* Footnote & Custom Quotation */}
+        <div className="mt-12 text-center space-y-2 text-xs font-mono text-[#8A8A8A]">
+          <p>Prices are starting estimates. Final quote is customized to your exact project scope and features.</p>
+          <p>
+            Require custom enterprise architecture or booking integrations?{' '}
+            <Link href="/#contact" className="text-white hover:text-[#FF5E00] underline underline-offset-4 transition-colors">
+              Request a Bespoke Quotation &rarr;
+            </Link>
+          </p>
         </div>
       </div>
     </section>

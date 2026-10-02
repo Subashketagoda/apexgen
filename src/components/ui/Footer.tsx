@@ -8,17 +8,26 @@ import { ArrowUp, ArrowUpRight } from 'lucide-react';
 export function Footer() {
   const navLinks = [
     { label: 'WORK', href: '/#work' },
-    { label: 'SERVICES', href: '/#services' },
+    { label: 'SERVICES', href: '/services' },
     { label: 'PROCESS', href: '/#process' },
     { label: 'PRICING', href: '/#pricing' },
     { label: 'CONTACT', href: '/#contact' },
   ];
 
+  const serviceLinks = [
+    { label: 'Website Design', href: '/services/web-design' },
+    { label: 'Web Development', href: '/services/web-development' },
+    { label: 'E-commerce Stores', href: '/services/ecommerce' },
+    { label: 'Booking Systems', href: '/services/booking-systems' },
+    { label: 'Technical SEO', href: '/services/seo' },
+    { label: 'Business Automation', href: '/services/automation' },
+  ];
+
   const socialLinks = [
     { label: 'INSTAGRAM', href: siteConfig.socials.instagram },
-    { label: 'FACEBOOK', href: siteConfig.socials.facebook },
     { label: 'LINKEDIN', href: siteConfig.socials.linkedin },
     { label: 'GITHUB', href: siteConfig.socials.github },
+    { label: 'FACEBOOK', href: siteConfig.socials.facebook },
   ];
 
   const scrollToTop = () => {
@@ -29,7 +38,7 @@ export function Footer() {
 
   return (
     <footer className="bg-[#050505] text-[#F5F5F5] pt-24 sm:pt-32 pb-12 sm:pb-16 border-t border-white/10 overflow-hidden relative select-none">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-12 space-y-16 sm:space-y-24 relative z-10">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-12 space-y-16 sm:space-y-20 relative z-10">
         {/* Brand & Editorial Statement */}
         <div className="space-y-3">
           <div className="text-3xl sm:text-5xl font-light tracking-tight text-white uppercase font-mono">
@@ -40,14 +49,14 @@ export function Footer() {
           </p>
         </div>
 
-        {/* Links Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 sm:gap-12 pb-16 border-b border-white/10">
+        {/* Links 4-Column Grid for Internal Linking & Technical SEO */}
+        <div className="grid grid-cols-2 md:grid-cols-12 gap-8 sm:gap-10 pb-16 border-b border-white/10">
           {/* Column 1: Navigation */}
-          <div className="md:col-span-4 space-y-4">
+          <div className="col-span-1 md:col-span-3 space-y-4">
             <div className="text-xs font-mono tracking-widest text-neutral-500 uppercase">
-              NAVIGATION
+              STUDIO
             </div>
-            <ul className="space-y-3 text-xs sm:text-sm font-mono">
+            <ul className="space-y-2.5 text-xs sm:text-sm font-mono">
               {navLinks.map((link) => (
                 <li key={link.label}>
                   <Link
@@ -55,19 +64,39 @@ export function Footer() {
                     className="text-[#8A8A8A] hover:text-white transition-colors relative group inline-block py-0.5"
                   >
                     <span>{link.label}</span>
-                    <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full" />
+                    <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#FF5E00] transition-all duration-300 group-hover:w-full" />
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Column 2: Social Links */}
-          <div className="md:col-span-4 space-y-4">
+          {/* Column 2: Dedicated Services */}
+          <div className="col-span-1 md:col-span-4 space-y-4">
+            <div className="text-xs font-mono tracking-widest text-[#FF5E00] uppercase">
+              CAPABILITIES
+            </div>
+            <ul className="space-y-2.5 text-xs sm:text-sm font-mono">
+              {serviceLinks.map((service) => (
+                <li key={service.label}>
+                  <Link
+                    href={service.href}
+                    className="text-[#8A8A8A] hover:text-white transition-colors relative group inline-block py-0.5"
+                  >
+                    <span>{service.label}</span>
+                    <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#FF5E00] transition-all duration-300 group-hover:w-full" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 3: Social Links */}
+          <div className="col-span-1 md:col-span-2 space-y-4">
             <div className="text-xs font-mono tracking-widest text-neutral-500 uppercase">
               NETWORK
             </div>
-            <ul className="space-y-3 text-xs sm:text-sm font-mono">
+            <ul className="space-y-2.5 text-xs sm:text-sm font-mono">
               {socialLinks.map((social) => (
                 <li key={social.label}>
                   <a
@@ -77,15 +106,15 @@ export function Footer() {
                     className="text-[#8A8A8A] hover:text-white transition-colors inline-flex items-center space-x-1.5 group py-0.5"
                   >
                     <span>{social.label}</span>
-                    <ArrowUpRight className="w-3 h-3 text-neutral-600 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                    <ArrowUpRight className="w-3 h-3 text-neutral-600 group-hover:text-[#FF5E00] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                   </a>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Column 3: Contact & Back to Top */}
-          <div className="md:col-span-4 space-y-6 flex flex-col justify-between">
+          {/* Column 4: Contact & Back to Top */}
+          <div className="col-span-1 md:col-span-3 space-y-6 flex flex-col justify-between">
             <div className="space-y-4">
               <div className="text-xs font-mono tracking-widest text-neutral-500 uppercase">
                 DIRECT INQUIRY
@@ -100,6 +129,9 @@ export function Footer() {
                 <span className="block text-neutral-500 text-[11px]">
                   {siteConfig.domain} &bull; COLOMBO [IST]
                 </span>
+                <span className="block text-[#FF5E00] text-[11px]">
+                  DIRECT WHATSAPP: {siteConfig.contact.whatsappDisplay}
+                </span>
               </div>
             </div>
 
@@ -107,7 +139,7 @@ export function Footer() {
               <button
                 type="button"
                 onClick={scrollToTop}
-                className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-full border border-white/10 bg-white/[0.02] hover:bg-white hover:text-black transition-all text-xs font-mono uppercase tracking-wider text-neutral-400 cursor-pointer"
+                className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-full border border-white/10 bg-white/[0.02] hover:bg-[#FF5E00] hover:text-black hover:border-[#FF5E00] transition-all text-xs font-mono uppercase tracking-wider text-neutral-400 cursor-pointer"
               >
                 <span>BACK TO TOP</span>
                 <ArrowUp className="w-3.5 h-3.5" />
@@ -122,7 +154,7 @@ export function Footer() {
             &copy; {new Date().getFullYear()} APEXGEN. ALL RIGHTS RESERVED.
           </div>
           <div className="tracking-widest uppercase text-[11px] text-neutral-600">
-            HIGH-END DIGITAL FLAGSHIPS &bull; BESPOKE CODE
+            HIGH-END DIGITAL FLAGSHIPS &bull; BESPOKE CODE &bull; SRI LANKA &amp; GLOBAL
           </div>
         </div>
 

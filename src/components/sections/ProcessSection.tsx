@@ -96,7 +96,7 @@ export function ProcessSection() {
         <div className="flex flex-col md:flex-row md:items-end justify-between pb-10 sm:pb-12 border-b border-white/10 gap-6">
           <div className="space-y-3">
             <div className="flex items-center space-x-2 text-xs font-mono tracking-widest text-[#8A8A8A] uppercase">
-              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#FF5E00] animate-pulse" />
               <span>THE METHODOLOGY &bull; 05 PHASES</span>
             </div>
             <h2 className="text-3xl sm:text-5xl md:text-6xl font-light tracking-[-0.03em] text-[#F5F5F5] uppercase">
@@ -140,12 +140,12 @@ export function ProcessSection() {
                 onClick={() => setActiveStep(idx)}
                 className={`p-3 sm:p-4 rounded-xl text-left transition-all duration-300 cursor-pointer ${
                   isCurrent
-                    ? 'bg-white/[0.08] border border-cyan-400/40 shadow-[0_0_20px_rgba(0,240,255,0.08)]'
+                    ? 'bg-white/[0.08] border border-[#FF5E00]/40 shadow-[0_0_20px_rgba(255,94,0,0.12)]'
                     : 'bg-[#0B0B0B] border border-white/10 hover:border-white/20'
                 }`}
               >
                 <div className="flex items-center justify-between pb-1 font-mono text-xs">
-                  <span className={isCurrent ? 'text-cyan-400 font-bold' : 'text-neutral-500'}>
+                  <span className={isCurrent ? 'text-[#FF5E00] font-bold' : 'text-neutral-500'}>
                     {s.number}
                   </span>
                   <span className="text-[10px] text-neutral-500 uppercase">{s.duration}</span>
@@ -174,13 +174,13 @@ export function ProcessSection() {
               className="rounded-3xl p-8 sm:p-14 bg-[#0B0B0B] border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.85)] relative overflow-hidden space-y-10"
             >
               {/* Subtle Ambient Backing */}
-              <div className="absolute top-0 right-0 w-80 h-80 bg-cyan-500/[0.04] rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute top-0 right-0 w-80 h-80 bg-[#FF5E00]/[0.06] rounded-full blur-3xl pointer-events-none" />
 
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
                 {/* Left: Phase Title & Summary */}
                 <div className="lg:col-span-6 space-y-6">
                   <div className="flex items-center space-x-4">
-                    <span className="font-mono text-4xl sm:text-6xl font-light text-cyan-400">
+                    <span className="font-mono text-4xl sm:text-6xl font-light text-[#FF5E00]">
                       {step.number}
                     </span>
                     <div>
@@ -220,7 +220,7 @@ export function ProcessSection() {
                         key={bIdx}
                         className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] flex items-center space-x-3 text-sm font-mono text-neutral-300"
                       >
-                        <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
+                        <CheckCircle2 className="w-4 h-4 text-[#FF5E00] shrink-0" />
                         <span>{bullet}</span>
                       </div>
                     ))}

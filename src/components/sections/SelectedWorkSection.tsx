@@ -4,7 +4,6 @@ import React, { useRef, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
-import { siteConfig } from '@/data/siteConfig';
 import { ArrowUpRight, ExternalLink } from 'lucide-react';
 
 interface ProjectCardProps {
@@ -97,7 +96,7 @@ function ProjectCard({
           <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/90 via-transparent to-black/30 pointer-events-none transition-opacity duration-500 group-hover:opacity-60" />
 
           {/* Watermark Number */}
-          <div className="absolute top-6 left-6 sm:top-8 sm:left-8 font-mono text-5xl sm:text-7xl font-light text-white/15 select-none pointer-events-none group-hover:text-cyan-400/25 transition-colors duration-500">
+          <div className="absolute top-6 left-6 sm:top-8 sm:left-8 font-mono text-5xl sm:text-7xl font-light text-white/15 select-none pointer-events-none group-hover:text-[#FF5E00]/30 transition-colors duration-500">
             {number}
           </div>
 
@@ -120,7 +119,7 @@ function ProjectCard({
         <div className="space-y-3">
           {/* Project Number: 01 / 03 */}
           <div className="flex items-center space-x-3 text-xs font-mono tracking-widest text-[#8A8A8A] uppercase">
-            <span className="text-cyan-400 font-medium">PROJECT {number}</span>
+            <span className="text-[#FF5E00] font-medium">PROJECT {number}</span>
             <span>&bull;</span>
             <span>{number} / {total}</span>
           </div>
@@ -163,10 +162,10 @@ function ProjectCard({
             href={liveUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center space-x-1.5 px-4 py-3 rounded-full border border-white/10 bg-white/[0.02] text-xs font-mono text-neutral-400 hover:text-white hover:border-white/30 transition-all uppercase"
+            className="inline-flex items-center space-x-1.5 px-4 py-3 rounded-full border border-white/10 bg-white/[0.02] text-xs font-mono text-neutral-400 hover:text-white hover:border-[#FF5E00]/40 transition-all uppercase"
           >
             <span>{domain}</span>
-            <ExternalLink className="w-3 h-3 text-cyan-400" />
+            <ExternalLink className="w-3 h-3 text-[#FF5E00]" />
           </a>
         </div>
       </div>

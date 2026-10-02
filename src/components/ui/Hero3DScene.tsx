@@ -91,9 +91,9 @@ export function Hero3DScene() {
     // Translucent Faceted Crystal Outer Shell
     const innerGeo = new THREE.IcosahedronGeometry(2.05, 1);
     const innerMat = new THREE.MeshPhysicalMaterial({
-      color: 0x0f172a,
-      emissive: 0x0284c7,
-      emissiveIntensity: 0.15,
+      color: 0x140a05,
+      emissive: 0xff5e00,
+      emissiveIntensity: 0.35,
       roughness: 0.08,
       metalness: 0.92,
       transmission: 0.55,
@@ -109,10 +109,10 @@ export function Hero3DScene() {
     // Outer Glowing Wireframe Lattice
     const wireGeo = new THREE.IcosahedronGeometry(2.1, 1);
     const wireMat = new THREE.MeshBasicMaterial({
-      color: 0x93c5fd,
+      color: 0xffa86b,
       wireframe: true,
       transparent: true,
-      opacity: 0.35,
+      opacity: 0.45,
     });
     const wireMesh = new THREE.Mesh(wireGeo, wireMat);
     objectGroup.add(wireMesh);
@@ -123,7 +123,7 @@ export function Hero3DScene() {
     vertexPointsGeo.setAttribute('position', innerWirePositions);
     const vertexPointsMat = new THREE.PointsMaterial({
       color: 0xffffff,
-      size: 0.12,
+      size: 0.13,
       transparent: true,
       opacity: 0.95,
       blending: THREE.AdditiveBlending,
@@ -135,10 +135,10 @@ export function Hero3DScene() {
     // 2. Concentric Cybernetic Orbital Rings (3 Rings)
     // ----------------------------------------------------
     const ringMat1 = new THREE.MeshBasicMaterial({
-      color: 0x38bdf8,
+      color: 0xff5e00,
       wireframe: true,
       transparent: true,
-      opacity: 0.28,
+      opacity: 0.35,
     });
     const ringGeo1 = new THREE.TorusGeometry(3.2, 0.015, 16, 120);
     const ring1 = new THREE.Mesh(ringGeo1, ringMat1);
@@ -147,7 +147,7 @@ export function Hero3DScene() {
     objectGroup.add(ring1);
 
     const ringMat2 = new THREE.MeshBasicMaterial({
-      color: 0xa855f7,
+      color: 0xff8533,
       wireframe: true,
       transparent: true,
       opacity: 0.24,
@@ -266,11 +266,11 @@ export function Hero3DScene() {
     primaryLight.position.set(5, 10, 8);
     scene.add(primaryLight);
 
-    const accentLight1 = new THREE.PointLight(0x60a5fa, 2.5, 20); // Cyan/Ice blue
+    const accentLight1 = new THREE.PointLight(0xff5e00, 3.2, 22); // Signature ApexGen Electric Orange
     accentLight1.position.set(4, 2, 5);
     scene.add(accentLight1);
 
-    const accentLight2 = new THREE.PointLight(0xa855f7, 2.0, 20); // Purple/Violet
+    const accentLight2 = new THREE.PointLight(0xff9944, 2.0, 20); // Warm amber glow
     accentLight2.position.set(-5, -3, 3);
     scene.add(accentLight2);
 
@@ -355,19 +355,19 @@ export function Hero3DScene() {
         heartLight.intensity = 5.5;
         targetExplodeScale = 1.45;
       } else {
-        // Hologram (default)
+        // Apex Core (default)
         innerMesh.visible = true;
-        innerMat.color.setHex(0x0f172a);
-        innerMat.emissive.setHex(0x0284c7);
-        innerMat.emissiveIntensity = 0.25;
-        wireMat.color.setHex(0x93c5fd);
-        wireMat.opacity = 0.35;
+        innerMat.color.setHex(0x140a05);
+        innerMat.emissive.setHex(0xff5e00);
+        innerMat.emissiveIntensity = 0.35;
+        wireMat.color.setHex(0xffa86b);
+        wireMat.opacity = 0.45;
         vertexPointsMat.color.setHex(0xffffff);
-        vertexPointsMat.size = 0.12;
-        heartLight.color.setHex(0x38bdf8);
-        heartLight.intensity = 3.2;
-        ringMat1.color.setHex(0x38bdf8);
-        ringMat2.color.setHex(0xa855f7);
+        vertexPointsMat.size = 0.13;
+        heartLight.color.setHex(0xff5e00);
+        heartLight.intensity = 4.5;
+        ringMat1.color.setHex(0xff5e00);
+        ringMat2.color.setHex(0xff8533);
         ringMat3.color.setHex(0xffffff);
         targetExplodeScale = 1.0;
       }
@@ -396,7 +396,7 @@ export function Hero3DScene() {
     // ----------------------------------------------------
     // Animation Loop
     // ----------------------------------------------------
-    let clock = new THREE.Clock();
+    const startTime = performance.now();
     let isVisible = true;
 
     // Pause animation when scrolled far out of view
@@ -414,7 +414,7 @@ export function Hero3DScene() {
 
       if (!isVisible) return;
 
-      const elapsedTime = clock.getElapsedTime();
+      const elapsedTime = (performance.now() - startTime) * 0.001;
 
       // Smooth mouse lerping
       mouse.x += (mouse.targetX - mouse.x) * 0.05;

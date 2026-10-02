@@ -15,7 +15,7 @@ export function Logo({
   size = 'md',
   className = '',
   showBadge = false,
-}: LogoProps) {
+}: LogoProps): React.JSX.Element {
   // Size mappings
   const dimensions = {
     sm: { symbol: 26, text: 'text-base', gap: 'gap-2.5', iconWidth: 26, iconHeight: 26 },

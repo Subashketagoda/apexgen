@@ -29,15 +29,15 @@ export function HeroFloatingShowcase() {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Subtle Cyan / Obsidian Glow Halo */}
-      <div className="absolute -inset-2 bg-gradient-to-tr from-cyan-500/15 via-transparent to-blue-500/10 rounded-[28px] blur-2xl opacity-60 group-hover/showcase:opacity-90 transition-opacity duration-700 pointer-events-none" />
+      {/* Subtle ApexGen Orange / Obsidian Glow Halo */}
+      <div className="absolute -inset-2 bg-gradient-to-tr from-[#FF5E00]/20 via-transparent to-[#FF8533]/15 rounded-[28px] blur-2xl opacity-60 group-hover/showcase:opacity-90 transition-opacity duration-700 pointer-events-none" />
 
       {/* Main Architectural Browser Viewport */}
       <motion.div
         initial={{ opacity: 0, y: 25, scale: 0.96 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.9, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className="relative rounded-[22px] border border-white/10 bg-[#08080c]/90 backdrop-blur-2xl p-4 shadow-[0_30px_70px_rgba(0,0,0,0.85)] group hover:border-white/20 transition-all duration-500"
+        className="relative rounded-[22px] border border-white/10 bg-[#08080c]/90 backdrop-blur-2xl p-4 shadow-[0_30px_70px_rgba(0,0,0,0.85)] group hover:border-[#FF5E00]/30 transition-all duration-500"
       >
         {/* Browser Top Chrome */}
         <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/[0.08]">
@@ -50,7 +50,7 @@ export function HeroFloatingShowcase() {
 
           {/* Simulated Address Bar */}
           <div className="flex items-center space-x-1.5 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.06] text-[10px] font-mono text-neutral-400 max-w-[210px] truncate select-none">
-            <Lock className="w-2.5 h-2.5 text-cyan-400 shrink-0" />
+            <Lock className="w-2.5 h-2.5 text-[#FF5E00] shrink-0" />
             <span className="truncate">{currentProject.domain || currentProject.liveUrl?.replace('https://', '')}</span>
           </div>
 
@@ -121,10 +121,10 @@ export function HeroFloatingShowcase() {
             href={currentProject.liveUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 hover:bg-white/15 hover:border-cyan-500/40 text-[10px] font-mono tracking-wider text-neutral-300 hover:text-white uppercase transition-all duration-300"
+            className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 hover:bg-white/15 hover:border-[#FF5E00]/50 text-[10px] font-mono tracking-wider text-neutral-300 hover:text-white uppercase transition-all duration-300"
           >
             <span>LIVE</span>
-            <ExternalLink className="w-3 h-3 text-cyan-400" />
+            <ExternalLink className="w-3 h-3 text-[#FF5E00]" />
           </a>
         </div>
 
@@ -141,7 +141,7 @@ export function HeroFloatingShowcase() {
                 }}
                 className={`py-1.5 px-2 rounded-lg text-left transition-all duration-300 cursor-pointer ${
                   isActive
-                    ? 'bg-white/[0.08] border border-white/20'
+                    ? 'bg-white/[0.08] border border-[#FF5E00]/40 shadow-[0_0_12px_rgba(255,94,0,0.15)]'
                     : 'bg-transparent border border-transparent hover:bg-white/[0.03]'
                 }`}
               >
@@ -164,7 +164,7 @@ export function HeroFloatingShowcase() {
       {/* Floating Bottom Sub-telemetry Pill */}
       <div className="flex items-center justify-between px-3 pt-2 text-[10px] font-mono text-neutral-500 uppercase tracking-widest">
         <div className="flex items-center space-x-1.5">
-          <ShieldCheck className="w-3 h-3 text-cyan-400" />
+          <ShieldCheck className="w-3 h-3 text-[#FF5E00]" />
           <span>PRODUCTION VERIFIED</span>
         </div>
         <span>SUB-SECOND EDGE</span>

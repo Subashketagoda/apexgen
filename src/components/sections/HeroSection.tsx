@@ -45,8 +45,8 @@ export function HeroSection() {
         >
           <div className="inline-flex items-center space-x-2.5 px-3.5 py-1.5 rounded-full border border-white/10 bg-white/[0.03] backdrop-blur-md">
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400" />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF5E00] opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#FF5E00]" />
             </span>
             <span className="text-[11px] font-mono tracking-[0.25em] text-[#F5F5F5] uppercase">
               APEXGEN / DIGITAL STUDIO
@@ -93,10 +93,10 @@ export function HeroSection() {
 
               <Link
                 href="/#work"
-                className="inline-flex items-center space-x-2 px-6 py-3.5 rounded-full border border-white/15 bg-white/5 text-xs font-mono uppercase tracking-wider text-neutral-300 hover:text-white hover:border-white/30 transition-all cursor-pointer"
+                className="inline-flex items-center space-x-2 px-6 py-3.5 rounded-full border border-white/15 bg-white/5 text-xs font-mono uppercase tracking-wider text-neutral-300 hover:text-white hover:border-[#FF5E00]/40 transition-all cursor-pointer"
               >
                 <span>EXPLORE WORK</span>
-                <ArrowDown className="w-3 h-3 text-cyan-400" />
+                <ArrowDown className="w-3 h-3 text-[#FF5E00]" />
               </Link>
             </motion.div>
 

@@ -13,10 +13,10 @@ interface ModeOption {
 }
 
 const MODES: ModeOption[] = [
-  { id: 'hologram', label: 'HOLOGRAM', icon: Sparkles, activeColor: 'text-cyan-400 border-cyan-500/50 bg-cyan-500/10' },
-  { id: 'neon', label: 'NEON CORE', icon: Zap, activeColor: 'text-fuchsia-400 border-fuchsia-500/50 bg-fuchsia-500/10' },
+  { id: 'hologram', label: 'APEX CORE', icon: Sparkles, activeColor: 'text-[#FF5E00] border-[#FF5E00]/60 bg-[#FF5E00]/15 shadow-[0_0_18px_rgba(255,94,0,0.35)]' },
+  { id: 'neon', label: 'NEON', icon: Zap, activeColor: 'text-amber-400 border-amber-500/50 bg-amber-500/10' },
   { id: 'wireframe', label: 'WIREFRAME', icon: Boxes, activeColor: 'text-sky-400 border-sky-500/50 bg-sky-500/10' },
-  { id: 'explode', label: 'QUANTUM', icon: Atom, activeColor: 'text-amber-400 border-amber-500/50 bg-amber-500/10' },
+  { id: 'explode', label: 'QUANTUM', icon: Atom, activeColor: 'text-neutral-200 border-white/40 bg-white/10' },
 ];
 
 export function Hero3DModeSwitcher() {

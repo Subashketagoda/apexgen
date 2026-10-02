@@ -8,6 +8,7 @@ import { ArrowUpRight } from 'lucide-react';
 interface ServiceItem {
   number: string;
   title: string;
+  slug: string;
   tagline: string;
   description: string;
   metrics: string;
@@ -18,6 +19,7 @@ const services: ServiceItem[] = [
   {
     number: '01',
     title: 'WEB DESIGN',
+    slug: '/services/web-design',
     tagline: 'Visual Direction & Interface Design',
     description:
       'We craft bespoke visual languages that command immediate respect. Editorial typography, micro-interactions, and responsive design systems that turn visitors into brand advocates.',
@@ -27,6 +29,7 @@ const services: ServiceItem[] = [
   {
     number: '02',
     title: 'WEB DEVELOPMENT',
+    slug: '/services/web-development',
     tagline: 'Next.js & Clean Architecture',
     description:
       'Sub-second loading times powered by Next.js, React, TypeScript, and edge runtimes. Clean, scalable code engineered without bloated site builders or third-party dependencies.',
@@ -36,6 +39,7 @@ const services: ServiceItem[] = [
   {
     number: '03',
     title: 'E-COMMERCE',
+    slug: '/services/ecommerce',
     tagline: 'Frictionless Conversion Engines',
     description:
       'Conversion-optimized digital commerce flagships with direct WhatsApp ordering, seamless checkout flows, and rapid mobile purchasing that maximize transaction volume.',
@@ -45,6 +49,7 @@ const services: ServiceItem[] = [
   {
     number: '04',
     title: 'BOOKING SYSTEMS',
+    slug: '/services/booking-systems',
     tagline: 'Bespoke Business Workflows',
     description:
       'Tailored reservation engines, appointment scheduling, and client intake workflows designed to eliminate back-and-forth friction and capture high-value appointments.',
@@ -54,6 +59,7 @@ const services: ServiceItem[] = [
   {
     number: '05',
     title: 'AUTOMATION',
+    slug: '/services/automation',
     tagline: 'Digital Operational Workflows',
     description:
       'Eliminate repetitive tasks through custom API webhooks, automated WhatsApp notifications, CRM lead routing, and database synchronization that give your team hours back.',
@@ -63,6 +69,7 @@ const services: ServiceItem[] = [
   {
     number: '06',
     title: 'SEO & PERFORMANCE',
+    slug: '/services/seo',
     tagline: 'Core Web Vitals & Search Authority',
     description:
       'Technical search engine optimization built into the foundation. Structured JSON-LD schemas, Google Lighthouse 90+ standards, and semantic HTML for market discoverability.',
@@ -85,8 +92,8 @@ export function ServicePillarsSection() {
         <div className="flex flex-col md:flex-row md:items-end justify-between pb-12 sm:pb-16 border-b border-white/10 gap-6">
           <div className="space-y-4">
             <div className="flex items-center space-x-2 text-xs font-mono tracking-widest text-[#8A8A8A] uppercase">
-              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-              <span>CAPABILITIES &bull; FULL-SPECTRUM ENGINEERING</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#FF5E00] animate-pulse" />
+              <span>CAPABILITIES &bull; FULL-SPECTRUM DIGITAL CRAFT</span>
             </div>
             <h2 className="text-4xl sm:text-6xl md:text-8xl font-light tracking-[-0.04em] text-[#F5F5F5]">
               SERVICES
@@ -95,7 +102,7 @@ export function ServicePillarsSection() {
 
           <div className="max-w-md">
             <p className="text-sm sm:text-base text-[#8A8A8A] font-light leading-relaxed">
-              We design, build, and optimize high-end digital flagships for ambitious businesses. Hover to inspect capabilities.
+              We design, build, and optimize high-end digital flagships for ambitious businesses. Hover to inspect capabilities or open full service dossiers.
             </p>
           </div>
         </div>
@@ -121,7 +128,7 @@ export function ServicePillarsSection() {
                     <div className="flex items-baseline space-x-6 sm:space-x-8">
                       <span
                         className={`font-mono text-sm sm:text-base transition-colors duration-300 ${
-                          isHovered ? 'text-cyan-400 font-semibold' : 'text-[#8A8A8A]'
+                          isHovered ? 'text-[#FF5E00] font-semibold' : 'text-[#8A8A8A]'
                         }`}
                       >
                         {item.number}
@@ -136,17 +143,17 @@ export function ServicePillarsSection() {
                       </h3>
                     </div>
 
-                    <div className="hidden sm:flex items-center space-x-2">
+                    <div className="hidden sm:flex items-center space-x-3">
                       <span
                         className={`text-[11px] font-mono tracking-wider uppercase transition-colors ${
-                          isHovered ? 'text-cyan-400' : 'text-transparent'
+                          isHovered ? 'text-[#FF5E00]' : 'text-transparent'
                         }`}
                       >
                         {item.metrics}
                       </span>
                       <ArrowUpRight
                         className={`w-4 h-4 transition-all duration-300 ${
-                          isHovered ? 'text-white translate-x-1 -translate-y-1 opacity-100' : 'opacity-0'
+                          isHovered ? 'text-[#FF5E00] translate-x-1 -translate-y-1 opacity-100' : 'opacity-0'
                         }`}
                       />
                     </div>
@@ -168,10 +175,10 @@ export function ServicePillarsSection() {
                 className="relative rounded-2xl p-7 sm:p-9 bg-[#0B0B0B] border border-white/10 shadow-[0_25px_60px_rgba(0,0,0,0.85)] space-y-6"
               >
                 {/* Ambient glow accent */}
-                <div className="absolute -top-10 -right-10 w-44 h-44 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+                <div className="absolute -top-10 -right-10 w-44 h-44 bg-[#FF5E00]/15 rounded-full blur-3xl pointer-events-none" />
 
                 <div className="flex items-center justify-between pb-4 border-b border-white/[0.08]">
-                  <span className="font-mono text-xs text-cyan-400 tracking-widest uppercase">
+                  <span className="font-mono text-xs text-[#FF5E00] tracking-widest uppercase">
                     CAPABILITY {activeService.number}
                   </span>
                   <span className="text-xs font-mono text-white/90 px-3 py-1 rounded-full bg-white/5 border border-white/10">
@@ -209,14 +216,21 @@ export function ServicePillarsSection() {
                   </div>
                 </div>
 
-                {/* Direct Action */}
-                <div className="pt-4 border-t border-white/[0.08]">
+                {/* Direct Actions: Inquire + View Dedicated Dossier */}
+                <div className="pt-4 border-t border-white/[0.08] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                  <Link
+                    href={activeService.slug}
+                    className="inline-flex items-center space-x-1.5 text-xs font-mono text-neutral-300 hover:text-white uppercase tracking-wider transition-colors"
+                  >
+                    <span>EXPLORE SERVICE DOSSIER</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 text-[#FF5E00]" />
+                  </Link>
+
                   <Link
                     href="/#contact"
-                    className="inline-flex items-center space-x-2 text-xs font-mono text-white hover:text-cyan-400 uppercase tracking-wider transition-colors group/cta"
+                    className="inline-flex items-center space-x-2 text-xs font-mono text-[#FF5E00] hover:text-white uppercase tracking-wider transition-colors group/cta"
                   >
-                    <span>INQUIRE FOR {activeService.title}</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5" />
+                    <span>INQUIRE &rarr;</span>
                   </Link>
                 </div>
               </motion.div>

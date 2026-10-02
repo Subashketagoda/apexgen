@@ -51,7 +51,7 @@ export function InteractiveHeroHeadline({ className = '', containerRef }: Intera
         className="pointer-events-none absolute -inset-12 transition-opacity duration-500 ease-out z-20 mix-blend-color-dodge hidden sm:block"
         style={{
           opacity: mousePos.opacity * 0.5,
-          background: `radial-gradient(400px circle at ${mousePos.x + 48}px ${mousePos.y + 48}px, rgba(255, 255, 255, 0.18), rgba(0, 240, 255, 0.08) 40%, transparent 70%)`,
+          background: `radial-gradient(400px circle at ${mousePos.x + 48}px ${mousePos.y + 48}px, rgba(255, 255, 255, 0.18), rgba(255, 94, 0, 0.14) 40%, transparent 70%)`,
         }}
         aria-hidden="true"
       />
@@ -80,7 +80,7 @@ export function InteractiveHeroHeadline({ className = '', containerRef }: Intera
           initial={shouldReduceMotion ? { opacity: 0 } : { y: '110%', opacity: 0, rotateX: 20 }}
           animate={{ y: '0%', opacity: 1, rotateX: 0 }}
           transition={{ duration: 1.1, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
-          className="block text-[3.2rem] xs:text-[4.2rem] sm:text-7xl md:text-8xl lg:text-[9.5rem] xl:text-[11rem] font-light text-gradient-iridescent"
+          className="block text-[3.2rem] xs:text-[4.2rem] sm:text-7xl md:text-8xl lg:text-[9.5rem] xl:text-[11rem] font-light text-gradient-orange"
         >
           DIGITAL
         </motion.span>
@@ -98,7 +98,7 @@ export function InteractiveHeroHeadline({ className = '', containerRef }: Intera
           className="block text-[3.2rem] xs:text-[4.2rem] sm:text-7xl md:text-8xl lg:text-[9.5rem] xl:text-[11rem] font-light"
         >
           EXPERIENCES
-          <span className="text-cyan-400 font-bold drop-shadow-[0_0_20px_rgba(0,240,255,0.8)]">.</span>
+          <span className="text-[#FF5E00] font-bold drop-shadow-[0_0_25px_rgba(255,94,0,0.9)]">.</span>
         </motion.span>
       </motion.div>
     </h1>

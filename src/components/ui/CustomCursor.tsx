@@ -1,14 +1,34 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useSyncExternalStore } from 'react';
 import { motion, AnimatePresence, useSpring, useMotionValue } from 'framer-motion';
 
 type CursorMode = 'default' | 'pointer' | 'project';
 
+function subscribeFinePointer(callback: () => void) {
+  if (typeof window === 'undefined') return () => {};
+  const media = window.matchMedia('(pointer: fine)');
+  media.addEventListener('change', callback);
+  return () => media.removeEventListener('change', callback);
+}
+
+function getFinePointerSnapshot() {
+  if (typeof window === 'undefined') return true; // default touch/no cursor during SSR
+  return !window.matchMedia('(pointer: fine)').matches;
+}
+
+function getFinePointerServerSnapshot() {
+  return true;
+}
+
 export function CustomCursor() {
   const [cursorMode, setCursorMode] = useState<CursorMode>('default');
-  const [isTouchDevice, setIsTouchDevice] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
+  const isTouchDevice = useSyncExternalStore(
+    subscribeFinePointer,
+    getFinePointerSnapshot,
+    getFinePointerServerSnapshot
+  );
 
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
@@ -18,18 +38,7 @@ export function CustomCursor() {
   const followerY = useSpring(mouseY, springConfig);
 
   useEffect(() => {
-    // Only enable for desktop mice
-    const mediaQuery = window.matchMedia('(pointer: fine)');
-    const updatePointer = () => {
-      setIsTouchDevice(!mediaQuery.matches);
-    };
-
-    updatePointer();
-    mediaQuery.addEventListener('change', updatePointer);
-
-    if (!mediaQuery.matches) {
-      return () => mediaQuery.removeEventListener('change', updatePointer);
-    }
+    if (isTouchDevice) return;
 
     const onMouseMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
@@ -61,12 +70,11 @@ export function CustomCursor() {
     document.addEventListener('mouseenter', onMouseEnter);
 
     return () => {
-      mediaQuery.removeEventListener('change', updatePointer);
       window.removeEventListener('mousemove', onMouseMove);
       document.removeEventListener('mouseleave', onMouseLeave);
       document.removeEventListener('mouseenter', onMouseEnter);
     };
-  }, [mouseX, mouseY, isVisible]);
+  }, [mouseX, mouseY, isVisible, isTouchDevice]);
 
   if (isTouchDevice || !isVisible) {
     return null;
@@ -96,10 +104,10 @@ export function CustomCursor() {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.6, opacity: 0 }}
             transition={{ type: 'spring', damping: 24, stiffness: 350 }}
-            className="pointer-events-none fixed left-0 top-0 px-4 py-2 rounded-full bg-white text-black flex items-center space-x-2 font-mono text-[10px] uppercase font-bold tracking-widest shadow-2xl backdrop-blur-md"
+            className="pointer-events-none fixed left-0 top-0 px-4 py-2 rounded-full bg-white text-black flex items-center space-x-2 font-mono text-[10px] uppercase font-bold tracking-widest shadow-[0_0_25px_rgba(255,94,0,0.3)] backdrop-blur-md"
           >
             <span>VIEW PROJECT</span>
-            <span>&rarr;</span>
+            <span className="text-[#FF5E00] font-black">&rarr;</span>
           </motion.div>
         ) : cursorMode === 'pointer' ? (
           <motion.div
@@ -109,7 +117,7 @@ export function CustomCursor() {
             animate={{ scale: 1.35, opacity: 1 }}
             exit={{ scale: 0.8, opacity: 0 }}
             transition={{ type: 'spring', damping: 25, stiffness: 380 }}
-            className="pointer-events-none fixed left-0 top-0 w-8 h-8 rounded-full border border-white/50 bg-white/[0.08]"
+            className="pointer-events-none fixed left-0 top-0 w-8 h-8 rounded-full border border-[#FF5E00]/60 bg-[#FF5E00]/[0.08] shadow-[0_0_15px_rgba(255,94,0,0.2)]"
           />
         ) : (
           <motion.div

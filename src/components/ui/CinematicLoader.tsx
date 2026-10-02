@@ -27,8 +27,11 @@ export function CinematicLoader({ onComplete }: CinematicLoaderProps) {
   useEffect(() => {
     try {
       if (typeof window !== 'undefined' && sessionStorage.getItem('apexgen_loaded') === 'true') {
-        setIsDone(true);
-        onComplete?.();
+        const timer = setTimeout(() => {
+          setIsDone(true);
+          onComplete?.();
+        }, 0);
+        return () => clearTimeout(timer);
       }
     } catch {
       // ignore storage access errors
@@ -48,8 +51,10 @@ export function CinematicLoader({ onComplete }: CinematicLoaderProps) {
 
   useEffect(() => {
     if (shouldReduceMotion) {
-      handleFinish();
-      return;
+      const timer = setTimeout(() => {
+        handleFinish();
+      }, 0);
+      return () => clearTimeout(timer);
     }
 
     const duration = 2200; // Fast, elegant cinematic duration
@@ -143,16 +148,16 @@ export function CinematicLoader({ onComplete }: CinematicLoaderProps) {
               </div>
 
               {/* Minimal Progress Bar */}
-              <div className="w-full h-[1px] bg-white/10 relative overflow-hidden">
+              <div className="w-full h-[1.5px] bg-white/10 relative overflow-hidden rounded-full">
                 <motion.div
-                  className="absolute left-0 top-0 bottom-0 bg-gradient-to-r from-cyan-400 via-white to-cyan-400"
+                  className="absolute left-0 top-0 bottom-0 bg-gradient-to-r from-[#FF5E00] via-[#FFA86B] to-[#FF5E00] shadow-[0_0_12px_rgba(255,94,0,0.8)]"
                   style={{ width: `${progress}%` }}
                 />
               </div>
 
               <div className="text-[9px] font-mono tracking-widest text-neutral-600 select-none">
                 [ {Array.from({ length: 24 }).map((_, i) => (
-                  <span key={i} className={i < Math.floor((progress / 100) * 24) ? 'text-cyan-400' : 'text-neutral-700'}>
+                  <span key={i} className={i < Math.floor((progress / 100) * 24) ? 'text-[#FF5E00] font-bold' : 'text-neutral-700'}>
                     ─
                   </span>
                 ))} ]

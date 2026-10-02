@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useSyncExternalStore } from 'react';
 import { motion, useMotionValue, useSpring, useReducedMotion } from 'framer-motion';
 
 interface Card3DProps {
@@ -10,6 +10,22 @@ interface Card3DProps {
   glareOpacity?: number; // Max glare overlay opacity (default: 0.12)
 }
 
+function subscribeFinePointer(callback: () => void) {
+  if (typeof window === 'undefined') return () => {};
+  const media = window.matchMedia('(pointer: fine)');
+  media.addEventListener('change', callback);
+  return () => media.removeEventListener('change', callback);
+}
+
+function getFinePointerSnapshot() {
+  if (typeof window === 'undefined') return false;
+  return !window.matchMedia('(pointer: fine)').matches;
+}
+
+function getFinePointerServerSnapshot() {
+  return false;
+}
+
 export function Card3D({
   children,
   className = '',
@@ -17,7 +33,11 @@ export function Card3D({
   glareOpacity = 0.1,
 }: Card3DProps) {
   const cardRef = useRef<HTMLDivElement | null>(null);
-  const [isTouch, setIsTouch] = useState(false);
+  const isTouch = useSyncExternalStore(
+    subscribeFinePointer,
+    getFinePointerSnapshot,
+    getFinePointerServerSnapshot
+  );
   const shouldReduceMotion = useReducedMotion();
 
   // Smooth organic spring physics for tilt
@@ -27,15 +47,6 @@ export function Card3D({
 
   // Dynamic glare coordinates (percentage)
   const [glarePos, setGlarePos] = useState({ x: 50, y: 50, active: false });
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const media = window.matchMedia('(pointer: fine)');
-    setIsTouch(!media.matches);
-    const onChange = () => setIsTouch(!media.matches);
-    media.addEventListener('change', onChange);
-    return () => media.removeEventListener('change', onChange);
-  }, []);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (isTouch || shouldReduceMotion || !cardRef.current) return;

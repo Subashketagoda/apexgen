@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useSyncExternalStore } from 'react';
 import { motion, useSpring, useMotionValue, useReducedMotion } from 'framer-motion';
 
 interface MagneticButtonProps {
@@ -15,6 +15,22 @@ interface MagneticButtonProps {
   as?: 'button' | 'a' | 'div';
 }
 
+function subscribeCoarsePointer(callback: () => void) {
+  if (typeof window === 'undefined') return () => {};
+  const media = window.matchMedia('(pointer: coarse)');
+  media.addEventListener('change', callback);
+  return () => media.removeEventListener('change', callback);
+}
+
+function getCoarsePointerSnapshot() {
+  if (typeof window === 'undefined') return false;
+  return window.matchMedia('(pointer: coarse)').matches;
+}
+
+function getCoarsePointerServerSnapshot() {
+  return false;
+}
+
 export function MagneticButton({
   children,
   className = '',
@@ -27,7 +43,11 @@ export function MagneticButton({
   as = href ? 'a' : 'div',
 }: MagneticButtonProps) {
   const ref = useRef<HTMLElement | null>(null);
-  const [isTouch, setIsTouch] = useState(false);
+  const isTouch = useSyncExternalStore(
+    subscribeCoarsePointer,
+    getCoarsePointerSnapshot,
+    getCoarsePointerServerSnapshot
+  );
   const shouldReduceMotion = useReducedMotion();
 
   const x = useMotionValue(0);
@@ -37,15 +57,6 @@ export function MagneticButton({
   const springConfig = { damping: 18, stiffness: 220, mass: 0.6 };
   const springX = useSpring(x, springConfig);
   const springY = useSpring(y, springConfig);
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const media = window.matchMedia('(pointer: coarse)');
-    setIsTouch(media.matches);
-    const onChange = () => setIsTouch(media.matches);
-    media.addEventListener('change', onChange);
-    return () => media.removeEventListener('change', onChange);
-  }, []);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (isTouch || shouldReduceMotion || !ref.current) return;
