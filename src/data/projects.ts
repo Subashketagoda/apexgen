@@ -45,12 +45,11 @@ export const projectsData: ProjectItem[] = [
     description:
       'A high-conversion restaurant website and ordering system designed for an authentic wood-fired pizzeria, combining editorial food presentation with frictionless mobile ordering.',
     year: '2026',
-    thumbnail: '/images/projects/cargo-pizzeria-screenshot.jpg',
-    heroImage: '/images/projects/cargo-pizzeria-hero.jpg',
+    thumbnail: '/images/projects/cargo-pizzeria-real.png',
+    heroImage: '/images/projects/cargo-pizzeria-real.png',
     gallery: [
-      '/images/projects/cargo-pizzeria-hero.jpg',
-      '/images/projects/cargo-pizzeria-screenshot.jpg',
       '/images/projects/cargo-pizzeria-real.png',
+      '/images/projects/cargo-pizzeria-screenshot.jpg',
     ],
     technologies: ['Next.js Architecture', 'Tailwind CSS', 'WhatsApp Checkout', 'Framer Motion', 'Sub-Second Edge CDN'],
     liveUrl: 'https://cargopizzeria.online/',
@@ -94,12 +93,11 @@ export const projectsData: ProjectItem[] = [
     description:
       'A sleek, high-fashion web experience engineered for an upscale hair salon and beauty studio, showcasing artistic transformations and streamlining appointment inquiries.',
     year: '2026',
-    thumbnail: '/images/projects/69-studio-screenshot.png',
-    heroImage: '/images/projects/69-studio-hero.jpg',
+    thumbnail: '/images/projects/69-studio-real.png',
+    heroImage: '/images/projects/69-studio-real.png',
     gallery: [
-      '/images/projects/69-studio-hero.jpg',
-      '/images/projects/69-studio-screenshot.png',
       '/images/projects/69-studio-real.png',
+      '/images/projects/69-studio-screenshot.png',
     ],
     technologies: ['Next.js Architecture', 'Framer Motion', 'Tailwind CSS', 'Online Reservation Engine', 'Mobile Touch UX'],
     liveUrl: 'https://69studiobysubash.online/',
@@ -143,12 +141,11 @@ export const projectsData: ProjectItem[] = [
     description:
       'A sophisticated digital advisory platform for a hospitality consultancy firm, presenting practice areas, operational diagnostics, and consultation booking for restaurant operators.',
     year: '2026',
-    thumbnail: '/images/projects/dinepro-advisors-screenshot.png',
-    heroImage: '/images/projects/dinepro-advisors-hero.jpg',
+    thumbnail: '/images/projects/dinepro-advisors-real.png',
+    heroImage: '/images/projects/dinepro-advisors-real.png',
     gallery: [
-      '/images/projects/dinepro-advisors-hero.jpg',
-      '/images/projects/dinepro-advisors-screenshot.png',
       '/images/projects/dinepro-advisors-real.png',
+      '/images/projects/dinepro-advisors-screenshot.png',
     ],
     technologies: ['Next.js Architecture', 'Consultation Funnel', 'Framer Motion', 'Tailwind CSS', 'SEO Optimization'],
     liveUrl: 'https://dineproadvisors.online/',

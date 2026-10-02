@@ -17,6 +17,7 @@ import {
   Code2,
   Smartphone,
   Monitor,
+  Lock,
 } from 'lucide-react';
 
 interface PageProps {
@@ -203,17 +204,39 @@ export default async function ProjectCaseStudyPage({ params }: PageProps) {
           </div>
         </header>
 
-        {/* FULL-WIDTH VISUAL HERO IMAGE */}
+        {/* FULL-WIDTH VISUAL HERO IMAGE IN LUXURY BROWSER CHASSIS */}
         <section className="px-4 sm:px-6 md:px-12 max-w-7xl mx-auto mb-20 sm:mb-28">
-          <div className="relative aspect-[16/9] w-full rounded-2xl sm:rounded-3xl overflow-hidden bg-neutral-950 border border-white/10 shadow-2xl">
-            <Image
-              src={project.heroImage}
-              alt={`${project.title} Hero Showcase`}
-              fill
-              priority
-              className="object-cover object-top"
-              sizes="100vw"
-            />
+          <div className="rounded-2xl sm:rounded-3xl bg-[#09090b] border border-white/20 shadow-[0_25px_80px_rgba(0,0,0,0.85)] overflow-hidden">
+            {/* Browser Header Bar */}
+            <div className="flex items-center justify-between px-4 py-3 bg-neutral-900/90 border-b border-white/10">
+              <div className="flex items-center space-x-2">
+                <span className="w-3 h-3 rounded-full bg-[#FF5F56]/80" />
+                <span className="w-3 h-3 rounded-full bg-[#FFBD2E]/80" />
+                <span className="w-3 h-3 rounded-full bg-[#27C93F]/80" />
+              </div>
+
+              <div className="flex items-center space-x-1.5 px-3.5 py-1 rounded-full bg-black/60 border border-white/10 text-[11px] font-mono text-neutral-300">
+                <Lock className="w-3 h-3 text-[#27C93F]" />
+                <span className="text-white font-semibold">https://{project.domain}</span>
+              </div>
+
+              <div className="flex items-center space-x-1.5 text-[10px] font-mono text-[#27C93F] uppercase tracking-wider">
+                <span className="w-2 h-2 rounded-full bg-[#27C93F] animate-pulse" />
+                <span>LIVE PRODUCTION</span>
+              </div>
+            </div>
+
+            {/* Real Screenshot Viewport */}
+            <div className="relative aspect-[16/9] w-full overflow-hidden bg-black">
+              <Image
+                src={project.heroImage}
+                alt={`${project.title} Hero Showcase`}
+                fill
+                priority
+                className="object-cover object-top"
+                sizes="100vw"
+              />
+            </div>
           </div>
         </section>
 

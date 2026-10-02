@@ -7,7 +7,7 @@ import { siteConfig } from '@/data/site';
 import { Navbar } from '@/components/ui/Navbar';
 import { Footer } from '@/components/ui/Footer';
 import { CustomCursor } from '@/components/ui/CustomCursor';
-import { ArrowUpRight, ArrowRight } from 'lucide-react';
+import { ArrowUpRight, ArrowRight, Lock } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Selected Work & Digital Flagships | ApexGen',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/images/projects/cargo-pizzeria-hero.jpg',
+        url: '/images/projects/cargo-pizzeria-real.png',
         width: 1200,
         height: 630,
         alt: 'ApexGen Selected Work Portfolio',
@@ -153,28 +153,50 @@ export default function WorkIndexPage() {
                 </div>
               </div>
 
-              {/* Right Column: Immersive Visual Hero */}
+              {/* Right Column: Immersive Visual Hero in Browser Frame */}
               <div className="lg:col-span-7">
-                <Link
-                  href={`/work/${project.slug}`}
-                  className="block relative aspect-[16/10] sm:aspect-[16/11] rounded-2xl overflow-hidden bg-neutral-950 border border-white/10 group-hover:border-[#FF5E00]/40 transition-all duration-500 shadow-2xl"
-                >
-                  <Image
-                    src={project.heroImage}
-                    alt={`${project.title} Digital Showcase`}
-                    fill
-                    priority={index === 0}
-                    className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
-                    sizes="(max-width: 1024px) 100vw, 60vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity" />
+                <div className="rounded-2xl sm:rounded-3xl bg-[#09090b] border border-white/15 overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.8)] group-hover:border-[#FF5E00]/40 transition-all duration-500">
+                  {/* Browser Bar */}
+                  <div className="flex items-center justify-between px-4 py-3 bg-neutral-900/90 border-b border-white/10">
+                    <div className="flex items-center space-x-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]/80" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]/80" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F]/80" />
+                    </div>
 
-                  {/* Corner Domain Badge */}
-                  <div className="absolute bottom-4 right-4 px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-[11px] font-mono text-white flex items-center space-x-1.5">
-                    <span>{project.domain}</span>
-                    <ArrowUpRight className="w-3 h-3 text-[#FF5E00]" />
+                    <div className="flex items-center space-x-1.5 px-3 py-1 rounded-full bg-black/60 border border-white/10 text-[11px] font-mono text-neutral-300 max-w-[240px] truncate">
+                      <Lock className="w-3 h-3 text-[#27C93F] shrink-0" />
+                      <span className="text-white truncate">https://{project.domain}</span>
+                    </div>
+
+                    <div className="flex items-center space-x-1.5 text-[10px] font-mono text-[#27C93F] uppercase">
+                      <span className="w-2 h-2 rounded-full bg-[#27C93F] animate-pulse" />
+                      <span className="hidden sm:inline">LIVE</span>
+                    </div>
                   </div>
-                </Link>
+
+                  {/* Screenshot Viewport */}
+                  <Link
+                    href={`/work/${project.slug}`}
+                    className="block relative aspect-[16/10] sm:aspect-[16/11] overflow-hidden bg-black"
+                  >
+                    <Image
+                      src={project.heroImage}
+                      alt={`${project.title} Digital Showcase`}
+                      fill
+                      priority={index === 0}
+                      className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                      sizes="(max-width: 1024px) 100vw, 60vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-40 group-hover:opacity-10 transition-opacity" />
+
+                    {/* Corner Domain Badge */}
+                    <div className="absolute bottom-4 right-4 px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-[11px] font-mono text-white flex items-center space-x-1.5">
+                      <span>EXPLORE DOSSIER</span>
+                      <ArrowRight className="w-3 h-3 text-[#FF5E00]" />
+                    </div>
+                  </Link>
+                </div>
               </div>
             </article>
           ))}
