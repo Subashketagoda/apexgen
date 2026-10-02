@@ -3,8 +3,9 @@ import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { siteConfig } from '@/data/siteConfig';
-import { servicesData, ServiceDetail } from '@/data/servicesData';
+import { siteConfig } from '@/data/site';
+import { servicesData, ServiceDetail } from '@/data/services';
+import { getProjectBySlug } from '@/data/projects';
 import { Navbar } from '@/components/ui/Navbar';
 import { Footer } from '@/components/ui/Footer';
 import { CustomCursor } from '@/components/ui/CustomCursor';
@@ -13,12 +14,10 @@ import {
   ArrowRight,
   ArrowUpRight,
   CheckCircle2,
-  Check,
-  Cpu,
-  ShieldCheck,
-  Clock,
   MessageSquare,
   ChevronRight,
+  AlertCircle,
+  Lightbulb,
 } from 'lucide-react';
 
 interface PageProps {
@@ -79,14 +78,8 @@ export default async function ServiceDetailPage({ params }: PageProps) {
   }
 
   // Find related real flagship project
-  const relatedProject = siteConfig.realProjects.find(
-    (p) => p.slug === service.relatedProjectSlug
-  );
+  const relatedProject = getProjectBySlug(service.relevantWorkSlug);
 
-  // Other services for horizontal navigation
-  const otherServices = Object.values(servicesData).filter(
-    (s) => s.slug !== service.slug
-  );
 
   // JSON-LD Structured Data for Service, BreadcrumbList, and FAQPage
   const serviceJsonLd = {
@@ -113,16 +106,6 @@ export default async function ServiceDetailPage({ params }: PageProps) {
       { '@type': 'Country', name: 'Sri Lanka' },
       { '@type': 'AdministrativeArea', name: 'Global' },
     ],
-    offers: {
-      '@type': 'Offer',
-      price: service.recommendedPlan.price.replace(/[^0-9]/g, ''),
-      priceCurrency: 'LKR',
-      priceSpecification: {
-        '@type': 'PriceSpecification',
-        price: service.recommendedPlan.price,
-        priceCurrency: 'LKR',
-      },
-    },
   };
 
   const breadcrumbJsonLd = {
@@ -164,7 +147,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
   };
 
   return (
-    <div className="bg-[#050507] text-[#f4f4f6] min-h-screen selection:bg-[#FF5E00] selection:text-white relative">
+    <div className="bg-[#050505] text-[#F5F5F5] min-h-screen selection:bg-[#FF5E00] selection:text-white relative">
       <CustomCursor />
       <Navbar />
 
@@ -182,12 +165,9 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
-      <main className="pt-32 pb-24 sm:pb-32 overflow-hidden">
+      <main className="pt-32 sm:pt-40 pb-28 sm:pb-36 overflow-hidden">
         {/* HERO SECTION */}
-        <section className="relative px-4 sm:px-6 md:px-12 max-w-7xl mx-auto">
-          {/* Subtle Ambient Orange Aura */}
-          <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[650px] h-[350px] bg-[#FF5E00]/10 blur-[130px] rounded-full pointer-events-none -z-10" />
-
+        <section className="relative px-4 sm:px-6 md:px-12 max-w-7xl mx-auto mb-16 sm:mb-24">
           {/* Breadcrumbs */}
           <nav
             aria-label="Breadcrumb"
@@ -205,31 +185,31 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           </nav>
 
           {/* Header Badge */}
-          <div className="inline-flex items-center space-x-2.5 px-3.5 py-1.5 rounded-full border border-[#FF5E00]/30 bg-[#FF5E00]/10 text-xs font-mono text-[#FF7A1A] tracking-wider uppercase mb-6 shadow-[0_0_15px_rgba(255,94,0,0.15)]">
-            <span className="w-2 h-2 rounded-full bg-[#FF5E00] animate-pulse" />
-            <span>{service.category}</span>
+          <div className="inline-flex items-center space-x-2.5 px-3.5 py-1.5 rounded-full border border-[#FF5E00]/30 bg-[#FF5E00]/10 text-xs font-mono text-[#FF7A1A] tracking-wider uppercase mb-6">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#FF5E00] animate-pulse" />
+            <span>DISCIPLINE &bull; {service.category}</span>
           </div>
 
           {/* Service Title */}
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-6 max-w-5xl leading-[1.08]">
-            {service.title}
+          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-light tracking-[-0.04em] text-white uppercase font-mono mb-6 max-w-5xl leading-[1.05]">
+            {service.headline}
           </h1>
 
-          <p className="text-lg sm:text-xl lg:text-2xl text-neutral-300 max-w-3xl font-light leading-relaxed mb-8">
+          <p className="text-base sm:text-xl font-mono text-[#FF7A1A] uppercase tracking-wider mb-6">
             {service.tagline}
           </p>
 
-          <p className="text-base sm:text-lg text-neutral-400 max-w-3xl leading-relaxed mb-10">
+          <p className="text-base sm:text-lg text-neutral-300 font-light max-w-3xl leading-relaxed mb-10">
             {service.leadParagraph}
           </p>
 
           {/* Action CTAs */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6 pt-2 pb-14 border-b border-white/10">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2 pb-14 border-b border-white/10">
             <Link
-              href={`/#contact?service=${encodeURIComponent(service.name)}`}
-              className="inline-flex items-center justify-center space-x-3 px-8 py-4 rounded-full bg-[#FF5E00] text-black font-semibold text-sm tracking-wider uppercase transition-all duration-300 hover:bg-[#FF7A1A] hover:scale-[1.02] shadow-[0_0_25px_rgba(255,94,0,0.3)] active:scale-95"
+              href={`/start-a-project?service=${encodeURIComponent(service.name)}`}
+              className="inline-flex items-center justify-center space-x-3 px-8 py-4 rounded-full bg-[#FF5E00] text-black font-mono font-semibold text-xs uppercase tracking-wider transition-all duration-300 hover:bg-[#FF7A1A] shadow-[0_0_25px_rgba(255,94,0,0.3)] active:scale-95"
             >
-              <span>Request Project Inquiry</span>
+              <span>START A PROJECT INQUIRY</span>
               <ArrowUpRight className="w-4 h-4 text-black" />
             </Link>
 
@@ -239,7 +219,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
               )}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center space-x-2.5 px-7 py-4 rounded-full border border-white/20 bg-white/5 text-sm font-mono tracking-wider text-white hover:bg-white/10 hover:border-white/30 transition-all duration-200"
+              className="inline-flex items-center justify-center space-x-2.5 px-7 py-4 rounded-full border border-white/20 bg-white/5 text-xs font-mono tracking-wider uppercase text-white hover:bg-white/10 hover:border-white/30 transition-all duration-200"
             >
               <MessageSquare className="w-4 h-4 text-[#FF5E00]" />
               <span>Direct WhatsApp Consultation</span>
@@ -247,55 +227,67 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           </div>
         </section>
 
-        {/* WHY APEXGEN PILLAR STATEMENT */}
-        <section className="px-4 sm:px-6 md:px-12 max-w-7xl mx-auto py-16 sm:py-20">
-          <div className="p-8 sm:p-12 lg:p-14 rounded-3xl bg-neutral-950/70 border border-white/10 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-80 h-80 bg-[#FF5E00]/5 rounded-full blur-[100px] pointer-events-none" />
-            <div className="max-w-3xl relative z-10">
-              <span className="text-xs font-mono tracking-widest text-[#FF5E00] uppercase block mb-3">
-                THE APEXGEN STANDARD
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6">
-                Engineered for commercial impact, not just cosmetic decoration.
-              </h2>
-              <p className="text-neutral-300 text-base sm:text-lg leading-relaxed font-light">
-                {service.whyApexGen}
+        {/* PROBLEM & SOLUTION SECTION */}
+        <section className="px-4 sm:px-6 md:px-12 max-w-7xl mx-auto mb-20 sm:mb-28">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* The Problem */}
+            <div className="p-8 sm:p-10 rounded-3xl bg-neutral-950 border border-red-500/20 space-y-4">
+              <div className="inline-flex items-center space-x-2 text-xs font-mono text-red-400 uppercase tracking-widest">
+                <AlertCircle className="w-4 h-4" />
+                <span>THE INDUSTRY PROBLEM</span>
+              </div>
+              <h3 className="text-xl sm:text-2xl font-mono font-light text-white uppercase">
+                Where Conventional Solutions Fail
+              </h3>
+              <p className="text-sm sm:text-base text-neutral-300 font-light leading-relaxed">
+                {service.problem}
+              </p>
+            </div>
+
+            {/* The Solution */}
+            <div className="p-8 sm:p-10 rounded-3xl bg-neutral-900/80 border border-[#FF5E00]/40 space-y-4 shadow-[0_10px_35px_rgba(255,94,0,0.08)]">
+              <div className="inline-flex items-center space-x-2 text-xs font-mono text-[#FF5E00] uppercase tracking-widest">
+                <Lightbulb className="w-4 h-4" />
+                <span>THE APEXGEN STANDARD</span>
+              </div>
+              <h3 className="text-xl sm:text-2xl font-mono font-light text-white uppercase">
+                How We Engineer The Solution
+              </h3>
+              <p className="text-sm sm:text-base text-neutral-300 font-light leading-relaxed">
+                {service.solution}
               </p>
             </div>
           </div>
         </section>
 
-        {/* CORE DELIVERABLES GRID */}
-        <section className="px-4 sm:px-6 md:px-12 max-w-7xl mx-auto py-12 sm:py-16">
+        {/* CORE CAPABILITIES */}
+        <section className="px-4 sm:px-6 md:px-12 max-w-7xl mx-auto mb-20 sm:mb-28">
           <div className="mb-12">
             <span className="text-xs font-mono tracking-widest text-[#FF5E00] uppercase block mb-2">
-              SCOPE OF CAPABILITIES
+              DISCIPLINE SCOPE
             </span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white">
-              Deliverables & Technical Scope
+            <h2 className="text-3xl sm:text-5xl font-light text-white uppercase font-mono">
+              Core Capabilities &amp; Deliverables
             </h2>
-            <p className="text-neutral-400 mt-2 text-sm sm:text-base max-w-2xl">
-              Concrete solutions engineered into every deployment. No ambiguous promises.
-            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {service.deliverables.map((item, idx) => (
+            {service.capabilities.map((item, idx) => (
               <div
                 key={idx}
-                className="group p-8 rounded-2xl bg-neutral-900/40 border border-white/5 hover:border-[#FF5E00]/40 transition-all duration-300 hover:shadow-[0_4px_30px_rgba(255,94,0,0.08)] flex flex-col justify-between"
+                className="p-8 rounded-2xl bg-neutral-950/70 border border-white/10 hover:border-[#FF5E00]/40 transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-5">
                     <span className="text-xs font-mono text-neutral-500">
                       DELIVERABLE 0{idx + 1}
                     </span>
-                    <CheckCircle2 className="w-5 h-5 text-[#FF5E00]/60 group-hover:text-[#FF5E00] transition-colors" />
+                    <CheckCircle2 className="w-5 h-5 text-[#FF5E00]" />
                   </div>
-                  <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-neutral-100 transition-colors">
+                  <h3 className="text-xl font-bold font-mono text-white uppercase mb-3">
                     {item.title}
                   </h3>
-                  <p className="text-neutral-400 text-sm sm:text-base leading-relaxed">
+                  <p className="text-neutral-400 text-sm sm:text-base font-light leading-relaxed">
                     {item.description}
                   </p>
                 </div>
@@ -305,191 +297,51 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         </section>
 
         {/* PROCESS TIMELINE */}
-        <section className="px-4 sm:px-6 md:px-12 max-w-7xl mx-auto py-16 sm:py-20 border-t border-white/5">
+        <section className="px-4 sm:px-6 md:px-12 max-w-7xl mx-auto mb-20 sm:mb-28 border-t border-white/10 pt-16">
           <div className="mb-12">
             <span className="text-xs font-mono tracking-widest text-[#FF5E00] uppercase block mb-2">
-              PRECISION WORKFLOW
+              EXECUTION PROCESS
             </span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white">
-              Execution Methodology
+            <h2 className="text-3xl sm:text-5xl font-light text-white uppercase font-mono">
+              Sprint Methodology
             </h2>
-            <p className="text-neutral-400 mt-2 text-sm sm:text-base max-w-2xl">
-              A transparent, disciplined sprint cadence from kickoff to deployment.
-            </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {service.processSteps.map((step, idx) => (
+            {service.process.map((step) => (
               <div
-                key={idx}
-                className="p-6 rounded-2xl bg-neutral-950/60 border border-white/5 relative flex flex-col justify-between"
+                key={step.step}
+                className="p-6 rounded-2xl bg-neutral-950/60 border border-white/10 flex flex-col justify-between"
               >
                 <div>
                   <div className="text-3xl font-mono font-bold text-[#FF5E00] mb-4">
                     {step.step}
                   </div>
-                  <h3 className="text-lg font-bold text-white mb-2">{step.title}</h3>
-                  <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed">
+                  <h3 className="text-lg font-bold font-mono text-white uppercase mb-2">
+                    {step.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-neutral-400 font-light leading-relaxed">
                     {step.description}
                   </p>
-                </div>
-                <div className="mt-6 pt-4 border-t border-white/5 flex items-center text-[11px] font-mono text-neutral-500 uppercase tracking-wider">
-                  <Clock className="w-3.5 h-3.5 mr-1.5 text-neutral-500" />
-                  <span>Phase Milestone</span>
                 </div>
               </div>
             ))}
           </div>
         </section>
 
-        {/* TECH STACK & ARCHITECTURE BADGES */}
-        <section className="px-4 sm:px-6 md:px-12 max-w-7xl mx-auto py-12">
-          <div className="p-8 rounded-2xl bg-neutral-900/30 border border-white/5 flex flex-col md:flex-row md:items-center justify-between gap-6">
-            <div className="flex items-center space-x-3">
-              <Cpu className="w-6 h-6 text-[#FF5E00]" />
-              <div>
-                <h4 className="text-sm font-mono uppercase tracking-wider text-white">
-                  Tools & Production Stack
-                </h4>
-                <p className="text-xs text-neutral-400">
-                  Modern, performant toolsets tailored to {service.name.toLowerCase()} standards.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex flex-wrap gap-2.5">
-              {service.technologies.map((tech, idx) => (
-                <span
-                  key={idx}
-                  className="px-3.5 py-1.5 rounded-full text-xs font-mono bg-white/5 border border-white/10 text-neutral-300"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* RECOMMENDED INVESTMENT & PACKAGES */}
-        <section className="px-4 sm:px-6 md:px-12 max-w-7xl mx-auto py-16 sm:py-20 border-t border-white/5">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
-            <div>
-              <span className="text-xs font-mono tracking-widest text-[#FF5E00] uppercase block mb-2">
-                TRANSPARENT PRICING
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-bold text-white">
-                Recommended Investment Tier
-              </h2>
-            </div>
-            <p className="text-neutral-400 mt-2 md:mt-0 text-sm sm:text-base max-w-md">
-              Fixed milestones with clear scopes. All tiers include full source ownership.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-            {/* Main Recommended Tier */}
-            <div className="lg:col-span-2 p-8 sm:p-10 rounded-3xl bg-neutral-900/80 border-2 border-[#FF5E00]/60 relative shadow-[0_10px_40px_rgba(255,94,0,0.12)]">
-              <div className="absolute top-0 right-8 -translate-y-1/2 px-4 py-1 rounded-full bg-[#FF5E00] text-black text-xs font-mono font-bold uppercase tracking-wider">
-                RECOMMENDED FOR THIS DISCIPLINE
-              </div>
-
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-white/10 gap-4">
-                <div>
-                  <span className="text-xs font-mono text-neutral-400 uppercase tracking-widest">
-                    PACKAGE TIER
-                  </span>
-                  <h3 className="text-2xl sm:text-3xl font-bold text-white">
-                    {service.recommendedPlan.name}
-                  </h3>
-                </div>
-                <div>
-                  <span className="text-xs font-mono text-neutral-400 uppercase tracking-widest block">
-                    STARTING AT
-                  </span>
-                  <span className="text-3xl sm:text-4xl font-mono font-bold text-[#FF5E00]">
-                    {service.recommendedPlan.price}
-                  </span>
-                </div>
-              </div>
-
-              <p className="text-neutral-300 text-sm sm:text-base my-6 leading-relaxed">
-                {service.recommendedPlan.description}
-              </p>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
-                {service.deliverables.slice(0, 4).map((del, i) => (
-                  <div key={i} className="flex items-start space-x-2.5 text-xs sm:text-sm text-neutral-300">
-                    <Check className="w-4 h-4 text-[#FF5E00] shrink-0 mt-0.5" />
-                    <span>{del.title}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link
-                  href={`/#contact?service=${encodeURIComponent(service.name)}&tier=${encodeURIComponent(
-                    service.recommendedPlan.name
-                  )}`}
-                  className="inline-flex items-center justify-center space-x-2 px-6 py-3.5 rounded-full bg-[#FF5E00] text-black font-semibold text-xs font-mono tracking-wider uppercase hover:bg-[#FF7A1A] transition-all"
-                >
-                  <span>Select {service.recommendedPlan.name} Tier</span>
-                  <ArrowRight className="w-4 h-4 text-black" />
-                </Link>
-
-                <Link
-                  href="/#pricing"
-                  className="inline-flex items-center justify-center space-x-2 px-6 py-3.5 rounded-full border border-white/20 text-neutral-300 text-xs font-mono tracking-wider uppercase hover:text-white hover:border-white transition-all"
-                >
-                  <span>Compare All 3 Tiers</span>
-                </Link>
-              </div>
-            </div>
-
-            {/* Custom Quote Card */}
-            <div className="p-8 rounded-3xl bg-neutral-950/60 border border-white/10 flex flex-col justify-between h-full">
-              <div>
-                <span className="text-xs font-mono text-[#FF5E00] uppercase tracking-wider block mb-2">
-                  CUSTOM SCOPE
-                </span>
-                <h3 className="text-xl font-bold text-white mb-3">Enterprise or Multi-Phase Project?</h3>
-                <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed mb-6">
-                  For complex integrations, high-traffic portals, or customized multi-system workflows, we prepare bespoke roadmaps.
-                </p>
-                <div className="space-y-2 mb-6 text-xs text-neutral-400">
-                  <div className="flex items-center space-x-2">
-                    <ShieldCheck className="w-4 h-4 text-neutral-400" />
-                    <span>Comprehensive Technical Discovery</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <ShieldCheck className="w-4 h-4 text-neutral-400" />
-                    <span>Milestone-based SLA & Delivery</span>
-                  </div>
-                </div>
-              </div>
-
-              <Link
-                href="/#contact"
-                className="w-full py-3.5 rounded-full border border-white/20 bg-white/5 hover:bg-white text-neutral-200 hover:text-black transition-all text-xs font-mono uppercase tracking-wider font-semibold text-center block"
-              >
-                Request Custom Quotation
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* FLAGSHIP CASE STUDY SPOTLIGHT */}
+        {/* RELEVANT CASE STUDY */}
         {relatedProject && (
-          <section className="px-4 sm:px-6 md:px-12 max-w-7xl mx-auto py-16 sm:py-20 border-t border-white/5">
+          <section className="px-4 sm:px-6 md:px-12 max-w-7xl mx-auto mb-20 sm:mb-28 border-t border-white/10 pt-16">
             <div className="mb-10">
               <span className="text-xs font-mono tracking-widest text-[#FF5E00] uppercase block mb-2">
-                VERIFIED REAL CLIENT DEPLOYMENT
+                RELEVANT PRODUCTION DEPLOYMENT
               </span>
-              <h2 className="text-3xl sm:text-4xl font-bold text-white">
-                Featured Case Study: {relatedProject.title}
+              <h2 className="text-3xl sm:text-5xl font-light text-white uppercase font-mono">
+                Case Study: {relatedProject.title}
               </h2>
             </div>
 
-            <div className="rounded-3xl border border-white/10 bg-neutral-900/50 p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center overflow-hidden">
+            <div className="rounded-3xl border border-white/10 bg-neutral-950 p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center overflow-hidden">
               <div className="lg:col-span-6 relative aspect-[16/10] rounded-2xl overflow-hidden border border-white/10 bg-black">
                 <Image
                   src={relatedProject.heroImage}
@@ -500,28 +352,17 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                 />
               </div>
 
-              <div className="lg:col-span-6 flex flex-col justify-between">
+              <div className="lg:col-span-6 space-y-6">
                 <div>
-                  <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-[#FF7A1A] mb-4">
-                    <span>{relatedProject.category}</span>
-                  </div>
-                  <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3">
+                  <span className="text-xs font-mono text-[#FF7A1A] uppercase tracking-wider block mb-2">
+                    {relatedProject.category}
+                  </span>
+                  <h3 className="text-2xl sm:text-4xl font-light font-mono text-white uppercase mb-3">
                     {relatedProject.title}
                   </h3>
-                  <p className="text-sm sm:text-base text-neutral-300 leading-relaxed mb-6">
+                  <p className="text-sm sm:text-base text-neutral-300 font-light leading-relaxed">
                     {relatedProject.description}
                   </p>
-
-                  <div className="flex flex-wrap gap-2 mb-8">
-                    {relatedProject.services.map((serviceItem) => (
-                      <span
-                        key={serviceItem}
-                        className="px-3 py-1 rounded-full text-xs font-mono bg-white/5 border border-white/10 text-neutral-400"
-                      >
-                        {serviceItem}
-                      </span>
-                    ))}
-                  </div>
                 </div>
 
                 <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-white/10">
@@ -533,107 +374,56 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                     <ArrowRight className="w-3.5 h-3.5 text-black" />
                   </Link>
 
-                  {relatedProject.liveUrl && (
-                    <a
-                      href={relatedProject.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center space-x-2 px-5 py-3 rounded-full border border-white/20 text-xs font-mono tracking-wider uppercase text-neutral-300 hover:text-white hover:border-white transition-colors"
-                    >
-                      <span>Visit Live Website</span>
-                      <ArrowUpRight className="w-3.5 h-3.5 text-[#FF5E00]" />
-                    </a>
-                  )}
+                  <a
+                    href={relatedProject.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 px-5 py-3 rounded-full border border-white/20 text-xs font-mono tracking-wider uppercase text-neutral-300 hover:text-white hover:border-white transition-colors"
+                  >
+                    <span>Visit Live Website</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 text-[#FF5E00]" />
+                  </a>
                 </div>
               </div>
             </div>
           </section>
         )}
 
-        {/* FREQUENTLY ASKED QUESTIONS */}
-        <section className="px-4 sm:px-6 md:px-12 max-w-5xl mx-auto py-16 sm:py-20 border-t border-white/5">
+        {/* FAQS */}
+        <section className="px-4 sm:px-6 md:px-12 max-w-4xl mx-auto mb-20 sm:mb-28 border-t border-white/10 pt-16">
           <div className="text-center mb-12">
             <span className="text-xs font-mono tracking-widest text-[#FF5E00] uppercase block mb-2">
-              FREQUENTLY ASKED QUESTIONS
+              QUESTIONS &amp; ANSWERS
             </span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white">
-              Questions About Our {service.name} Process
+            <h2 className="text-3xl sm:text-4xl font-light text-white uppercase font-mono">
+              Frequently Asked Questions
             </h2>
-            <p className="text-neutral-400 mt-2 text-sm sm:text-base max-w-xl mx-auto">
-              Straightforward answers regarding delivery, communication, technical standards, and turnaround.
-            </p>
           </div>
 
           <ServiceFaqAccordion faqs={service.faqs} />
         </section>
 
-        {/* EXPLORE OTHER SERVICES */}
-        <section className="px-4 sm:px-6 md:px-12 max-w-7xl mx-auto py-16 sm:py-20 border-t border-white/5">
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <span className="text-xs font-mono tracking-widest text-neutral-500 uppercase block mb-1">
-                STUDIO DISCIPLINES
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-bold text-white">
-                Explore Other Services
-              </h2>
-            </div>
-            <Link
-              href="/services"
-              className="text-xs font-mono tracking-wider uppercase text-[#FF5E00] hover:underline hidden sm:inline-block"
-            >
-              View All Services →
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {otherServices.slice(0, 3).map((item) => (
-              <Link
-                key={item.slug}
-                href={`/services/${item.slug}`}
-                className="group p-6 rounded-2xl bg-neutral-950/60 border border-white/5 hover:border-[#FF5E00]/40 transition-all duration-300 flex flex-col justify-between"
-              >
-                <div>
-                  <span className="text-[10px] font-mono tracking-widest text-neutral-500 uppercase block mb-2">
-                    {item.category}
-                  </span>
-                  <h3 className="text-lg font-bold text-white mb-2 group-hover:text-[#FF7A1A] transition-colors flex items-center justify-between">
-                    <span>{item.name}</span>
-                    <ArrowUpRight className="w-4 h-4 text-neutral-500 group-hover:text-[#FF5E00] transition-colors" />
-                  </h3>
-                  <p className="text-xs sm:text-sm text-neutral-400 line-clamp-2 leading-relaxed">
-                    {item.leadParagraph}
-                  </p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>
-
-        {/* BOTTOM CONVERSION CTA BANNER */}
-        <section className="px-4 sm:px-6 md:px-12 max-w-7xl mx-auto pt-10">
-          <div className="p-10 sm:p-14 rounded-3xl bg-gradient-to-br from-neutral-900 via-black to-[#FF5E00]/15 border border-[#FF5E00]/30 text-center relative overflow-hidden shadow-[0_10px_50px_rgba(255,94,0,0.1)]">
-            <span className="text-xs font-mono tracking-widest text-[#FF5E00] uppercase block mb-3">
-              READY TO COMMENCE YOUR PROJECT?
+        {/* BOTTOM CTA */}
+        <section className="px-4 sm:px-6 md:px-12 max-w-7xl mx-auto pt-6">
+          <div className="p-10 sm:p-16 rounded-3xl bg-neutral-950 border border-[#FF5E00]/40 text-center space-y-6">
+            <span className="text-xs font-mono tracking-widest text-[#FF5E00] uppercase block">
+              READY TO COMMENCE?
             </span>
-            <h2 className="text-3xl sm:text-5xl font-bold text-white mb-6 max-w-2xl mx-auto leading-tight">
-              Let&apos;s build an extraordinary digital presence for your brand.
-            </h2>
-            <p className="text-neutral-300 text-sm sm:text-base max-w-xl mx-auto mb-8 font-light">
-              Submit your project scope through our multi-step inquiry system or speak directly with our creative director on WhatsApp.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <h3 className="text-3xl sm:text-5xl font-light text-white uppercase font-mono max-w-2xl mx-auto">
+              Commission {service.name} for your brand.
+            </h3>
+            <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
-                href={`/#contact?service=${encodeURIComponent(service.name)}`}
-                className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#FF5E00] text-black font-semibold text-sm tracking-wider uppercase hover:bg-[#FF7A1A] transition-all shadow-[0_0_30px_rgba(255,94,0,0.35)]"
+                href={`/start-a-project?service=${encodeURIComponent(service.name)}`}
+                className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#FF5E00] text-black font-mono text-xs uppercase tracking-wider font-semibold hover:bg-[#FF7A1A] transition-all shadow-[0_0_25px_rgba(255,94,0,0.3)]"
               >
-                Start Your Project Inquiry
+                START A PROJECT INQUIRY &rarr;
               </Link>
               <Link
-                href="/#work"
-                className="w-full sm:w-auto px-7 py-4 rounded-full border border-white/20 text-white font-mono text-xs tracking-wider uppercase hover:bg-white/10 transition-all"
+                href="/pricing"
+                className="w-full sm:w-auto px-7 py-4 rounded-full border border-white/20 text-white font-mono text-xs uppercase tracking-wider hover:bg-white/10 transition-all"
               >
-                Explore Selected Work
+                VIEW PRICING TIERS
               </Link>
             </div>
           </div>

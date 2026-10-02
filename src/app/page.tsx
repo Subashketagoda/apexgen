@@ -5,16 +5,13 @@ import { CinematicLoader } from '@/components/ui/CinematicLoader';
 import { CustomCursor } from '@/components/ui/CustomCursor';
 import { Navbar } from '@/components/ui/Navbar';
 import { WhatsAppButton } from '@/components/ui/WhatsAppButton';
-import { HeroSection } from '@/components/sections/HeroSection';
-import { MarqueeSection } from '@/components/sections/MarqueeSection';
-import { SelectedWorkSection } from '@/components/sections/SelectedWorkSection';
-import { ServicePillarsSection } from '@/components/sections/ServicePillarsSection';
-import { StorytellingSection } from '@/components/sections/StorytellingSection';
-import { ProcessSection } from '@/components/sections/ProcessSection';
-import { TechnologyTrustSection } from '@/components/sections/TechnologyTrustSection';
-import { PricingSection } from '@/components/sections/PricingSection';
-import { CtaBannerSection } from '@/components/sections/CtaBannerSection';
-import { InquiryFormSection } from '@/components/sections/InquiryFormSection';
+import { HomeHero } from '@/components/home/HomeHero';
+import { HomeFeaturedWork } from '@/components/home/HomeFeaturedWork';
+import { HomeCapabilitiesPhilosophy } from '@/components/home/HomeCapabilitiesPhilosophy';
+import { HomeServicesShowcase } from '@/components/home/HomeServicesShowcase';
+import { HomeProcess } from '@/components/home/HomeProcess';
+import { HomePricing } from '@/components/home/HomePricing';
+import { HomeProjectCta } from '@/components/home/HomeProjectCta';
 import { Footer } from '@/components/ui/Footer';
 
 export default function Home() {
@@ -32,53 +29,44 @@ export default function Home() {
 
   return (
     <>
-      {/* 1. Cinematic Loading Experience: APEXGEN, DIGITAL EXPERIENCES, [──────── 100%] */}
+      {/* 07 — Cinematic Loading Experience (APEXGEN 00 — 100) */}
       <CinematicLoader />
 
-      {/* 2. Interactive Desktop Custom Cursor (Morphs to VIEW PROJECT →) */}
+      {/* 27 — Desktop Contextual Custom Cursor (VIEW, OPEN, DRAG, EXPLORE) */}
       <CustomCursor />
 
-      {/* WhatsApp Quick Action Button */}
+      {/* 23 — Centralized Floating WhatsApp Action */}
       <WhatsAppButton />
 
-      {/* Main Page Layout */}
+      {/* Main Studio Canvas */}
       <div className="relative min-h-screen bg-[#050505] text-[#F5F5F5] selection:bg-white selection:text-black">
-        {/* 2. Minimal Floating Navigation */}
+        {/* 08 — Premium Minimal / Sticky Navigation */}
         <Navbar />
 
         <main>
-          {/* 3 & 4. Hero Section — The Main Experience & Scroll Transition */}
-          <HeroSection />
+          {/* 09, 10 — Hero: Dominant Typography + Real Floating Showcase + Mouse Parallax */}
+          <HomeHero />
 
-          {/* 7. Subtle Infinite Marquee: DESIGN — DEVELOP — LAUNCH — GROW */}
-          <MarqueeSection />
+          {/* 11, 12 — Selected Work: Flagship Case Studies (Cargo Pizza, 69 Studio, DinePro) */}
+          <HomeFeaturedWork />
 
-          {/* 5 & 6. Selected Work — Editorial Portfolio & Interactive Previews */}
-          <SelectedWorkSection />
+          {/* Studio Capabilities & Philosophy */}
+          <HomeCapabilitiesPhilosophy />
 
-          {/* 8. Services — Digital Capabilities (Full-screen interactive list with spotlight) */}
-          <ServicePillarsSection />
+          {/* 17 — Services: DESIGN • BUILD • GROW Interactive Dossier */}
+          <HomeServicesShowcase />
 
-          {/* 9. "Not Just a Website" Storytelling Presentation */}
-          <StorytellingSection />
+          {/* 20 — Process: 5-Stage Sprint Cadence (01-05) */}
+          <HomeProcess />
 
-          {/* 10. Process — Cinematic Horizontal Process (01-05) */}
-          <ProcessSection />
+          {/* 21 — Pricing: Starter (49.9k), Business (89.9k), Premium (149.9k) & Custom */}
+          <HomePricing />
 
-          {/* 11 & 12. Technology & Verified Social Proof / Trust */}
-          <TechnologyTrustSection />
-
-          {/* 13. Pricing — Premium Expanding Horizontal Proposal Interface */}
-          <PricingSection />
-
-          {/* 14. Final CTA — Almost completely black, LET'S BUILD SOMETHING IMPOSSIBLE TO IGNORE. */}
-          <CtaBannerSection />
-
-          {/* Direct Lead Intake Form for #contact */}
-          <InquiryFormSection />
+          {/* Project Commission Call-To-Action */}
+          <HomeProjectCta />
         </main>
 
-        {/* 15. Minimal Luxury Footer with Massive Watermark */}
+        {/* 25 — Monolithic Luxury Footer */}
         <Footer />
       </div>
     </>

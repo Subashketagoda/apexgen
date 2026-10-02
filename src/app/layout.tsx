@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter, Space_Grotesk } from 'next/font/google';
 import './globals.css';
-import { siteConfig } from '@/data/siteConfig';
+import { siteConfig } from '@/data/site';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -18,11 +18,11 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
   title: {
-    default: 'ApexGen — Premium Web Design & Digital Experiences',
+    default: 'ApexGen | Premium Web Design & Development Agency Sri Lanka',
     template: '%s | ApexGen',
   },
   description:
-    'ApexGen builds premium websites and digital experiences for ambitious businesses.',
+    'ApexGen creates premium websites and digital experiences for ambitious businesses in Sri Lanka and beyond.',
   keywords: [
     'web design Sri Lanka',
     'website development Sri Lanka',
@@ -144,15 +144,35 @@ export default function RootLayout({
         hasOfferCatalog: {
           '@type': 'OfferCatalog',
           name: 'ApexGen Web Design & Development Services',
-          itemListElement: siteConfig.servicePillars.map((pillar, index) => ({
-            '@type': 'Offer',
-            itemOffered: {
-              '@type': 'Service',
-              name: pillar.title,
-              description: pillar.shortDesc,
+          itemListElement: [
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'Web Design & Creative Art Direction',
+                description: 'Bespoke UI/UX design, design systems, and brand digital experiences.',
+              },
+              position: 1,
             },
-            position: index + 1,
-          })),
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'Custom Web Development & Engineering',
+                description: 'High-performance Next.js web applications, e-commerce, and booking engines.',
+              },
+              position: 2,
+            },
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'SEO & Technical Performance Optimization',
+                description: 'Search architecture, Core Web Vitals optimization, and automation.',
+              },
+              position: 3,
+            },
+          ],
         },
       },
     ],

@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useSyncExternalStore } from 'react';
 import { motion, AnimatePresence, useSpring, useMotionValue } from 'framer-motion';
 
-type CursorMode = 'default' | 'pointer' | 'project';
+type CursorMode = 'default' | 'pointer' | 'view' | 'open' | 'drag' | 'explore';
 
 function subscribeFinePointer(callback: () => void) {
   if (typeof window === 'undefined') return () => {};
@@ -23,7 +23,9 @@ function getFinePointerServerSnapshot() {
 
 export function CustomCursor() {
   const [cursorMode, setCursorMode] = useState<CursorMode>('default');
+  const [cursorLabel, setCursorLabel] = useState<string>('VIEW');
   const [isVisible, setIsVisible] = useState(false);
+
   const isTouchDevice = useSyncExternalStore(
     subscribeFinePointer,
     getFinePointerSnapshot,
@@ -48,14 +50,23 @@ export function CustomCursor() {
       const target = e.target as HTMLElement | null;
       if (!target) return;
 
-      const projectEl = target.closest('[data-cursor="project"]');
-      const clickableEl = target.closest(
-        'a, button, [role="button"], input, select, textarea, [data-cursor="pointer"]'
-      );
+      const cursorAttr = target.closest('[data-cursor]')?.getAttribute('data-cursor');
 
-      if (projectEl) {
-        setCursorMode('project');
-      } else if (clickableEl) {
+      if (cursorAttr === 'view' || cursorAttr === 'project') {
+        setCursorMode('view');
+        setCursorLabel('VIEW');
+      } else if (cursorAttr === 'open') {
+        setCursorMode('open');
+        setCursorLabel('OPEN');
+      } else if (cursorAttr === 'drag') {
+        setCursorMode('drag');
+        setCursorLabel('DRAG');
+      } else if (cursorAttr === 'explore') {
+        setCursorMode('explore');
+        setCursorLabel('EXPLORE');
+      } else if (
+        target.closest('a, button, [role="button"], input, select, textarea')
+      ) {
         setCursorMode('pointer');
       } else {
         setCursorMode('default');
@@ -80,13 +91,15 @@ export function CustomCursor() {
     return null;
   }
 
+  const isPill = ['view', 'open', 'drag', 'explore'].includes(cursorMode);
+
   return (
     <div
       className="pointer-events-none fixed inset-0 z-[999] overflow-hidden select-none"
       style={{ pointerEvents: 'none' }}
       aria-hidden="true"
     >
-      {/* 1. Precise Center Dot (visible in default mode) */}
+      {/* Center Dot (default) */}
       {cursorMode === 'default' && (
         <motion.div
           style={{ x: mouseX, y: mouseY, translateX: '-50%', translateY: '-50%', pointerEvents: 'none' }}
@@ -94,11 +107,11 @@ export function CustomCursor() {
         />
       )}
 
-      {/* 2. Interactive States */}
+      {/* Interactive Contextual States */}
       <AnimatePresence mode="wait">
-        {cursorMode === 'project' ? (
+        {isPill ? (
           <motion.div
-            key="project-cursor"
+            key={cursorLabel}
             style={{ x: followerX, y: followerY, translateX: '-50%', translateY: '-50%', pointerEvents: 'none' }}
             initial={{ scale: 0.6, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -106,7 +119,7 @@ export function CustomCursor() {
             transition={{ type: 'spring', damping: 24, stiffness: 350 }}
             className="pointer-events-none fixed left-0 top-0 px-4 py-2 rounded-full bg-white text-black flex items-center space-x-2 font-mono text-[10px] uppercase font-bold tracking-widest shadow-[0_0_25px_rgba(255,94,0,0.3)] backdrop-blur-md"
           >
-            <span>VIEW PROJECT</span>
+            <span>{cursorLabel}</span>
             <span className="text-[#FF5E00] font-black">&rarr;</span>
           </motion.div>
         ) : cursorMode === 'pointer' ? (

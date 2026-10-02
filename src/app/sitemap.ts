@@ -1,52 +1,32 @@
 import { MetadataRoute } from 'next';
-import { siteConfig } from '@/data/siteConfig';
-import { servicesData } from '@/data/servicesData';
+import { siteConfig } from '@/data/site';
+import { servicesData } from '@/data/services';
+import { projectsData } from '@/data/projects';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = siteConfig.siteUrl;
   const currentDate = new Date().toISOString();
 
-  // Core Landing and Studio Index Routes
-  const staticRoutes: MetadataRoute.Sitemap = [
-    {
-      url: baseUrl,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 1.0,
-    },
-    {
-      url: `${baseUrl}/services`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.95,
-    },
-    {
-      url: `${baseUrl}/#work`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/#pricing`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/#process`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/#contact`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
+  // Core Static Agency Pages
+  const staticPages = [
+    { path: '', priority: 1.0, changeFrequency: 'weekly' as const },
+    { path: '/work', priority: 0.95, changeFrequency: 'weekly' as const },
+    { path: '/services', priority: 0.95, changeFrequency: 'weekly' as const },
+    { path: '/about', priority: 0.85, changeFrequency: 'monthly' as const },
+    { path: '/process', priority: 0.85, changeFrequency: 'monthly' as const },
+    { path: '/pricing', priority: 0.9, changeFrequency: 'monthly' as const },
+    { path: '/contact', priority: 0.9, changeFrequency: 'monthly' as const },
+    { path: '/start-a-project', priority: 0.95, changeFrequency: 'weekly' as const },
   ];
 
-  // 6 Dedicated SEO Service Landing Pages
+  const staticRoutes: MetadataRoute.Sitemap = staticPages.map((page) => ({
+    url: `${baseUrl}${page.path}`,
+    lastModified: currentDate,
+    changeFrequency: page.changeFrequency,
+    priority: page.priority,
+  }));
+
+  // Dedicated Service Dossier Routes
   const serviceRoutes: MetadataRoute.Sitemap = Object.keys(servicesData).map((slug) => ({
     url: `${baseUrl}/services/${slug}`,
     lastModified: currentDate,
@@ -54,8 +34,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
-  // Portfolio Flagship Case Studies
-  const projectRoutes: MetadataRoute.Sitemap = siteConfig.realProjects.map((project) => ({
+  // Dedicated Portfolio Case Study Routes
+  const projectRoutes: MetadataRoute.Sitemap = projectsData.map((project) => ({
     url: `${baseUrl}/work/${project.slug}`,
     lastModified: currentDate,
     changeFrequency: 'weekly' as const,

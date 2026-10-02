@@ -1,94 +1,40 @@
 import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { siteConfig } from '@/data/siteConfig';
-import { servicesData } from '@/data/servicesData';
+import { siteConfig } from '@/data/site';
+import { serviceCategories, servicesData } from '@/data/services';
 import { Navbar } from '@/components/ui/Navbar';
 import { Footer } from '@/components/ui/Footer';
 import { CustomCursor } from '@/components/ui/CustomCursor';
-import {
-  ArrowRight,
-  Sparkles,
-  Layers,
-  Code2,
-  Calendar,
-  Search,
-  Cpu,
-  CheckCircle2,
-} from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Digital Agency Services — Web Design, Development & SEO | ApexGen',
+  title: 'Digital Agency Services & Capabilities | ApexGen',
   description:
-    'ApexGen delivers bespoke website design, high-performance Next.js development, e-commerce stores, custom booking engines, search engine optimization, and business automation in Sri Lanka and worldwide.',
-  keywords: [
-    'Web Design Agency Sri Lanka',
-    'Website Development Sri Lanka',
-    'Website Designer Colombo',
-    'Business Website Development',
-    'E-commerce Website Development',
-    'Custom Website Design',
-    'Website Redesign',
-    'SEO Services Sri Lanka',
-    'ApexGen Services',
-  ],
+    'Explore ApexGen core service disciplines organized across Design, Build, and Grow. Bespoke website design, Next.js engineering, e-commerce, booking systems, SEO, and business automation.',
   alternates: {
     canonical: `${siteConfig.siteUrl}/services`,
   },
   openGraph: {
-    title: 'Digital Agency Services — Web Design, Development & SEO | ApexGen',
+    title: 'Digital Agency Services & Capabilities | ApexGen',
     description:
-      'ApexGen delivers bespoke website design, high-performance Next.js development, e-commerce stores, custom booking engines, search engine optimization, and business automation.',
+      'Design. Build. Grow. Explore ApexGen digital studio capabilities in Colombo, Sri Lanka.',
     url: `${siteConfig.siteUrl}/services`,
     type: 'website',
-    images: [
-      {
-        url: '/brand/apexgen-brand-kit.png',
-        width: 1200,
-        height: 630,
-        alt: 'ApexGen Studio Services',
-      },
-    ],
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Digital Agency Services — Web Design, Development & SEO | ApexGen',
-    description:
-      'ApexGen delivers bespoke website design, high-performance Next.js development, e-commerce stores, custom booking engines, search engine optimization, and business automation.',
-    images: ['/brand/apexgen-brand-kit.png'],
-  },
-};
-
-const iconMap: Record<string, React.ReactNode> = {
-  'web-design': <Layers className="w-6 h-6 text-[#FF5E00]" />,
-  'web-development': <Code2 className="w-6 h-6 text-[#FF5E00]" />,
-  'ecommerce': <Sparkles className="w-6 h-6 text-[#FF5E00]" />,
-  'booking-systems': <Calendar className="w-6 h-6 text-[#FF5E00]" />,
-  'seo': <Search className="w-6 h-6 text-[#FF5E00]" />,
-  'automation': <Cpu className="w-6 h-6 text-[#FF5E00]" />,
 };
 
 export default function ServicesIndexPage() {
-  const servicesList = Object.values(servicesData);
-
   const collectionJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'ApexGen Digital Agency Services',
-    description:
-      'Explore ApexGen core service disciplines: Website Design, Next.js Development, E-commerce, Booking Systems, Technical SEO, and Business Automation.',
+    name: 'ApexGen Studio Services',
+    description: 'Disciplines across Design, Build, and Grow.',
     url: `${siteConfig.siteUrl}/services`,
-    hasPart: servicesList.map((service, index) => ({
-      '@type': 'Service',
-      name: service.name,
-      url: `${siteConfig.siteUrl}/services/${service.slug}`,
-      position: index + 1,
-      description: service.metaDescription,
-    })),
   };
 
   return (
-    <div className="bg-[#050507] text-[#f4f4f6] min-h-screen selection:bg-[#FF5E00] selection:text-white relative">
+    <div className="bg-[#050505] text-[#F5F5F5] min-h-screen selection:bg-[#FF5E00] selection:text-white relative">
       <CustomCursor />
       <Navbar />
 
@@ -97,133 +43,144 @@ export default function ServicesIndexPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }}
       />
 
-      <main className="pt-32 pb-24 sm:pb-32 overflow-hidden">
-        {/* HERO SECTION */}
-        <section className="relative px-4 sm:px-6 md:px-12 max-w-7xl mx-auto mb-16 sm:mb-24">
-          <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#FF5E00]/10 blur-[140px] rounded-full pointer-events-none -z-10" />
-
-          <div className="inline-flex items-center space-x-2.5 px-3.5 py-1.5 rounded-full border border-[#FF5E00]/30 bg-[#FF5E00]/10 text-xs font-mono text-[#FF7A1A] tracking-wider uppercase mb-6 shadow-[0_0_15px_rgba(255,94,0,0.15)]">
-            <span className="w-2 h-2 rounded-full bg-[#FF5E00] animate-pulse" />
-            <span>STUDIO CAPABILITIES</span>
+      <main className="pt-32 sm:pt-44 pb-28 sm:pb-36 overflow-hidden">
+        {/* Editorial Header */}
+        <section className="px-4 sm:px-6 md:px-12 max-w-7xl mx-auto mb-20 sm:mb-32">
+          <div className="inline-flex items-center space-x-2.5 px-3.5 py-1.5 rounded-full border border-[#FF5E00]/30 bg-[#FF5E00]/10 text-xs font-mono text-[#FF7A1A] tracking-wider uppercase mb-8">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#FF5E00] animate-pulse" />
+            <span>FULL-SPECTRUM DISCIPLINES</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-6 max-w-5xl leading-[1.08]">
-            Full-Spectrum Digital Craft for Growing Brands.
+          <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-light tracking-[-0.04em] text-white uppercase font-mono mb-8 max-w-5xl leading-[0.95]">
+            DESIGN. BUILD. GROW.
           </h1>
 
-          <p className="text-lg sm:text-xl text-neutral-300 max-w-3xl font-light leading-relaxed mb-8">
-            We unite world-class art direction, rigorous full-stack software engineering, and search optimization to build digital flagships that outperform competitors.
+          <p className="text-lg sm:text-2xl text-neutral-300 font-light max-w-3xl leading-relaxed">
+            We unite world-class art direction, disciplined software engineering, and search optimization to create digital flagships that outperform competitors.
           </p>
-
-          <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-neutral-400">
-            <span className="flex items-center space-x-2">
-              <CheckCircle2 className="w-4 h-4 text-[#FF5E00]" />
-              <span>100% Custom Architecture</span>
-            </span>
-            <span className="text-neutral-600">•</span>
-            <span className="flex items-center space-x-2">
-              <CheckCircle2 className="w-4 h-4 text-[#FF5E00]" />
-              <span>Full Source Ownership</span>
-            </span>
-            <span className="text-neutral-600">•</span>
-            <span className="flex items-center space-x-2">
-              <CheckCircle2 className="w-4 h-4 text-[#FF5E00]" />
-              <span>Transparent Milestone Pricing</span>
-            </span>
-          </div>
         </section>
 
-        {/* 6 SERVICE CARDS GRID */}
-        <section className="px-4 sm:px-6 md:px-12 max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {servicesList.map((service, idx) => (
-              <div
-                key={service.slug}
-                className="group relative p-8 rounded-3xl bg-neutral-950/70 border border-white/10 hover:border-[#FF5E00]/50 transition-all duration-300 hover:shadow-[0_8px_35px_rgba(255,94,0,0.1)] flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="p-3 rounded-2xl bg-white/5 border border-white/10 group-hover:border-[#FF5E00]/30 transition-colors">
-                      {iconMap[service.slug] || <Layers className="w-6 h-6 text-[#FF5E00]" />}
-                    </div>
-                    <span className="text-xs font-mono text-neutral-500">
-                      0{idx + 1}
-                    </span>
+        {/* 3 MASTER CATEGORIES: DESIGN • BUILD • GROW */}
+        <section className="px-4 sm:px-6 md:px-12 max-w-7xl mx-auto space-y-24 sm:space-y-36">
+          {serviceCategories.map((category, idx) => (
+            <div
+              key={category.id}
+              className="border-t border-white/10 pt-12 sm:pt-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start"
+            >
+              {/* Category Overview (4-col) */}
+              <div className="lg:col-span-5 space-y-4 lg:sticky lg:top-36">
+                <span className="text-xs font-mono tracking-widest text-[#FF5E00] uppercase">
+                  CATEGORY 0{idx + 1}
+                </span>
+                <h2 className="text-3xl sm:text-5xl font-light text-white uppercase font-mono">
+                  {category.title}
+                </h2>
+                <p className="text-xs font-mono tracking-widest text-[#FF7A1A] uppercase">
+                  {category.tagline}
+                </p>
+                <p className="text-sm sm:text-base text-neutral-300 font-light leading-relaxed">
+                  {category.description}
+                </p>
+
+                <div className="pt-2">
+                  <div className="text-[10px] font-mono tracking-widest text-neutral-500 uppercase mb-2">
+                    DISCIPLINES COVERED:
                   </div>
-
-                  <span className="text-[11px] font-mono tracking-widest text-[#FF5E00] uppercase block mb-2">
-                    {service.category}
-                  </span>
-
-                  <h2 className="text-2xl font-bold text-white mb-3 group-hover:text-white transition-colors">
-                    {service.name}
-                  </h2>
-
-                  <p className="text-neutral-400 text-sm leading-relaxed mb-6 font-sans">
-                    {service.leadParagraph}
-                  </p>
-
-                  <div className="space-y-2 mb-8 border-t border-white/5 pt-4">
-                    {service.deliverables.slice(0, 3).map((item, i) => (
-                      <div key={i} className="flex items-start space-x-2 text-xs text-neutral-300">
-                        <span className="text-[#FF5E00] font-mono">•</span>
-                        <span>{item.title}</span>
-                      </div>
+                  <div className="flex flex-wrap gap-2">
+                    {category.subDisciplines.map((sub) => (
+                      <span
+                        key={sub}
+                        className="px-3 py-1 rounded-full text-xs font-mono bg-white/5 border border-white/10 text-neutral-300"
+                      >
+                        {sub}
+                      </span>
                     ))}
                   </div>
                 </div>
-
-                <div className="pt-4 border-t border-white/10 flex items-center justify-between">
-                  <div>
-                    <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest block">
-                      RECOMMENDED TIER
-                    </span>
-                    <span className="text-sm font-mono font-bold text-[#FF5E00]">
-                      {service.recommendedPlan.price}
-                    </span>
-                  </div>
-
-                  <Link
-                    href={`/services/${service.slug}`}
-                    className="inline-flex items-center space-x-1.5 px-4 py-2 rounded-full bg-white/5 hover:bg-[#FF5E00] text-neutral-300 hover:text-black font-mono text-xs tracking-wider uppercase transition-all duration-200"
-                  >
-                    <span>Explore</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
-                </div>
               </div>
-            ))}
-          </div>
+
+              {/* Individual Service Dossier Cards (7-col) */}
+              <div className="lg:col-span-7 space-y-6">
+                {category.services.map((slug) => {
+                  const service = servicesData[slug];
+                  if (!service) return null;
+
+                  return (
+                    <article
+                      key={slug}
+                      className="p-8 rounded-3xl bg-neutral-950/80 border border-white/10 hover:border-[#FF5E00]/50 transition-all duration-300 flex flex-col justify-between space-y-6 group"
+                    >
+                      <div className="space-y-3">
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs font-mono text-[#FF5E00] uppercase">
+                            {service.category} &bull; DOSSIER
+                          </span>
+                          <ArrowUpRight className="w-5 h-5 text-neutral-500 group-hover:text-[#FF5E00] transition-colors" />
+                        </div>
+
+                        <h3 className="text-2xl sm:text-3xl font-light font-mono text-white uppercase group-hover:text-[#FF7A1A] transition-colors">
+                          {service.name}
+                        </h3>
+
+                        <p className="text-sm text-neutral-300 font-light leading-relaxed">
+                          {service.leadParagraph}
+                        </p>
+
+                        <div className="space-y-2 pt-2 border-t border-white/5">
+                          {service.capabilities.slice(0, 3).map((cap, i) => (
+                            <div key={i} className="flex items-start space-x-2 text-xs font-mono text-neutral-400">
+                              <span className="text-[#FF5E00] font-bold">&bull;</span>
+                              <span>{cap.title}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="pt-4 border-t border-white/10 flex items-center justify-between">
+                        <Link
+                          href={`/services/${service.slug}`}
+                          className="inline-flex items-center space-x-2 text-xs font-mono text-white uppercase tracking-wider hover:text-[#FF5E00] transition-colors"
+                        >
+                          <span>EXPLORE FULL DOSSIER</span>
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </Link>
+
+                        <Link
+                          href={`/start-a-project?service=${encodeURIComponent(service.name)}`}
+                          className="px-5 py-2 rounded-full bg-white/5 hover:bg-[#FF5E00] text-neutral-300 hover:text-black font-mono text-xs uppercase tracking-wider transition-all"
+                        >
+                          INQUIRE &rarr;
+                        </Link>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
         </section>
 
-        {/* PRICING OVERVIEW CALLOUT */}
-        <section className="px-4 sm:px-6 md:px-12 max-w-7xl mx-auto py-16 sm:py-24">
-          <div className="p-8 sm:p-12 rounded-3xl bg-neutral-900/60 border border-white/10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
-            <div className="max-w-2xl">
-              <span className="text-xs font-mono tracking-widest text-[#FF5E00] uppercase block mb-2">
-                TRANSPARENT CLIENT ACQUISITION
-              </span>
-              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">
-                Need a clear package breakdown with deliverables?
-              </h3>
-              <p className="text-neutral-400 text-sm sm:text-base leading-relaxed">
-                Review our three structured tiers: Starter (LKR 49,900+), Business (LKR 89,900+), and Premium (LKR 149,900+), or configure a bespoke custom deployment.
-              </p>
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-4 shrink-0">
+        {/* Bottom CTA */}
+        <section className="px-4 sm:px-6 md:px-12 max-w-7xl mx-auto mt-28 sm:mt-36">
+          <div className="p-10 sm:p-16 rounded-3xl bg-neutral-950 border border-[#FF5E00]/30 text-center space-y-6">
+            <span className="text-xs font-mono tracking-widest text-[#FF5E00] uppercase block">
+              COLLABORATE WITH APEXGEN
+            </span>
+            <h3 className="text-3xl sm:text-5xl font-light text-white uppercase font-mono max-w-2xl mx-auto">
+              Ready to elevate your digital presence?
+            </h3>
+            <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
-                href="/#pricing"
-                className="inline-flex items-center justify-center space-x-2 px-6 py-3.5 rounded-full bg-white text-black font-semibold text-xs font-mono tracking-wider uppercase hover:bg-neutral-200 transition-colors"
+                href="/start-a-project"
+                className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#FF5E00] text-black font-mono text-xs uppercase tracking-wider font-semibold hover:bg-[#FF7A1A] transition-all shadow-[0_0_25px_rgba(255,94,0,0.3)]"
               >
-                <span>View All Pricing Tiers</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                START A PROJECT &rarr;
               </Link>
               <Link
-                href="/#contact"
-                className="inline-flex items-center justify-center space-x-2 px-6 py-3.5 rounded-full border border-white/20 text-white font-mono text-xs tracking-wider uppercase hover:bg-white/10 transition-colors"
+                href="/pricing"
+                className="w-full sm:w-auto px-7 py-4 rounded-full border border-white/20 text-white font-mono text-xs uppercase tracking-wider hover:bg-white/10 transition-all"
               >
-                <span>Start Project Inquiry</span>
+                VIEW PRICING TIERS
               </Link>
             </div>
           </div>
