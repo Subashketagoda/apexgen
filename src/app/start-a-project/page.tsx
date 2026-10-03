@@ -1,13 +1,13 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Navbar } from '@/components/ui/Navbar';
 import { Footer } from '@/components/ui/Footer';
 import { CustomCursor } from '@/components/ui/CustomCursor';
 import { siteConfig } from '@/data/site';
-import { trackInquirySubmit, trackWhatsAppClick } from '@/lib/analytics';
+import { trackInquirySubmit, trackWhatsAppClick, trackFormStart } from '@/lib/analytics';
 import confetti from 'canvas-confetti';
 import {
   ArrowRight,
@@ -19,6 +19,10 @@ import {
 
 export default function StartAProjectPage() {
   const [currentStep, setCurrentStep] = useState<1 | 2 | 3 | 4 | 5 | 6 | 7>(1);
+
+  useEffect(() => {
+    trackFormStart('start_a_project_brief');
+  }, []);
 
   const [formData, setFormData] = useState({
     // Step 01: Service

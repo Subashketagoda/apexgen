@@ -10,7 +10,15 @@ import { CheckCircle2, Clock } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'Our 5-Stage Process & Methodology | ApexGen',
   description:
-    'Explore the disciplined 5-stage creative process ApexGen uses to discover, direct, design, build, and launch high-impact digital experiences.',
+    'Explore the disciplined 5-stage creative process ApexGen uses to discover, direct, design, build, and launch high-impact digital experiences in Sri Lanka.',
+  keywords: [
+    'Web design process',
+    'Website development methodology Sri Lanka',
+    'Next.js development workflow',
+    'UI UX design sprint',
+    'Subhash Ketagoda creative process',
+    'ApexGen methodology',
+  ],
   alternates: {
     canonical: `${siteConfig.siteUrl}/process`,
   },
@@ -20,6 +28,21 @@ export const metadata: Metadata = {
       '01 Discover → 02 Direction → 03 Design → 04 Build → 05 Launch. The disciplined creative methodology of ApexGen.',
     url: `${siteConfig.siteUrl}/process`,
     type: 'website',
+    images: [
+      {
+        url: '/brand/apexgen-brand-kit.png',
+        width: 1200,
+        height: 630,
+        alt: 'ApexGen 5-Stage Creative Methodology',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Our 5-Stage Process & Methodology | ApexGen',
+    description:
+      '01 Discover → 02 Direction → 03 Design → 04 Build → 05 Launch. The disciplined creative methodology of ApexGen.',
+    images: ['/brand/apexgen-brand-kit.png'],
   },
 };
 
@@ -92,10 +115,51 @@ const processStages = [
 ];
 
 export default function ProcessPage() {
+  const howToJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'ApexGen 5-Stage Digital Agency Process',
+    description: 'Disciplined creative methodology to design, engineer, and launch high-impact digital experiences.',
+    step: processStages.map((stage, idx) => ({
+      '@type': 'HowToStep',
+      position: idx + 1,
+      name: stage.title,
+      text: stage.description,
+    })),
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: siteConfig.siteUrl,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Process',
+        item: `${siteConfig.siteUrl}/process`,
+      },
+    ],
+  };
+
   return (
     <div className="bg-[#050505] text-[#F5F5F5] min-h-screen selection:bg-[#FF5E00] selection:text-white relative">
       <CustomCursor />
       <Navbar />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
 
       <main className="pt-32 sm:pt-44 pb-28 sm:pb-36 overflow-hidden">
         {/* Editorial Header */}

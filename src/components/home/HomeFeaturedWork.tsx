@@ -129,10 +129,11 @@ export function HomeFeaturedWork() {
                 >
                   <Image
                     src={project.heroImage}
-                    alt={`${project.title} Real Website`}
+                    alt={`${project.title} — ${project.category} website designed and engineered by ApexGen and Subhash Ketagoda`}
                     fill
                     className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                     sizes="(max-width: 1024px) 100vw, 60vw"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-40 group-hover:opacity-10 transition-opacity" />
 

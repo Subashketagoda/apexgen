@@ -11,7 +11,20 @@ import { ArrowRight, ArrowUpRight } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'Digital Agency Services & Capabilities | ApexGen',
   description:
-    'Explore ApexGen core service disciplines organized across Design, Build, and Grow. Bespoke website design, Next.js engineering, e-commerce, booking systems, SEO, and business automation.',
+    'Explore ApexGen core service disciplines organized across Design, Build, and Grow. Bespoke website design, Next.js engineering, e-commerce, booking systems, SEO, and business automation in Sri Lanka.',
+  keywords: [
+    'Web Design Sri Lanka',
+    'Website Development Sri Lanka',
+    'Web Design Agency Sri Lanka',
+    'E-commerce Website Development Sri Lanka',
+    'Restaurant Website Design',
+    'Salon Website Design',
+    'Booking System Development',
+    'Website Redesign Sri Lanka',
+    'SEO Services Sri Lanka',
+    'UI UX Design Sri Lanka',
+    'Subhash Ketagoda web design',
+  ],
   alternates: {
     canonical: `${siteConfig.siteUrl}/services`,
   },
@@ -21,6 +34,21 @@ export const metadata: Metadata = {
       'Design. Build. Grow. Explore ApexGen digital studio capabilities in Colombo, Sri Lanka.',
     url: `${siteConfig.siteUrl}/services`,
     type: 'website',
+    images: [
+      {
+        url: '/brand/apexgen-brand-kit.png',
+        width: 1200,
+        height: 630,
+        alt: 'ApexGen Studio Services — Design, Build, Grow',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Digital Agency Services & Capabilities | ApexGen',
+    description:
+      'Bespoke website design, Next.js engineering, e-commerce, booking systems, and SEO in Sri Lanka.',
+    images: ['/brand/apexgen-brand-kit.png'],
   },
 };
 
@@ -29,8 +57,38 @@ export default function ServicesIndexPage() {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: 'ApexGen Studio Services',
-    description: 'Disciplines across Design, Build, and Grow.',
+    description: 'Disciplines across Design, Build, and Grow, founded by Subhash Ketagoda.',
     url: `${siteConfig.siteUrl}/services`,
+    hasPart: Object.values(servicesData).map((service) => ({
+      '@type': 'Service',
+      name: service.name,
+      url: `${siteConfig.siteUrl}/services/${service.slug}`,
+      description: service.metaDescription,
+      provider: {
+        '@type': 'ProfessionalService',
+        name: siteConfig.name,
+        url: siteConfig.siteUrl,
+      },
+    })),
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: siteConfig.siteUrl,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Services',
+        item: `${siteConfig.siteUrl}/services`,
+      },
+    ],
   };
 
   return (
@@ -41,6 +99,10 @@ export default function ServicesIndexPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
       <main className="pt-32 sm:pt-44 pb-28 sm:pb-36 overflow-hidden">

@@ -9,6 +9,7 @@ import { Logo } from '@/components/ui/Logo';
 import { MagneticButton } from '@/components/animation/MagneticButton';
 import { ScrollProgressBar } from '@/components/animation/ScrollProgressBar';
 import { siteConfig } from '@/data/site';
+import { trackStartProjectClick } from '@/lib/analytics';
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -92,6 +93,7 @@ export function Navbar() {
             <MagneticButton as="div" strength={0.25} ariaLabel="Start a project">
               <Link
                 href="/start-a-project"
+                onClick={() => trackStartProjectClick('navbar_desktop')}
                 className="group relative inline-flex items-center space-x-2 px-5 py-2.5 rounded-full border border-white/20 bg-white/5 text-xs uppercase tracking-wider font-mono text-white transition-all duration-300 hover:bg-[#FF5E00] hover:text-black hover:border-[#FF5E00] shadow-[0_0_20px_rgba(255,94,0,0.15)] active:scale-95 cursor-pointer"
               >
                 <span className="relative z-10 transition-transform duration-300 group-hover:translate-x-0.5">
@@ -106,6 +108,7 @@ export function Navbar() {
           <div className="md:hidden flex items-center space-x-2.5">
             <Link
               href="/start-a-project"
+              onClick={() => trackStartProjectClick('navbar_mobile')}
               className="px-3.5 py-1.5 rounded-full text-[11px] font-mono tracking-wider bg-[#FF5E00] text-black font-semibold transition-colors"
             >
               START

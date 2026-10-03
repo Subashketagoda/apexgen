@@ -10,7 +10,14 @@ import { ArrowUpRight, MessageCircle, Mail, MapPin, Clock } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'Contact ApexGen | Direct Inquiry & WhatsApp Consultation',
   description:
-    'Initiate a project inquiry with ApexGen Studio. Direct WhatsApp consultation, email, and project intake brief.',
+    'Initiate a project inquiry with ApexGen Studio in Colombo, Sri Lanka. Direct WhatsApp consultation, studio email, and structured project intake brief.',
+  keywords: [
+    'Contact ApexGen',
+    'Web design consultation Sri Lanka',
+    'Hire web design agency Colombo',
+    'Subhash Ketagoda contact',
+    'WhatsApp web developer Sri Lanka',
+  ],
   alternates: {
     canonical: `${siteConfig.siteUrl}/contact`,
   },
@@ -20,14 +27,77 @@ export const metadata: Metadata = {
       'Connect directly with ApexGen creative directors and senior engineers in Colombo, Sri Lanka.',
     url: `${siteConfig.siteUrl}/contact`,
     type: 'website',
+    images: [
+      {
+        url: '/brand/apexgen-brand-kit.png',
+        width: 1200,
+        height: 630,
+        alt: 'Contact ApexGen Digital Studio',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Contact ApexGen | Direct Inquiry & WhatsApp Consultation',
+    description:
+      'Connect directly with ApexGen studio leadership in Colombo, Sri Lanka.',
+    images: ['/brand/apexgen-brand-kit.png'],
   },
 };
 
 export default function ContactPage() {
+  const contactJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: 'Contact ApexGen Studio',
+    description: 'Direct inquiry channels for ApexGen Digital Studio in Colombo, Sri Lanka.',
+    url: `${siteConfig.siteUrl}/contact`,
+    mainEntity: {
+      '@type': 'ProfessionalService',
+      name: siteConfig.name,
+      url: siteConfig.siteUrl,
+      email: siteConfig.contact.email,
+      telephone: siteConfig.contact.whatsappNumber,
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Colombo',
+        addressCountry: 'LK',
+      },
+    },
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: siteConfig.siteUrl,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Contact',
+        item: `${siteConfig.siteUrl}/contact`,
+      },
+    ],
+  };
+
   return (
     <div className="bg-[#050505] text-[#F5F5F5] min-h-screen selection:bg-[#FF5E00] selection:text-white relative">
       <CustomCursor />
       <Navbar />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
 
       <main className="pt-32 sm:pt-44 pb-28 sm:pb-36 overflow-hidden">
         {/* Editorial Header */}

@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { ArrowUpRight, MessageCircle } from 'lucide-react';
 import { siteConfig } from '@/data/site';
+import { trackStartProjectClick, trackWhatsAppClick } from '@/lib/analytics';
 
 export function HomeProjectCta() {
   return (
@@ -28,6 +29,7 @@ export function HomeProjectCta() {
           <div className="pt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/start-a-project"
+              onClick={() => trackStartProjectClick('home_bottom_cta')}
               className="w-full sm:w-auto px-9 py-4 rounded-full bg-[#FF5E00] text-black font-mono text-xs uppercase tracking-wider font-semibold hover:bg-[#FF7A1A] transition-all shadow-[0_0_30px_rgba(255,94,0,0.4)] flex items-center justify-center space-x-2"
             >
               <span>LAUNCH PROJECT BRIEF</span>
@@ -40,6 +42,7 @@ export function HomeProjectCta() {
               )}`}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackWhatsAppClick('home_bottom_cta')}
               className="w-full sm:w-auto px-8 py-4 rounded-full border border-white/20 bg-white/5 text-white font-mono text-xs uppercase tracking-wider hover:bg-white/10 hover:border-white transition-all flex items-center justify-center space-x-2"
             >
               <MessageCircle className="w-4 h-4 text-[#FF5E00]" />

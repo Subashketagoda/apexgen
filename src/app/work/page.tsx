@@ -12,14 +12,17 @@ import { ArrowUpRight, ArrowRight, Lock } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'Selected Work & Digital Flagships | ApexGen',
   description:
-    'Explore digital experiences designed and engineered by ApexGen. Real client case studies including Cargo Pizza, 69 Studio, and DinePro Advisors.',
+    'Explore bespoke digital experiences designed and engineered by ApexGen. Client case studies including Cargo Pizza, 69 Studio, and DinePro Advisors.',
   keywords: [
+    'Subhash Ketagoda portfolio',
     'ApexGen portfolio',
     'Web design Sri Lanka case studies',
     'Cargo Pizza website',
     '69 Studio website',
     'DinePro Advisors website',
     'Colombo digital agency work',
+    'Restaurant website design Sri Lanka',
+    'Salon website design Sri Lanka',
   ],
   alternates: {
     canonical: `${siteConfig.siteUrl}/work`,
@@ -39,6 +42,13 @@ export const metadata: Metadata = {
       },
     ],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Selected Work & Digital Flagships | ApexGen',
+    description:
+      'Digital experiences designed and engineered by ApexGen for ambitious businesses in Sri Lanka and worldwide.',
+    images: ['/images/projects/cargo-pizzeria-real.png'],
+  },
 };
 
 export default function WorkIndexPage() {
@@ -46,18 +56,45 @@ export default function WorkIndexPage() {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: 'ApexGen Selected Work Portfolio',
-    description: 'Digital experiences designed and engineered by ApexGen.',
+    description: 'Digital experiences designed and engineered by ApexGen, founded by Subhash Ketagoda.',
     url: `${siteConfig.siteUrl}/work`,
     hasPart: projectsData.map((project, index) => ({
       '@type': 'CreativeWork',
       name: project.title,
       url: `${siteConfig.siteUrl}/work/${project.slug}`,
       position: index + 1,
-      creator: {
-        '@type': 'Organization',
-        name: 'ApexGen',
-      },
+      creator: [
+        {
+          '@type': 'Organization',
+          name: 'ApexGen',
+          url: siteConfig.siteUrl,
+        },
+        {
+          '@type': 'Person',
+          name: 'Subhash Ketagoda',
+          url: `${siteConfig.siteUrl}/about`,
+        },
+      ],
     })),
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: siteConfig.siteUrl,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Work',
+        item: `${siteConfig.siteUrl}/work`,
+      },
+    ],
   };
 
   return (
@@ -68,6 +105,10 @@ export default function WorkIndexPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
       <main className="pt-32 sm:pt-40 pb-28 sm:pb-36 overflow-hidden">
@@ -182,7 +223,7 @@ export default function WorkIndexPage() {
                   >
                     <Image
                       src={project.heroImage}
-                      alt={`${project.title} Digital Showcase`}
+                      alt={`${project.title} — ${project.category} case study designed by ApexGen and Subhash Ketagoda`}
                       fill
                       priority={index === 0}
                       className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"

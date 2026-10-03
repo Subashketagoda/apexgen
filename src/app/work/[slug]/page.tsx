@@ -52,6 +52,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     keywords: [
       `${project.title} web design`,
       `${project.category} website development`,
+      'Subhash Ketagoda project',
       'ApexGen case study',
       'website design Sri Lanka',
       'Colombo digital studio',
@@ -103,11 +104,18 @@ export default async function ProjectCaseStudyPage({ params }: PageProps) {
     description: project.description,
     image: `${siteConfig.siteUrl}${project.heroImage}`,
     url: `${siteConfig.siteUrl}/work/${project.slug}`,
-    creator: {
-      '@type': 'Organization',
-      name: siteConfig.name,
-      url: siteConfig.siteUrl,
-    },
+    creator: [
+      {
+        '@type': 'Organization',
+        name: siteConfig.name,
+        url: siteConfig.siteUrl,
+      },
+      {
+        '@type': 'Person',
+        name: 'Subhash Ketagoda',
+        url: `${siteConfig.siteUrl}/about`,
+      },
+    ],
     datePublished: `${project.year}-01-01`,
     keywords: project.technologies.join(', '),
   };
@@ -230,11 +238,11 @@ export default async function ProjectCaseStudyPage({ params }: PageProps) {
             <div className="relative aspect-[16/9] w-full overflow-hidden bg-black">
               <Image
                 src={project.heroImage}
-                alt={`${project.title} Hero Showcase`}
+                alt={`${project.title} — ${project.category} flagship website hero interface designed by ApexGen and Subhash Ketagoda`}
                 fill
                 priority
                 className="object-cover object-top"
-                sizes="100vw"
+                sizes="(max-width: 1280px) 100vw, 1280px"
               />
             </div>
           </div>

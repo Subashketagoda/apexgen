@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { HeroBackground } from "@/components/ui/HeroBackground";
+import { trackStartProjectClick } from "@/lib/analytics";
 
 export default function Hero() {
   return (
@@ -24,6 +25,10 @@ export default function Hero() {
             <br />
             PEOPLE REMEMBER.
           </h1>
+
+          <p className="mt-8 max-w-xl text-base sm:text-lg text-white/60 font-sans leading-relaxed">
+            ApexGen creates premium websites, custom digital experiences, and business websites for ambitious brands in Sri Lanka and beyond.
+          </p>
 
           <div className="mt-12 flex flex-wrap items-center gap-4">
             <Link
@@ -47,6 +52,7 @@ export default function Hero() {
 
             <Link
               href="/start-a-project"
+              onClick={() => trackStartProjectClick('home_hero')}
               className="
                 rounded-full
                 border

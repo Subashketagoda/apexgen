@@ -11,7 +11,15 @@ import { ArrowRight, Check, MessageCircle } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'Transparent Website Pricing & Investment Tiers | ApexGen',
   description:
-    'Transparent, milestone-based website design and development pricing in Sri Lanka. Starter LKR 49,900+, Business LKR 89,900+, Premium LKR 149,900+. Full source code ownership.',
+    'Transparent, deliverable-backed website design and development pricing in Sri Lanka. Starter LKR 49,900+, Business LKR 89,900+, Premium LKR 149,900+. Full source code ownership.',
+  keywords: [
+    'Website development pricing Sri Lanka',
+    'Web design cost Colombo',
+    'Affordable web design packages',
+    'Custom website pricing',
+    'E-commerce website cost Sri Lanka',
+    'ApexGen pricing',
+  ],
   alternates: {
     canonical: `${siteConfig.siteUrl}/pricing`,
   },
@@ -21,6 +29,21 @@ export const metadata: Metadata = {
       'Clear, deliverable-backed pricing packages for ambitious businesses. Starter LKR 49,900+, Business LKR 89,900+, Premium LKR 149,900+.',
     url: `${siteConfig.siteUrl}/pricing`,
     type: 'website',
+    images: [
+      {
+        url: '/brand/apexgen-brand-kit.png',
+        width: 1200,
+        height: 630,
+        alt: 'ApexGen Transparent Website Pricing Packages',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Transparent Website Pricing & Packages | ApexGen',
+    description:
+      'Clear, deliverable-backed pricing packages for ambitious businesses. Starter LKR 49,900+, Business LKR 89,900+, Premium LKR 149,900+.',
+    images: ['/brand/apexgen-brand-kit.png'],
   },
 };
 
@@ -36,7 +59,31 @@ export default function PricingPage() {
       description: plan.description,
       price: plan.price.replace(/[^0-9]/g, ''),
       priceCurrency: 'LKR',
+      seller: {
+        '@type': 'ProfessionalService',
+        name: siteConfig.name,
+        url: siteConfig.siteUrl,
+      },
     })),
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: siteConfig.siteUrl,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Pricing',
+        item: `${siteConfig.siteUrl}/pricing`,
+      },
+    ],
   };
 
   return (
@@ -47,6 +94,10 @@ export default function PricingPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(pricingJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
       <main className="pt-32 sm:pt-44 pb-28 sm:pb-36 overflow-hidden">

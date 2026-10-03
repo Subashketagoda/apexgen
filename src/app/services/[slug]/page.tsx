@@ -41,7 +41,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: service.metaTitle,
     description: service.metaDescription,
-    keywords: service.targetKeywords,
+    keywords: [
+      ...service.targetKeywords,
+      'Subhash Ketagoda',
+      'ApexGen Sri Lanka',
+    ],
     alternates: {
       canonical: canonicalUrl,
     },
@@ -100,6 +104,11 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         '@type': 'PostalAddress',
         addressLocality: 'Colombo',
         addressCountry: 'LK',
+      },
+      founder: {
+        '@type': 'Person',
+        name: 'Subhash Ketagoda',
+        url: `${siteConfig.siteUrl}/about`,
       },
     },
     areaServed: [
@@ -345,10 +354,11 @@ export default async function ServiceDetailPage({ params }: PageProps) {
               <div className="lg:col-span-6 relative aspect-[16/10] rounded-2xl overflow-hidden border border-white/10 bg-black">
                 <Image
                   src={relatedProject.heroImage}
-                  alt={`${relatedProject.title} Case Study Preview`}
+                  alt={`${relatedProject.title} — ${relatedProject.category} case study designed by ApexGen and Subhash Ketagoda`}
                   fill
                   className="object-cover transition-transform duration-700 hover:scale-105"
                   sizes="(max-width: 768px) 100vw, 50vw"
+                  loading="lazy"
                 />
               </div>
 

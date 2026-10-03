@@ -29,17 +29,27 @@ export interface SiteConfig {
     github: string;
     facebook: string;
   };
+  founder: {
+    name: string;
+    role: string;
+    github: string;
+  };
   navigation: NavLink[];
 }
 
 export const siteConfig: SiteConfig = {
   name: 'APEXGEN',
   legalName: 'ApexGen Digital Studio',
+  founder: {
+    name: 'Subhash Ketagoda',
+    role: 'Founder & Lead Creative Technologist',
+    github: 'https://github.com/Subashketagoda',
+  },
   tagline: 'DESIGN. BUILD. GROW.',
   taglineSecondary: 'WE DESIGN WEBSITES PEOPLE REMEMBER.',
   positioning: 'Premium digital experiences for ambitious businesses.',
   description:
-    'ApexGen creates premium websites and digital experiences for ambitious businesses in Sri Lanka and beyond.',
+    'ApexGen creates premium websites, custom digital experiences, and business websites for ambitious brands in Sri Lanka and beyond.',
   heroHeadline: ['WE DESIGN', 'WEBSITES', 'PEOPLE REMEMBER.'],
   heroSubheadline:
     'Premium websites, digital experiences and online systems for ambitious businesses.',

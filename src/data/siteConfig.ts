@@ -12,10 +12,12 @@ import {
 export const siteConfig = {
   name: 'APEXGEN',
   legalName: 'ApexGen Digital Studio',
+  owner: 'Subhash Ketagoda',
+  founder: 'Subhash Ketagoda',
   domain: 'apexgen.website',
   siteUrl: 'https://www.apexgen.website',
   description:
-    'ApexGen builds premium websites and digital experiences for ambitious businesses.',
+    'ApexGen creates premium websites, custom digital experiences, and business websites for ambitious brands in Sri Lanka and beyond.',
   positioning: 'APEXGEN / DIGITAL STUDIO',
   primaryStatement: 'We Build Digital Experiences That Move Businesses.',
   supportingCopy:

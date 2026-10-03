@@ -7,16 +7,25 @@ import { Footer } from '@/components/ui/Footer';
 import { CustomCursor } from '@/components/ui/CustomCursor';
 
 export const metadata: Metadata = {
-  title: 'About ApexGen | Design Philosophy & Creative Craft',
+  title: 'About ApexGen & Subhash Ketagoda | Design Philosophy & Creative Craft',
   description:
-    'ApexGen is an independent digital studio in Sri Lanka dedicated to bespoke website design, Next.js engineering, and digital brand experiences for ambitious businesses.',
+    'Founded by Subhash Ketagoda, ApexGen is an independent digital studio in Sri Lanka dedicated to bespoke website design, Next.js engineering, and digital brand experiences for ambitious businesses.',
+  keywords: [
+    'Subhash Ketagoda',
+    'Subas Ketagoda',
+    'Subhash Ketagoda Sri Lanka',
+    'ApexGen founder',
+    'ApexGen owner',
+    'web design Sri Lanka',
+    'creative technologist Colombo',
+  ],
   alternates: {
     canonical: `${siteConfig.siteUrl}/about`,
   },
   openGraph: {
-    title: 'About ApexGen | Design Philosophy & Creative Craft',
+    title: 'About ApexGen & Subhash Ketagoda | Design Philosophy & Creative Craft',
     description:
-      'Design first. Experience second. Technology third. Explore the creative philosophy and technical standards behind ApexGen Digital Studio.',
+      'Founded by Subhash Ketagoda. Design first. Experience second. Technology third. Explore the creative philosophy and technical standards behind ApexGen Digital Studio.',
     url: `${siteConfig.siteUrl}/about`,
     type: 'website',
   },
@@ -27,7 +36,7 @@ export default function AboutPage() {
     '@context': 'https://schema.org',
     '@type': 'AboutPage',
     name: 'About ApexGen Digital Studio',
-    description: 'Design philosophy, technical standards, and creative process of ApexGen.',
+    description: 'Design philosophy, technical standards, and creative process of ApexGen, founded by Subhash Ketagoda.',
     url: `${siteConfig.siteUrl}/about`,
     mainEntity: {
       '@type': 'Organization',
@@ -36,6 +45,16 @@ export default function AboutPage() {
       url: siteConfig.siteUrl,
       email: siteConfig.contact.email,
       telephone: siteConfig.contact.whatsappNumber,
+      founder: {
+        '@type': 'Person',
+        name: 'Subhash Ketagoda',
+        jobTitle: 'Founder & Lead Creative Technologist',
+        url: `${siteConfig.siteUrl}/about`,
+        sameAs: [
+          'https://github.com/Subashketagoda',
+          siteConfig.socials.linkedin,
+        ],
+      },
       address: {
         '@type': 'PostalAddress',
         addressLocality: 'Colombo',
@@ -71,7 +90,7 @@ export default function AboutPage() {
           </div>
 
           <p className="text-lg sm:text-xl text-neutral-300 font-light max-w-3xl leading-relaxed">
-            ApexGen is an independent digital studio founded on a clear conviction: most business websites fail not because of missing code, but because of mediocre design and commoditized templates that fail to move human beings.
+            ApexGen is an independent digital studio founded and directed by Subhash Ketagoda. Built on a clear conviction: most business websites fail not because of missing code, but because of mediocre design and commoditized templates that fail to move human beings.
           </p>
         </section>
 

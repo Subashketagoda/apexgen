@@ -103,3 +103,24 @@ export function trackServiceView(serviceSlug: string) {
     item_id: serviceSlug,
   });
 }
+
+/**
+ * High-intent conversion: Start a Project CTA clicked
+ */
+export function trackStartProjectClick(location: string) {
+  trackEvent('start_project_click', {
+    event_category: 'engagement',
+    event_label: location,
+  });
+}
+
+/**
+ * Conversion intent: Inquiry form interaction initiated
+ */
+export function trackFormStart(formName: string = 'start_a_project') {
+  trackEvent('form_start', {
+    event_category: 'engagement',
+    form_name: formName,
+  });
+}
+
