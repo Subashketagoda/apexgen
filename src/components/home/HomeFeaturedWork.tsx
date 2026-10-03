@@ -39,7 +39,7 @@ export function HomeFeaturedWork() {
             {/* Left: Project Metadata & Editorial Info (5-col) */}
             <div className="lg:col-span-5 space-y-6">
               <div className="flex items-center space-x-4 text-xs font-mono text-neutral-400 uppercase tracking-widest">
-                <span className="text-[#FF5E00] font-bold text-sm">0{index + 1}</span>
+                <span className="text-[#FF6B35] font-bold text-sm">0{index + 1}</span>
                 <span>/</span>
                 <span className="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">
                   {project.category}
@@ -48,7 +48,7 @@ export function HomeFeaturedWork() {
                 <span>{project.year}</span>
               </div>
 
-              <h3 className="text-3xl sm:text-5xl md:text-6xl font-light tracking-tight text-white uppercase font-mono group-hover:text-[#FF7A1A] transition-colors duration-300">
+              <h3 className="text-3xl sm:text-5xl md:text-6xl font-light tracking-tight text-white uppercase font-mono group-hover:text-[#FF6B35] transition-colors duration-300">
                 {project.title}
               </h3>
 
@@ -60,7 +60,7 @@ export function HomeFeaturedWork() {
               <div className="space-y-2 pt-2">
                 {project.deliveredFeatures.slice(0, 3).map((feat, i) => (
                   <div key={i} className="flex items-center space-x-2 text-xs font-mono text-neutral-400">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#FF5E00] shrink-0" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#FF6B35] shrink-0" />
                     <span>{feat}</span>
                   </div>
                 ))}
@@ -81,7 +81,7 @@ export function HomeFeaturedWork() {
               <div className="pt-4 flex flex-wrap items-center gap-4">
                 <Link
                   href={`/work/${project.slug}`}
-                  className="inline-flex items-center space-x-2 px-6 py-3 rounded-full bg-white text-black font-mono text-xs uppercase tracking-wider font-semibold hover:bg-[#FF5E00] hover:text-black transition-all shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+                  className="inline-flex items-center space-x-2 px-6 py-3 rounded-full bg-white text-black font-mono text-xs uppercase tracking-wider font-semibold hover:bg-[#FF6B35] hover:text-black transition-all shadow-[0_0_20px_rgba(255,255,255,0.15)]"
                 >
                   <span>VIEW CASE STUDY</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -93,7 +93,7 @@ export function HomeFeaturedWork() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center space-x-2 px-5 py-3 rounded-full border border-white/20 bg-white/5 text-xs font-mono uppercase tracking-wider text-neutral-200 hover:text-white hover:border-white transition-all"
                 >
-                  <Globe className="w-3.5 h-3.5 text-[#FF5E00]" />
+                  <Globe className="w-3.5 h-3.5 text-[#FF6B35]" />
                   <span>VISIT LIVE SITE</span>
                   <ArrowUpRight className="w-3.5 h-3.5 text-neutral-400" />
                 </a>
@@ -102,7 +102,7 @@ export function HomeFeaturedWork() {
 
             {/* Right: Realistic Safari/Chrome Browser Frame with Real Screenshot (7-col) */}
             <div className="lg:col-span-7">
-              <div className="rounded-3xl bg-[#09090b] border border-white/15 overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.8),0_0_40px_rgba(255,94,0,0.05)] group-hover:border-[#FF5E00]/40 transition-all duration-500">
+              <div className="rounded-3xl bg-[#09090b] border border-white/15 overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.8),0_0_40px_rgba(255,107,53,0.08)] group-hover:border-[#FF6B35]/50 transition-all duration-500">
                 {/* Browser Title Bar */}
                 <div className="flex items-center justify-between px-4 py-3 bg-neutral-900/90 border-b border-white/10">
                   <div className="flex items-center space-x-2">
@@ -139,7 +139,7 @@ export function HomeFeaturedWork() {
 
                   <div className="absolute bottom-4 right-4 px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-xs font-mono text-white flex items-center space-x-1.5">
                     <span>EXPLORE PROJECT</span>
-                    <ArrowRight className="w-3 h-3 text-[#FF5E00]" />
+                    <ArrowRight className="w-3 h-3 text-[#FF6B35]" />
                   </div>
                 </Link>
               </div>

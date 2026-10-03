@@ -6,6 +6,8 @@ import { CustomCursor } from '@/components/ui/CustomCursor';
 import { Navbar } from '@/components/ui/Navbar';
 import { WhatsAppButton } from '@/components/ui/WhatsAppButton';
 import { HomeHero } from '@/components/home/HomeHero';
+import { HomeMarquee } from '@/components/home/HomeMarquee';
+import { HomeMetricsStrip } from '@/components/home/HomeMetricsStrip';
 import { HomeTrustIntro } from '@/components/home/HomeTrustIntro';
 import { HomeServicesSection } from '@/components/home/HomeServicesSection';
 import { HomeFeaturedWork } from '@/components/home/HomeFeaturedWork';
@@ -50,6 +52,12 @@ export default function Home() {
         <main>
           {/* 04 — Hero: WE BUILD DIGITAL EXPERIENCES THAT MOVE BUSINESSES FORWARD. */}
           <HomeHero />
+
+          {/* Continuous Infinite Marquee Strip */}
+          <HomeMarquee />
+
+          {/* Agency Proof & Speed Telemetry Strip */}
+          <HomeMetricsStrip />
 
           {/* 05 — Trust & Intro: YOUR BUSINESS DESERVES MORE THAN JUST A WEBSITE. */}
           <HomeTrustIntro />
