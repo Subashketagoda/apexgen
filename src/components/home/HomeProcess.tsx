@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export function HomeProcess() {
   const steps = [
@@ -39,9 +40,22 @@ export function HomeProcess() {
   ];
 
   return (
-    <section id="process" className="py-24 sm:py-32 md:py-40 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto border-t border-white/10 scroll-mt-20 relative">
+    <section id="process" className="py-24 sm:py-32 md:py-40 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto border-t border-white/10 scroll-mt-20 relative overflow-hidden">
+      {/* Background ambient lighting */}
+      <motion.div
+        animate={{ scale: [1, 1.15, 1], opacity: [0.03, 0.08, 0.03] }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#FF6B35] blur-[170px] pointer-events-none rounded-full"
+      />
+
       {/* Section Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between pb-16 sm:pb-20 border-b border-white/10 gap-8">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-50px' }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="flex flex-col md:flex-row md:items-end justify-between pb-16 sm:pb-20 border-b border-white/10 gap-8"
+      >
         <div className="space-y-4">
           <div className="inline-flex items-center space-x-2.5 px-3.5 py-1.5 rounded-full border border-[#FF6B35]/30 bg-[#FF6B35]/10 text-xs font-mono text-[#FF6B35] tracking-wider uppercase">
             <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B35] animate-pulse" />
@@ -57,7 +71,7 @@ export function HomeProcess() {
             A disciplined 5-stage sprint methodology that turns conceptual ideas into high-conversion production digital platforms.
           </p>
         </div>
-      </div>
+      </motion.div>
 
       {/* Process Connecting Timeline & Cards */}
       <div className="mt-12 sm:mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 relative">
@@ -65,9 +79,14 @@ export function HomeProcess() {
         <div className="hidden lg:block absolute top-[52px] left-8 right-8 h-px bg-gradient-to-r from-[#FF6B35]/30 via-white/10 to-[#FF6B35]/30 pointer-events-none" />
 
         {steps.map((s, idx) => (
-          <div
+          <motion.div
             key={s.num}
-            className="p-8 rounded-2xl bg-[#0F0F12] border border-white/10 hover:border-[#FF6B35]/40 transition-all duration-300 flex flex-col justify-between space-y-8 group relative"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.65, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+            whileHover={{ y: -6, transition: { duration: 0.25 } }}
+            className="p-8 rounded-2xl bg-[#0F0F12] border border-white/10 hover:border-[#FF6B35]/50 transition-colors flex flex-col justify-between space-y-8 group relative shadow-lg"
           >
             <div className="space-y-4">
               <div className="flex items-center justify-between">
@@ -95,19 +114,25 @@ export function HomeProcess() {
               <span>SPRINT 0{idx + 1}</span>
               <span className="text-[#FF6B35]">&bull;</span>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
 
-      <div className="mt-16 text-center">
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.4 }}
+        className="mt-16 text-center"
+      >
         <Link
           href="/process"
           className="inline-flex items-center space-x-2 text-xs font-mono tracking-widest uppercase text-neutral-400 hover:text-white transition-colors group"
         >
           <span>EXPLORE OUR COMPLETE 5-STAGE SPRINT METHODOLOGY</span>
-          <ArrowUpRight className="w-4 h-4 text-[#FF6B35] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+          <ArrowUpRight className="w-4 h-4 text-[#FF6B35] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
         </Link>
-      </div>
+      </motion.div>
     </section>
   );
 }

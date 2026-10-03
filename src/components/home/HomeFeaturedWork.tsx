@@ -4,13 +4,20 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, ArrowUpRight, Lock, CheckCircle2, Globe } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { projectsData } from '@/data/projects';
 
 export function HomeFeaturedWork() {
   return (
     <section id="work" className="py-28 sm:py-36 md:py-44 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto border-t border-white/10 scroll-mt-20">
       {/* Section Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between pb-16 sm:pb-20 border-b border-white/10 gap-6">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-50px' }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="flex flex-col md:flex-row md:items-end justify-between pb-16 sm:pb-20 border-b border-white/10 gap-6"
+      >
         <div className="space-y-4">
           <div className="flex items-center space-x-2 text-xs font-mono tracking-widest text-[#FF6B35] uppercase">
             <span className="w-2 h-2 rounded-full bg-[#FF6B35] animate-pulse" />
@@ -26,13 +33,17 @@ export function HomeFeaturedWork() {
             Real production digital experiences engineered by ApexGen. Handcrafted for prestige, conversion, and global speed.
           </p>
         </div>
-      </div>
+      </motion.div>
 
       {/* Cinematic Project Presentations */}
       <div className="divide-y divide-white/10">
         {projectsData.map((project, index) => (
-          <article
+          <motion.article
             key={project.id}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
             data-cursor="view"
             className="py-20 sm:py-28 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center group"
           >
@@ -144,7 +155,7 @@ export function HomeFeaturedWork() {
                 </Link>
               </div>
             </div>
-          </article>
+          </motion.article>
         ))}
       </div>
 

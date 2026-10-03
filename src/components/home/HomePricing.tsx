@@ -3,16 +3,27 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArrowRight, Check } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { pricingPlans } from '@/data/pricing';
 
 export function HomePricing() {
   return (
-    <section id="pricing" className="py-24 sm:py-32 md:py-40 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto border-t border-white/10 scroll-mt-20 relative">
+    <section id="pricing" className="py-24 sm:py-32 md:py-40 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto border-t border-white/10 scroll-mt-20 relative overflow-hidden">
       {/* Background ambient lighting */}
-      <div className="absolute top-1/3 right-1/4 w-[450px] h-[450px] bg-[#FF6B35]/5 blur-[160px] pointer-events-none rounded-full" />
+      <motion.div
+        animate={{ scale: [1, 1.15, 1], opacity: [0.03, 0.08, 0.03] }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-[#FF6B35] blur-[170px] pointer-events-none rounded-full"
+      />
 
       {/* Section Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between pb-16 sm:pb-20 border-b border-white/10 gap-6">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-50px' }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="flex flex-col md:flex-row md:items-end justify-between pb-16 sm:pb-20 border-b border-white/10 gap-6"
+      >
         <div className="space-y-4">
           <div className="inline-flex items-center space-x-2 text-xs font-mono tracking-widest text-[#FF6B35] uppercase">
             <span className="w-2 h-2 rounded-full bg-[#FF6B35] animate-pulse" />
@@ -28,14 +39,19 @@ export function HomePricing() {
             Predictable milestone investment with full source code ownership. Zero monthly theme lock-in or surprise fees.
           </p>
         </div>
-      </div>
+      </motion.div>
 
       {/* 3 Pricing Cards */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch pt-12">
-        {pricingPlans.map((plan) => (
-          <div
+        {pricingPlans.map((plan, idx) => (
+          <motion.div
             key={plan.id}
-            className={`relative rounded-3xl p-8 sm:p-10 flex flex-col justify-between transition-all duration-300 ${
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.7, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
+            whileHover={{ y: -6, transition: { duration: 0.25 } }}
+            className={`relative rounded-3xl p-8 sm:p-10 flex flex-col justify-between transition-colors ${
               plan.isPopular
                 ? 'bg-[#121216] border-2 border-[#FF6B35] shadow-[0_15px_60px_rgba(255,107,53,0.18)] scale-[1.02]'
                 : 'bg-[#0E0E11] border border-white/10 hover:border-white/20 shadow-xl'
@@ -62,8 +78,8 @@ export function HomePricing() {
               </p>
 
               <div className="space-y-3 mb-8">
-                {plan.deliverables.slice(0, 5).map((del, idx) => (
-                  <div key={idx} className="flex items-start space-x-2.5 text-xs text-neutral-300 font-sans">
+                {plan.deliverables.slice(0, 5).map((del, i) => (
+                  <div key={i} className="flex items-start space-x-2.5 text-xs text-neutral-300 font-sans">
                     <Check className="w-4 h-4 text-[#FF6B35] shrink-0 mt-0.5" />
                     <span>{del}</span>
                   </div>
@@ -84,12 +100,18 @@ export function HomePricing() {
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
 
       {/* Custom Project Callout */}
-      <div className="mt-12 p-8 sm:p-10 rounded-3xl bg-[#0E0E12] border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-2xl">
+      <motion.div
+        initial={{ opacity: 0, y: 25 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="mt-12 p-8 sm:p-10 rounded-3xl bg-[#0E0E12] border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-2xl"
+      >
         <div className="space-y-1">
           <span className="text-xs font-mono text-[#FF6B35] uppercase tracking-widest block font-semibold">
             CUSTOM ENTERPRISE &amp; SYSTEMS
@@ -104,11 +126,11 @@ export function HomePricing() {
 
         <Link
           href="/contact"
-          className="px-8 py-4 rounded-full border border-white/20 bg-white/5 text-white hover:text-black hover:bg-white transition-all text-xs font-mono uppercase tracking-wider font-semibold whitespace-nowrap shadow-lg shrink-0"
+          className="px-8 py-4 rounded-full border border-white/20 bg-white/5 text-white hover:text-black hover:bg-white transition-all text-xs font-mono uppercase tracking-wider font-semibold whitespace-nowrap shadow-lg shrink-0 hover:scale-105 active:scale-95"
         >
           Start a conversation &rarr;
         </Link>
-      </div>
+      </motion.div>
     </section>
   );
 }

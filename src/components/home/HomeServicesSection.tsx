@@ -169,7 +169,13 @@ export function HomeServicesSection() {
       <div className="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-[#FF6B35]/5 blur-[160px] pointer-events-none rounded-full" />
 
       {/* Section Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between pb-16 sm:pb-20 border-b border-white/10 gap-8">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-50px' }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="flex flex-col md:flex-row md:items-end justify-between pb-16 sm:pb-20 border-b border-white/10 gap-8"
+      >
         <div className="space-y-4">
           <div className="inline-flex items-center space-x-2 text-xs font-mono tracking-widest text-[#FF6B35] uppercase">
             <span className="w-2 h-2 rounded-full bg-[#FF6B35] animate-pulse" />
@@ -185,10 +191,16 @@ export function HomeServicesSection() {
             A comprehensive suite of digital design, software development, and growth capabilities structured to solve real business challenges.
           </p>
         </div>
-      </div>
+      </motion.div>
 
       {/* Interactive Dossier Grid */}
-      <div className="mt-12 sm:mt-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-40px' }}
+        transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+        className="mt-12 sm:mt-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12"
+      >
         {/* Left Column: Numbered Service Selector List (5 Columns) */}
         <div className="lg:col-span-5 space-y-2.5">
           {services.map((item, idx) => {
@@ -472,7 +484,7 @@ export function HomeServicesSection() {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

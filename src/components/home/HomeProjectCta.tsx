@@ -3,17 +3,29 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArrowUpRight, MessageCircle } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { siteConfig } from '@/data/site';
 import { trackStartProjectClick, trackWhatsAppClick } from '@/lib/analytics';
 
 export function HomeProjectCta() {
   return (
-    <section className="py-28 sm:py-36 md:py-44 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto border-t border-white/10">
-      <div className="p-10 sm:p-20 rounded-3xl bg-neutral-950 border border-[#FF5E00]/40 text-center space-y-8 relative overflow-hidden shadow-[0_10px_60px_rgba(255,94,0,0.1)]">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-[#FF5E00]/10 blur-[140px] rounded-full pointer-events-none" />
+    <section className="py-28 sm:py-36 md:py-44 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto border-t border-white/10 relative overflow-hidden">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.96, y: 30 }}
+        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+        viewport={{ once: true, margin: '-50px' }}
+        transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+        className="p-10 sm:p-20 rounded-3xl bg-[#0C0C0F] border border-[#FF6B35]/40 text-center space-y-8 relative overflow-hidden shadow-[0_20px_80px_rgba(255,107,53,0.15)]"
+      >
+        {/* Animated breathing glow */}
+        <motion.div
+          animate={{ scale: [1, 1.2, 1], opacity: [0.12, 0.22, 0.12] }}
+          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[350px] bg-[#FF6B35] blur-[150px] rounded-full pointer-events-none"
+        />
 
         <div className="relative z-10 max-w-4xl mx-auto space-y-6">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full border border-[#FF6B35]/30 bg-[#FF6B35]/10 text-xs font-mono text-[#FF6B35] uppercase tracking-wider">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full border border-[#FF6B35]/30 bg-[#FF6B35]/10 text-xs font-mono text-[#FF6B35] uppercase tracking-wider backdrop-blur-md">
             <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B35] animate-pulse" />
             <span>START A CONVERSATION</span>
           </div>
@@ -30,7 +42,7 @@ export function HomeProjectCta() {
             <Link
               href="/start-a-project"
               onClick={() => trackStartProjectClick('home_bottom_cta')}
-              className="w-full sm:w-auto px-9 py-4 rounded-full bg-[#FF6B35] text-black font-mono text-xs uppercase tracking-wider font-semibold hover:bg-[#FFA86B] transition-all shadow-[0_0_30px_rgba(255,107,53,0.4)] flex items-center justify-center space-x-2"
+              className="w-full sm:w-auto px-9 py-4 rounded-full bg-[#FF6B35] text-black font-mono text-xs uppercase tracking-wider font-semibold hover:bg-[#FFA86B] hover:scale-105 active:scale-95 transition-all shadow-[0_0_30px_rgba(255,107,53,0.4)] flex items-center justify-center space-x-2"
             >
               <span>START A PROJECT</span>
               <ArrowUpRight className="w-4 h-4 text-black" />
@@ -43,14 +55,14 @@ export function HomeProjectCta() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackWhatsAppClick('home_bottom_cta')}
-              className="w-full sm:w-auto px-8 py-4 rounded-full border border-white/20 bg-white/5 text-white font-mono text-xs uppercase tracking-wider hover:bg-white/10 hover:border-white transition-all flex items-center justify-center space-x-2"
+              className="w-full sm:w-auto px-8 py-4 rounded-full border border-white/20 bg-white/5 text-white font-mono text-xs uppercase tracking-wider hover:bg-white/10 hover:border-white hover:scale-105 active:scale-95 transition-all flex items-center justify-center space-x-2 backdrop-blur-md"
             >
               <MessageCircle className="w-4 h-4 text-[#FF6B35]" />
               <span>CHAT ON WHATSAPP</span>
             </a>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

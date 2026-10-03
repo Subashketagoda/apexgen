@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Quote, ArrowUpRight, ShieldCheck } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { siteConfig } from '@/data/site';
 
 export function HomeStudioPhilosophy() {
@@ -22,10 +23,16 @@ export function HomeStudioPhilosophy() {
   ];
 
   return (
-    <section className="py-24 sm:py-32 md:py-40 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto border-t border-white/10 relative">
+    <section className="py-24 sm:py-32 md:py-40 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto border-t border-white/10 relative overflow-hidden">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         {/* Left Column: Founder Manifesto Quote */}
-        <div className="lg:col-span-7 space-y-8">
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:col-span-7 space-y-8"
+        >
           <div className="inline-flex items-center space-x-2.5 px-3.5 py-1.5 rounded-full border border-[#FF6B35]/30 bg-[#FF6B35]/10 text-xs font-mono text-[#FF6B35] tracking-wider uppercase">
             <ShieldCheck className="w-3.5 h-3.5" />
             <span>STUDIO MANIFESTO &bull; FOUNDER COMMITMENT</span>
@@ -50,20 +57,25 @@ export function HomeStudioPhilosophy() {
 
             <Link
               href="/about"
-              className="inline-flex items-center space-x-1.5 text-xs font-mono tracking-wider text-neutral-400 hover:text-white uppercase transition-colors"
+              className="inline-flex items-center space-x-1.5 text-xs font-mono tracking-wider text-neutral-400 hover:text-white uppercase transition-colors group"
             >
               <span>ABOUT THE FOUNDER</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-[#FF6B35]" />
+              <ArrowUpRight className="w-3.5 h-3.5 text-[#FF6B35] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
             </Link>
           </div>
-        </div>
+        </motion.div>
 
         {/* Right Column: 3 Core Client Guarantees */}
         <div className="lg:col-span-5 space-y-4">
           {commitments.map((c, i) => (
-            <div
+            <motion.div
               key={i}
-              className="p-6 sm:p-8 rounded-2xl bg-[#0F0F12] border border-white/10 hover:border-[#FF6B35]/40 transition-colors space-y-2 group"
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.7, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ x: 6, transition: { duration: 0.2 } }}
+              className="p-6 sm:p-8 rounded-2xl bg-[#0F0F12] border border-white/10 hover:border-[#FF6B35]/50 transition-colors space-y-2 group shadow-lg"
             >
               <div className="text-xs font-mono text-[#FF6B35] tracking-wider font-semibold">
                 0{i + 1} &bull; {c.label}
@@ -71,7 +83,7 @@ export function HomeStudioPhilosophy() {
               <p className="text-sm text-neutral-300 font-sans leading-relaxed">
                 {c.statement}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

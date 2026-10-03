@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { ChevronDown, HelpCircle, MessageCircle } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { siteConfig } from '@/data/site';
 
 interface FaqItem {
@@ -56,12 +57,22 @@ export function HomeFaq() {
   ];
 
   return (
-    <section id="faq" className="py-24 sm:py-32 md:py-40 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto border-t border-white/10 scroll-mt-20 relative">
+    <section id="faq" className="py-24 sm:py-32 md:py-40 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto border-t border-white/10 scroll-mt-20 relative overflow-hidden">
       {/* Background glow */}
-      <div className="absolute top-1/3 left-1/3 w-[450px] h-[350px] bg-[#FF6B35]/5 blur-[160px] pointer-events-none rounded-full" />
+      <motion.div
+        animate={{ scale: [1, 1.15, 1], opacity: [0.03, 0.08, 0.03] }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute top-1/3 left-1/3 w-[500px] h-[350px] bg-[#FF6B35] blur-[160px] pointer-events-none rounded-full"
+      />
 
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between pb-16 sm:pb-20 border-b border-white/10 gap-8">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-50px' }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="flex flex-col md:flex-row md:items-end justify-between pb-16 sm:pb-20 border-b border-white/10 gap-8"
+      >
         <div className="space-y-4">
           <div className="inline-flex items-center space-x-2.5 px-3.5 py-1.5 rounded-full border border-[#FF6B35]/30 bg-[#FF6B35]/10 text-xs font-mono text-[#FF6B35] tracking-wider uppercase">
             <HelpCircle className="w-3.5 h-3.5" />
@@ -77,14 +88,21 @@ export function HomeFaq() {
             Direct answers to the most common questions clients ask before embarking on a digital collaboration with ApexGen.
           </p>
         </div>
-      </div>
+      </motion.div>
 
       {/* Accordion List */}
       <div className="mt-12 sm:mt-16 divide-y divide-white/10">
         {faqs.map((faq, idx) => {
           const isOpen = openIndex === idx;
           return (
-            <div key={idx} className="py-6 sm:py-8 transition-colors">
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-30px' }}
+              transition={{ duration: 0.5, delay: idx * 0.05, ease: [0.16, 1, 0.3, 1] }}
+              className="py-6 sm:py-8 transition-colors"
+            >
               <button
                 type="button"
                 onClick={() => setOpenIndex(isOpen ? null : idx)}
@@ -105,7 +123,7 @@ export function HomeFaq() {
                 </div>
 
                 <div
-                  className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 transition-transform duration-300 ${
+                  className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ${
                     isOpen ? 'rotate-180 bg-[#FF6B35] text-black' : 'bg-white/5 text-neutral-400 group-hover:text-white'
                   }`}
                 >
@@ -113,20 +131,37 @@ export function HomeFaq() {
                 </div>
               </button>
 
-              {isOpen && (
-                <div className="pt-6 sm:pt-8 pl-8 sm:pl-12 max-w-4xl">
-                  <p className="text-sm sm:text-base text-neutral-300 font-sans leading-relaxed">
-                    {faq.answer}
-                  </p>
-                </div>
-              )}
-            </div>
+              <AnimatePresence initial={false}>
+                {isOpen && (
+                  <motion.div
+                    key="content"
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                    className="overflow-hidden"
+                  >
+                    <div className="pt-6 sm:pt-8 pl-8 sm:pl-12 max-w-4xl">
+                      <p className="text-sm sm:text-base text-neutral-300 font-sans leading-relaxed">
+                        {faq.answer}
+                      </p>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
           );
         })}
       </div>
 
       {/* Direct Contact Prompt */}
-      <div className="mt-16 p-8 rounded-3xl bg-[#0F0F12] border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="mt-16 p-8 rounded-3xl bg-[#0F0F12] border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl"
+      >
         <div className="space-y-1">
           <h4 className="text-xl font-light font-mono text-white uppercase">
             Have a question not listed here?
@@ -142,12 +177,12 @@ export function HomeFaq() {
           )}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="px-7 py-3.5 rounded-full bg-white text-black hover:bg-[#FF6B35] transition-all text-xs font-mono uppercase tracking-wider font-semibold flex items-center space-x-2 shrink-0"
+          className="px-7 py-3.5 rounded-full bg-white text-black hover:bg-[#FF6B35] hover:scale-105 active:scale-95 transition-all text-xs font-mono uppercase tracking-wider font-semibold flex items-center space-x-2 shrink-0 shadow-lg"
         >
           <MessageCircle className="w-4 h-4" />
           <span>CHAT ON WHATSAPP</span>
         </a>
-      </div>
+      </motion.div>
     </section>
   );
 }
