@@ -52,7 +52,7 @@ export function Footer() {
             <h2 className="text-4xl sm:text-6xl md:text-7xl font-light tracking-tight text-white uppercase font-mono">
               APEXGEN
             </h2>
-            <p className="text-sm sm:text-base font-mono tracking-[0.25em] text-[#FF5E00] uppercase">
+            <p className="text-sm sm:text-base font-mono tracking-[0.25em] text-[#FF6B35] uppercase">
               DESIGN. BUILD. GROW.
             </p>
           </div>
@@ -68,7 +68,7 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-12 gap-8 sm:gap-10 pb-16 border-b border-white/10">
           {/* Column 1: Navigation */}
           <div className="col-span-1 md:col-span-3 space-y-4">
-            <div className="text-xs font-mono tracking-widest text-[#FF5E00] uppercase">
+            <div className="text-xs font-mono tracking-widest text-[#FF6B35] uppercase">
               STUDIO
             </div>
             <ul className="space-y-2.5 text-xs sm:text-sm font-mono">
@@ -79,7 +79,7 @@ export function Footer() {
                     className="text-neutral-400 hover:text-white transition-colors relative group inline-block py-0.5"
                   >
                     <span>{link.label}</span>
-                    <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#FF5E00] transition-all duration-300 group-hover:w-full" />
+                    <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#FF6B35] transition-all duration-300 group-hover:w-full" />
                   </Link>
                 </li>
               ))}
@@ -99,7 +99,7 @@ export function Footer() {
                     className="text-neutral-400 hover:text-white transition-colors relative group inline-block py-0.5"
                   >
                     <span>{service.label}</span>
-                    <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#FF5E00] transition-all duration-300 group-hover:w-full" />
+                    <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#FF6B35] transition-all duration-300 group-hover:w-full" />
                   </Link>
                 </li>
               ))}
@@ -119,7 +119,7 @@ export function Footer() {
                     className="text-neutral-400 hover:text-white transition-colors relative group inline-block py-0.5"
                   >
                     <span>{work.label}</span>
-                    <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#FF5E00] transition-all duration-300 group-hover:w-full" />
+                    <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#FF6B35] transition-all duration-300 group-hover:w-full" />
                   </Link>
                 </li>
               ))}
@@ -142,7 +142,7 @@ export function Footer() {
                 <span className="block text-neutral-500 text-[11px]">
                   {siteConfig.contact.location}
                 </span>
-                <span className="block text-[#FF5E00] text-[11px]">
+                <span className="block text-[#FF6B35] text-[11px]">
                   WHATSAPP: {siteConfig.contact.whatsappDisplay}
                 </span>
               </div>
@@ -167,7 +167,7 @@ export function Footer() {
               <button
                 type="button"
                 onClick={scrollToTop}
-                className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-full border border-white/10 bg-white/[0.02] hover:bg-[#FF5E00] hover:text-black hover:border-[#FF5E00] transition-all text-xs font-mono uppercase tracking-wider text-neutral-400 cursor-pointer"
+                className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-full border border-white/10 bg-white/[0.02] hover:bg-[#FF6B35] hover:text-black hover:border-[#FF6B35] transition-all text-xs font-mono uppercase tracking-wider text-neutral-400 cursor-pointer"
               >
                 <span>BACK TO TOP</span>
                 <ArrowUp className="w-3.5 h-3.5" />

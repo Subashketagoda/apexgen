@@ -12,12 +12,12 @@ export function HomeFeaturedWork() {
       {/* Section Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between pb-16 sm:pb-20 border-b border-white/10 gap-6">
         <div className="space-y-4">
-          <div className="flex items-center space-x-2 text-xs font-mono tracking-widest text-[#FF5E00] uppercase">
-            <span className="w-2 h-2 rounded-full bg-[#FF5E00] animate-pulse" />
-            <span>SELECTED CLIENT DEPLOYMENTS</span>
+          <div className="flex items-center space-x-2 text-xs font-mono tracking-widest text-[#FF6B35] uppercase">
+            <span className="w-2 h-2 rounded-full bg-[#FF6B35] animate-pulse" />
+            <span>PORTFOLIO &bull; CASE STUDIES</span>
           </div>
-          <h2 className="text-4xl sm:text-7xl md:text-8xl font-light tracking-[-0.04em] text-white uppercase font-mono">
-            FLAGSHIPS
+          <h2 className="text-3xl sm:text-5xl md:text-7xl font-light tracking-[-0.04em] text-white uppercase font-mono leading-[1.05]">
+            SELECTED WORK. REAL DIGITAL EXPERIENCES.
           </h2>
         </div>
 

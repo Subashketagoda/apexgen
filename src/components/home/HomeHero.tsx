@@ -16,18 +16,16 @@ export default function Hero() {
             APEXGEN — DIGITAL DESIGN STUDIO
           </p>
 
-          <h1 className="text-[clamp(4rem,10vw,10rem)] font-medium leading-[0.85] tracking-[-0.06em] text-white font-mono">
-            WE DESIGN
+          <h1 className="text-[clamp(3.2rem,8vw,7.8rem)] font-medium leading-[0.92] tracking-[-0.05em] text-white font-mono uppercase">
+            WE BUILD DIGITAL
             <br />
-            <span className="text-white/40">
-              WEBSITES
-            </span>
+            <span className="text-white/40">EXPERIENCES THAT</span>
             <br />
-            PEOPLE REMEMBER.
+            MOVE BUSINESSES FORWARD.
           </h1>
 
-          <p className="mt-8 max-w-xl text-base sm:text-lg text-white/60 font-sans leading-relaxed">
-            ApexGen creates premium websites, custom digital experiences, and business websites for ambitious brands in Sri Lanka and beyond.
+          <p className="mt-8 max-w-2xl text-base sm:text-xl text-neutral-400 font-sans leading-relaxed">
+            From premium business websites to custom digital systems, ApexGen transforms business ideas into powerful online experiences.
           </p>
 
           <div className="mt-12 flex flex-wrap items-center gap-4">
@@ -36,18 +34,22 @@ export default function Hero() {
               className="
                 rounded-full
                 bg-white
-                px-7
+                px-8
                 py-4
-                text-sm
-                font-medium
+                text-xs
+                font-semibold
+                tracking-wider
                 text-black
-                transition-transform
+                transition-all
                 duration-300
+                hover:bg-[#FF6B35]
                 hover:scale-105
                 font-mono
+                uppercase
+                shadow-[0_0_30px_rgba(255,255,255,0.2)]
               "
             >
-              VIEW OUR WORK
+              EXPLORE OUR WORK
             </Link>
 
             <Link
@@ -57,16 +59,20 @@ export default function Hero() {
                 rounded-full
                 border
                 border-white/20
-                px-7
+                bg-white/5
+                px-8
                 py-4
-                text-sm
-                font-medium
+                text-xs
+                font-semibold
+                tracking-wider
                 text-white
                 transition-all
                 duration-300
-                hover:border-white/50
-                hover:bg-white/5
+                hover:border-[#FF6B35]/60
+                hover:bg-[#FF6B35]/10
+                hover:text-[#FF6B35]
                 font-mono
+                uppercase
               "
             >
               START A PROJECT

@@ -13,40 +13,40 @@ export function HomeProjectCta() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-[#FF5E00]/10 blur-[140px] rounded-full pointer-events-none" />
 
         <div className="relative z-10 max-w-4xl mx-auto space-y-6">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full border border-[#FF5E00]/30 bg-[#FF5E00]/10 text-xs font-mono text-[#FF7A1A] uppercase tracking-wider">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#FF5E00] animate-pulse" />
-            <span>COMMISSION APEXGEN</span>
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full border border-[#FF6B35]/30 bg-[#FF6B35]/10 text-xs font-mono text-[#FF6B35] uppercase tracking-wider">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B35] animate-pulse" />
+            <span>START A CONVERSATION</span>
           </div>
 
           <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-light tracking-[-0.04em] text-white uppercase font-mono leading-[1.0]">
-            LET&apos;S BUILD SOMETHING EXTRAORDINARY.
+            HAVE A PROJECT IN MIND?
           </h2>
 
-          <p className="text-base sm:text-xl text-neutral-300 font-light max-w-2xl mx-auto leading-relaxed">
-            Ready to replace your commoditized website with a high-end digital flagship that commands respect and drives revenue?
+          <p className="text-base sm:text-xl text-neutral-300 font-sans max-w-2xl mx-auto leading-relaxed">
+            Let&apos;s turn your idea into a digital experience worth remembering.
           </p>
 
           <div className="pt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/start-a-project"
               onClick={() => trackStartProjectClick('home_bottom_cta')}
-              className="w-full sm:w-auto px-9 py-4 rounded-full bg-[#FF5E00] text-black font-mono text-xs uppercase tracking-wider font-semibold hover:bg-[#FF7A1A] transition-all shadow-[0_0_30px_rgba(255,94,0,0.4)] flex items-center justify-center space-x-2"
+              className="w-full sm:w-auto px-9 py-4 rounded-full bg-[#FF6B35] text-black font-mono text-xs uppercase tracking-wider font-semibold hover:bg-[#FFA86B] transition-all shadow-[0_0_30px_rgba(255,107,53,0.4)] flex items-center justify-center space-x-2"
             >
-              <span>LAUNCH PROJECT BRIEF</span>
+              <span>START A PROJECT</span>
               <ArrowUpRight className="w-4 h-4 text-black" />
             </Link>
 
             <a
               href={`https://wa.me/${siteConfig.contact.whatsappNumber.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(
-                'Hello ApexGen Studio, I would like to discuss building a premium website for my business.'
+                'Hello ApexGen Studio, I have a project in mind and would like to discuss building a website.'
               )}`}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackWhatsAppClick('home_bottom_cta')}
               className="w-full sm:w-auto px-8 py-4 rounded-full border border-white/20 bg-white/5 text-white font-mono text-xs uppercase tracking-wider hover:bg-white/10 hover:border-white transition-all flex items-center justify-center space-x-2"
             >
-              <MessageCircle className="w-4 h-4 text-[#FF5E00]" />
-              <span>DIRECT WHATSAPP INQUIRY</span>
+              <MessageCircle className="w-4 h-4 text-[#FF6B35]" />
+              <span>CHAT ON WHATSAPP</span>
             </a>
           </div>
         </div>

@@ -37,11 +37,12 @@ export function Navbar() {
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { label: 'WORK', href: '/work' },
+    { label: 'HOME', href: '/' },
     { label: 'SERVICES', href: '/services' },
+    { label: 'OUR WORK', href: '/work' },
     { label: 'ABOUT', href: '/about' },
-    { label: 'PROCESS', href: '/process' },
     { label: 'PRICING', href: '/pricing' },
+    { label: 'CONTACT', href: '/contact' },
   ];
 
   return (
