@@ -11,6 +11,7 @@ export function HomeFeaturedWork() {
   const cargoPizza = projectsData.find((p) => p.slug === 'cargo-pizza') || projectsData[0];
   const studio69 = projectsData.find((p) => p.slug === '69-studio') || projectsData[1];
   const dinePro = projectsData.find((p) => p.slug === 'dinepro-advisors') || projectsData[2];
+  const notAmantha = projectsData.find((p) => p.slug === 'not-amantha-perera') || projectsData[3];
 
   return (
     <section id="work" className="py-28 sm:py-36 lg:py-48 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto scroll-mt-24">
@@ -273,6 +274,111 @@ export function HomeFeaturedWork() {
 
             <Link
               href={`/work/${dinePro.slug}`}
+              className="inline-flex items-center space-x-2 px-6 py-3 rounded-full bg-white text-black font-medium text-xs tracking-wide hover:bg-zinc-200 transition-all self-start lg:self-auto shrink-0 shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+            >
+              <span>Explore Case Study</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+        </motion.article>
+
+
+        {/* ========================================================
+            PROJECT 04: NOT AMANTHA PERERA — Interactive Deck Flagship
+            ======================================================== */}
+        <motion.article
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+          className="group rounded-3xl studio-card p-6 sm:p-10 lg:p-12 hover:border-white/[0.18] transition-all"
+        >
+          {/* Top Project Meta Row */}
+          <div className="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-white/[0.08]">
+            <div className="flex items-center space-x-4 text-xs font-mono">
+              <span className="text-base text-white font-bold">04</span>
+              <span className="text-zinc-600">/</span>
+              <span className="px-3 py-1 rounded-full bg-white/[0.05] border border-white/[0.08] text-zinc-300">
+                {notAmantha.category}
+              </span>
+              <span className="text-zinc-600 hidden sm:inline">/</span>
+              <span className="text-zinc-400 hidden sm:inline">{notAmantha.client}</span>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[11px] font-mono text-emerald-400">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span>200M+ IMPRESSIONS</span>
+              </span>
+              <a
+                href={notAmantha.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/[0.06] border border-white/[0.1] text-xs font-mono text-zinc-300 hover:text-white hover:bg-white/[0.1] transition-all"
+              >
+                <span>Live Deck 2026</span>
+                <ExternalLink className="w-3 h-3 text-zinc-400" />
+              </a>
+            </div>
+          </div>
+
+          {/* Project Title & Narrative */}
+          <div className="my-8 max-w-3xl space-y-3">
+            <h3 className="text-3xl sm:text-5xl lg:text-6xl font-light text-white tracking-tight uppercase group-hover:text-zinc-200 transition-colors">
+              {notAmantha.title}
+            </h3>
+            <p className="text-base sm:text-lg text-zinc-400 font-normal leading-relaxed">
+              {notAmantha.description}
+            </p>
+          </div>
+
+          {/* Key Metrics Strip (from live site) */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-5 rounded-2xl bg-white/[0.02] border border-white/[0.06] mb-8 font-mono">
+            <div>
+              <div className="text-2xl sm:text-3xl font-light text-white">5.5M</div>
+              <div className="text-[11px] text-zinc-400 uppercase mt-0.5">Views / Month</div>
+            </div>
+            <div>
+              <div className="text-2xl sm:text-3xl font-light text-white">200K+</div>
+              <div className="text-[11px] text-zinc-400 uppercase mt-0.5">Followers (IG+TikTok)</div>
+            </div>
+            <div>
+              <div className="text-2xl sm:text-3xl font-light text-white">35+</div>
+              <div className="text-[11px] text-zinc-400 uppercase mt-0.5">Brands Scaled</div>
+            </div>
+            <div>
+              <div className="text-2xl sm:text-3xl font-light text-white">3</div>
+              <div className="text-[11px] text-zinc-400 uppercase mt-0.5">Businesses Built</div>
+            </div>
+          </div>
+
+          {/* Viewport & Device Preview Screenshot */}
+          <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden bg-[#07070a] border border-white/[0.08] shadow-[0_25px_60px_rgba(0,0,0,0.8)] my-8">
+            <Image
+              src={notAmantha.heroImage || notAmantha.thumbnail}
+              alt={notAmantha.title}
+              fill
+              sizes="(max-width: 1280px) 100vw, 1200px"
+              className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+          </div>
+
+          {/* Bottom Highlights & Technologies */}
+          <div className="pt-6 border-t border-white/[0.08] flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+            <div className="flex flex-wrap items-center gap-2">
+              {notAmantha.technologies.map((tech) => (
+                <span
+                  key={tech}
+                  className="px-3 py-1 rounded-full text-xs font-mono bg-white/[0.04] border border-white/[0.08] text-zinc-300"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+
+            <Link
+              href={`/work/${notAmantha.slug}`}
               className="inline-flex items-center space-x-2 px-6 py-3 rounded-full bg-white text-black font-medium text-xs tracking-wide hover:bg-zinc-200 transition-all self-start lg:self-auto shrink-0 shadow-[0_0_20px_rgba(255,255,255,0.2)]"
             >
               <span>Explore Case Study</span>

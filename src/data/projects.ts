@@ -176,6 +176,54 @@ export const projectsData: ProjectItem[] = [
       'Rapid consultation request form with tap-to-complete inputs',
       'Confidential direct WhatsApp connection to senior partner',
     ],
+    nextProjectSlug: 'not-amantha-perera',
+  },
+  {
+    id: 'not-amantha-perera',
+    slug: 'not-amantha-perera',
+    aliases: ['amantha-perera', 'notamanthaperera'],
+    title: 'NOT AMANTHA PERERA',
+    client: 'Amantha Perera (@notamanthaperera)',
+    category: 'Creator Flagship & Media Kit',
+    industry: 'Media, Creator Economy & Brand Partnerships',
+    tagline: 'An editorial interactive creator flagship and 2026 media partnership deck showcasing 200M+ impressions.',
+    description:
+      'A high-impact editorial creator flagship and media partnership deck for Amantha Perera, showcasing campaign case studies, organic reach metrics (200M+ impressions), and brand collaboration workflows.',
+    year: '2026',
+    thumbnail: '/images/projects/not-amantha-perera.png',
+    heroImage: '/images/projects/not-amantha-perera.png',
+    gallery: [
+      '/images/projects/not-amantha-perera.png',
+    ],
+    technologies: ['Next.js Architecture', 'Interactive Slide Engine', 'Framer Motion', 'Tailwind CSS', 'Mobile Deck Simulator'],
+    liveUrl: 'https://notamanthaperera.online/',
+    domain: 'notamanthaperera.online',
+    featured: true,
+    seoTitle: 'Not Amantha Perera — Creator Flagship & Media Partnership Deck | ApexGen',
+    seoDescription:
+      'Case study on how ApexGen engineered the official 2026 brand partnerships and creator deck for Amantha Perera (@notamanthaperera), combining editorial storytelling with live engagement metrics.',
+    overview:
+      'Amantha Perera is one of Sri Lanka’s premier organic content creators, comedian, musician, and founder of Organic agency, generating over 200M+ impressions and working with 35+ leading brands. He required a world-class creator flagship and 2026 media partnership deck that separated him from generic social media influencers and positioned him as an authoritative commercial collaborator.',
+    challenge:
+      'Standard PDF pitch decks and link-in-bio aggregators look amateurish and fail to communicate commercial rigor to CMOs and brand directors. Amantha needed a cinematic web deck that combined punchy personal branding with verified reach metrics (5.5M monthly views, 200K+ followers, 35+ brands grown) and frictionless partnership inquiry routing.',
+    creativeDirection:
+      'High-fashion editorial aesthetic meets digital pitch deck: near-black surfaces, warm energetic yellow accents (#FACC15), bold display typography, and an interactive mobile-first slide navigator (02/24 deck mode).',
+    designApproach:
+      'We designed an immersive narrative experience titled "NOT JUST AN INFLUENCER." Featuring dual-mode viewing (desktop slide deck & mobile device simulator), real-time engagement telemetry, campaign highlight reels, and a one-click brand collaboration funnel.',
+    solution:
+      'Engineered an interactive web deck platform on sub-second edge infrastructure with custom keyboard and swipe navigation, interactive slide indexes, and direct WhatsApp / email brand brief routing.',
+    deliveredFeatures: [
+      'Interactive 24-slide dual-viewport presentation architecture',
+      'Dynamic engagement telemetry (5.5M monthly views, 200M+ impressions)',
+      'Brand partnership roster breakdown (Dinidu Jewellery, Driveline, etc.)',
+      'Frictionless direct WhatsApp & corporate sponsorship inquiry funnels',
+      'Mobile viewport simulator for agency creative directors on desktop',
+    ],
+    mobileHighlights: [
+      'Native gesture-friendly slide transitions with thumb navigation',
+      'Instant brand brief intake via direct WhatsApp trigger',
+      'Sub-second edge loading for brand executives reviewing on the go',
+    ],
     nextProjectSlug: 'cargo-pizza',
   },
 ];

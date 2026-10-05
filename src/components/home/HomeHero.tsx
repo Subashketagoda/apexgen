@@ -216,7 +216,7 @@ export function HomeHero() {
               <div className="p-3 bg-[#0a0a0f] border-t border-white/[0.08] flex items-center justify-between text-xs">
                 <span className="text-[11px] text-zinc-400 font-mono">Verified Case Study</span>
                 <div className="flex items-center space-x-1.5">
-                  {projectsData.slice(0, 3).map((p, idx) => (
+                  {projectsData.slice(0, 4).map((p, idx) => (
                     <button
                       key={p.id}
                       onClick={() => setActiveProjectIdx(idx)}

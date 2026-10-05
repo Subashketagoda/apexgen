@@ -27,10 +27,6 @@ export function SpotlightCard({
     <div
       ref={divRef}
       onMouseMove={handleMouseMove}
-      onFocus={handleFocus}
-      onBlur={handleBlur}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
       className={`relative rounded-3xl border border-white/[0.08] bg-[#0c0c12]/80 backdrop-blur-xl overflow-hidden transition-all duration-300 hover:border-white/[0.18] group ${className}`}
       {...props}
     >
