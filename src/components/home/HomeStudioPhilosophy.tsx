@@ -33,31 +33,31 @@ export function HomeStudioPhilosophy() {
           transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
           className="lg:col-span-7 space-y-8"
         >
-          <div className="inline-flex items-center space-x-2.5 px-3.5 py-1.5 rounded-full border border-[#FF6B35]/30 bg-[#FF6B35]/10 text-xs font-mono text-[#FF6B35] tracking-wider uppercase">
-            <ShieldCheck className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center space-x-2.5 px-3.5 py-1.5 rounded-full border border-white/[0.1] bg-white/[0.04] text-xs font-mono text-zinc-300 tracking-wider uppercase">
+            <ShieldCheck className="w-3.5 h-3.5 text-white" />
             <span>STUDIO MANIFESTO &bull; FOUNDER COMMITMENT</span>
           </div>
 
           <div className="relative">
-            <Quote className="w-12 h-12 text-[#FF6B35]/20 -mb-4 -ml-2" />
-            <blockquote className="text-2xl sm:text-4xl md:text-5xl font-light font-mono text-white leading-[1.15] tracking-tight uppercase">
+            <Quote className="w-12 h-12 text-white/10 -mb-4 -ml-2" />
+            <blockquote className="text-2xl sm:text-4xl md:text-5xl font-light text-white leading-[1.15] tracking-tight uppercase">
               &ldquo;We design websites with the belief that great craft is good business. If a website doesn&apos;t evoke trust in the first 3 seconds, the finest product in the world will go unnoticed.&rdquo;
             </blockquote>
           </div>
 
-          <div className="pt-4 border-t border-white/10 flex items-center justify-between">
+          <div className="pt-4 border-t border-white/[0.08] flex items-center justify-between">
             <div>
               <div className="text-base font-mono font-medium text-white">
                 {siteConfig.founder.name}
               </div>
-              <div className="text-xs font-mono text-[#FF6B35] uppercase tracking-wider">
+              <div className="text-xs font-mono text-zinc-400 uppercase tracking-wider">
                 {siteConfig.founder.role} &bull; ApexGen Studio
               </div>
             </div>
 
             <Link
               href="/about"
-              className="inline-flex items-center space-x-1.5 text-xs font-mono tracking-wider text-neutral-400 hover:text-white uppercase transition-colors group"
+              className="inline-flex items-center space-x-1.5 text-xs font-mono tracking-wider text-zinc-400 hover:text-white uppercase transition-colors group"
             >
               <span>ABOUT THE FOUNDER</span>
               <ArrowUpRight className="w-3.5 h-3.5 text-[#FF6B35] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
@@ -75,9 +75,9 @@ export function HomeStudioPhilosophy() {
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.7, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] }}
               whileHover={{ x: 6, transition: { duration: 0.2 } }}
-              className="p-6 sm:p-8 rounded-2xl bg-[#0F0F12] border border-white/10 hover:border-[#FF6B35]/50 transition-colors space-y-2 group shadow-lg"
+              className="p-6 sm:p-8 rounded-2xl studio-card hover:border-white/[0.2] transition-colors space-y-2 group shadow-lg"
             >
-              <div className="text-xs font-mono text-[#FF6B35] tracking-wider font-semibold">
+              <div className="text-xs font-mono text-zinc-400 tracking-wider font-semibold group-hover:text-white transition-colors">
                 0{i + 1} &bull; {c.label}
               </div>
               <p className="text-sm text-neutral-300 font-sans leading-relaxed">

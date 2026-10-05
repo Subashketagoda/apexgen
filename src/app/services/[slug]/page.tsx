@@ -223,14 +223,14 @@ export default async function ServiceDetailPage({ params }: PageProps) {
             </Link>
 
             <a
-              href={`https://wa.me/94770289139?text=${encodeURIComponent(
+              href={`https://wa.me/${siteConfig.contact.whatsappNumber.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(
                 `Hello ApexGen Studio, I would like to inquire about your ${service.name} services.`
               )}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center space-x-2.5 px-7 py-4 rounded-full border border-white/20 bg-white/5 text-xs font-mono tracking-wider uppercase text-white hover:bg-white/10 hover:border-white/30 transition-all duration-200"
             >
-              <MessageSquare className="w-4 h-4 text-[#FF5E00]" />
+              <MessageSquare className="w-4 h-4 text-zinc-300" />
               <span>Direct WhatsApp Consultation</span>
             </a>
           </div>

@@ -57,8 +57,8 @@ export const siteConfig: SiteConfig = {
   domain: 'apexgen.website',
   contact: {
     email: 'contact@apexgen.website',
-    whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '+94770289139',
-    whatsappDisplay: '+94 77 028 9139',
+    whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '+94789656969',
+    whatsappDisplay: '078 965 6969',
     location: 'Colombo, Sri Lanka & Global Remote',
     hours: 'Mon — Sat / 9:00 AM — 8:00 PM IST',
   },

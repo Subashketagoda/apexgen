@@ -5,7 +5,7 @@ import { siteConfig } from '@/data/site';
 import { Navbar } from '@/components/ui/Navbar';
 import { Footer } from '@/components/ui/Footer';
 import { CustomCursor } from '@/components/ui/CustomCursor';
-import { ArrowUpRight, MessageCircle, Mail, MapPin, Clock } from 'lucide-react';
+import { ArrowUpRight, MessageCircle, Mail, MapPin, Clock, Phone } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Contact ApexGen | Direct Inquiry & WhatsApp Consultation',
@@ -86,7 +86,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="bg-[#050505] text-[#F5F5F5] min-h-screen selection:bg-[#FF5E00] selection:text-white relative">
+    <div className="bg-[#040406] text-[#F5F5F7] min-h-screen selection:bg-white selection:text-black relative">
       <CustomCursor />
       <Navbar />
 
@@ -102,8 +102,8 @@ export default function ContactPage() {
       <main className="pt-32 sm:pt-44 pb-28 sm:pb-36 overflow-hidden">
         {/* Editorial Header */}
         <section className="px-4 sm:px-6 md:px-12 max-w-7xl mx-auto mb-16 sm:mb-24">
-          <div className="inline-flex items-center space-x-2.5 px-3.5 py-1.5 rounded-full border border-[#FF5E00]/30 bg-[#FF5E00]/10 text-xs font-mono text-[#FF7A1A] tracking-wider uppercase mb-8">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#FF5E00] animate-pulse" />
+          <div className="inline-flex items-center space-x-2.5 px-3.5 py-1.5 rounded-full border border-white/[0.1] bg-white/[0.04] text-xs font-mono text-zinc-300 tracking-wider uppercase mb-8">
+            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
             <span>DIRECT INQUIRY</span>
           </div>
 
@@ -111,7 +111,7 @@ export default function ContactPage() {
             START A CONVERSATION.
           </h1>
 
-          <p className="text-lg sm:text-2xl text-neutral-300 font-light max-w-3xl leading-relaxed">
+          <p className="text-lg sm:text-2xl text-zinc-400 font-light max-w-3xl leading-relaxed">
             Every great digital flagship begins with a dialogue. Connect directly with our studio leadership to discuss your vision, timeline, and commercial goals.
           </p>
         </section>
@@ -120,15 +120,15 @@ export default function ContactPage() {
         <section className="px-4 sm:px-6 md:px-12 max-w-7xl mx-auto mb-20 sm:mb-28">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Channel 1: Start A Project Questionnaire */}
-            <div className="p-8 sm:p-14 rounded-3xl bg-neutral-900/80 border-2 border-[#FF5E00]/60 relative flex flex-col justify-between space-y-8 shadow-[0_10px_40px_rgba(255,94,0,0.12)]">
+            <div className="p-8 sm:p-14 rounded-3xl studio-card-elevated border-white/[0.22] relative flex flex-col justify-between space-y-8 shadow-[0_20px_50px_rgba(0,0,0,0.85)]">
               <div className="space-y-4">
-                <span className="text-xs font-mono tracking-widest text-[#FF5E00] uppercase block">
+                <span className="text-xs font-mono tracking-widest text-zinc-400 uppercase block">
                   RECOMMENDED PATH
                 </span>
                 <h2 className="text-3xl sm:text-5xl font-light text-white uppercase font-mono">
                   Submit Project Brief
                 </h2>
-                <p className="text-neutral-300 font-light text-sm sm:text-base leading-relaxed">
+                <p className="text-zinc-300 font-light text-sm sm:text-base leading-relaxed">
                   Guide us through your project requirements, scope, budget, and timeline with our 7-step interactive brief intake wizard.
                 </p>
               </div>
@@ -136,7 +136,7 @@ export default function ContactPage() {
               <div>
                 <Link
                   href="/start-a-project"
-                  className="w-full py-4 rounded-full bg-[#FF5E00] text-black font-mono text-xs uppercase tracking-wider font-semibold hover:bg-[#FF7A1A] transition-all shadow-[0_0_25px_rgba(255,94,0,0.3)] flex items-center justify-center space-x-2"
+                  className="w-full py-4 rounded-full bg-white text-black font-mono text-xs uppercase tracking-wider font-semibold hover:bg-zinc-200 transition-all shadow-[0_0_25px_rgba(255,255,255,0.25)] flex items-center justify-center space-x-2"
                 >
                   <span>LAUNCH 7-STEP BRIEF WIZARD</span>
                   <ArrowUpRight className="w-4 h-4 text-black" />
@@ -151,19 +151,24 @@ export default function ContactPage() {
                   IMMEDIATE RESPONSE
                 </span>
                 <h2 className="text-3xl sm:text-5xl font-light text-white uppercase font-mono">
-                  WhatsApp Direct
+                  Direct Line & WhatsApp
                 </h2>
-                <p className="text-neutral-300 font-light text-sm sm:text-base leading-relaxed">
-                  Speak directly with creative director Subash on WhatsApp. Fast-track questions, discuss ideas, or schedule a strategy consultation call.
+                <p className="text-zinc-300 font-light text-sm sm:text-base leading-relaxed">
+                  Speak directly with studio leadership on WhatsApp or call directly. Fast-track questions, discuss ideas, or schedule a strategy consultation.
                 </p>
-                <div className="text-xl sm:text-2xl font-mono text-white pt-2">
-                  {siteConfig.contact.whatsappDisplay}
+                <div className="space-y-1 pt-2">
+                  <div className="text-xl sm:text-2xl font-mono text-white">
+                    078 965 6969
+                  </div>
+                  <div className="text-xs font-mono text-zinc-500">
+                    International: +94 78 965 6969
+                  </div>
                 </div>
               </div>
 
-              <div>
+              <div className="space-y-3">
                 <a
-                  href={`https://wa.me/94770289139?text=${encodeURIComponent(
+                  href={`https://wa.me/${siteConfig.contact.whatsappNumber.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(
                     'Hello ApexGen Studio, I would like to inquire about starting a website project.'
                   )}`}
                   target="_blank"
@@ -173,6 +178,13 @@ export default function ContactPage() {
                   <MessageCircle className="w-4 h-4" />
                   <span>START CHAT ON WHATSAPP &rarr;</span>
                 </a>
+                <a
+                  href="tel:0789656969"
+                  className="w-full py-3 rounded-full border border-white/10 bg-white/5 text-zinc-300 hover:text-white hover:border-white/20 font-mono text-xs uppercase tracking-wider font-semibold transition-all flex items-center justify-center space-x-2"
+                >
+                  <Phone className="w-3.5 h-3.5" />
+                  <span>CALL DIRECTLY: 078 965 6969</span>
+                </a>
               </div>
             </div>
           </div>
@@ -180,36 +192,50 @@ export default function ContactPage() {
 
         {/* Studio Meta Information */}
         <section className="px-4 sm:px-6 md:px-12 max-w-7xl mx-auto pt-12 border-t border-white/10">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
             <div className="space-y-2">
-              <div className="flex items-center space-x-2 text-xs font-mono text-neutral-500 uppercase tracking-widest">
-                <Mail className="w-3.5 h-3.5 text-[#FF5E00]" />
+              <div className="flex items-center space-x-2 text-xs font-mono text-zinc-500 uppercase tracking-widest">
+                <Phone className="w-3.5 h-3.5 text-zinc-300" />
+                <span>DIRECT PHONE</span>
+              </div>
+              <a
+                href="tel:0789656969"
+                className="text-base sm:text-lg font-mono text-white hover:text-zinc-300 transition-colors block"
+              >
+                078 965 6969
+              </a>
+              <span className="text-xs font-mono text-zinc-500 block">+94 78 965 6969</span>
+            </div>
+
+            <div className="space-y-2">
+              <div className="flex items-center space-x-2 text-xs font-mono text-zinc-500 uppercase tracking-widest">
+                <Mail className="w-3.5 h-3.5 text-zinc-300" />
                 <span>STUDIO EMAIL</span>
               </div>
               <a
                 href={`mailto:${siteConfig.contact.email}`}
-                className="text-base sm:text-lg font-mono text-white hover:text-[#FF5E00] transition-colors block"
+                className="text-base sm:text-lg font-mono text-white hover:text-zinc-300 transition-colors block"
               >
                 {siteConfig.contact.email}
               </a>
             </div>
 
             <div className="space-y-2">
-              <div className="flex items-center space-x-2 text-xs font-mono text-neutral-500 uppercase tracking-widest">
-                <MapPin className="w-3.5 h-3.5 text-[#FF5E00]" />
+              <div className="flex items-center space-x-2 text-xs font-mono text-zinc-500 uppercase tracking-widest">
+                <MapPin className="w-3.5 h-3.5 text-zinc-300" />
                 <span>HEADQUARTERS</span>
               </div>
-              <p className="text-base sm:text-lg font-mono text-neutral-300">
+              <p className="text-base sm:text-lg font-mono text-zinc-300">
                 {siteConfig.contact.location}
               </p>
             </div>
 
             <div className="space-y-2">
-              <div className="flex items-center space-x-2 text-xs font-mono text-neutral-500 uppercase tracking-widest">
-                <Clock className="w-3.5 h-3.5 text-[#FF5E00]" />
+              <div className="flex items-center space-x-2 text-xs font-mono text-zinc-500 uppercase tracking-widest">
+                <Clock className="w-3.5 h-3.5 text-zinc-300" />
                 <span>OFFICE HOURS</span>
               </div>
-              <p className="text-base sm:text-lg font-mono text-neutral-300">
+              <p className="text-base sm:text-lg font-mono text-zinc-300">
                 {siteConfig.contact.hours}
               </p>
             </div>

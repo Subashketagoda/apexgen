@@ -131,11 +131,11 @@ export function CinematicLoader({ onComplete }: CinematicLoaderProps) {
             </div>
 
             <div className="flex items-baseline space-x-2 text-2xl sm:text-3xl font-mono text-white">
-              <span className="text-[#FF5E00] font-bold">
+              <span className="text-white font-semibold">
                 {String(progress).padStart(2, '0')}
               </span>
-              <span className="text-neutral-600">—</span>
-              <span className="text-neutral-500">100</span>
+              <span className="text-zinc-600">—</span>
+              <span className="text-zinc-500">100</span>
             </div>
           </div>
         </motion.div>

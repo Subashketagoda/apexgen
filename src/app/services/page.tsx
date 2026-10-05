@@ -92,7 +92,7 @@ export default function ServicesIndexPage() {
   };
 
   return (
-    <div className="bg-[#050505] text-[#F5F5F5] min-h-screen selection:bg-[#FF5E00] selection:text-white relative">
+    <div className="bg-[#040406] text-[#F5F5F7] min-h-screen selection:bg-white selection:text-black relative">
       <CustomCursor />
       <Navbar />
 
@@ -108,8 +108,8 @@ export default function ServicesIndexPage() {
       <main className="pt-32 sm:pt-44 pb-28 sm:pb-36 overflow-hidden">
         {/* Editorial Header */}
         <section className="px-4 sm:px-6 md:px-12 max-w-7xl mx-auto mb-20 sm:mb-32">
-          <div className="inline-flex items-center space-x-2.5 px-3.5 py-1.5 rounded-full border border-[#FF5E00]/30 bg-[#FF5E00]/10 text-xs font-mono text-[#FF7A1A] tracking-wider uppercase mb-8">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#FF5E00] animate-pulse" />
+          <div className="inline-flex items-center space-x-2.5 px-3.5 py-1.5 rounded-full border border-white/[0.1] bg-white/[0.04] text-xs font-mono text-zinc-300 tracking-wider uppercase mb-8">
+            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
             <span>FULL-SPECTRUM DISCIPLINES</span>
           </div>
 
@@ -117,7 +117,7 @@ export default function ServicesIndexPage() {
             DESIGN. BUILD. GROW.
           </h1>
 
-          <p className="text-lg sm:text-2xl text-neutral-300 font-light max-w-3xl leading-relaxed">
+          <p className="text-lg sm:text-2xl text-zinc-400 font-light max-w-3xl leading-relaxed">
             We unite world-class art direction, disciplined software engineering, and search optimization to create digital flagships that outperform competitors.
           </p>
         </section>
@@ -127,17 +127,17 @@ export default function ServicesIndexPage() {
           {serviceCategories.map((category, idx) => (
             <div
               key={category.id}
-              className="border-t border-white/10 pt-12 sm:pt-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start"
+              className="border-t border-white/[0.08] pt-12 sm:pt-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start"
             >
               {/* Category Overview (4-col) */}
               <div className="lg:col-span-5 space-y-4 lg:sticky lg:top-36">
-                <span className="text-xs font-mono tracking-widest text-[#FF5E00] uppercase">
+                <span className="text-xs font-mono tracking-widest text-zinc-400 uppercase">
                   CATEGORY 0{idx + 1}
                 </span>
                 <h2 className="text-3xl sm:text-5xl font-light text-white uppercase font-mono">
                   {category.title}
                 </h2>
-                <p className="text-xs font-mono tracking-widest text-[#FF7A1A] uppercase">
+                <p className="text-xs font-mono tracking-widest text-zinc-400 uppercase">
                   {category.tagline}
                 </p>
                 <p className="text-sm sm:text-base text-neutral-300 font-light leading-relaxed">

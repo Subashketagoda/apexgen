@@ -98,7 +98,7 @@ export default function WorkIndexPage() {
   };
 
   return (
-    <div className="bg-[#050505] text-[#F5F5F5] min-h-screen selection:bg-[#FF5E00] selection:text-white relative">
+    <div className="bg-[#040406] text-[#F5F5F7] min-h-screen selection:bg-white selection:text-black relative">
       <CustomCursor />
       <Navbar />
 
@@ -114,8 +114,8 @@ export default function WorkIndexPage() {
       <main className="pt-32 sm:pt-40 pb-28 sm:pb-36 overflow-hidden">
         {/* Editorial Header */}
         <section className="px-4 sm:px-6 md:px-12 max-w-7xl mx-auto mb-20 sm:mb-28">
-          <div className="inline-flex items-center space-x-2.5 px-3.5 py-1.5 rounded-full border border-[#FF5E00]/30 bg-[#FF5E00]/10 text-xs font-mono text-[#FF7A1A] tracking-wider uppercase mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#FF5E00] animate-pulse" />
+          <div className="inline-flex items-center space-x-2.5 px-3.5 py-1.5 rounded-full border border-white/[0.1] bg-white/[0.04] text-xs font-mono text-zinc-300 tracking-wider uppercase mb-6">
+            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
             <span>CASE STUDIES &bull; PRODUCTION DEPLOYMENTS</span>
           </div>
 
@@ -123,7 +123,7 @@ export default function WorkIndexPage() {
             SELECTED WORK
           </h1>
 
-          <p className="text-lg sm:text-2xl text-neutral-400 font-light max-w-3xl leading-relaxed">
+          <p className="text-lg sm:text-2xl text-zinc-400 font-light max-w-3xl leading-relaxed">
             Digital experiences designed and built by ApexGen. Every project is engineered from scratch for commercial impact and brand authority.
           </p>
         </section>
@@ -134,29 +134,29 @@ export default function WorkIndexPage() {
             <article
               key={project.id}
               data-cursor="view"
-              className="group relative border-t border-white/10 pt-10 sm:pt-14 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start"
+              className="group relative border-t border-white/[0.08] pt-10 sm:pt-14 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start"
             >
               {/* Left Column: Project Info */}
               <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-36">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono tracking-widest text-[#FF5E00] uppercase">
+                  <span className="text-xs font-mono tracking-widest text-zinc-400 uppercase">
                     PROJECT 0{index + 1}
                   </span>
-                  <span className="text-xs font-mono text-neutral-500 uppercase">
+                  <span className="text-xs font-mono text-zinc-500 uppercase">
                     {project.year}
                   </span>
                 </div>
 
                 <div className="space-y-2">
-                  <h2 className="text-3xl sm:text-5xl font-light tracking-tight text-white uppercase font-mono group-hover:text-[#FF7A1A] transition-colors">
+                  <h2 className="text-3xl sm:text-5xl font-light tracking-tight text-white uppercase font-mono group-hover:text-zinc-200 transition-colors">
                     {project.title}
                   </h2>
-                  <p className="text-xs font-mono tracking-wider text-neutral-400 uppercase">
+                  <p className="text-xs font-mono tracking-wider text-zinc-400 uppercase">
                     {project.category}
                   </p>
                 </div>
 
-                <p className="text-sm sm:text-base text-neutral-300 font-light leading-relaxed">
+                <p className="text-sm sm:text-base text-zinc-400 font-light leading-relaxed">
                   {project.description}
                 </p>
 
@@ -165,7 +165,7 @@ export default function WorkIndexPage() {
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="px-3 py-1 rounded-full text-xs font-mono bg-white/[0.03] border border-white/10 text-neutral-400"
+                      className="px-3 py-1 rounded-full text-xs font-mono bg-white/[0.03] border border-white/[0.08] text-zinc-400"
                     >
                       {tech}
                     </span>
@@ -173,10 +173,10 @@ export default function WorkIndexPage() {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-white/10">
+                <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-white/[0.08]">
                   <Link
                     href={`/work/${project.slug}`}
-                    className="inline-flex items-center space-x-2 px-6 py-3.5 rounded-full bg-white text-black font-mono text-xs uppercase tracking-wider font-semibold hover:bg-[#FF5E00] hover:text-black transition-all shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+                    className="inline-flex items-center space-x-2 px-6 py-3.5 rounded-full bg-white text-black font-mono text-xs uppercase tracking-wider font-semibold hover:bg-zinc-200 transition-all shadow-[0_0_20px_rgba(255,255,255,0.2)]"
                   >
                     <span>VIEW CASE STUDY</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -186,17 +186,17 @@ export default function WorkIndexPage() {
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center space-x-1.5 px-5 py-3.5 rounded-full border border-white/20 text-neutral-300 font-mono text-xs uppercase tracking-wider hover:text-white hover:border-white transition-colors"
+                    className="inline-flex items-center space-x-1.5 px-5 py-3.5 rounded-full border border-white/[0.14] text-zinc-300 font-mono text-xs uppercase tracking-wider hover:text-white hover:border-white transition-colors"
                   >
                     <span>VISIT LIVE</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 text-[#FF5E00]" />
+                    <ArrowUpRight className="w-3.5 h-3.5 text-zinc-400" />
                   </a>
                 </div>
               </div>
 
               {/* Right Column: Immersive Visual Hero in Browser Frame */}
               <div className="lg:col-span-7">
-                <div className="rounded-2xl sm:rounded-3xl bg-[#09090b] border border-white/15 overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.8)] group-hover:border-[#FF5E00]/40 transition-all duration-500">
+                <div className="rounded-2xl sm:rounded-3xl studio-card border-white/[0.1] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.8)] group-hover:border-white/[0.22] transition-all duration-500">
                   {/* Browser Bar */}
                   <div className="flex items-center justify-between px-4 py-3 bg-neutral-900/90 border-b border-white/10">
                     <div className="flex items-center space-x-2">

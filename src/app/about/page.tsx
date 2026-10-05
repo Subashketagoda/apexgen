@@ -77,7 +77,7 @@ export default function AboutPage() {
         {/* Editorial Hero */}
         <section className="px-4 sm:px-6 md:px-12 max-w-7xl mx-auto mb-20 sm:mb-32">
           <div className="inline-flex items-center space-x-2.5 px-3.5 py-1.5 rounded-full border border-[#FF5E00]/30 bg-[#FF5E00]/10 text-xs font-mono text-[#FF7A1A] tracking-wider uppercase mb-8">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#FF5E00] animate-pulse" />
+            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
             <span>STUDIO MANIFESTO</span>
           </div>
 
@@ -85,20 +85,20 @@ export default function AboutPage() {
             WE DESIGN WEBSITES PEOPLE REMEMBER.
           </h1>
 
-          <div className="text-xl sm:text-3xl font-light font-mono text-[#FF5E00] uppercase tracking-wider mb-8">
+          <div className="text-xl sm:text-3xl font-light font-mono text-zinc-300 uppercase tracking-wider mb-8">
             DESIGN FIRST. EXPERIENCE SECOND. TECHNOLOGY THIRD.
           </div>
 
-          <p className="text-lg sm:text-xl text-neutral-300 font-light max-w-3xl leading-relaxed">
+          <p className="text-lg sm:text-xl text-zinc-400 font-light max-w-3xl leading-relaxed">
             ApexGen is an independent digital studio founded and directed by Subhash Ketagoda. Built on a clear conviction: most business websites fail not because of missing code, but because of mediocre design and commoditized templates that fail to move human beings.
           </p>
         </section>
 
         {/* 1. DESIGN PHILOSOPHY */}
-        <section className="px-4 sm:px-6 md:px-12 max-w-7xl mx-auto mb-20 sm:mb-28 border-t border-white/10 pt-16">
+        <section className="px-4 sm:px-6 md:px-12 max-w-7xl mx-auto mb-20 sm:mb-28 border-t border-white/[0.08] pt-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
             <div className="lg:col-span-5 space-y-3">
-              <span className="text-xs font-mono tracking-widest text-[#FF5E00] uppercase block">
+              <span className="text-xs font-mono tracking-widest text-zinc-400 uppercase block">
                 01 / DESIGN PHILOSOPHY
               </span>
               <h2 className="text-3xl sm:text-4xl font-light text-white uppercase font-mono">
@@ -106,7 +106,7 @@ export default function AboutPage() {
               </h2>
             </div>
 
-            <div className="lg:col-span-7 space-y-6 text-neutral-300 font-light text-base sm:text-lg leading-relaxed">
+            <div className="lg:col-span-7 space-y-6 text-zinc-300 font-light text-base sm:text-lg leading-relaxed">
               <p>
                 In a global digital landscape crowded with generic WordPress themes and template builders, your visual identity is the primary determinant of whether a potential client perceives you as a market leader or a commodity.
               </p>
@@ -118,10 +118,10 @@ export default function AboutPage() {
         </section>
 
         {/* 2. DEVELOPMENT PHILOSOPHY */}
-        <section className="px-4 sm:px-6 md:px-12 max-w-7xl mx-auto mb-20 sm:mb-28 border-t border-white/10 pt-16">
+        <section className="px-4 sm:px-6 md:px-12 max-w-7xl mx-auto mb-20 sm:mb-28 border-t border-white/[0.08] pt-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
             <div className="lg:col-span-5 space-y-3">
-              <span className="text-xs font-mono tracking-widest text-[#FF5E00] uppercase block">
+              <span className="text-xs font-mono tracking-widest text-zinc-400 uppercase block">
                 02 / DEVELOPMENT PHILOSOPHY
               </span>
               <h2 className="text-3xl sm:text-4xl font-light text-white uppercase font-mono">
@@ -129,7 +129,7 @@ export default function AboutPage() {
               </h2>
             </div>
 
-            <div className="lg:col-span-7 space-y-6 text-neutral-300 font-light text-base sm:text-lg leading-relaxed">
+            <div className="lg:col-span-7 space-y-6 text-zinc-300 font-light text-base sm:text-lg leading-relaxed">
               <p>
                 We do not build on bloated site builders that inject megabytes of unnecessary JavaScript. We write clean, production-grade Next.js, React, and TypeScript deployed to global edge networks.
               </p>
@@ -141,10 +141,10 @@ export default function AboutPage() {
         </section>
 
         {/* 3. HOW APEXGEN WORKS */}
-        <section className="px-4 sm:px-6 md:px-12 max-w-7xl mx-auto mb-20 sm:mb-28 border-t border-white/10 pt-16">
+        <section className="px-4 sm:px-6 md:px-12 max-w-7xl mx-auto mb-20 sm:mb-28 border-t border-white/[0.08] pt-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
             <div className="lg:col-span-5 space-y-3">
-              <span className="text-xs font-mono tracking-widest text-[#FF5E00] uppercase block">
+              <span className="text-xs font-mono tracking-widest text-zinc-400 uppercase block">
                 03 / HOW WE WORK
               </span>
               <h2 className="text-3xl sm:text-4xl font-light text-white uppercase font-mono">
@@ -152,7 +152,7 @@ export default function AboutPage() {
               </h2>
             </div>
 
-            <div className="lg:col-span-7 space-y-6 text-neutral-300 font-light text-base sm:text-lg leading-relaxed">
+            <div className="lg:col-span-7 space-y-6 text-zinc-300 font-light text-base sm:text-lg leading-relaxed">
               <p>
                 When you commission ApexGen, your brief is not passed down to junior outsourced contractors or account managers. You work directly with the creative directors and senior engineers responsible for crafting your website.
               </p>

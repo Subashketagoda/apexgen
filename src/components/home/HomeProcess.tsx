@@ -1,138 +1,150 @@
 'use client';
 
-import React from 'react';
-import Link from 'next/link';
-import { ArrowUpRight } from 'lucide-react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
 export function HomeProcess() {
+  const [activeStep, setActiveStep] = useState(0);
+
   const steps = [
     {
       num: '01',
-      name: 'DISCOVER',
-      tagline: 'Discovery & Business Goals',
-      desc: 'Understand the business, its competitive landscape, target audience psychology, and commercial goals.',
+      title: 'Discover',
+      duration: 'Sprint 01',
+      tagline: 'Discovery & Commercial Objectives',
+      desc: 'Deep-dive into your business model, competitive landscape, target client psychology, and commercial milestones.',
+      deliverables: ['Competitive Gap Audit', 'Brand Positioning Dossier', 'Technical Discovery Matrix'],
     },
     {
       num: '02',
-      name: 'STRATEGY',
-      tagline: 'Information Architecture',
-      desc: 'Plan the page hierarchy, conversion funnels, copywriting outlines, and seamless user experience journey.',
+      title: 'Strategy',
+      duration: 'Sprint 02',
+      tagline: 'Information Architecture & Wireframes',
+      desc: 'Architecting page hierarchies, high-conversion user pathways, editorial messaging direction, and key action funnels.',
+      deliverables: ['Site Architecture Sitemap', 'Conversion Funnel Blueprint', 'Content Outline Strategy'],
     },
     {
       num: '03',
-      name: 'DESIGN',
-      tagline: 'Visual Art Direction',
-      desc: 'Create bespoke visual direction, editorial typography, micro-interactions, and high-fidelity Figma prototypes.',
+      title: 'Design',
+      duration: 'Sprint 03',
+      tagline: 'Bespoke Figma UI/UX & Art Direction',
+      desc: 'Crafting custom art direction, refined typography hierarchies, spatial layout systems, and fluid micro-interaction models.',
+      deliverables: ['High-Fidelity Figma Prototypes', 'Interactive Component Systems', 'Mobile Touch Ergonomics'],
     },
     {
       num: '04',
-      name: 'DEVELOPMENT',
-      tagline: 'Next.js Engineering',
-      desc: 'Build and optimize the website with clean Next.js, sub-second edge rendering, and frictionless checkout/booking systems.',
+      title: 'Develop',
+      duration: 'Sprint 04',
+      tagline: 'Next.js 16 Edge Engineering',
+      desc: 'Hand-coding the platform in Next.js 16 with zero WordPress bloat, sub-second edge CDN caching, and WhatsApp/booking flows.',
+      deliverables: ['Type-Safe Next.js Architecture', 'Framer Motion Micro-Interactions', 'Direct WhatsApp / Booking Engine'],
     },
     {
       num: '05',
-      name: 'LAUNCH',
-      tagline: 'Quality Assurance & Delivery',
-      desc: 'Test, deliver, verify Google Core Web Vitals 95+, configure SEO indexing, and prepare the website for real visitors.',
+      title: 'Launch',
+      duration: 'Sprint 05',
+      tagline: 'Audit, Search Indexing & Go-Live',
+      desc: 'Rigorous cross-device testing, Google Core Web Vitals 99+ audit, Schema.org verification, and seamless domain launch.',
+      deliverables: ['Google Search Console Indexing', 'Full Source Code Transfer', 'Post-Launch Warranty & Support'],
     },
   ];
 
   return (
-    <section id="process" className="py-24 sm:py-32 md:py-40 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto border-t border-white/10 scroll-mt-20 relative overflow-hidden">
-      {/* Background ambient lighting */}
-      <motion.div
-        animate={{ scale: [1, 1.15, 1], opacity: [0.03, 0.08, 0.03] }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#FF6B35] blur-[170px] pointer-events-none rounded-full"
-      />
-
+    <section id="process" className="py-28 sm:py-36 lg:py-48 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto scroll-mt-24">
       {/* Section Header */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-50px' }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="flex flex-col md:flex-row md:items-end justify-between pb-16 sm:pb-20 border-b border-white/10 gap-8"
-      >
-        <div className="space-y-4">
-          <div className="inline-flex items-center space-x-2.5 px-3.5 py-1.5 rounded-full border border-[#FF6B35]/30 bg-[#FF6B35]/10 text-xs font-mono text-[#FF6B35] tracking-wider uppercase">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B35] animate-pulse" />
-            <span>HOW WE WORK</span>
+      <div className="flex flex-col md:flex-row md:items-end justify-between pb-16 sm:pb-20 border-b border-white/[0.08] gap-6">
+        <div className="space-y-4 max-w-2xl">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[11px] font-mono tracking-widest text-zinc-400 uppercase">
+            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+            <span>PRODUCT WORKFLOW</span>
           </div>
-          <h2 className="text-3xl sm:text-5xl md:text-7xl font-light tracking-[-0.04em] text-white uppercase font-mono leading-[1.05]">
-            FROM IDEA TO DIGITAL EXPERIENCE.
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-light tracking-[-0.035em] text-white uppercase leading-[1.05]">
+            The craft process. <br />
+            <span className="text-gradient-silver font-normal">From concept to production.</span>
           </h2>
         </div>
 
-        <div className="max-w-md">
-          <p className="text-base sm:text-lg text-neutral-400 font-sans leading-relaxed">
-            A disciplined 5-stage sprint methodology that turns conceptual ideas into high-conversion production digital platforms.
-          </p>
-        </div>
-      </motion.div>
-
-      {/* Process Connecting Timeline & Cards */}
-      <div className="mt-12 sm:mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 relative">
-        {/* Subtle horizontal connecting line on desktop */}
-        <div className="hidden lg:block absolute top-[52px] left-8 right-8 h-px bg-gradient-to-r from-[#FF6B35]/30 via-white/10 to-[#FF6B35]/30 pointer-events-none" />
-
-        {steps.map((s, idx) => (
-          <motion.div
-            key={s.num}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-40px' }}
-            transition={{ duration: 0.65, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-            whileHover={{ y: -6, transition: { duration: 0.25 } }}
-            className="p-8 rounded-2xl bg-[#0F0F12] border border-white/10 hover:border-[#FF6B35]/50 transition-colors flex flex-col justify-between space-y-8 group relative shadow-lg"
-          >
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <span className="text-3xl sm:text-4xl font-mono font-light text-[#FF6B35] group-hover:scale-105 transition-transform inline-block">
-                  {s.num}
-                </span>
-                <span className="w-2 h-2 rounded-full bg-white/20 group-hover:bg-[#FF6B35] group-hover:shadow-[0_0_10px_#FF6B35] transition-all" />
-              </div>
-
-              <div>
-                <h3 className="text-xl font-light font-mono text-white uppercase tracking-tight group-hover:text-[#FF6B35] transition-colors">
-                  {s.name}
-                </h3>
-                <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-wider block mt-1">
-                  {s.tagline}
-                </span>
-              </div>
-
-              <p className="text-xs sm:text-sm text-neutral-400 font-sans leading-relaxed">
-                {s.desc}
-              </p>
-            </div>
-
-            <div className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest pt-4 border-t border-white/5 flex items-center justify-between">
-              <span>SPRINT 0{idx + 1}</span>
-              <span className="text-[#FF6B35]">&bull;</span>
-            </div>
-          </motion.div>
-        ))}
+        <p className="max-w-md text-sm sm:text-base text-zinc-400 leading-relaxed font-normal">
+          A disciplined 5-phase engineering workflow that turns ambitious ideas into high-conversion digital experiences.
+        </p>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, delay: 0.4 }}
-        className="mt-16 text-center"
-      >
-        <Link
-          href="/process"
-          className="inline-flex items-center space-x-2 text-xs font-mono tracking-widest uppercase text-neutral-400 hover:text-white transition-colors group"
-        >
-          <span>EXPLORE OUR COMPLETE 5-STAGE SPRINT METHODOLOGY</span>
-          <ArrowUpRight className="w-4 h-4 text-[#FF6B35] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-        </Link>
-      </motion.div>
+      {/* Process Connecting Timeline & Step Cards */}
+      <div className="mt-16 sm:mt-24 relative">
+        {/* Animated Connecting Line on Desktop */}
+        <div className="hidden lg:block absolute top-7 left-12 right-12 h-px bg-white/[0.1] z-0">
+          <motion.div
+            className="h-full bg-white transition-all duration-500 ease-out"
+            style={{ width: `${(activeStep / (steps.length - 1)) * 100}%` }}
+          />
+        </div>
+
+        {/* 5 Step Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 relative z-10">
+          {steps.map((step, idx) => {
+            const isActive = activeStep === idx;
+            const isCompleted = activeStep > idx;
+
+            return (
+              <motion.div
+                key={step.num}
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.6, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                onMouseEnter={() => setActiveStep(idx)}
+                className={`p-6 sm:p-7 rounded-2xl cursor-pointer transition-all duration-400 flex flex-col justify-between ${
+                  isActive
+                    ? 'studio-card-elevated border-white/[0.25] shadow-[0_20px_45px_rgba(0,0,0,0.8)] -translate-y-2'
+                    : 'studio-card opacity-75 hover:opacity-100'
+                }`}
+              >
+                <div>
+                  {/* Step Beacon Node */}
+                  <div className="flex items-center justify-between pb-6">
+                    <span
+                      className={`text-xs font-mono font-bold tracking-widest px-2.5 py-1 rounded-full ${
+                        isActive
+                          ? 'bg-white text-black'
+                          : isCompleted
+                          ? 'bg-white/[0.1] text-white'
+                          : 'bg-white/[0.04] text-zinc-500'
+                      }`}
+                    >
+                      {step.num}
+                    </span>
+                    <span className="text-[10px] font-mono tracking-wider text-zinc-400 uppercase">
+                      {step.duration}
+                    </span>
+                  </div>
+
+                  {/* Step Title & Tagline */}
+                  <h3 className="text-xl sm:text-2xl font-light text-white tracking-tight uppercase">
+                    {step.title}
+                  </h3>
+                  <div className="text-[11px] font-mono text-zinc-400 mt-1 mb-4">
+                    {step.tagline}
+                  </div>
+
+                  <p className="text-xs text-zinc-400 leading-relaxed font-normal">
+                    {step.desc}
+                  </p>
+                </div>
+
+                {/* Deliverables Checklist */}
+                <div className="mt-6 pt-4 border-t border-white/[0.06] space-y-1.5">
+                  {step.deliverables.map((item, i) => (
+                    <div key={i} className="flex items-start gap-1.5 text-[11px] font-mono text-zinc-400">
+                      <span className="text-zinc-600 shrink-0">›</span>
+                      <span>{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
     </section>
   );
 }

@@ -3,171 +3,284 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, ArrowUpRight, Lock, CheckCircle2, Globe } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ExternalLink } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { projectsData } from '@/data/projects';
 
 export function HomeFeaturedWork() {
+  const cargoPizza = projectsData.find((p) => p.slug === 'cargo-pizza') || projectsData[0];
+  const studio69 = projectsData.find((p) => p.slug === '69-studio') || projectsData[1];
+  const dinePro = projectsData.find((p) => p.slug === 'dinepro-advisors') || projectsData[2];
+
   return (
-    <section id="work" className="py-28 sm:py-36 md:py-44 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto border-t border-white/10 scroll-mt-20">
+    <section id="work" className="py-28 sm:py-36 lg:py-48 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto scroll-mt-24">
+      
       {/* Section Header */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-50px' }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="flex flex-col md:flex-row md:items-end justify-between pb-16 sm:pb-20 border-b border-white/10 gap-6"
-      >
-        <div className="space-y-4">
-          <div className="flex items-center space-x-2 text-xs font-mono tracking-widest text-[#FF6B35] uppercase">
-            <span className="w-2 h-2 rounded-full bg-[#FF6B35] animate-pulse" />
-            <span>PORTFOLIO &bull; CASE STUDIES</span>
+      <div className="flex flex-col md:flex-row md:items-end justify-between pb-16 sm:pb-20 border-b border-white/[0.08] gap-6">
+        <div className="space-y-4 max-w-2xl">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[11px] font-mono tracking-widest text-zinc-400 uppercase">
+            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+            <span>SELECTED CLIENT FLAGSHIPS</span>
           </div>
-          <h2 className="text-3xl sm:text-5xl md:text-7xl font-light tracking-[-0.04em] text-white uppercase font-mono leading-[1.05]">
-            SELECTED WORK. REAL DIGITAL EXPERIENCES.
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-light tracking-[-0.035em] text-white uppercase leading-[1.05]">
+            Selected work. <br />
+            <span className="text-gradient-silver font-normal">Real digital experiences.</span>
           </h2>
         </div>
 
-        <div className="max-w-md">
-          <p className="text-base sm:text-lg text-neutral-400 font-light leading-relaxed">
-            Real production digital experiences engineered by ApexGen. Handcrafted for prestige, conversion, and global speed.
-          </p>
-        </div>
-      </motion.div>
-
-      {/* Cinematic Project Presentations */}
-      <div className="divide-y divide-white/10">
-        {projectsData.map((project, index) => (
-          <motion.article
-            key={project.id}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-            data-cursor="view"
-            className="py-20 sm:py-28 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center group"
-          >
-            {/* Left: Project Metadata & Editorial Info (5-col) */}
-            <div className="lg:col-span-5 space-y-6">
-              <div className="flex items-center space-x-4 text-xs font-mono text-neutral-400 uppercase tracking-widest">
-                <span className="text-[#FF6B35] font-bold text-sm">0{index + 1}</span>
-                <span>/</span>
-                <span className="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">
-                  {project.category}
-                </span>
-                <span>/</span>
-                <span>{project.year}</span>
-              </div>
-
-              <h3 className="text-3xl sm:text-5xl md:text-6xl font-light tracking-tight text-white uppercase font-mono group-hover:text-[#FF6B35] transition-colors duration-300">
-                {project.title}
-              </h3>
-
-              <p className="text-base text-neutral-300 font-light leading-relaxed">
-                {project.description}
-              </p>
-
-              {/* Delivered Highlights */}
-              <div className="space-y-2 pt-2">
-                {project.deliveredFeatures.slice(0, 3).map((feat, i) => (
-                  <div key={i} className="flex items-center space-x-2 text-xs font-mono text-neutral-400">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#FF6B35] shrink-0" />
-                    <span>{feat}</span>
-                  </div>
-                ))}
-              </div>
-
-              {/* Tech stack pills */}
-              <div className="flex flex-wrap gap-2 pt-2">
-                {project.technologies.slice(0, 4).map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-3 py-1 rounded-full text-xs font-mono bg-white/[0.04] border border-white/10 text-neutral-300"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-
-              <div className="pt-4 flex flex-wrap items-center gap-4">
-                <Link
-                  href={`/work/${project.slug}`}
-                  className="inline-flex items-center space-x-2 px-6 py-3 rounded-full bg-white text-black font-mono text-xs uppercase tracking-wider font-semibold hover:bg-[#FF6B35] hover:text-black transition-all shadow-[0_0_20px_rgba(255,255,255,0.15)]"
-                >
-                  <span>VIEW CASE STUDY</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-2 px-5 py-3 rounded-full border border-white/20 bg-white/5 text-xs font-mono uppercase tracking-wider text-neutral-200 hover:text-white hover:border-white transition-all"
-                >
-                  <Globe className="w-3.5 h-3.5 text-[#FF6B35]" />
-                  <span>VISIT LIVE SITE</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 text-neutral-400" />
-                </a>
-              </div>
-            </div>
-
-            {/* Right: Realistic Safari/Chrome Browser Frame with Real Screenshot (7-col) */}
-            <div className="lg:col-span-7">
-              <div className="rounded-3xl bg-[#09090b] border border-white/15 overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.8),0_0_40px_rgba(255,107,53,0.08)] group-hover:border-[#FF6B35]/50 transition-all duration-500">
-                {/* Browser Title Bar */}
-                <div className="flex items-center justify-between px-4 py-3 bg-neutral-900/90 border-b border-white/10">
-                  <div className="flex items-center space-x-2">
-                    <span className="w-3 h-3 rounded-full bg-[#FF5F56]/80" />
-                    <span className="w-3 h-3 rounded-full bg-[#FFBD2E]/80" />
-                    <span className="w-3 h-3 rounded-full bg-[#27C93F]/80" />
-                  </div>
-
-                  <div className="flex items-center space-x-1.5 px-3 py-1 rounded-full bg-black/60 border border-white/10 text-[11px] font-mono text-neutral-300 max-w-[260px] truncate">
-                    <Lock className="w-3 h-3 text-[#27C93F] shrink-0" />
-                    <span className="text-white truncate">https://{project.domain}</span>
-                  </div>
-
-                  <div className="flex items-center space-x-1.5 text-[10px] font-mono text-[#27C93F] uppercase tracking-wider">
-                    <span className="w-2 h-2 rounded-full bg-[#27C93F] animate-pulse" />
-                    <span className="hidden sm:inline">LIVE</span>
-                  </div>
-                </div>
-
-                {/* Real Website Screenshot */}
-                <Link
-                  href={`/work/${project.slug}`}
-                  className="block relative aspect-[16/10] sm:aspect-[16/11] overflow-hidden bg-black"
-                >
-                  <Image
-                    src={project.heroImage}
-                    alt={`${project.title} — ${project.category} website designed and engineered by ApexGen and Subhash Ketagoda`}
-                    fill
-                    className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                    sizes="(max-width: 1024px) 100vw, 60vw"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-40 group-hover:opacity-10 transition-opacity" />
-
-                  <div className="absolute bottom-4 right-4 px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-xs font-mono text-white flex items-center space-x-1.5">
-                    <span>EXPLORE PROJECT</span>
-                    <ArrowRight className="w-3 h-3 text-[#FF6B35]" />
-                  </div>
-                </Link>
-              </div>
-            </div>
-          </motion.article>
-        ))}
+        <p className="max-w-md text-sm sm:text-base text-zinc-400 leading-relaxed font-normal">
+          Real production digital experiences engineered by ApexGen. Handcrafted with zero templates for market authority, conversion, and global speed.
+        </p>
       </div>
 
-      {/* View All Projects Link */}
-      <div className="pt-12 text-center border-t border-white/10">
-        <Link
-          href="/work"
-          className="inline-flex items-center space-x-2 px-8 py-4 rounded-full border border-white/20 text-xs font-mono uppercase tracking-wider text-white hover:bg-white hover:text-black transition-all"
+      {/* Editorial Composition with Visual Rhythm */}
+      <div className="mt-20 sm:mt-28 space-y-32 sm:space-y-44">
+
+        {/* ========================================================
+            PROJECT 01: CARGO PIZZA — Huge Heroic Immersive Showcase
+            ======================================================== */}
+        <motion.article
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+          className="group relative rounded-3xl studio-card hover:border-white/[0.22] transition-all p-6 sm:p-10 lg:p-12 overflow-hidden"
         >
-          <span>EXPLORE COMPLETE PORTFOLIO DOSSIER</span>
-          <ArrowRight className="w-3.5 h-3.5" />
-        </Link>
+          {/* Top Project Header Bar */}
+          <div className="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-white/[0.08]">
+            <div className="flex items-center space-x-4 text-xs font-mono">
+              <span className="text-base text-white font-bold">01</span>
+              <span className="text-zinc-600">/</span>
+              <span className="px-3 py-1 rounded-full bg-white/[0.05] border border-white/[0.08] text-zinc-300">
+                {cargoPizza.category}
+              </span>
+              <span className="text-zinc-600 hidden sm:inline">/</span>
+              <span className="text-zinc-400 hidden sm:inline">{cargoPizza.client}</span>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <a
+                href={cargoPizza.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/[0.06] border border-white/[0.1] text-xs font-mono text-zinc-300 hover:text-white hover:bg-white/[0.1] transition-all"
+              >
+                <span>Live Flagship</span>
+                <ExternalLink className="w-3 h-3 text-zinc-400" />
+              </a>
+            </div>
+          </div>
+
+          {/* Project Title & Narrative */}
+          <div className="my-8 max-w-3xl space-y-3">
+            <h3 className="text-3xl sm:text-5xl lg:text-6xl font-light text-white tracking-tight uppercase group-hover:text-zinc-200 transition-colors">
+              {cargoPizza.title}
+            </h3>
+            <p className="text-base sm:text-lg text-zinc-400 font-normal leading-relaxed">
+              {cargoPizza.description}
+            </p>
+          </div>
+
+          {/* Huge Viewport-Dominating Screenshot */}
+          <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden bg-[#07070a] border border-white/[0.08] shadow-[0_25px_60px_rgba(0,0,0,0.8)] my-8">
+            <Image
+              src={cargoPizza.heroImage || cargoPizza.thumbnail}
+              alt={cargoPizza.title}
+              fill
+              sizes="(max-width: 1280px) 100vw, 1200px"
+              className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+          </div>
+
+          {/* Bottom Highlights & Technology Pills */}
+          <div className="pt-6 border-t border-white/[0.08] flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+            <div className="flex flex-wrap items-center gap-2">
+              {cargoPizza.technologies.map((tech) => (
+                <span
+                  key={tech}
+                  className="px-3 py-1 rounded-full text-xs font-mono bg-white/[0.04] border border-white/[0.08] text-zinc-300"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+
+            <Link
+              href={`/work/${cargoPizza.slug}`}
+              className="inline-flex items-center space-x-2 px-6 py-3 rounded-full bg-white text-black font-medium text-xs tracking-wide hover:bg-zinc-200 transition-all self-start lg:self-auto shrink-0 shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+            >
+              <span>Explore Case Study</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+        </motion.article>
+
+
+        {/* ========================================================
+            PROJECT 02: 69 STUDIO — Asymmetric Offset Studio Presentation
+            ======================================================== */}
+        <motion.article
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+          className="group grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center"
+        >
+          {/* Left: Offset Editorial Details Card (5 cols) */}
+          <div className="lg:col-span-5 p-8 sm:p-10 rounded-3xl studio-card hover:border-white/[0.22] transition-all space-y-6">
+            <div className="flex items-center space-x-4 text-xs font-mono">
+              <span className="text-base text-white font-bold">02</span>
+              <span className="text-zinc-600">/</span>
+              <span className="px-3 py-1 rounded-full bg-white/[0.05] border border-white/[0.08] text-zinc-300">
+                {studio69.category}
+              </span>
+            </div>
+
+            <div className="space-y-3">
+              <h3 className="text-3xl sm:text-5xl font-light text-white tracking-tight uppercase group-hover:text-zinc-200 transition-colors">
+                {studio69.title}
+              </h3>
+              <p className="text-sm sm:text-base text-zinc-400 font-normal leading-relaxed">
+                {studio69.description}
+              </p>
+            </div>
+
+            {/* Delivered Features */}
+            <div className="space-y-2.5 pt-2 border-t border-white/[0.06]">
+              {studio69.deliveredFeatures.slice(0, 3).map((feat, i) => (
+                <div key={i} className="flex items-center space-x-2 text-xs font-mono text-zinc-400">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-white shrink-0" />
+                  <span>{feat}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex flex-wrap gap-2 pt-2">
+              {studio69.technologies.slice(0, 3).map((tech) => (
+                <span
+                  key={tech}
+                  className="px-3 py-1 rounded-full text-[11px] font-mono bg-white/[0.04] border border-white/[0.08] text-zinc-300"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+
+            <div className="pt-4 flex items-center gap-4">
+              <Link
+                href={`/work/${studio69.slug}`}
+                className="inline-flex items-center space-x-2 px-6 py-3 rounded-full bg-white text-black font-medium text-xs tracking-wide hover:bg-zinc-200 transition-all shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+              >
+                <span>View Project</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+              <a
+                href={studio69.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-400 hover:text-white transition-colors"
+              >
+                <span>Visit Live</span>
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            </div>
+          </div>
+
+          {/* Right: Asymmetric Large Screenshot Showcase (7 cols) */}
+          <div className="lg:col-span-7 relative aspect-[16/11] rounded-3xl overflow-hidden studio-card border border-white/[0.1] shadow-[0_30px_70px_rgba(0,0,0,0.85)]">
+            <Image
+              src={studio69.heroImage || studio69.thumbnail}
+              alt={studio69.title}
+              fill
+              sizes="(max-width: 1024px) 100vw, 750px"
+              className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+          </div>
+        </motion.article>
+
+
+        {/* ========================================================
+            PROJECT 03: DINEPRO ADVISORS — Large Immersive Corporate Platform
+            ======================================================== */}
+        <motion.article
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+          className="group relative rounded-3xl studio-card hover:border-white/[0.22] transition-all p-6 sm:p-10 lg:p-12 overflow-hidden"
+        >
+          {/* Top Bar */}
+          <div className="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-white/[0.08]">
+            <div className="flex items-center space-x-4 text-xs font-mono">
+              <span className="text-base text-white font-bold">03</span>
+              <span className="text-zinc-600">/</span>
+              <span className="px-3 py-1 rounded-full bg-white/[0.05] border border-white/[0.08] text-zinc-300">
+                {dinePro.category}
+              </span>
+              <span className="text-zinc-600 hidden sm:inline">/</span>
+              <span className="text-zinc-400 hidden sm:inline">{dinePro.client}</span>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <a
+                href={dinePro.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/[0.06] border border-white/[0.1] text-xs font-mono text-zinc-300 hover:text-white hover:bg-white/[0.1] transition-all"
+              >
+                <span>Live Platform</span>
+                <ExternalLink className="w-3 h-3 text-zinc-400" />
+              </a>
+            </div>
+          </div>
+
+          {/* Project Title & Narrative */}
+          <div className="my-8 max-w-3xl space-y-3">
+            <h3 className="text-3xl sm:text-5xl lg:text-6xl font-light text-white tracking-tight uppercase group-hover:text-zinc-200 transition-colors">
+              {dinePro.title}
+            </h3>
+            <p className="text-base sm:text-lg text-zinc-400 font-normal leading-relaxed">
+              {dinePro.description}
+            </p>
+          </div>
+
+          {/* Wide Panoramic Screenshot */}
+          <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden bg-[#07070a] border border-white/[0.08] shadow-[0_25px_60px_rgba(0,0,0,0.8)] my-8">
+            <Image
+              src={dinePro.heroImage || dinePro.thumbnail}
+              alt={dinePro.title}
+              fill
+              sizes="(max-width: 1280px) 100vw, 1200px"
+              className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+          </div>
+
+          {/* Bottom Highlights & Technologies */}
+          <div className="pt-6 border-t border-white/[0.08] flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+            <div className="flex flex-wrap items-center gap-2">
+              {dinePro.technologies.map((tech) => (
+                <span
+                  key={tech}
+                  className="px-3 py-1 rounded-full text-xs font-mono bg-white/[0.04] border border-white/[0.08] text-zinc-300"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+
+            <Link
+              href={`/work/${dinePro.slug}`}
+              className="inline-flex items-center space-x-2 px-6 py-3 rounded-full bg-white text-black font-medium text-xs tracking-wide hover:bg-zinc-200 transition-all self-start lg:self-auto shrink-0 shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+            >
+              <span>Explore Case Study</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+        </motion.article>
+
       </div>
     </section>
   );

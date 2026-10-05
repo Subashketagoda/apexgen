@@ -1,134 +1,148 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
-import { ArrowUpRight, Compass, Cpu, Target } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
+import { ChromeStar } from '@/components/ui/ChromeStar';
 
 export function HomeTrustIntro() {
+  const statementWords = [
+    'WE',
+    "DON'T",
+    'JUST',
+    'BUILD',
+    'WEBSITES.',
+    'WE',
+    'BUILD',
+    'DIGITAL',
+    'EXPERIENCES',
+    'PEOPLE',
+    'REMEMBER.',
+  ];
+
   const pillars = [
     {
       num: '01',
-      title: 'DESIGN WITH INTENTION',
-      tagline: 'Visual Craft & Editorial Restraint',
-      icon: Compass,
+      title: 'Bespoke Architectural Craft',
+      tagline: 'Zero generic templates or shortcuts',
       description:
-        'We reject generic templates. Every layout, typographic rhythm, and interaction is tailored from blank canvas to reflect the authentic caliber of your business.',
+        'Every line of code and visual interaction is custom-engineered from the ground up to reflect the unrivaled caliber and distinct character of your brand.',
     },
     {
       num: '02',
-      title: 'ENGINEERED FOR SPEED',
-      tagline: 'Next.js & Edge Performance',
-      icon: Cpu,
+      title: 'Next-Gen Speed & Stability',
+      tagline: 'Sub-second edge execution',
       description:
-        'Sub-second page transitions, zero page bloat, and rock-solid mobile ergonomics. Websites engineered to run flawlessly on every screen, everywhere in the world.',
+        'Powered by Next.js 16 and globally distributed edge infrastructure, delivering instantaneous page transitions, 99+ Core Web Vitals, and seamless mobile ergonomics.',
     },
     {
       num: '03',
-      title: 'COMMERCIAL ARCHITECTURE',
-      tagline: 'Conversion & Technical Authority',
-      icon: Target,
+      title: 'Commercial Conversion Engine',
+      tagline: 'Engineered to generate high-value briefs',
       description:
-        'A website must generate inquiries, reservations, and sales. We design frictionless booking funnels, direct WhatsApp checkouts, and rigorous SEO foundations.',
+        'A website must generate inquiries, orders, and contracts. We integrate frictionless WhatsApp checkout flows, automated booking funnels, and corporate-grade SEO.',
     },
   ];
 
   return (
-    <section className="py-24 sm:py-32 md:py-40 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto border-t border-white/10 relative overflow-hidden">
-      {/* Background ambient accent */}
-      <motion.div
-        animate={{ scale: [1, 1.15, 1], opacity: [0.04, 0.08, 0.04] }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[550px] h-[350px] bg-[#FF6B35] blur-[150px] pointer-events-none rounded-full"
-      />
+    <section className="relative py-28 sm:py-36 lg:py-48 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto overflow-hidden">
+      {/* Background Subtle Accent Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-white/[0.02] blur-[140px] pointer-events-none rounded-full" />
+      <div className="absolute right-0 top-12 opacity-30 pointer-events-none hidden lg:block">
+        <ChromeStar size={120} delay={0.4} />
+      </div>
 
-      {/* Editorial Header */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-50px' }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="max-w-4xl space-y-6 mb-20 sm:mb-28"
-      >
-        <div className="inline-flex items-center space-x-2.5 px-3.5 py-1.5 rounded-full border border-[#FF6B35]/30 bg-[#FF6B35]/10 text-xs font-mono text-[#FF6B35] tracking-wider uppercase">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B35] animate-pulse" />
-          <span>STUDIO PHILOSOPHY</span>
-        </div>
+      {/* Section Eyebrow */}
+      <div className="flex items-center space-x-2.5 mb-10">
+        <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+        <span className="text-[11px] font-mono tracking-widest uppercase text-zinc-400">
+          STUDIO MANIFESTO & PHILOSOPHY
+        </span>
+      </div>
 
-        <h2 className="text-3xl sm:text-5xl md:text-7xl font-light tracking-[-0.04em] text-white uppercase font-mono leading-[1.05]">
-          YOUR BUSINESS DESERVES MORE THAN JUST A WEBSITE.
+      {/* Huge Oversized Editorial Typography with Word-by-Word Scroll Reveal */}
+      <div className="max-w-5xl mb-24 sm:mb-32">
+        <h2 className="text-3xl sm:text-5xl md:text-6xl xl:text-7xl font-light tracking-[-0.035em] text-white uppercase leading-[1.08] flex flex-wrap gap-x-4 gap-y-2">
+          {statementWords.map((word, idx) => {
+            const isHighlight = word === 'DIGITAL' || word === 'EXPERIENCES' || word === 'REMEMBER.';
+            return (
+              <motion.span
+                key={idx}
+                initial={{ opacity: 0, y: 35, filter: 'blur(10px)' }}
+                whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{
+                  duration: 0.7,
+                  delay: idx * 0.05,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                className={`inline-block ${
+                  isHighlight ? 'text-white font-medium text-gradient-silver' : 'text-zinc-400'
+                }`}
+              >
+                {word}
+              </motion.span>
+            );
+          })}
         </h2>
 
-        <p className="text-base sm:text-xl text-neutral-400 font-sans leading-relaxed max-w-3xl">
-          Most business websites are treated like digital business cards—static, forgotten, and indistinguishable from competitors. At ApexGen, we approach digital development as high-precision craft: uniting world-class design, modern engineering, and commercial strategy to build platforms that elevate brands and drive tangible growth.
-        </p>
-      </motion.div>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="mt-10 max-w-2xl text-base sm:text-xl text-zinc-400 leading-relaxed font-normal"
+        >
+          Most agency websites look and feel like identical templates. At ApexGen, we engineer bespoke digital environments that command immediate market authority, outpace competitors, and convert casual visitors into lifetime clients.
+        </motion.p>
+      </div>
 
-      {/* 3 Strategic Pillars Grid */}
+      {/* 3 Core Editorial Cards with Refined Charcoal Aesthetics */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-        {pillars.map((pillar, idx) => {
-          const Icon = pillar.icon;
-          return (
-            <motion.div
-              key={pillar.num}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.7, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ y: -6, transition: { duration: 0.25 } }}
-              className="p-8 sm:p-10 rounded-2xl bg-[#0F0F11] border border-white/10 hover:border-[#FF6B35]/50 transition-colors flex flex-col justify-between space-y-8 group relative overflow-hidden shadow-xl"
-            >
-              {/* Subtle hover gradient */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#FF6B35]/10 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+        {pillars.map((pillar, idx) => (
+          <motion.div
+            key={pillar.num}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.7, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
+            whileHover={{ y: -6, transition: { duration: 0.25 } }}
+            className="p-8 sm:p-10 rounded-2xl studio-card hover:border-white/[0.18] transition-all flex flex-col justify-between space-y-8 group relative overflow-hidden"
+          >
+            {/* Soft inner glow on hover */}
+            <div className="absolute top-0 right-0 w-36 h-36 bg-white/[0.03] rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-              <div className="space-y-6 relative z-10">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono text-[#FF6B35] tracking-widest font-bold">
-                    {pillar.num}
-                  </span>
-                  <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 group-hover:border-[#FF6B35]/40 group-hover:bg-[#FF6B35]/10 transition-colors">
-                    <Icon className="w-4 h-4 text-neutral-300 group-hover:text-[#FF6B35] transition-colors" />
-                  </div>
-                </div>
+            <div className="space-y-6 relative z-10">
+              <div className="flex items-center justify-between pb-4 border-b border-white/[0.06]">
+                <span className="text-xs font-mono text-zinc-500 tracking-widest font-semibold group-hover:text-white transition-colors">
+                  {pillar.num}
+                </span>
+                <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-500">
+                  STANDARD
+                </span>
+              </div>
 
-                <div className="space-y-2">
-                  <h3 className="text-xl sm:text-2xl font-light text-white uppercase font-mono tracking-tight group-hover:text-[#FF6B35] transition-colors">
-                    {pillar.title}
-                  </h3>
-                  <p className="text-xs font-mono tracking-wider text-neutral-500 uppercase">
-                    {pillar.tagline}
-                  </p>
-                </div>
-
-                <p className="text-sm text-neutral-400 font-sans leading-relaxed">
-                  {pillar.description}
+              <div className="space-y-2">
+                <h3 className="text-xl sm:text-2xl font-light text-white tracking-tight group-hover:text-zinc-200 transition-colors">
+                  {pillar.title}
+                </h3>
+                <p className="text-xs font-mono tracking-wide text-zinc-500">
+                  {pillar.tagline}
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-white/5 flex items-center text-xs font-mono tracking-wider text-neutral-500 group-hover:text-white transition-colors relative z-10">
-                <span>CRAFTED IN COLOMBO &bull; SCALED GLOBALLY</span>
-              </div>
-            </motion.div>
-          );
-        })}
-      </div>
+              <p className="text-sm text-zinc-400 font-normal leading-relaxed">
+                {pillar.description}
+              </p>
+            </div>
 
-      {/* Direct Invitation Link */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, delay: 0.4 }}
-        className="mt-16 text-center"
-      >
-        <Link
-          href="/about"
-          className="inline-flex items-center space-x-2 text-xs font-mono tracking-widest uppercase text-neutral-400 hover:text-white transition-colors group"
-        >
-          <span>LEARN MORE ABOUT OUR METHODOLOGY &amp; STANDARDS</span>
-          <ArrowUpRight className="w-4 h-4 text-[#FF6B35] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-        </Link>
-      </motion.div>
+            <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono text-zinc-500 group-hover:text-zinc-300 transition-colors">
+              <span>EXPLORE CAPABILITY</span>
+              <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </div>
+          </motion.div>
+        ))}
+      </div>
     </section>
   );
 }

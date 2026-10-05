@@ -1,127 +1,123 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
-import { Hero3DScene } from './Hero3DScene';
 
 export function HeroBackground() {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const layerRef = useRef<{
+    atmosphere: HTMLDivElement | null;
+    grid: HTMLDivElement | null;
+    lightA: HTMLDivElement | null;
+    lightB: HTMLDivElement | null;
+    lightC: HTMLDivElement | null;
+    object: HTMLDivElement | null;
+  }>({
+    atmosphere: null,
+    grid: null,
+    lightA: null,
+    lightB: null,
+    lightC: null,
+    object: null,
+  });
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
 
-    let animationFrameId: number;
-    let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight);
+    const { atmosphere, grid, lightA, lightB, lightC, object } = layerRef.current;
+    if (!atmosphere || !grid || !lightA || !lightB || !lightC || !object) return;
 
-    const mouse = {
-      x: width * 0.5,
-      y: height * 0.35,
-      targetX: width * 0.5,
-      targetY: height * 0.35,
+    const state = {
+      x: 0,
+      y: 0,
+      tx: 0,
+      ty: 0,
+      scroll: 0,
+      targetScroll: 0,
     };
 
-    const handleResize = () => {
-      if (!canvas) return;
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
+    const applyTransforms = () => {
+      const moveX = state.x * 14;
+      const moveY = state.y * 12;
+
+      atmosphere.style.transform = `translate3d(${moveX * 0.4}px, ${moveY * 0.45 + state.scroll * 0.12}px, 0)`;
+      grid.style.transform = `translate3d(${moveX * 0.75}px, ${-state.scroll * 0.12 + moveY * 0.3}px, 0) perspective(1200px) rotateX(72deg)`;
+      lightA.style.transform = `translate3d(${moveX * 0.55}px, ${state.scroll * 0.22 + moveY * 0.45}px, 0)`;
+      lightB.style.transform = `translate3d(${moveX * 0.8}px, ${moveY * 0.7 - state.scroll * 0.18}px, 0)`;
+      lightC.style.transform = `translate3d(${moveX * 0.95}px, ${moveY * 0.65 + state.scroll * 0.27}px, 0)`;
+      object.style.transform = `translate3d(${moveX * 1.2}px, ${moveY * 1.1 - state.scroll * 0.18}px, 0) rotate(${state.x * 11}deg) rotateY(${state.y * 18}deg)`;
     };
 
-    const handleMouseMove = (e: MouseEvent) => {
-      mouse.targetX = e.clientX;
-      mouse.targetY = e.clientY;
+    const handlePointer = (event: PointerEvent) => {
+      state.tx = (event.clientX / window.innerWidth - 0.5) * 2;
+      state.ty = (event.clientY / window.innerHeight - 0.5) * 2;
     };
 
-    window.addEventListener('resize', handleResize);
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
-
-    let time = 0;
-
-    const render = () => {
-      time += 0.006;
-
-      // Smooth mouse lerp
-      mouse.x += (mouse.targetX - mouse.x) * 0.04;
-      mouse.y += (mouse.targetY - mouse.y) * 0.04;
-
-      ctx.clearRect(0, 0, width, height);
-
-      // 1. Interactive Cursor Radial Monochrome Light
-      const ambientGradient = ctx.createRadialGradient(
-        mouse.x,
-        mouse.y,
-        0,
-        mouse.x,
-        mouse.y,
-        Math.max(width, height) * 0.35
-      );
-      ambientGradient.addColorStop(0, 'rgba(255, 255, 255, 0.045)');
-      ambientGradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.01)');
-      ambientGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
-
-      ctx.fillStyle = ambientGradient;
-      ctx.fillRect(0, 0, width, height);
-
-      // 2. Subtle center silver beam
-      const centerGlow = ctx.createRadialGradient(
-        width * 0.5,
-        height * 0.3 + Math.sin(time * 0.6) * 15,
-        0,
-        width * 0.5,
-        height * 0.3,
-        width * 0.45
-      );
-      centerGlow.addColorStop(0, 'rgba(255, 255, 255, 0.025)');
-      centerGlow.addColorStop(0.7, 'rgba(255, 255, 255, 0.005)');
-      centerGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');
-      ctx.fillStyle = centerGlow;
-      ctx.fillRect(0, 0, width, height);
-
-      animationFrameId = requestAnimationFrame(render);
+    const handleScroll = () => {
+      state.targetScroll = window.scrollY * 0.4;
     };
 
-    render();
+    let rafId = 0;
+
+    const tick = () => {
+      state.x += (state.tx - state.x) * 0.06;
+      state.y += (state.ty - state.y) * 0.06;
+      state.scroll += (state.targetScroll - state.scroll) * 0.06;
+      applyTransforms();
+      rafId = window.requestAnimationFrame(tick);
+    };
+
+    window.addEventListener('pointermove', handlePointer, { passive: true });
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    rafId = window.requestAnimationFrame(tick);
 
     return () => {
-      cancelAnimationFrame(animationFrameId);
-      window.removeEventListener('resize', handleResize);
-      window.removeEventListener('mousemove', handleMouseMove);
+      window.cancelAnimationFrame(rafId);
+      window.removeEventListener('pointermove', handlePointer);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
+  const setAtmosphereRef = (node: HTMLDivElement | null) => {
+    layerRef.current.atmosphere = node;
+  };
+
+  const setGridRef = (node: HTMLDivElement | null) => {
+    layerRef.current.grid = node;
+  };
+
+  const setLightARef = (node: HTMLDivElement | null) => {
+    layerRef.current.lightA = node;
+  };
+
+  const setLightBRef = (node: HTMLDivElement | null) => {
+    layerRef.current.lightB = node;
+  };
+
+  const setLightCRef = (node: HTMLDivElement | null) => {
+    layerRef.current.lightC = node;
+  };
+
+  const setObjectRef = (node: HTMLDivElement | null) => {
+    layerRef.current.object = node;
+  };
+
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
-      {/* Cybernetic Blueprint Architectural Grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,#000_70%,transparent_100%)] opacity-70" />
+      <div className="absolute inset-0 bg-[#050507]" />
 
-      {/* Dynamic Luminous Aurora Sweeps */}
-      <div className="absolute -top-[20%] right-[-10%] w-[700px] h-[700px] bg-gradient-to-br from-[#FF5E00]/16 via-[#FF8533]/8 to-transparent rounded-full blur-[150px] pointer-events-none animate-pulse duration-[7000ms]" />
-      <div className="absolute top-[30%] -left-[15%] w-[600px] h-[600px] bg-gradient-to-tr from-[#E64A00]/12 via-[#FF5E00]/6 to-transparent rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute -bottom-[10%] right-[20%] w-[550px] h-[550px] bg-gradient-to-t from-[#FF5E00]/10 via-amber-600/5 to-transparent rounded-full blur-[130px] pointer-events-none" />
+      <div ref={setAtmosphereRef} className="hero-atmosphere" />
+      <div ref={setGridRef} className="hero-grid" />
 
-      {/* 3D WebGL Three.js Interactive Scene */}
-      <Hero3DScene />
+      <div className="hero-noise" />
 
-      {/* Ambient Canvas Lighting */}
-      <canvas ref={canvasRef} className="w-full h-full block opacity-40 mix-blend-screen" />
+      <div ref={setLightARef} className="hero-light trail-a" />
+      <div ref={setLightBRef} className="hero-light trail-b" />
+      <div ref={setLightCRef} className="hero-light trail-c" />
 
-      {/* Architectural Corner HUD Crosshairs & Telemetry */}
-      <div className="absolute top-24 left-6 sm:left-12 flex items-center space-x-2 text-[9px] font-mono tracking-widest text-neutral-600 select-none opacity-60">
-        <span className="text-[#FF5E00] font-bold">+</span>
-        <span className="hidden sm:inline">APX-01 // COORD: 06&deg;55&apos;N</span>
-      </div>
-      <div className="absolute top-24 right-6 sm:right-12 flex items-center space-x-2 text-[9px] font-mono tracking-widest text-neutral-600 select-none opacity-60">
-        <span className="hidden sm:inline">SYS // ARCHITECTURE</span>
-        <span className="text-[#FF5E00] font-bold">+</span>
-      </div>
+      <div ref={setObjectRef} className="hero-object" />
 
-      {/* Film grain texture */}
-      <div className="absolute inset-0 bg-noise opacity-35 pointer-events-none" />
-
-      {/* Top and Bottom soft vignette masks for seamless section transitions */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#050507]/60 via-transparent to-[#050507] pointer-events-none" />
+      <div className="hero-vignette" />
     </div>
   );
 }

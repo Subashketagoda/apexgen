@@ -5,6 +5,7 @@ import { Navbar } from '@/components/ui/Navbar';
 import { Footer } from '@/components/ui/Footer';
 import { CustomCursor } from '@/components/ui/CustomCursor';
 import { ArrowLeft, Compass, Home, Layers, MessageSquare } from 'lucide-react';
+import { siteConfig } from '@/data/siteConfig';
 
 export const metadata: Metadata = {
   title: '404 — Page Not Found | ApexGen Studio',
@@ -79,19 +80,19 @@ export default function NotFound() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/"
-              className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-8 py-3.5 rounded-full bg-[#FF5E00] text-black font-semibold text-xs font-mono tracking-wider uppercase hover:bg-[#FF7A1A] transition-all shadow-[0_0_25px_rgba(255,94,0,0.25)]"
+              className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-8 py-3.5 rounded-full bg-white text-black font-semibold text-xs font-mono tracking-wider uppercase hover:bg-zinc-200 transition-all shadow-[0_0_25px_rgba(255,255,255,0.25)]"
             >
               <ArrowLeft className="w-4 h-4 text-black" />
               <span>Return To Homepage</span>
             </Link>
 
             <a
-              href="https://wa.me/94770289139"
+              href={`https://wa.me/${siteConfig.contact.whatsappNumber.replace(/[^0-9]/g, '')}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3.5 rounded-full border border-white/20 text-neutral-300 font-mono text-xs tracking-wider uppercase hover:text-white hover:border-white transition-all"
+              className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3.5 rounded-full border border-white/20 text-zinc-300 font-mono text-xs tracking-wider uppercase hover:text-white hover:border-white transition-all"
             >
-              <MessageSquare className="w-3.5 h-3.5 text-[#FF5E00]" />
+              <MessageSquare className="w-3.5 h-3.5 text-zinc-300" />
               <span>Contact Studio Support</span>
             </a>
           </div>

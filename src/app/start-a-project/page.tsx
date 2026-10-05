@@ -163,7 +163,7 @@ export default function StartAProjectPage() {
   };
 
   return (
-    <div className="bg-[#050505] text-[#F5F5F5] min-h-screen selection:bg-[#FF5E00] selection:text-white relative">
+    <div className="bg-[#040406] text-[#F5F5F7] min-h-screen selection:bg-white selection:text-black relative">
       <CustomCursor />
       <Navbar />
 

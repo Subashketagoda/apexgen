@@ -87,7 +87,7 @@ export default function PricingPage() {
   };
 
   return (
-    <div className="bg-[#050505] text-[#F5F5F5] min-h-screen selection:bg-[#FF5E00] selection:text-white relative">
+    <div className="bg-[#040406] text-[#F5F5F7] min-h-screen selection:bg-white selection:text-black relative">
       <CustomCursor />
       <Navbar />
 
@@ -103,8 +103,8 @@ export default function PricingPage() {
       <main className="pt-32 sm:pt-44 pb-28 sm:pb-36 overflow-hidden">
         {/* Editorial Header */}
         <section className="px-4 sm:px-6 md:px-12 max-w-7xl mx-auto mb-20 sm:mb-28 text-center">
-          <div className="inline-flex items-center space-x-2.5 px-3.5 py-1.5 rounded-full border border-[#FF5E00]/30 bg-[#FF5E00]/10 text-xs font-mono text-[#FF7A1A] tracking-wider uppercase mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#FF5E00] animate-pulse" />
+          <div className="inline-flex items-center space-x-2.5 px-3.5 py-1.5 rounded-full border border-white/[0.1] bg-white/[0.04] text-xs font-mono text-zinc-300 tracking-wider uppercase mb-6">
+            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
             <span>TRANSPARENT INVESTMENT</span>
           </div>
 
@@ -112,7 +112,7 @@ export default function PricingPage() {
             VALUE-FOCUSED PRICING.
           </h1>
 
-          <p className="text-base sm:text-xl text-neutral-300 font-light max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-xl text-zinc-400 font-light max-w-2xl mx-auto leading-relaxed">
             Predictable milestones backed by clear deliverables. Every package includes 100% full source ownership with zero monthly platform lock-in.
           </p>
         </section>
@@ -124,58 +124,58 @@ export default function PricingPage() {
               <div
                 key={plan.id}
                 className={`relative rounded-3xl p-8 sm:p-10 flex flex-col justify-between transition-all duration-300 ${
-                  plan.isPopular
-                    ? 'bg-neutral-900/90 border-2 border-[#FF5E00]/80 shadow-[0_10px_50px_rgba(255,94,0,0.15)]'
-                    : 'bg-neutral-950/70 border border-white/10 hover:border-white/25'
+                  plan.id === 'premium'
+                    ? 'studio-card-elevated border-white/[0.28] shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_35px_rgba(255,255,255,0.06)]'
+                    : 'studio-card hover:border-white/[0.18]'
                 }`}
               >
-                {/* Popular Badge */}
+                {/* Popular / Flagship Badge */}
                 {plan.badge && (
-                  <div className="absolute top-0 right-8 -translate-y-1/2 px-3.5 py-1 rounded-full bg-[#FF5E00] text-black text-[11px] font-mono font-bold uppercase tracking-wider">
+                  <div className="absolute top-0 right-8 -translate-y-1/2 px-3.5 py-1 rounded-full bg-white text-black text-[11px] font-mono font-bold uppercase tracking-wider shadow-[0_0_15px_rgba(255,255,255,0.3)]">
                     {plan.badge}
                   </div>
                 )}
 
                 <div>
-                  <div className="flex items-center justify-between pb-6 border-b border-white/10">
+                  <div className="flex items-center justify-between pb-6 border-b border-white/[0.08]">
                     <div>
-                      <span className="text-xs font-mono text-neutral-400 uppercase tracking-widest">
+                      <span className="text-xs font-mono text-zinc-400 uppercase tracking-widest">
                         PACKAGE
                       </span>
-                      <h2 className="text-2xl sm:text-3xl font-bold font-mono text-white mt-1">
+                      <h2 className="text-2xl sm:text-3xl font-light font-mono text-white mt-1">
                         {plan.name}
                       </h2>
                     </div>
 
                     <div className="text-right">
-                      <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest block">
+                      <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest block">
                         STARTING AT
                       </span>
-                      <span className="text-2xl sm:text-3xl font-mono font-bold text-[#FF5E00]">
+                      <span className="text-2xl sm:text-3xl font-mono font-light text-white">
                         {plan.price}
                       </span>
                     </div>
                   </div>
 
-                  <p className="text-sm text-neutral-300 font-light my-6 leading-relaxed">
+                  <p className="text-sm text-zinc-300 font-light my-6 leading-relaxed">
                     {plan.valueProposition}
                   </p>
 
                   <div className="space-y-3 mb-8">
-                    <span className="text-[11px] font-mono tracking-widest text-neutral-400 uppercase block">
+                    <span className="text-[11px] font-mono tracking-widest text-zinc-400 uppercase block">
                       DELIVERABLES:
                     </span>
                     {plan.deliverables.map((item, idx) => (
-                      <div key={idx} className="flex items-start space-x-2.5 text-xs sm:text-sm text-neutral-300 font-light">
-                        <Check className="w-4 h-4 text-[#FF5E00] shrink-0 mt-0.5" />
+                      <div key={idx} className="flex items-start space-x-2.5 text-xs sm:text-sm text-zinc-300 font-light">
+                        <Check className="w-4 h-4 text-white shrink-0 mt-0.5" />
                         <span>{item}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div className="pt-6 border-t border-white/10 space-y-3">
-                  <div className="flex items-center justify-between text-xs font-mono text-neutral-400">
+                <div className="pt-6 border-t border-white/[0.08] space-y-3">
+                  <div className="flex items-center justify-between text-xs font-mono text-zinc-400">
                     <span>ESTIMATED SPRINT:</span>
                     <span className="text-white">{plan.timeline}</span>
                   </div>
@@ -183,9 +183,9 @@ export default function PricingPage() {
                   <Link
                     href={plan.ctaHref}
                     className={`w-full py-4 rounded-full font-mono text-xs uppercase tracking-wider font-semibold flex items-center justify-center space-x-2 transition-all cursor-pointer ${
-                      plan.isPopular
-                        ? 'bg-[#FF5E00] text-black hover:bg-[#FF7A1A] shadow-[0_0_25px_rgba(255,94,0,0.3)]'
-                        : 'bg-white text-black hover:bg-neutral-200'
+                      plan.id === 'premium'
+                        ? 'bg-white text-black hover:bg-zinc-200 shadow-[0_0_25px_rgba(255,255,255,0.25)]'
+                        : 'bg-white/[0.06] border border-white/[0.12] text-white hover:bg-white hover:text-black'
                     }`}
                   >
                     <span>{plan.ctaLabel}</span>
@@ -199,21 +199,21 @@ export default function PricingPage() {
 
         {/* CUSTOM PROJECT SECTION */}
         <section className="px-4 sm:px-6 md:px-12 max-w-7xl mx-auto mb-20 sm:mb-28">
-          <div className="p-8 sm:p-14 rounded-3xl bg-neutral-950/80 border border-white/10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="p-8 sm:p-14 rounded-3xl studio-card border-white/[0.1] grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-8 space-y-4">
-              <span className="text-xs font-mono tracking-widest text-[#FF5E00] uppercase block">
+              <span className="text-xs font-mono tracking-widest text-zinc-400 uppercase block">
                 {customProjectDetails.title}
               </span>
               <h3 className="text-2xl sm:text-4xl font-light text-white uppercase font-mono">
                 {customProjectDetails.tagline}
               </h3>
-              <p className="text-sm sm:text-base text-neutral-300 font-light leading-relaxed max-w-2xl">
+              <p className="text-sm sm:text-base text-zinc-300 font-light leading-relaxed max-w-2xl">
                 {customProjectDetails.description}
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                 {customProjectDetails.deliverables.map((item, idx) => (
-                  <div key={idx} className="flex items-center space-x-2 text-xs font-mono text-neutral-300">
-                    <Check className="w-3.5 h-3.5 text-[#FF5E00]" />
+                  <div key={idx} className="flex items-center space-x-2 text-xs font-mono text-zinc-300">
+                    <Check className="w-3.5 h-3.5 text-white" />
                     <span>{item}</span>
                   </div>
                 ))}
@@ -229,14 +229,14 @@ export default function PricingPage() {
               </Link>
 
               <a
-                href={`https://wa.me/94770289139?text=${encodeURIComponent(
+                href={`https://wa.me/${siteConfig.contact.whatsappNumber.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(
                   'Hello ApexGen, I would like to discuss a custom digital project roadmap.'
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-4 rounded-full border border-white/20 bg-white/5 text-neutral-200 font-mono text-xs uppercase tracking-wider font-semibold text-center hover:bg-white/10 transition-colors flex items-center justify-center space-x-2"
+                className="w-full py-4 rounded-full border border-white/20 bg-white/5 text-zinc-200 font-mono text-xs uppercase tracking-wider font-semibold text-center hover:bg-white/10 transition-colors flex items-center justify-center space-x-2"
               >
-                <MessageCircle className="w-4 h-4 text-[#FF5E00]" />
+                <MessageCircle className="w-4 h-4 text-zinc-300" />
                 <span>WhatsApp Senior Partner</span>
               </a>
             </div>

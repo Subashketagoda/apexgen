@@ -14,7 +14,6 @@ import { HomeFeaturedWork } from '@/components/home/HomeFeaturedWork';
 import { HomeProcess } from '@/components/home/HomeProcess';
 import { HomeWhyApexGen } from '@/components/home/HomeWhyApexGen';
 import { HomePricing } from '@/components/home/HomePricing';
-import { HomeVisualShowcase } from '@/components/home/HomeVisualShowcase';
 import { HomeStudioPhilosophy } from '@/components/home/HomeStudioPhilosophy';
 import { HomeFaq } from '@/components/home/HomeFaq';
 import { HomeProjectCta } from '@/components/home/HomeProjectCta';
@@ -45,52 +44,49 @@ export default function Home() {
       <WhatsAppButton />
 
       {/* Main Studio Canvas */}
-      <div className="relative min-h-screen bg-[#080808] text-[#F5F5F5] selection:bg-white selection:text-black">
-        {/* 03 — Polished Header & Sticky Navigation */}
+      <div className="relative min-h-screen bg-[#040406] text-[#F5F5F7] selection:bg-white selection:text-black">
+        {/* Navigation */}
         <Navbar />
 
         <main>
-          {/* 04 — Hero: WE BUILD DIGITAL EXPERIENCES THAT MOVE BUSINESSES FORWARD. */}
+          {/* Hero Section */}
           <HomeHero />
 
-          {/* Continuous Infinite Marquee Strip */}
+          {/* Monochromatic Tech Marquee Strip */}
           <HomeMarquee />
 
-          {/* Agency Proof & Speed Telemetry Strip */}
-          <HomeMetricsStrip />
-
-          {/* 05 — Trust & Intro: YOUR BUSINESS DESERVES MORE THAN JUST A WEBSITE. */}
+          {/* Statement & Intro: WE DON'T JUST BUILD WEBSITES. */}
           <HomeTrustIntro />
 
-          {/* 06 — Services: WHAT WE CREATE (6 Structured Modules) */}
-          <HomeServicesSection />
-
-          {/* 07 — Selected Work: SELECTED WORK. REAL DIGITAL EXPERIENCES. */}
+          {/* Selected Work: Cargo Pizza, 69 Studio, DinePro Advisors */}
           <HomeFeaturedWork />
 
-          {/* 08 — How We Work: FROM IDEA TO DIGITAL EXPERIENCE (5 Sprints) */}
+          {/* Services: 6 Structured Disciplines */}
+          <HomeServicesSection />
+
+          {/* Premium UI Cards: Core Web Vitals, Google Search, Conversion */}
+          <HomeMetricsStrip />
+
+          {/* Process: 01-05 Product Workflow */}
           <HomeProcess />
 
-          {/* 09 — Why ApexGen: BUILT WITH PURPOSE. DESIGNED WITH DETAIL. */}
+          {/* Why ApexGen: MORE THAN A WEBSITE */}
           <HomeWhyApexGen />
 
-          {/* 10 — Pricing: Starter, Business, Premium & Custom Tiers */}
+          {/* Pricing: Starter, Business, Premium SaaS Cards */}
           <HomePricing />
 
-          {/* 11 — Project Experience / Visual Showcase: Live & Studio Concepts */}
-          <HomeVisualShowcase />
-
-          {/* 12 — Studio Philosophy & Standards: Founder Craft Manifesto */}
+          {/* Studio Philosophy: Founder Craft Manifesto */}
           <HomeStudioPhilosophy />
 
-          {/* 13 — FAQ Section: 8 Comprehensive Accordions */}
+          {/* FAQ Section: Clean Dark Accordions */}
           <HomeFaq />
 
-          {/* 14 — Final CTA: HAVE A PROJECT IN MIND? */}
+          {/* Final CTA: LET'S BUILD SOMETHING EXCEPTIONAL */}
           <HomeProjectCta />
         </main>
 
-        {/* 25 — Monolithic Luxury Footer */}
+        {/* Monolithic Luxury Footer with Large APEXGEN Wordmark */}
         <Footer />
       </div>
     </>

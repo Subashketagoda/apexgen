@@ -3,33 +3,34 @@
 import React from 'react';
 
 export function HomeMarquee() {
-  const items = [
-    'BESPOKE FIGMA UI/UX',
-    'NEXT.JS 15 EDGE SPEED',
-    'DIRECT WHATSAPP COMMERCE',
-    'AUTOMATED BOOKING ENGINES',
-    'SUB-SECOND CORE WEB VITALS',
-    'ZERO RECYCLED TEMPLATES',
-    'SRI LANKA & INTERNATIONAL FLAGSHIPS',
-    'TECHNICAL SEO AUTHORITY',
-    'SUBHASH KETAGODA FOUNDER CRAFT',
-    '100% SOURCE CODE OWNERSHIP',
+  const techStack = [
+    { label: 'Next.js 16', detail: 'Edge Architecture' },
+    { label: 'React 19', detail: 'Modern Foundations' },
+    { label: 'Tailwind CSS', detail: 'Precision Design' },
+    { label: 'TypeScript', detail: 'Type-Safe Logic' },
+    { label: 'Framer Motion', detail: 'Fluid Animation' },
+    { label: 'Three.js', detail: '3D Digital Spatial' },
+    { label: 'Vercel Edge', detail: 'Sub-Second CDN' },
+    { label: 'Figma Studio', detail: 'Bespoke UI/UX' },
+    { label: 'Google Search Console', detail: 'Verified Indexing' },
+    { label: 'Schema.org', detail: 'Rich JSON-LD' },
   ];
 
   return (
-    <div className="relative border-y border-white/10 bg-[#0A0A0D] overflow-hidden py-4 sm:py-5 select-none">
-      {/* Background ambient gradient glow */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#FF6B35]/10 via-transparent to-[#FF6B35]/10 pointer-events-none opacity-40" />
-
-      {/* Marquee Track */}
-      <div className="flex w-max animate-marquee space-x-8 items-center">
-        {[...items, ...items, ...items].map((text, idx) => (
-          <div key={idx} className="flex items-center space-x-6 shrink-0">
-            <span className="text-xs sm:text-sm font-mono tracking-[0.25em] text-white/90 uppercase font-semibold flex items-center space-x-2.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B35] animate-pulse" />
-              <span>{text}</span>
-            </span>
-            <span className="text-[#FF6B35]/40 text-xs font-mono">&bull;</span>
+    <div className="relative border-y border-white/[0.08] bg-[#07070a] overflow-hidden py-4 select-none">
+      <div className="flex w-max animate-marquee space-x-12 items-center">
+        {[...techStack, ...techStack, ...techStack].map((item, idx) => (
+          <div key={idx} className="flex items-center space-x-10 shrink-0">
+            <div className="flex items-center space-x-3 text-zinc-400 hover:text-white transition-colors">
+              <span className="w-1.5 h-1.5 rounded-full bg-white/40" />
+              <span className="text-xs sm:text-[13px] font-mono tracking-wider uppercase text-zinc-300 font-medium">
+                {item.label}
+              </span>
+              <span className="text-[11px] font-mono tracking-normal text-zinc-400 lowercase">
+                / {item.detail}
+              </span>
+            </div>
+            <span className="text-zinc-700 text-xs font-mono">✦</span>
           </div>
         ))}
       </div>
@@ -44,7 +45,7 @@ export function HomeMarquee() {
           }
         }
         .animate-marquee {
-          animation: marquee 35s linear infinite;
+          animation: marquee 38s linear infinite;
         }
         .animate-marquee:hover {
           animation-play-state: paused;
