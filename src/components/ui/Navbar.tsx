@@ -36,12 +36,13 @@ export function Navbar() {
     };
   }, [mobileMenuOpen]);
 
-  // Center links per specification: Work, Services, Process, Pricing
+  // Center links matching reference: WORK, CAPABILITIES, PROCESS, PRICING, CONTACT
   const navLinks = [
-    { label: 'Work', href: '/work' },
-    { label: 'Services', href: '/services' },
-    { label: 'Process', href: '/process' },
-    { label: 'Pricing', href: '/pricing' },
+    { label: 'WORK', href: '/work' },
+    { label: 'CAPABILITIES', href: '/services' },
+    { label: 'PROCESS', href: '/process' },
+    { label: 'PRICING', href: '/pricing' },
+    { label: 'CONTACT', href: '/contact' },
   ];
 
   return (
@@ -65,8 +66,8 @@ export function Navbar() {
             <Logo variant="full" size="md" />
           </Link>
 
-          {/* Center: Work, Services, Process, Pricing */}
-          <nav className="hidden md:flex items-center px-6 py-2 rounded-full bg-white/[0.03] border border-white/[0.06] backdrop-blur-md space-x-7 text-[13px] tracking-wide font-normal text-zinc-400">
+          {/* Center: Work, Capabilities, Process, Pricing, Contact */}
+          <nav className="hidden md:flex items-center px-6 py-2 rounded-full bg-white/[0.03] border border-white/[0.06] backdrop-blur-md space-x-7 text-[12px] font-mono tracking-wider text-zinc-400">
             {navLinks.map((link) => {
               const isActive = pathname === link.href || pathname?.startsWith(link.href + '/');
               return (
@@ -74,7 +75,7 @@ export function Navbar() {
                   key={link.label}
                   href={link.href}
                   className={`transition-colors duration-200 py-0.5 relative group inline-block cursor-pointer ${
-                    isActive ? 'text-white font-medium' : 'hover:text-white'
+                    isActive ? 'text-white font-semibold' : 'hover:text-white'
                   }`}
                 >
                   <span>{link.label}</span>
@@ -88,16 +89,16 @@ export function Navbar() {
             })}
           </nav>
 
-          {/* Right: Start a Project CTA Button */}
+          {/* Right: Let's Talk CTA Button */}
           <div className="hidden md:flex items-center space-x-4">
-            <MagneticButton as="div" strength={0.25} ariaLabel="Start a project">
+            <MagneticButton as="div" strength={0.25} ariaLabel="Let's talk">
               <Link
-                href="/start-a-project"
+                href="/contact"
                 onClick={() => trackStartProjectClick('navbar_desktop')}
-                className="group relative inline-flex items-center space-x-2 px-5 py-2.5 rounded-full bg-white text-black text-xs font-medium tracking-wide transition-all duration-300 hover:bg-zinc-200 shadow-[0_0_25px_rgba(255,255,255,0.2)] active:scale-95 cursor-pointer"
+                className="group relative inline-flex items-center space-x-2 px-6 py-2.5 rounded-full btn-glossy-white text-xs font-mono font-semibold tracking-wider transition-all duration-300 active:scale-95 cursor-pointer"
               >
                 <span className="relative z-10 transition-transform duration-300 group-hover:translate-x-0.5">
-                  Start a Project
+                  LET&apos;S TALK
                 </span>
                 <ArrowUpRight className="relative z-10 w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>

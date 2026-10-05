@@ -6,15 +6,15 @@ import { CustomCursor } from '@/components/ui/CustomCursor';
 import { Navbar } from '@/components/ui/Navbar';
 import { WhatsAppButton } from '@/components/ui/WhatsAppButton';
 import { HomeHero } from '@/components/home/HomeHero';
-import { HomeMarquee } from '@/components/home/HomeMarquee';
 import { HomeMetricsStrip } from '@/components/home/HomeMetricsStrip';
-import { HomeTrustIntro } from '@/components/home/HomeTrustIntro';
-import { HomeServicesSection } from '@/components/home/HomeServicesSection';
+import { HomeIntroduction } from '@/components/home/HomeIntroduction';
+import { HomeMarquee3D } from '@/components/home/HomeMarquee3D';
 import { HomeFeaturedWork } from '@/components/home/HomeFeaturedWork';
+import { HomeServicesSection } from '@/components/home/HomeServicesSection';
+import { HomeManifestoStatement } from '@/components/home/HomeManifestoStatement';
 import { HomeProcess } from '@/components/home/HomeProcess';
-import { HomeWhyApexGen } from '@/components/home/HomeWhyApexGen';
 import { HomePricing } from '@/components/home/HomePricing';
-import { HomeStudioPhilosophy } from '@/components/home/HomeStudioPhilosophy';
+import { HomeTechEcosystem } from '@/components/home/HomeTechEcosystem';
 import { HomeFaq } from '@/components/home/HomeFaq';
 import { HomeProjectCta } from '@/components/home/HomeProjectCta';
 import { Footer } from '@/components/ui/Footer';
@@ -34,59 +34,59 @@ export default function Home() {
 
   return (
     <>
-      {/* 07 — Cinematic Loading Experience (APEXGEN 00 — 100) */}
+      {/* 01 — Cinematic Loading Experience (APEXGEN 00 — 100) */}
       <CinematicLoader />
 
-      {/* 27 — Desktop Contextual Custom Cursor */}
+      {/* 02 — Contextual Custom Cursor */}
       <CustomCursor />
 
-      {/* 23 — Centralized Floating WhatsApp Action */}
+      {/* 03 — Floating WhatsApp Action */}
       <WhatsAppButton />
 
-      {/* Main Studio Canvas */}
-      <div className="relative min-h-screen bg-[#040406] text-[#F5F5F7] selection:bg-white selection:text-black">
+      {/* Main Studio Canvas: Cinematic Black Digital Universe */}
+      <div className="relative min-h-screen bg-[#050507] text-[#F5F5F7] selection:bg-white selection:text-black">
         {/* Navigation */}
         <Navbar />
 
         <main>
-          {/* Hero Section */}
+          {/* Section 1: Hero — Signature 3D Centerpiece Digital Core + Editorial Headline */}
           <HomeHero />
 
-          {/* Monochromatic Tech Marquee Strip */}
-          <HomeMarquee />
-
-          {/* Statement & Intro: WE DON'T JUST BUILD WEBSITES. */}
-          <HomeTrustIntro />
-
-          {/* Selected Work: Cargo Pizza, 69 Studio, DinePro Advisors */}
-          <HomeFeaturedWork />
-
-          {/* Services: 6 Structured Disciplines */}
-          <HomeServicesSection />
-
-          {/* Premium UI Cards: Core Web Vitals, Google Search, Conversion */}
+          {/* Section 2: Metrics Strip — Single Sleek Rounded Glass Card */}
           <HomeMetricsStrip />
 
-          {/* Process: 01-05 Product Workflow */}
+          {/* Section 3: Introduction — "WE DON'T BUILD WEBSITES. WE BUILD DIGITAL PRESENCE." */}
+          <HomeIntroduction />
+
+          {/* Section 4: 3D Marquee — Multi-Layer Infinite Typography System */}
+          <HomeMarquee3D />
+
+          {/* Section 5: Selected Work — Asymmetric Editorial Art Gallery */}
+          <HomeFeaturedWork />
+
+          {/* Section 6: Services — Enormous Interactive Vertical List (01–06) with 3D Visual Reveal */}
+          <HomeServicesSection />
+
+          {/* Section 7: Manifesto — Full-Screen Black Statement ("DESIGN IS NOT DECORATION...") */}
+          <HomeManifestoStatement />
+
+          {/* Section 8: Process — Futuristic Vertical Timeline with Glowing Tracking Line */}
           <HomeProcess />
 
-          {/* Why ApexGen: MORE THAN A WEBSITE */}
-          <HomeWhyApexGen />
-
-          {/* Pricing: Starter, Business, Premium SaaS Cards */}
+          {/* Section 9: Pricing — Three Large Vertical Luxury Panels */}
           <HomePricing />
 
-          {/* Studio Philosophy: Founder Craft Manifesto */}
-          <HomeStudioPhilosophy />
+          {/* Section 10: Technology Ecosystem — Spatial 3D Floating Arrangement */}
+          <HomeTechEcosystem />
 
-          {/* FAQ Section: Clean Dark Accordions */}
+          {/* Section 11: FAQ Accordions */}
           <HomeFaq />
 
-          {/* Final CTA: LET'S BUILD SOMETHING EXCEPTIONAL */}
+          {/* Section 12: Final CTA — "LET'S BUILD WHAT'S NEXT." Full Viewport Portal */}
           <HomeProjectCta />
         </main>
 
-        {/* Monolithic Luxury Footer with Large APEXGEN Wordmark */}
+        {/* Monolithic Luxury Footer */}
         <Footer />
       </div>
     </>

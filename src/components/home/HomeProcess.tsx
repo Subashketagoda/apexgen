@@ -1,144 +1,177 @@
 'use client';
 
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { Search, PenTool, Code2, Rocket, TrendingUp, Terminal } from 'lucide-react';
 
 export function HomeProcess() {
-  const [activeStep, setActiveStep] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  const steps = [
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start 0.8', 'end 0.2'],
+  });
+
+  const lineHeight = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
+
+  const processStages = [
     {
-      num: '01',
-      title: 'Discover',
-      duration: 'Sprint 01',
-      tagline: 'Discovery & Commercial Objectives',
-      desc: 'Deep-dive into your business model, competitive landscape, target client psychology, and commercial milestones.',
-      deliverables: ['Competitive Gap Audit', 'Brand Positioning Dossier', 'Technical Discovery Matrix'],
+      code: '01',
+      title: 'DISCOVER',
+      phase: 'PHASE // STRATEGY & INTEL',
+      coordinates: 'SYS_LAT: 06°55\'55"N // SECTOR_01',
+      keywords: ['STRATEGY', 'AUDIENCE', 'POSITIONING', 'CONVERSION FUNNEL'],
+      description:
+        'We deconstruct your business model, competitive landscape, customer psychology, and high-value conversion targets before a single pixel is drawn.',
+      icon: Search,
+      spec: 'METHOD: QUALITATIVE STAKEHOLDER MAPPING & AUDIENCE TAXONOMY',
     },
     {
-      num: '02',
-      title: 'Strategy',
-      duration: 'Sprint 02',
-      tagline: 'Information Architecture & Wireframes',
-      desc: 'Architecting page hierarchies, high-conversion user pathways, editorial messaging direction, and key action funnels.',
-      deliverables: ['Site Architecture Sitemap', 'Conversion Funnel Blueprint', 'Content Outline Strategy'],
+      code: '02',
+      title: 'DESIGN',
+      phase: 'PHASE // ART DIRECTION & ARCHITECTURE',
+      coordinates: 'SYS_LAT: 06°55\'56"N // SECTOR_02',
+      keywords: ['DESIGN SYSTEM', 'TYPOGRAPHY', '3D VISUALS', 'SPATIAL PROTOTYPES'],
+      description:
+        'Crafting an authoritative, bespoke digital identity. Sculpting high-contrast visual tension, editorial typography, custom micro-interactions, and 3D centerpieces.',
+      icon: PenTool,
+      spec: 'DELIVERABLE: 100% BESPOKE FIGMA SYSTEM + INTERACTION DIRECTORY',
     },
     {
-      num: '03',
-      title: 'Design',
-      duration: 'Sprint 03',
-      tagline: 'Bespoke Figma UI/UX & Art Direction',
-      desc: 'Crafting custom art direction, refined typography hierarchies, spatial layout systems, and fluid micro-interaction models.',
-      deliverables: ['High-Fidelity Figma Prototypes', 'Interactive Component Systems', 'Mobile Touch Ergonomics'],
+      code: '03',
+      title: 'BUILD',
+      phase: 'PHASE // TURBOPACK EDGE ENGINEERING',
+      coordinates: 'SYS_LAT: 06°55\'57"N // SECTOR_03',
+      keywords: ['NEXT.JS 16', 'REACT 19', 'TYPESCRIPT', 'THREE.JS / SHADERS'],
+      description:
+        'Zero bloated CMS plugins. Pure edge-rendered Next.js 16 with rigorous TypeScript typing, sub-second TTFB, and 99+ Core Web Vitals across mobile and desktop.',
+      icon: Code2,
+      spec: 'STACK: DISTRIBUTED EDGE RUNTIME • 100% CLIENT SOURCE CODE OWNERSHIP',
     },
     {
-      num: '04',
-      title: 'Develop',
-      duration: 'Sprint 04',
-      tagline: 'Next.js 16 Edge Engineering',
-      desc: 'Hand-coding the platform in Next.js 16 with zero WordPress bloat, sub-second edge CDN caching, and WhatsApp/booking flows.',
-      deliverables: ['Type-Safe Next.js Architecture', 'Framer Motion Micro-Interactions', 'Direct WhatsApp / Booking Engine'],
+      code: '04',
+      title: 'LAUNCH',
+      phase: 'PHASE // PRODUCTION DEPLOYMENT',
+      coordinates: 'SYS_LAT: 06°55\'58"N // SECTOR_04',
+      keywords: ['SCHEMA.ORG', 'DNS HARDENING', 'GSC VERIFIED', 'ZERO DOWNTIME'],
+      description:
+        'Flawless production deployment with custom domain routing, SSL/TLS handshake optimization, Google Search Console entity indexing, and automated sitemaps.',
+      icon: Rocket,
+      spec: 'AUDIT: 100/100 LIGHTHOUSE RUN • FULL SEO ENTITY VALIDATION',
     },
     {
-      num: '05',
-      title: 'Launch',
-      duration: 'Sprint 05',
-      tagline: 'Audit, Search Indexing & Go-Live',
-      desc: 'Rigorous cross-device testing, Google Core Web Vitals 99+ audit, Schema.org verification, and seamless domain launch.',
-      deliverables: ['Google Search Console Indexing', 'Full Source Code Transfer', 'Post-Launch Warranty & Support'],
+      code: '05',
+      title: 'GROW',
+      phase: 'PHASE // TELEMETRY & SCALE',
+      coordinates: 'SYS_LAT: 06°55\'59"N // SECTOR_05',
+      keywords: ['DIRECT WHATSAPP', 'HEATMAPS', 'CONVERSION RATE', 'ENGINEER SUPPORT'],
+      description:
+        'Continuous telemetry monitoring, direct customer acquisition optimization, conversion testing, and dedicated ongoing technical guardianship.',
+      icon: TrendingUp,
+      spec: 'RESULT: SUSTAINED DIGITAL AUTHORITY & CONTINUOUS HIGH REVENUE',
     },
   ];
 
   return (
-    <section id="process" className="py-28 sm:py-36 lg:py-48 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto scroll-mt-24">
-      {/* Section Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between pb-16 sm:pb-20 border-b border-white/[0.08] gap-6">
+    <section
+      ref={containerRef}
+      id="process"
+      className="py-32 sm:py-48 px-4 sm:px-8 md:px-16 max-w-7xl mx-auto scroll-mt-24 relative"
+    >
+      {/* Header */}
+      <div className="flex flex-col lg:flex-row lg:items-end justify-between pb-16 border-b border-white/[0.08] gap-8 mb-24 sm:mb-32">
         <div className="space-y-4 max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[11px] font-mono tracking-widest text-zinc-400 uppercase">
-            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-            <span>PRODUCT WORKFLOW</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[11px] font-mono tracking-widest text-[#8B8B96] uppercase">
+            <Terminal className="w-3.5 h-3.5 text-[#22D3EE]" />
+            <span>04 / DISCIPLINED ENGINEERING PIPELINE</span>
           </div>
-          <h2 className="text-3xl sm:text-5xl md:text-6xl font-light tracking-[-0.035em] text-white uppercase leading-[1.05]">
-            The craft process. <br />
-            <span className="text-gradient-silver font-normal">From concept to production.</span>
+          <h2 className="text-5xl sm:text-7xl lg:text-[7vw] font-black tracking-tight text-[#F5F5F7] uppercase leading-[0.92]">
+            OUR <br />
+            <span className="text-gradient-silver">PROCESS.</span>
           </h2>
         </div>
 
-        <p className="max-w-md text-sm sm:text-base text-zinc-400 leading-relaxed font-normal">
-          A disciplined 5-phase engineering workflow that turns ambitious ideas into high-conversion digital experiences.
+        <p className="max-w-md text-sm sm:text-base text-[#8B8B96] font-light leading-relaxed">
+          Not a marketing template. A battle-tested creative engineering operating system designed for deterministic quality and zero project delays.
         </p>
       </div>
 
-      {/* Process Connecting Timeline & Step Cards */}
-      <div className="mt-16 sm:mt-24 relative">
-        {/* Animated Connecting Line on Desktop */}
-        <div className="hidden lg:block absolute top-7 left-12 right-12 h-px bg-white/[0.1] z-0">
-          <motion.div
-            className="h-full bg-white transition-all duration-500 ease-out"
-            style={{ width: `${(activeStep / (steps.length - 1)) * 100}%` }}
-          />
-        </div>
+      {/* Futuristic Vertical Timeline with Glowing Tracking Line */}
+      <div className="relative pl-6 sm:pl-16 md:pl-24">
+        {/* Continuous Background Vertical Line */}
+        <div className="absolute left-2 sm:left-6 md:left-8 top-0 bottom-0 w-[1.5px] bg-white/[0.08]" />
 
-        {/* 5 Step Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 relative z-10">
-          {steps.map((step, idx) => {
-            const isActive = activeStep === idx;
-            const isCompleted = activeStep > idx;
+        {/* Dynamic Glowing Active Traveling Line */}
+        <motion.div
+          style={{ height: lineHeight }}
+          className="absolute left-2 sm:left-6 md:left-8 top-0 w-[2px] bg-gradient-to-b from-[#3B82F6] via-[#8B5CF6] to-[#C084FC] shadow-[0_0_14px_rgba(59,130,246,0.65)] origin-top"
+        />
+
+        {/* Process Stages */}
+        <div className="space-y-20 sm:space-y-32">
+          {processStages.map((stage, idx) => {
+            const Icon = stage.icon;
 
             return (
               <motion.div
-                key={step.num}
-                initial={{ opacity: 0, y: 25 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.6, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                onMouseEnter={() => setActiveStep(idx)}
-                className={`p-6 sm:p-7 rounded-2xl cursor-pointer transition-all duration-400 flex flex-col justify-between ${
-                  isActive
-                    ? 'studio-card-elevated border-white/[0.25] shadow-[0_20px_45px_rgba(0,0,0,0.8)] -translate-y-2'
-                    : 'studio-card opacity-75 hover:opacity-100'
-                }`}
+                key={stage.code}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: '-80px' }}
+                transition={{ duration: 0.8, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="group relative"
               >
-                <div>
-                  {/* Step Beacon Node */}
-                  <div className="flex items-center justify-between pb-6">
-                    <span
-                      className={`text-xs font-mono font-bold tracking-widest px-2.5 py-1 rounded-full ${
-                        isActive
-                          ? 'bg-white text-black'
-                          : isCompleted
-                          ? 'bg-white/[0.1] text-white'
-                          : 'bg-white/[0.04] text-zinc-500'
-                      }`}
-                    >
-                      {step.num}
-                    </span>
-                    <span className="text-[10px] font-mono tracking-wider text-zinc-400 uppercase">
-                      {step.duration}
-                    </span>
-                  </div>
-
-                  {/* Step Title & Tagline */}
-                  <h3 className="text-xl sm:text-2xl font-light text-white tracking-tight uppercase">
-                    {step.title}
-                  </h3>
-                  <div className="text-[11px] font-mono text-zinc-400 mt-1 mb-4">
-                    {step.tagline}
-                  </div>
-
-                  <p className="text-xs text-zinc-400 leading-relaxed font-normal">
-                    {step.desc}
-                  </p>
+                {/* Node Anchor on the vertical line */}
+                <div className="absolute -left-[30px] sm:-left-[46px] md:-left-[54px] top-2 w-5 h-5 rounded-full bg-[#050507] border-2 border-white/20 group-hover:border-[#8B5CF6] group-hover:shadow-[0_0_16px_rgba(139,92,246,0.8)] transition-all duration-300 flex items-center justify-center">
+                  <div className="w-1.5 h-1.5 rounded-full bg-white group-hover:bg-[#22D3EE]" />
                 </div>
 
-                {/* Deliverables Checklist */}
-                <div className="mt-6 pt-4 border-t border-white/[0.06] space-y-1.5">
-                  {step.deliverables.map((item, i) => (
-                    <div key={i} className="flex items-start gap-1.5 text-[11px] font-mono text-zinc-400">
-                      <span className="text-zinc-600 shrink-0">›</span>
-                      <span>{item}</span>
+                {/* Stage Content Card: Engineering Aesthetic */}
+                <div className="p-8 sm:p-12 rounded-3xl bg-[#0B0B10]/95 border border-white/[0.08] group-hover:border-[#8B5CF6]/35 transition-all duration-500 shadow-[0_20px_50px_rgba(0,0,0,0.85)] space-y-6">
+                  {/* Top Technical Metadata */}
+                  <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-white/[0.06] text-xs font-mono text-zinc-500">
+                    <div className="flex items-center space-x-3">
+                      <span className="text-xl font-bold text-[#F5F5F7] group-hover:text-[#3B82F6] transition-colors">
+                        {stage.code}
+                      </span>
+                      <span>//</span>
+                      <span className="text-zinc-400 uppercase tracking-widest">{stage.phase}</span>
                     </div>
-                  ))}
+
+                    <div className="text-[11px] text-zinc-600 hidden sm:block">
+                      {stage.coordinates}
+                    </div>
+                  </div>
+
+                  {/* Title & Keywords */}
+                  <div className="space-y-4">
+                    <h3 className="text-3xl sm:text-5xl lg:text-6xl font-light text-white uppercase tracking-tight">
+                      {stage.title}
+                    </h3>
+
+                    {/* Keywords Tag Grid */}
+                    <div className="flex flex-wrap gap-2 pt-1">
+                      {stage.keywords.map((kw, i) => (
+                        <span
+                          key={i}
+                          className="px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[11px] font-mono tracking-widest text-zinc-300 uppercase"
+                        >
+                          {kw}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Narrative Description */}
+                  <p className="text-sm sm:text-base text-zinc-400 font-light leading-relaxed max-w-3xl">
+                    {stage.description}
+                  </p>
+
+                  {/* Engineering Specification Footnote */}
+                  <div className="pt-4 border-t border-white/[0.06] flex items-center space-x-2 text-[11px] font-mono text-zinc-500">
+                    <span className="text-[#3B82F6]">&gt;</span>
+                    <span>{stage.spec}</span>
+                  </div>
                 </div>
               </motion.div>
             );

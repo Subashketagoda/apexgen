@@ -3,198 +3,119 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import {
-  ArrowUpRight,
-  Layout,
-  Code2,
-  Sparkles,
-  Search,
-  ShoppingBag,
-  Cpu,
-} from 'lucide-react';
+import { ArrowUpRight, Layers, Cpu, ShoppingBag, Calendar, TrendingUp, Workflow } from 'lucide-react';
 
-interface ServiceItem {
-  number: string;
-  title: string;
-  tagline: string;
-  description: string;
-  deliverables: string[];
-  slug: string;
-  icon: React.ComponentType<{ className?: string }>;
-}
+const services = [
+  {
+    number: '01',
+    title: 'Website Design',
+    description: 'Premium UI/UX and business-focused website experiences.',
+    slug: '/services/web-design',
+    icon: Layers,
+    accent: 'from-[#3B82F6]/40 via-transparent to-[#8B5CF6]/20',
+  },
+  {
+    number: '02',
+    title: 'Website Development',
+    description: 'Responsive, fast, modern websites built for real businesses.',
+    slug: '/services/web-development',
+    icon: Cpu,
+    accent: 'from-[#22D3EE]/30 via-transparent to-[#3B82F6]/25',
+  },
+  {
+    number: '03',
+    title: 'E-commerce',
+    description: 'Online stores and digital shopping experiences.',
+    slug: '/services/ecommerce',
+    icon: ShoppingBag,
+    accent: 'from-[#8B5CF6]/35 via-transparent to-[#3B82F6]/15',
+  },
+  {
+    number: '04',
+    title: 'Booking Systems',
+    description: 'Online appointment and reservation systems.',
+    slug: '/services/digital-solutions',
+    icon: Calendar,
+    accent: 'from-[#C084FC]/30 via-transparent to-[#080B18]',
+  },
+  {
+    number: '05',
+    title: 'SEO Optimization',
+    description: 'Technical SEO and search visibility improvements.',
+    slug: '/services/seo',
+    icon: TrendingUp,
+    accent: 'from-[#3B82F6]/30 via-transparent to-[#22D3EE]/15',
+  },
+  {
+    number: '06',
+    title: 'Business Automation',
+    description: 'Custom digital workflows and business systems.',
+    slug: '/services/digital-solutions',
+    icon: Workflow,
+    accent: 'from-[#8B5CF6]/28 via-transparent to-[#3B82F6]/20',
+  },
+];
 
 export function HomeServicesSection() {
-  const [hoveredIdx, setHoveredIdx] = useState<number | null>(0);
-
-  const services: ServiceItem[] = [
-    {
-      number: '01',
-      title: 'Web Design',
-      tagline: 'Bespoke UI/UX & Digital Brand Flagships',
-      description:
-        'Art-directed visual identity, editorial typography, spatial grids, and interactive Figma systems that command instant authority. Engineered from scratch with zero generic templates.',
-      deliverables: ['Custom Figma Architecture', 'Editorial Typography Systems', 'Mobile Touch Ergonomics', 'Interactive Design Tokens'],
-      slug: '/services/web-design',
-      icon: Layout,
-    },
-    {
-      number: '02',
-      title: 'Web Development',
-      tagline: 'Next.js 16 & Sub-Second Edge Engineering',
-      description:
-        'Production web applications engineered on Next.js 16, React 19, and distributed edge CDN. Clean, maintainable code with full client source code ownership.',
-      deliverables: ['Sub-Second Edge Rendering', 'TypeScript Architecture', 'Core Web Vitals 99+', 'Zero WordPress Bloat'],
-      slug: '/services/web-development',
-      icon: Code2,
-    },
-    {
-      number: '03',
-      title: 'UI/UX Design',
-      tagline: 'Human-Centered Digital Ergonomics',
-      description:
-        'Intuitive interface architectures engineered to guide visitors smoothly from discovery to conversion. Thumb-friendly mobile navigation and friction-free user journeys.',
-      deliverables: ['Conversion Funnel Design', 'Component Design Systems', 'Interactive Prototyping', 'Mobile Gestures & Ergonomics'],
-      slug: '/services/web-design',
-      icon: Sparkles,
-    },
-    {
-      number: '04',
-      title: 'SEO',
-      tagline: 'Technical Search Authority & Discovery',
-      description:
-        'Deep technical SEO architecture, structured Schema.org JSON-LD data, automated XML sitemaps, and Google Search Console optimization for durable search visibility.',
-      deliverables: ['Schema.org JSON-LD Entities', 'Google Search Console Verification', 'Semantic HTML5 Hierarchy', 'OpenGraph & Twitter Card Engine'],
-      slug: '/services/seo',
-      icon: Search,
-    },
-    {
-      number: '05',
-      title: 'E-Commerce',
-      tagline: 'Zero-Commission Transaction Engines',
-      description:
-        'Custom digital storefronts and instant WhatsApp checkout mechanisms that allow businesses to sell directly to consumers without giving up 25–30% in aggregator commissions.',
-      deliverables: ['Direct WhatsApp Cart Engine', 'Dynamic Pricing & Cart Matrix', 'Automated Order Payloads', 'Zero Ongoing Platform Cuts'],
-      slug: '/services/ecommerce',
-      icon: ShoppingBag,
-    },
-    {
-      number: '06',
-      title: 'Digital Solutions',
-      tagline: 'Custom Portals & Automated Workflows',
-      description:
-        'Tailored booking engines, consultation funnels, interactive estimators, and database integrations engineered to streamline business operations and capture leads daily.',
-      deliverables: ['Online Appointment Engines', 'Client Brief Funnels', 'Calendar & CRM Integration', 'Scalable Database Connectors'],
-      slug: '/services/digital-solutions',
-      icon: Cpu,
-    },
-  ];
+  const [active, setActive] = useState(0);
 
   return (
-    <section id="services" className="py-28 sm:py-36 lg:py-48 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto scroll-mt-24">
-      {/* Section Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between pb-16 sm:pb-20 border-b border-white/[0.08] gap-6">
-        <div className="space-y-4 max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[11px] font-mono tracking-widest text-zinc-400 uppercase">
-            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-            <span>DISCIPLINES & CAPABILITIES</span>
-          </div>
-          <h2 className="text-3xl sm:text-5xl md:text-6xl font-light tracking-[-0.035em] text-white uppercase leading-[1.05]">
-            What we create. <br />
-            <span className="text-gradient-silver font-normal">Services engineered for growth.</span>
+    <section id="services" className="relative py-24 sm:py-32 px-4 sm:px-8 md:px-12 max-w-[1600px] mx-auto scroll-mt-24">
+      <div className="absolute inset-0 section-services-bg rounded-[2rem] pointer-events-none" />
+      <div className="absolute right-[8%] top-[12%] w-[420px] h-[420px] rounded-full bg-[#3B82F6]/12 blur-[120px] pointer-events-none" />
+
+      <div className="relative z-10 flex flex-col lg:flex-row lg:items-end justify-between gap-8 pb-14 border-b border-white/[0.08] mb-12 sm:mb-16">
+        <div className="space-y-4 max-w-3xl">
+          <p className="text-[11px] font-mono tracking-[0.22em] uppercase text-zinc-400">What we create</p>
+          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-[-0.045em] uppercase leading-[0.9] text-white">
+            Crafted for businesses that need more than a template.
           </h2>
         </div>
-
-        <p className="max-w-md text-sm sm:text-base text-zinc-400 leading-relaxed font-normal">
-          From full digital flagships to custom conversion infrastructure, our disciplines cover every layer of modern digital execution.
+        <p className="max-w-md text-sm sm:text-base text-zinc-400 leading-relaxed">
+          Six capabilities, one studio: design, engineering, commerce, booking, search, and automation — built as a single digital experience.
         </p>
       </div>
 
-      {/* Interactive Rows / Cards */}
-      <div className="mt-12 sm:mt-16 divide-y divide-white/[0.08]">
+      <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-6">
         {services.map((service, index) => {
           const Icon = service.icon;
-          const isHovered = hoveredIdx === index;
-
+          const isActive = active === index;
           return (
-            <motion.div
+            <motion.article
               key={service.number}
-              onMouseEnter={() => setHoveredIdx(index)}
-              onClick={() => setHoveredIdx(hoveredIdx === index ? null : index)}
-              className={`group transition-all duration-300 py-8 sm:py-10 px-4 sm:px-8 rounded-3xl cursor-pointer ${
-                isHovered ? 'glass-specular border-white/[0.18] shadow-[0_20px_50px_rgba(0,0,0,0.8)]' : 'bg-transparent border border-transparent'
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.7, delay: index * 0.06, ease: [0.16, 1, 0.3, 1] }}
+              onMouseEnter={() => setActive(index)}
+              className={`group relative overflow-hidden rounded-[1.6rem] border p-6 sm:p-7 min-h-[280px] flex flex-col justify-between transition-all duration-500 ${
+                isActive
+                  ? 'border-[#8B5CF6]/45 shadow-[0_24px_80px_rgba(59,130,246,0.16)] -translate-y-1 bg-[#0B0B10]'
+                  : 'border-white/[0.08] bg-[#0B0B10]/80 hover:border-white/20'
               }`}
             >
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-                
-                {/* Number & Title */}
-                <div className="lg:col-span-4 flex items-center space-x-6">
-                  <span
-                    className={`text-sm sm:text-base font-mono transition-colors duration-300 ${
-                      isHovered ? 'text-white font-bold' : 'text-zinc-500'
-                    }`}
-                  >
-                    {service.number}
-                  </span>
-                  
-                  <div className="flex items-center space-x-3">
-                    <div
-                      className={`p-2.5 rounded-xl transition-all duration-300 ${
-                        isHovered
-                          ? 'bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.4)]'
-                          : 'bg-white/[0.04] text-zinc-400 border border-white/[0.06]'
-                      }`}
-                    >
-                      <Icon className="w-4 h-4" />
-                    </div>
-                    <h3 className="text-2xl sm:text-3xl font-light text-white tracking-tight uppercase group-hover:text-white transition-colors">
-                      {service.title}
-                    </h3>
-                  </div>
-                </div>
+              <div className={`absolute inset-0 bg-gradient-to-br ${service.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-700`} />
+              <div className="service-card-visual absolute -right-10 -top-10 w-48 h-48 rounded-full blur-2xl opacity-70 group-hover:scale-125 group-hover:opacity-100 transition-all duration-700" />
 
-                {/* Description & Deliverables */}
-                <div className="lg:col-span-6 space-y-3">
-                  <p className="text-sm text-zinc-400 font-normal leading-relaxed">
-                    {service.description}
-                  </p>
-                  
-                  <div className="flex flex-wrap gap-2 pt-1">
-                    {service.deliverables.map((item, i) => (
-                      <span
-                        key={i}
-                        className={`text-[11px] font-mono px-3 py-1 rounded-full transition-colors ${
-                          isHovered 
-                            ? 'text-zinc-200 bg-white/[0.08] border border-white/[0.14]' 
-                            : 'text-zinc-400 bg-white/[0.03] border border-white/[0.06]'
-                        }`}
-                      >
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Action Arrow */}
-                <div className="lg:col-span-2 flex items-center justify-end">
-                  <Link
-                    href={service.slug}
-                    className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-mono tracking-wider transition-all duration-300 ${
-                      isHovered
-                        ? 'btn-glossy-white font-semibold'
-                        : 'text-zinc-400 border border-white/[0.08] bg-white/[0.03] hover:text-white hover:border-white/[0.2]'
-                    }`}
-                  >
-                    <span>EXPLORE</span>
-                    <ArrowUpRight
-                      className={`w-3.5 h-3.5 transition-transform duration-300 ${
-                        isHovered ? 'translate-x-0.5 -translate-y-0.5' : ''
-                      }`}
-                    />
-                  </Link>
-                </div>
-
+              <div className="relative z-10 flex items-start justify-between">
+                <span className="font-mono text-sm text-[#3B82F6]">{service.number}</span>
+                <span className="w-11 h-11 rounded-2xl border border-white/10 bg-white/[0.04] flex items-center justify-center text-sky-200 group-hover:border-[#8B5CF6]/50 group-hover:shadow-[0_0_24px_rgba(139,92,246,0.35)] transition-all">
+                  <Icon className="w-5 h-5" />
+                </span>
               </div>
-            </motion.div>
+
+              <div className="relative z-10 space-y-3 pt-10">
+                <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight text-white">{service.title}</h3>
+                <p className="text-sm text-zinc-400 leading-relaxed max-w-sm">{service.description}</p>
+                <Link
+                  href={service.slug}
+                  className="inline-flex items-center gap-1.5 pt-2 text-[11px] font-mono uppercase tracking-widest text-zinc-300 group-hover:text-white"
+                >
+                  Explore service
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
+            </motion.article>
           );
         })}
       </div>

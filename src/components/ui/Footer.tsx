@@ -38,7 +38,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-[#030305] text-[#f5f5f7] pt-24 sm:pt-32 pb-12 border-t border-white/[0.08] relative overflow-hidden select-none">
+    <footer className="bg-[#050507] text-[#F5F5F7] pt-24 sm:pt-32 pb-12 border-t border-white/[0.08] relative overflow-hidden select-none">
       {/* Background Architectural Grid */}
       <div className="absolute inset-0 studio-grid pointer-events-none opacity-15" />
 
@@ -50,7 +50,7 @@ export function Footer() {
             <Link href="/" className="inline-block" aria-label="ApexGen Home">
               <Logo variant="full" size="lg" />
             </Link>
-            <p className="text-base sm:text-lg text-zinc-300 font-light max-w-md">
+            <p className="text-base sm:text-lg text-[#8B8B96] font-light max-w-md">
               Digital experiences built for ambitious businesses.
             </p>
           </div>
@@ -58,7 +58,7 @@ export function Footer() {
           <div className="flex items-center gap-4">
             <Link
               href="/start-a-project"
-              className="px-6 py-3 rounded-full bg-white text-black text-xs font-mono tracking-wider uppercase font-semibold hover:bg-zinc-200 transition-all shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+              className="px-6 py-3 rounded-full btn-physical-white text-xs font-mono tracking-wider uppercase font-semibold transition-all shadow-[0_0_20px_rgba(255,255,255,0.2)]"
             >
               Start a Project
             </Link>
