@@ -120,8 +120,8 @@ export function HomeServicesSection() {
               key={service.number}
               onMouseEnter={() => setHoveredIdx(index)}
               onClick={() => setHoveredIdx(hoveredIdx === index ? null : index)}
-              className={`group transition-all duration-300 py-8 sm:py-10 px-4 sm:px-8 rounded-2xl cursor-pointer ${
-                isHovered ? 'bg-[#0c0c12] border border-white/[0.12] shadow-[0_15px_35px_rgba(0,0,0,0.6)]' : 'bg-transparent border border-transparent'
+              className={`group transition-all duration-300 py-8 sm:py-10 px-4 sm:px-8 rounded-3xl cursor-pointer ${
+                isHovered ? 'glass-specular border-white/[0.18] shadow-[0_20px_50px_rgba(0,0,0,0.8)]' : 'bg-transparent border border-transparent'
               }`}
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
@@ -138,9 +138,9 @@ export function HomeServicesSection() {
                   
                   <div className="flex items-center space-x-3">
                     <div
-                      className={`p-2 rounded-xl transition-all duration-300 ${
+                      className={`p-2.5 rounded-xl transition-all duration-300 ${
                         isHovered
-                          ? 'bg-white text-black'
+                          ? 'bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.4)]'
                           : 'bg-white/[0.04] text-zinc-400 border border-white/[0.06]'
                       }`}
                     >
@@ -162,7 +162,11 @@ export function HomeServicesSection() {
                     {service.deliverables.map((item, i) => (
                       <span
                         key={i}
-                        className="text-[11px] font-mono text-zinc-400 bg-white/[0.03] border border-white/[0.06] px-2.5 py-0.5 rounded-full"
+                        className={`text-[11px] font-mono px-3 py-1 rounded-full transition-colors ${
+                          isHovered 
+                            ? 'text-zinc-200 bg-white/[0.08] border border-white/[0.14]' 
+                            : 'text-zinc-400 bg-white/[0.03] border border-white/[0.06]'
+                        }`}
                       >
                         {item}
                       </span>
@@ -174,10 +178,10 @@ export function HomeServicesSection() {
                 <div className="lg:col-span-2 flex items-center justify-end">
                   <Link
                     href={service.slug}
-                    className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-mono tracking-wider transition-all duration-300 ${
+                    className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-mono tracking-wider transition-all duration-300 ${
                       isHovered
-                        ? 'bg-white text-black font-medium'
-                        : 'text-zinc-400 group-hover:text-white'
+                        ? 'btn-glossy-white font-semibold'
+                        : 'text-zinc-400 border border-white/[0.08] bg-white/[0.03] hover:text-white hover:border-white/[0.2]'
                     }`}
                   >
                     <span>EXPLORE</span>

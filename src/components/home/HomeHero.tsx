@@ -72,7 +72,7 @@ export function HomeHero() {
               <Link
                 href="/start-a-project"
                 onClick={() => trackStartProjectClick('hero_primary')}
-                className="group inline-flex items-center space-x-2.5 px-8 py-4 rounded-full bg-white text-black text-sm font-medium tracking-wide transition-all duration-300 hover:bg-zinc-200 hover:scale-[1.02] shadow-[0_0_30px_rgba(255,255,255,0.25)] active:scale-95"
+                className="group inline-flex items-center space-x-2.5 px-8 py-4 rounded-full btn-glossy-white text-sm font-medium tracking-wide active:scale-95 cursor-pointer"
               >
                 <span>Start a Project</span>
                 <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -80,7 +80,7 @@ export function HomeHero() {
 
               <Link
                 href="/work"
-                className="group inline-flex items-center space-x-2.5 px-8 py-4 rounded-full bg-white/[0.05] border border-white/[0.12] text-white text-sm font-medium tracking-wide backdrop-blur-md transition-all duration-300 hover:bg-white/[0.1] hover:border-white/[0.25] hover:scale-[1.02] active:scale-95"
+                className="group inline-flex items-center space-x-2.5 px-8 py-4 rounded-full btn-glossy-dark text-sm font-medium tracking-wide active:scale-95 cursor-pointer"
               >
                 <span>View Our Work</span>
                 <ArrowUpRight className="w-4 h-4 text-zinc-400 transition-all duration-300 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -104,32 +104,33 @@ export function HomeHero() {
             </div>
           </motion.div>
 
-          {/* RIGHT: Interactive Abstract Digital Visual with Chrome 3D Stars & Floating Glass UI Panels */}
+          {/* RIGHT: Interactive 3D Perspective Digital Flagship Showcase with Chrome Stars & Specular Halo */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5 xl:col-span-5 relative min-h-[460px] sm:min-h-[540px] flex items-center justify-center"
+            className="lg:col-span-5 xl:col-span-5 relative min-h-[480px] sm:min-h-[560px] flex items-center justify-center perspective-1200 preserve-3d"
             style={{
-              transform: `translate3d(${mousePos.x * 0.3}px, ${mousePos.y * 0.3}px, 0)`,
+              transform: `translate3d(${mousePos.x * 0.25}px, ${mousePos.y * 0.25}px, 0)`,
             }}
           >
-            {/* Ambient Chrome Flare Background */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-white/[0.03] to-transparent rounded-3xl blur-2xl pointer-events-none" />
+            {/* Luminous Specular Halo behind 3D Chrome Geometry */}
+            <div className="absolute top-0 right-10 w-72 h-72 rounded-full bg-white/[0.08] blur-[80px] pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-white/[0.04] to-transparent rounded-3xl blur-3xl pointer-events-none" />
 
             {/* Iconic 3D Metallic Chrome Stars from Reference Image */}
-            <div className="absolute -top-6 right-4 z-20">
-              <ChromeStar size={150} delay={0.3} />
+            <div className="absolute -top-10 right-2 z-20 pointer-events-none chrome-glow">
+              <ChromeStar size={165} delay={0.2} />
             </div>
-            <div className="absolute top-28 right-36 z-10 opacity-70">
-              <ChromeStar size={75} delay={0.6} reverse />
+            <div className="absolute top-32 right-36 z-10 opacity-70 pointer-events-none">
+              <ChromeStar size={80} delay={0.5} reverse />
             </div>
 
-            {/* Floating Glass Panel 1: Live Core Web Vitals & Performance Telemetry */}
+            {/* Floating Glass Pill 1: Live Core Web Vitals & Performance Telemetry */}
             <motion.div
-              animate={{ y: [0, -8, 0] }}
+              animate={{ y: [0, -10, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute top-4 left-0 sm:-left-4 z-30 w-64 p-4 rounded-2xl studio-card-elevated"
+              className="absolute top-6 left-0 sm:-left-6 z-30 w-64 p-4 rounded-2xl glass-specular"
             >
               <div className="flex items-center justify-between pb-2 border-b border-white/[0.08]">
                 <div className="flex items-center gap-2">
@@ -138,7 +139,7 @@ export function HomeHero() {
                     Core Web Vitals
                   </span>
                 </div>
-                <span className="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+                <span className="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20 font-semibold">
                   99/100
                 </span>
               </div>
@@ -161,25 +162,25 @@ export function HomeHero() {
               </div>
             </motion.div>
 
-            {/* Floating Glass Panel 2: Live Project Screenshot Preview (Cargo Pizza / 69 Studio) */}
+            {/* 3D Isometric Flagship Browser Preview */}
             <motion.div
-              className="relative z-10 w-full max-w-[380px] sm:max-w-[420px] rounded-2xl overflow-hidden studio-card border border-white/[0.14] shadow-[0_30px_70px_rgba(0,0,0,0.9)] transition-all duration-500"
+              className="relative z-10 w-full max-w-[390px] sm:max-w-[430px] rounded-2xl overflow-hidden glass-specular border border-white/[0.18] shadow-[0_35px_80px_rgba(0,0,0,0.95),0_0_30px_rgba(255,255,255,0.05)] transition-all duration-700 preserve-3d"
               style={{
-                transform: `rotateY(${mousePos.x * 0.4}deg) rotateX(${-mousePos.y * 0.4}deg)`,
+                transform: `rotateY(${-8 + mousePos.x * 0.3}deg) rotateX(${6 - mousePos.y * 0.3}deg)`,
               }}
             >
-              {/* Card Header */}
-              <div className="px-4 py-3 bg-white/[0.03] border-b border-white/[0.08] flex items-center justify-between">
+              {/* Card Header with specular hairline */}
+              <div className="px-4 py-3 bg-white/[0.04] border-b border-white/[0.08] flex items-center justify-between">
                 <div className="flex items-center space-x-2">
-                  <div className="w-2.5 h-2.5 rounded-full bg-white/20" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-white/20" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-white/20" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-white/25" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-white/25" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-white/25" />
                   <span className="ml-2 text-[11px] font-mono text-zinc-400">
                     {activeProject.domain}
                   </span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400">
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-300 font-medium">
                     {activeProject.client}
                   </span>
                 </div>
@@ -191,20 +192,20 @@ export function HomeHero() {
                   src={activeProject.heroImage || activeProject.thumbnail}
                   alt={activeProject.title}
                   fill
-                  sizes="(max-width: 768px) 100vw, 420px"
+                  sizes="(max-width: 768px) 100vw, 430px"
                   className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
                   priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
                 
                 {/* Project Badge overlay */}
                 <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs">
-                  <span className="px-2.5 py-1 rounded-md bg-black/75 backdrop-blur-md text-white font-mono text-[11px] border border-white/10">
+                  <span className="px-2.5 py-1 rounded-md bg-black/80 backdrop-blur-md text-white font-mono text-[11px] border border-white/15 shadow-lg">
                     {activeProject.title}
                   </span>
                   <Link
                     href={`/work/${activeProject.slug}`}
-                    className="inline-flex items-center gap-1 px-3 py-1 rounded-md bg-white text-black font-medium text-[11px] hover:bg-zinc-200 transition-colors"
+                    className="inline-flex items-center gap-1 px-3 py-1 rounded-md bg-white text-black font-semibold text-[11px] hover:bg-zinc-200 transition-colors shadow-md"
                   >
                     <span>Inspect</span>
                     <ArrowUpRight className="w-3 h-3" />
@@ -222,8 +223,8 @@ export function HomeHero() {
                       onClick={() => setActiveProjectIdx(idx)}
                       className={`px-2.5 py-1 rounded-md text-[10px] font-mono transition-all cursor-pointer ${
                         activeProjectIdx === idx
-                          ? 'bg-white text-black font-semibold'
-                          : 'bg-white/[0.05] text-zinc-400 hover:text-white'
+                          ? 'bg-white text-black font-bold shadow-[0_0_12px_rgba(255,255,255,0.4)]'
+                          : 'bg-white/[0.06] text-zinc-400 hover:text-white hover:bg-white/[0.1]'
                       }`}
                     >
                       0{idx + 1}
@@ -233,24 +234,24 @@ export function HomeHero() {
               </div>
             </motion.div>
 
-            {/* Floating Glass Panel 3: Google Search Console / High-Conversion Metric Card */}
+            {/* Floating Glass Pill 2: Direct WhatsApp Conversion Telemetry */}
             <motion.div
-              animate={{ y: [0, 8, 0] }}
+              animate={{ y: [0, 10, 0] }}
               transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-              className="absolute -bottom-4 right-0 sm:-right-6 z-30 p-3.5 rounded-2xl studio-card-elevated max-w-[240px]"
+              className="absolute -bottom-5 right-0 sm:-right-8 z-30 p-4 rounded-2xl glass-specular max-w-[250px] shadow-2xl"
             >
               <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-xl bg-white/[0.08] border border-white/[0.12] flex items-center justify-center shrink-0">
-                  <Activity className="w-4 h-4 text-white" />
+                <div className="w-9 h-9 rounded-xl bg-white/[0.08] border border-white/[0.14] flex items-center justify-center shrink-0">
+                  <Activity className="w-4 h-4 text-emerald-400" />
                 </div>
                 <div>
-                  <div className="text-xs font-medium text-white">Direct WhatsApp Inquiries</div>
+                  <div className="text-xs font-semibold text-white">Direct WhatsApp Inquiries</div>
                   <div className="text-[10px] font-mono text-zinc-400">Zero-Friction Conversion</div>
                 </div>
               </div>
               <div className="mt-2.5 pt-2 border-t border-white/[0.08] flex items-center justify-between text-[11px] font-mono">
                 <span className="text-zinc-500">Platform Cut</span>
-                <span className="text-emerald-400 font-semibold">0% Commission</span>
+                <span className="text-emerald-400 font-bold">0% Commission</span>
               </div>
             </motion.div>
 
