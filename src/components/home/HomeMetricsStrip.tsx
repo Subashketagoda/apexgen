@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Search, Code2 } from 'lucide-react';
+import { SpotlightCard } from '@/components/ui/SpotlightCard';
 
 export function HomeMetricsStrip() {
   return (
@@ -34,8 +35,9 @@ export function HomeMetricsStrip() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="md:col-span-7 p-6 sm:p-8 rounded-3xl studio-card hover:border-white/[0.18] transition-all flex flex-col justify-between relative group overflow-hidden"
+          className="md:col-span-7"
         >
+          <SpotlightCard className="p-6 sm:p-8 flex flex-col justify-between h-full">
           <div className="flex items-center justify-between pb-4 border-b border-white/[0.06]">
             <div className="flex items-center space-x-2.5">
               <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
@@ -96,6 +98,7 @@ export function HomeMetricsStrip() {
             <span>AUDIT TARGET: GOOGLE SPEED RANKING</span>
             <span className="text-zinc-300">EDGE CDN VERIFIED</span>
           </div>
+          </SpotlightCard>
         </motion.div>
 
         {/* Card 2: Google Search Console & Schema Integration (MD 5 cols) */}
@@ -104,44 +107,46 @@ export function HomeMetricsStrip() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="md:col-span-5 p-6 sm:p-8 rounded-3xl studio-card hover:border-white/[0.18] transition-all flex flex-col justify-between relative group overflow-hidden"
+          className="md:col-span-5"
         >
-          <div className="flex items-center justify-between pb-4 border-b border-white/[0.06]">
-            <div className="flex items-center space-x-2">
-              <Search className="w-4 h-4 text-zinc-400" />
-              <span className="text-xs font-mono tracking-wider text-zinc-300 uppercase">
-                Search Authority
-              </span>
-            </div>
-            <span className="text-[10px] font-mono text-zinc-400">INDEX READY</span>
-          </div>
-
-          {/* Interactive Google Console Pill from Reference Image */}
-          <div className="my-6 p-5 rounded-2xl bg-white/[0.03] border border-white/[0.08] relative">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-white/[0.06] flex items-center justify-center font-bold text-white text-sm">
-                  G
-                </div>
-                <div>
-                  <div className="text-sm font-medium text-white">Google Search Console</div>
-                  <div className="text-[11px] font-mono text-zinc-400">Rich Snippets & Structured Data</div>
-                </div>
+          <SpotlightCard className="p-6 sm:p-8 flex flex-col justify-between h-full">
+            <div className="flex items-center justify-between pb-4 border-b border-white/[0.06]">
+              <div className="flex items-center space-x-2">
+                <Search className="w-4 h-4 text-zinc-400" />
+                <span className="text-xs font-mono tracking-wider text-zinc-300 uppercase">
+                  Search Authority
+                </span>
               </div>
-              <div className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
+              <span className="text-[10px] font-mono text-zinc-400">INDEX READY</span>
             </div>
 
-            {/* Click/Cursor Indicator */}
-            <div className="mt-4 pt-3 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-mono">
-              <span className="text-zinc-400">Schema.org JSON-LD</span>
-              <span className="text-emerald-400 font-semibold">100% Validated</span>
-            </div>
-          </div>
+            {/* Interactive Google Console Pill from Reference Image */}
+            <div className="my-6 p-5 rounded-2xl bg-white/[0.03] border border-white/[0.08] relative group-hover:border-white/[0.18] transition-colors">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-white/[0.06] flex items-center justify-center font-bold text-white text-sm">
+                    G
+                  </div>
+                  <div>
+                    <div className="text-sm font-medium text-white">Google Search Console</div>
+                    <div className="text-[11px] font-mono text-zinc-400">Rich Snippets & Structured Data</div>
+                  </div>
+                </div>
+                <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
+              </div>
 
-          <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono text-zinc-400">
-            <span>METADATA & ROBOTS</span>
-            <span className="text-zinc-300">AUTO-GENERATED SITEMAP</span>
-          </div>
+              {/* Click/Cursor Indicator */}
+              <div className="mt-4 pt-3 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-mono">
+                <span className="text-zinc-400">Schema.org JSON-LD</span>
+                <span className="text-emerald-400 font-semibold">100% Validated</span>
+              </div>
+            </div>
+
+            <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono text-zinc-400">
+              <span>METADATA & ROBOTS</span>
+              <span className="text-zinc-300">AUTO-GENERATED SITEMAP</span>
+            </div>
+          </SpotlightCard>
         </motion.div>
 
         {/* Card 3: Direct WhatsApp Inquiries & 0% Platform Commission (MD 5 cols) */}
@@ -150,39 +155,41 @@ export function HomeMetricsStrip() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="md:col-span-5 p-6 sm:p-8 rounded-3xl studio-card hover:border-white/[0.18] transition-all flex flex-col justify-between relative group overflow-hidden"
+          className="md:col-span-5"
         >
-          <div className="flex items-center justify-between pb-4 border-b border-white/[0.06]">
-            <span className="text-xs font-mono tracking-wider text-zinc-300 uppercase">
-              Commercial Conversion
-            </span>
-            <span className="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
-              DIRECT CHANNEL
-            </span>
-          </div>
+          <SpotlightCard className="p-6 sm:p-8 flex flex-col justify-between h-full">
+            <div className="flex items-center justify-between pb-4 border-b border-white/[0.06]">
+              <span className="text-xs font-mono tracking-wider text-zinc-300 uppercase">
+                Commercial Conversion
+              </span>
+              <span className="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
+                DIRECT CHANNEL
+              </span>
+            </div>
 
-          <div className="my-6">
-            <div className="text-4xl sm:text-5xl font-light text-white tracking-tight">0%</div>
-            <div className="text-sm font-medium text-zinc-200 mt-1">Platform Commission</div>
-            <p className="text-xs text-zinc-400 mt-2 leading-relaxed">
-              No aggregator cuts, no third-party lock-in. Orders and client inquiries route straight into WhatsApp or booking calendars.
-            </p>
-          </div>
+            <div className="my-6">
+              <div className="text-4xl sm:text-5xl font-light text-white tracking-tight">0%</div>
+              <div className="text-sm font-medium text-zinc-200 mt-1">Platform Commission</div>
+              <p className="text-xs text-zinc-400 mt-2 leading-relaxed">
+                No aggregator cuts, no third-party lock-in. Orders and client inquiries route straight into WhatsApp or booking calendars.
+              </p>
+            </div>
 
-          {/* Floating Pill Badges */}
-          <div className="flex flex-wrap gap-2 pt-2">
-            <span className="px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[11px] font-mono text-zinc-300">
-              Direct Inquiries
-            </span>
-            <span className="px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[11px] font-mono text-zinc-300">
-              One-Thumb Mobile UX
-            </span>
-          </div>
+            {/* Floating Pill Badges */}
+            <div className="flex flex-wrap gap-2 pt-2">
+              <span className="px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[11px] font-mono text-zinc-300 group-hover:border-white/20 transition-colors">
+                Direct Inquiries
+              </span>
+              <span className="px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[11px] font-mono text-zinc-300 group-hover:border-white/20 transition-colors">
+                One-Thumb Mobile UX
+              </span>
+            </div>
 
-          <div className="pt-4 mt-6 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono text-zinc-400">
-            <span>CLIENT OWNERSHIP</span>
-            <span className="text-zinc-300">100% DIRECT CHATS</span>
-          </div>
+            <div className="pt-4 mt-6 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono text-zinc-400">
+              <span>CLIENT OWNERSHIP</span>
+              <span className="text-zinc-300">100% DIRECT CHATS</span>
+            </div>
+          </SpotlightCard>
         </motion.div>
 
         {/* Card 4: Modern Next.js 16 Stack & Clean Source Code (MD 7 cols) */}
@@ -191,37 +198,39 @@ export function HomeMetricsStrip() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-          className="md:col-span-7 p-6 sm:p-8 rounded-3xl studio-card hover:border-white/[0.18] transition-all flex flex-col justify-between relative group overflow-hidden"
+          className="md:col-span-7"
         >
-          <div className="flex items-center justify-between pb-4 border-b border-white/[0.06]">
-            <div className="flex items-center space-x-2">
-              <Code2 className="w-4 h-4 text-zinc-400" />
-              <span className="text-xs font-mono tracking-wider text-zinc-300 uppercase">
-                Next-Gen Tech Standards
-              </span>
+          <SpotlightCard className="p-6 sm:p-8 flex flex-col justify-between h-full">
+            <div className="flex items-center justify-between pb-4 border-b border-white/[0.06]">
+              <div className="flex items-center space-x-2">
+                <Code2 className="w-4 h-4 text-zinc-400" />
+                <span className="text-xs font-mono tracking-wider text-zinc-300 uppercase">
+                  Next-Gen Tech Standards
+                </span>
+              </div>
+              <span className="text-[10px] font-mono text-zinc-400">NO WP BLOAT</span>
             </div>
-            <span className="text-[10px] font-mono text-zinc-400">NO WP BLOAT</span>
-          </div>
 
-          <div className="my-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div>
-              <div className="text-2xl sm:text-3xl font-light text-white tracking-tight">100% Custom</div>
-              <div className="text-xs text-zinc-400 mt-1 leading-relaxed">
-                Handcrafted in Next.js 16, TypeScript & Tailwind CSS. Clean, maintainable, modular codebase with lifetime source ownership.
+            <div className="my-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <div className="text-2xl sm:text-3xl font-light text-white tracking-tight">100% Custom</div>
+                <div className="text-xs text-zinc-400 mt-1 leading-relaxed">
+                  Handcrafted in Next.js 16, TypeScript & Tailwind CSS. Clean, maintainable, modular codebase with lifetime source ownership.
+                </div>
+              </div>
+              <div>
+                <div className="text-2xl sm:text-3xl font-light text-white tracking-tight">3+ Live Flagships</div>
+                <div className="text-xs text-zinc-400 mt-1 leading-relaxed">
+                  Production-verified client flagships operating with zero downtime and sub-second edge response times.
+                </div>
               </div>
             </div>
-            <div>
-              <div className="text-2xl sm:text-3xl font-light text-white tracking-tight">3+ Live Flagships</div>
-              <div className="text-xs text-zinc-400 mt-1 leading-relaxed">
-                Production-verified client flagships operating with zero downtime and sub-second edge response times.
-              </div>
-            </div>
-          </div>
 
-          <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono text-zinc-400">
-            <span>SOURCE CODE ASSET</span>
-            <span className="text-zinc-300">LIFETIME CLIENT OWNERSHIP</span>
-          </div>
+            <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono text-zinc-400">
+              <span>SOURCE CODE ASSET</span>
+              <span className="text-zinc-300">LIFETIME CLIENT OWNERSHIP</span>
+            </div>
+          </SpotlightCard>
         </motion.div>
 
       </div>

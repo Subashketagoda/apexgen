@@ -119,8 +119,9 @@ export function HomeServicesSection() {
             <motion.div
               key={service.number}
               onMouseEnter={() => setHoveredIdx(index)}
-              className={`group transition-all duration-400 py-8 sm:py-10 px-4 sm:px-8 rounded-2xl ${
-                isHovered ? 'bg-[#0c0c12] fine-border shadow-[0_15px_35px_rgba(0,0,0,0.6)]' : 'bg-transparent'
+              onClick={() => setHoveredIdx(hoveredIdx === index ? null : index)}
+              className={`group transition-all duration-300 py-8 sm:py-10 px-4 sm:px-8 rounded-2xl cursor-pointer ${
+                isHovered ? 'bg-[#0c0c12] border border-white/[0.12] shadow-[0_15px_35px_rgba(0,0,0,0.6)]' : 'bg-transparent border border-transparent'
               }`}
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">

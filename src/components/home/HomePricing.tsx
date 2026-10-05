@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { Check, ArrowRight } from 'lucide-react';
 import { pricingPlans } from '@/data/pricing';
 import { trackStartProjectClick } from '@/lib/analytics';
+import { SpotlightCard } from '@/components/ui/SpotlightCard';
 
 export function HomePricing() {
 
@@ -42,12 +43,15 @@ export function HomePricing() {
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.6, delay: idx * 0.12, ease: [0.16, 1, 0.3, 1] }}
               whileHover={{ y: -6, transition: { duration: 0.25 } }}
-              className={`rounded-3xl p-8 sm:p-10 flex flex-col justify-between transition-all duration-400 relative overflow-hidden ${
-                isHighlighted
-                  ? 'studio-card-elevated border-white/[0.28] shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_40px_rgba(255,255,255,0.08)]'
-                  : 'studio-card hover:border-white/[0.18]'
-              }`}
+              className="flex"
             >
+              <SpotlightCard
+                className={`p-8 sm:p-10 flex flex-col justify-between w-full h-full relative overflow-hidden ${
+                  isHighlighted
+                    ? 'studio-card-elevated border-white/[0.3] shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_40px_rgba(255,255,255,0.08)] border-beam'
+                    : 'studio-card hover:border-white/[0.18]'
+                }`}
+              >
               {/* Highlight badge for Flagship / Studio Recommended */}
               {plan.badge && (
                 <div className="absolute top-5 right-6">
@@ -119,6 +123,7 @@ export function HomePricing() {
                   Ideal for: {plan.idealFor}
                 </div>
               </div>
+              </SpotlightCard>
             </motion.div>
           );
         })}
