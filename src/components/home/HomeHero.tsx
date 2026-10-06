@@ -127,7 +127,7 @@ export function HomeHero() {
   }, []);
 
   return (
-    <section className="relative min-h-[100svh] pt-28 sm:pt-32 pb-12 flex flex-col justify-between overflow-hidden bg-[#08080a] border-b border-white/[0.08]">
+    <section className="relative min-h-[100svh] lg:h-screen lg:max-h-[1080px] pt-16 sm:pt-18 lg:pt-20 pb-3 lg:pb-3 flex flex-col justify-between overflow-hidden bg-[#08080a] border-b border-white/[0.08]">
       {/* 01: Ambient Canvas Coordinate Field */}
       <canvas
         ref={canvasRef}
@@ -135,32 +135,32 @@ export function HomeHero() {
       />
 
       {/* Hero Master Grid (Asymmetric Split: Monumental Masthead + Living Telemetry) */}
-      <div className="relative z-10 max-w-[1520px] mx-auto px-4 sm:px-6 md:px-10 w-full my-auto py-6 sm:py-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+      <div className="relative z-10 max-w-[1520px] mx-auto px-4 sm:px-6 md:px-10 w-full flex-1 flex items-center py-2 sm:py-3 lg:py-1">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center w-full">
           
           {/* Left Column: Monumental Editorial Statement (7 cols) */}
-          <div className="lg:col-span-7 space-y-8 sm:space-y-10">
+          <div className="lg:col-span-7 space-y-3.5 sm:space-y-4 lg:space-y-3 xl:space-y-4.5">
             
             {/* Architectural Index Tag */}
             <motion.div
               initial={{ opacity: 0, x: -15 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-3 px-3.5 py-1.5 rounded-full bg-[#12131a] border border-white/[0.1] text-[11px] font-mono tracking-widest uppercase text-zinc-300"
+              className="inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-[#12131a] border border-white/[0.1] text-[10px] sm:text-[11px] font-mono tracking-widest uppercase text-zinc-300"
             >
-              <span className="w-2 h-2 rounded-full bg-[#d4ff00] animate-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#d4ff00] animate-pulse" />
               <span>APEXGEN // BESPOKE DIGITAL ATELIER</span>
               <span className="text-zinc-600 hidden sm:inline">|</span>
               <span className="text-[#d4ff00] hidden sm:inline">SUB-SECOND EXECUTION</span>
             </motion.div>
 
             {/* Monumental Sculptural Typography */}
-            <div className="space-y-6">
+            <div className="space-y-2 sm:space-y-2.5 lg:space-y-2 xl:space-y-2.5">
               <motion.h1
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="text-monolith text-white font-black"
+                transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="text-3xl sm:text-5xl md:text-6xl lg:text-[2.65rem] xl:text-[3.25rem] 2xl:text-[3.85rem] font-black leading-[0.93] tracking-[-0.04em] text-white uppercase"
               >
                 <span className="block tracking-[-0.04em]">WE ENGINEER</span>
                 <span className="block tracking-[-0.04em] text-white">
@@ -172,10 +172,10 @@ export function HomeHero() {
               </motion.h1>
 
               <motion.p
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="text-base sm:text-xl text-zinc-300 font-light max-w-xl leading-relaxed"
+                transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                className="text-xs sm:text-sm lg:text-[13px] xl:text-sm text-zinc-300 font-light max-w-xl leading-relaxed"
               >
                 No templates. No slow builders. ApexGen designs and engineers bespoke web flagships, frictionless WhatsApp commerce, and custom reservation systems for ambitious brands in Sri Lanka and worldwide.
               </motion.p>
@@ -183,30 +183,30 @@ export function HomeHero() {
 
             {/* Action Buttons & Leadership Tag */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="space-y-4 pt-2"
+              transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="space-y-3 pt-1"
             >
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
                 <Link
                   href="#contact"
-                  className="btn-volt text-sm py-4 px-8 tracking-wider font-mono font-bold flex items-center justify-center gap-2 group"
+                  className="btn-volt text-xs py-3 px-6 tracking-wider font-mono font-bold flex items-center justify-center gap-2 group"
                 >
                   <span>START A PROJECT</span>
-                  <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </Link>
 
                 <Link
                   href="#work"
-                  className="btn-architectural text-sm py-4 px-8 tracking-wider font-mono flex items-center justify-center gap-2 group"
+                  className="btn-architectural text-xs py-3 px-6 tracking-wider font-mono flex items-center justify-center gap-2 group"
                 >
                   <span>EXPLORE WORK</span>
-                  <ArrowDown className="w-4 h-4 text-[#d4ff00] transition-transform group-hover:translate-y-0.5" />
+                  <ArrowDown className="w-3.5 h-3.5 text-[#d4ff00] transition-transform group-hover:translate-y-0.5" />
                 </Link>
               </div>
 
-              <div className="text-xs font-mono text-zinc-500 flex items-center gap-2">
+              <div className="text-[10px] sm:text-[11px] font-mono text-zinc-500 flex items-center gap-2 pt-0.5">
                 <span>FOUNDER & CREATIVE TECHNOLOGIST:</span>
                 <span className="text-zinc-300 font-medium">SUBHASH KETAGODA</span>
                 <span>•</span>
@@ -226,7 +226,7 @@ export function HomeHero() {
             <div className="bg-[#0e0f14] border border-white/[0.12] rounded-2xl overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.9)] relative">
               
               {/* Terminal Top Masthead */}
-              <div className="px-5 py-3.5 bg-[#14161f] border-b border-white/[0.08] flex items-center justify-between text-xs font-mono">
+              <div className="px-4 py-2.5 bg-[#14161f] border-b border-white/[0.08] flex items-center justify-between text-[11px] sm:text-xs font-mono">
                 <div className="flex items-center gap-2 text-zinc-300">
                   <Terminal className="w-3.5 h-3.5 text-[#d4ff00]" />
                   <span className="font-bold">APX-TELEMETRY // LIVE SPECIMEN</span>
@@ -238,12 +238,12 @@ export function HomeHero() {
               </div>
 
               {/* Interactive Specimen Selector Tabs */}
-              <div className="grid grid-cols-3 border-b border-white/[0.08] bg-[#0b0c10] text-[11px] font-mono">
+              <div className="grid grid-cols-3 border-b border-white/[0.08] bg-[#0b0c10] text-[10px] sm:text-[11px] font-mono">
                 {projects.map((p, idx) => (
                   <button
                     key={p.id}
                     onClick={() => setActiveProjectIdx(idx)}
-                    className={`py-2.5 px-3 text-center transition-all cursor-pointer truncate border-r last:border-r-0 border-white/[0.08] ${
+                    className={`py-2 px-2.5 text-center transition-all cursor-pointer truncate border-r last:border-r-0 border-white/[0.08] ${
                       activeProjectIdx === idx
                         ? 'bg-[#14161f] text-[#d4ff00] font-bold shadow-inner'
                         : 'text-zinc-400 hover:text-white hover:bg-white/[0.02]'
@@ -255,22 +255,23 @@ export function HomeHero() {
               </div>
 
               {/* Active Specimen Preview Showcase */}
-              <div className="p-5 sm:p-6 space-y-5">
+              <div className="p-3.5 sm:p-4 lg:p-3.5 xl:p-4 space-y-3">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeProject.id}
-                    initial={{ opacity: 0, y: 10 }}
+                    initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.3 }}
-                    className="space-y-4"
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.25 }}
+                    className="space-y-2.5"
                   >
                     {/* Image Viewport Frame */}
-                    <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden border border-white/[0.1] bg-[#050507] group">
+                    <div className="relative aspect-[16/9] max-h-[160px] xl:max-h-[195px] w-full rounded-xl overflow-hidden border border-white/[0.1] bg-[#050507] group">
                       <Image
                         src={activeProject.heroImage}
                         alt={activeProject.title}
                         fill
+                        priority
                         sizes="(max-width: 1024px) 100vw, 480px"
                         className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
                       />
@@ -281,7 +282,7 @@ export function HomeHero() {
                         href={activeProject.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="absolute bottom-3 left-3 z-10 flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#08080a]/90 backdrop-blur-md border border-white/[0.15] text-[10px] font-mono text-zinc-300 hover:text-[#d4ff00] transition-colors"
+                        className="absolute bottom-2.5 left-2.5 z-10 flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#08080a]/90 backdrop-blur-md border border-white/[0.15] text-[10px] font-mono text-zinc-300 hover:text-[#d4ff00] transition-colors"
                       >
                         <span>{activeProject.domain}</span>
                         <ExternalLink className="w-2.5 h-2.5 text-[#d4ff00]" />
@@ -289,22 +290,22 @@ export function HomeHero() {
                     </div>
 
                     {/* Metadata Readout */}
-                    <div className="space-y-2">
+                    <div className="space-y-1">
                       <div className="flex items-center justify-between text-xs font-mono">
                         <span className="text-[#d4ff00] font-bold">{activeProject.title}</span>
                         <span className="text-zinc-400">{activeProject.category}</span>
                       </div>
-                      <p className="text-xs text-zinc-300 font-light line-clamp-2">
+                      <p className="text-[11px] text-zinc-300 font-light line-clamp-1">
                         {activeProject.tagline || activeProject.description}
                       </p>
                     </div>
 
                     {/* Deliverables Pills */}
-                    <div className="flex flex-wrap gap-1.5 pt-1">
+                    <div className="flex flex-wrap gap-1.5 pt-0.5">
                       {activeProject.technologies?.slice(0, 3).map((tech) => (
                         <span
                           key={tech}
-                          className="px-2 py-0.5 rounded bg-white/[0.04] border border-white/[0.06] text-[10px] font-mono text-zinc-400"
+                          className="px-2 py-0.5 rounded bg-white/[0.04] border border-white/[0.06] text-[9px] sm:text-[10px] font-mono text-zinc-400"
                         >
                           {tech}
                         </span>
@@ -314,7 +315,7 @@ export function HomeHero() {
                 </AnimatePresence>
 
                 {/* Specimen Terminal Footer */}
-                <div className="pt-3 border-t border-white/[0.08] flex items-center justify-between text-[11px] font-mono">
+                <div className="pt-2.5 border-t border-white/[0.08] flex items-center justify-between text-[10px] sm:text-[11px] font-mono">
                   <span className="text-zinc-500">PRODUCTION VERIFIED</span>
                   <Link
                     href="#work"
@@ -330,52 +331,52 @@ export function HomeHero() {
       </div>
 
       {/* Bottom Integrated Architectural Datum Bar */}
-      <div className="relative z-10 max-w-[1520px] mx-auto px-4 sm:px-6 md:px-10 w-full pt-4">
+      <div className="relative z-10 max-w-[1520px] mx-auto px-4 sm:px-6 md:px-10 w-full pt-1 pb-1">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/[0.08] border border-white/[0.08] rounded-xl overflow-hidden backdrop-blur-md">
-          <div className="bg-[#0e0f14]/90 p-4 sm:p-5 space-y-1">
-            <div className="text-[10px] font-mono tracking-widest text-zinc-500 uppercase">
+          <div className="bg-[#0e0f14]/90 p-2.5 sm:p-3 lg:py-2 lg:px-3.5 xl:py-2.5 xl:px-4 space-y-0.5">
+            <div className="text-[9px] sm:text-[10px] font-mono tracking-widest text-zinc-500 uppercase">
               SPECIMEN 01
             </div>
-            <div className="text-xl sm:text-2xl font-black text-white font-mono">
+            <div className="text-sm sm:text-base lg:text-base xl:text-lg font-black text-white font-mono">
               CARGO PIZZA
             </div>
-            <div className="text-xs text-zinc-400">
+            <div className="text-[10px] sm:text-[11px] text-zinc-400 truncate">
               Handcrafted woodfired pizza & takeaway
             </div>
           </div>
 
-          <div className="bg-[#0e0f14]/90 p-4 sm:p-5 space-y-1">
-            <div className="text-[10px] font-mono tracking-widest text-zinc-500 uppercase">
+          <div className="bg-[#0e0f14]/90 p-2.5 sm:p-3 lg:py-2 lg:px-3.5 xl:py-2.5 xl:px-4 space-y-0.5">
+            <div className="text-[9px] sm:text-[10px] font-mono tracking-widest text-zinc-500 uppercase">
               SPECIMEN 02
             </div>
-            <div className="text-xl sm:text-2xl font-black text-white font-mono">
+            <div className="text-sm sm:text-base lg:text-base xl:text-lg font-black text-white font-mono">
               69 STUDIO
             </div>
-            <div className="text-xs text-zinc-400">
+            <div className="text-[10px] sm:text-[11px] text-zinc-400 truncate">
               Creative tech & bespoke POS solutions
             </div>
           </div>
 
-          <div className="bg-[#0e0f14]/90 p-4 sm:p-5 space-y-1">
-            <div className="text-[10px] font-mono tracking-widest text-zinc-500 uppercase">
+          <div className="bg-[#0e0f14]/90 p-2.5 sm:p-3 lg:py-2 lg:px-3.5 xl:py-2.5 xl:px-4 space-y-0.5">
+            <div className="text-[9px] sm:text-[10px] font-mono tracking-widest text-zinc-500 uppercase">
               SPECIMEN 03
             </div>
-            <div className="text-xl sm:text-2xl font-black text-white font-mono">
+            <div className="text-sm sm:text-base lg:text-base xl:text-lg font-black text-white font-mono">
               DINEPRO
             </div>
-            <div className="text-xs text-zinc-400">
+            <div className="text-[10px] sm:text-[11px] text-zinc-400 truncate">
               Hospitality consulting & advisory
             </div>
           </div>
 
-          <div className="bg-[#0e0f14]/90 p-4 sm:p-5 space-y-1">
-            <div className="text-[10px] font-mono tracking-widest text-[#d4ff00] uppercase">
+          <div className="bg-[#0e0f14]/90 p-2.5 sm:p-3 lg:py-2 lg:px-3.5 xl:py-2.5 xl:px-4 space-y-0.5">
+            <div className="text-[9px] sm:text-[10px] font-mono tracking-widest text-[#d4ff00] uppercase">
               COMMERCIAL BASIS
             </div>
-            <div className="text-xl sm:text-2xl font-black text-white font-mono">
+            <div className="text-sm sm:text-base lg:text-base xl:text-lg font-black text-white font-mono">
               LKR 49,900+
             </div>
-            <div className="text-xs text-zinc-400">
+            <div className="text-[10px] sm:text-[11px] text-zinc-400 truncate">
               Transparent, scope-defined pricing
             </div>
           </div>

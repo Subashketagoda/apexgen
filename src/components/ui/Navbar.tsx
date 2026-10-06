@@ -45,10 +45,10 @@ export function Navbar() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ease-out ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out ${
           isScrolled
-            ? 'py-3 bg-[#08080a]/90 backdrop-blur-xl border-b border-white/[0.08] shadow-[0_12px_32px_rgba(0,0,0,0.8)]'
-            : 'py-5 sm:py-6 bg-transparent border-b border-transparent'
+            ? 'py-2.5 sm:py-3 bg-[#08080a]/90 backdrop-blur-xl border-b border-white/[0.08] shadow-[0_12px_32px_rgba(0,0,0,0.8)]'
+            : 'py-3.5 sm:py-4 bg-[#08080a]/60 backdrop-blur-md border-b border-white/[0.04]'
         }`}
       >
         <div className="max-w-[1520px] mx-auto px-4 sm:px-6 md:px-10 flex items-center justify-between">
