@@ -316,3 +316,49 @@
   -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   NEXT-LEVEL KINETIC TEXT & VOLT SHIMMER ANIMATIONS
+   ═══════════════════════════════════════════════════════════════ */
+@keyframes text-gradient-sweep {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-text-shimmer {
+  background-size: 250% auto;
+  animation: text-gradient-sweep 5s ease-in-out infinite;
+}
+
+@keyframes volt-pulse-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 12px rgba(212, 255, 0, 0.25));
+  }
+  50% {
+    filter: drop-shadow(0 0 28px rgba(212, 255, 0, 0.65));
+  }
+}
+
+.animate-volt-glow {
+  animation: volt-pulse-glow 3.5s ease-in-out infinite;
+}
+
+@keyframes subtle-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.animate-subtle-float {
+  animation: subtle-float 6s ease-in-out infinite;
+}
+

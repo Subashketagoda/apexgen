@@ -15,6 +15,16 @@ export function HomeHero() {
   const projects = siteConfig.realProjects;
   const activeProject = projects[activeProjectIdx];
 
+  const impactWords = ['BUSINESSES.', 'BRANDS.', 'ENTERPRISES.', 'REVENUE.', 'FLAGSHIPS.'];
+  const [impactIndex, setImpactIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setImpactIndex((prev) => (prev + 1) % impactWords.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, [impactWords.length]);
+
   // Live Colombo Time
   useEffect(() => {
     const updateClock = () => {
@@ -146,38 +156,101 @@ export function HomeHero() {
               initial={{ opacity: 0, x: -15 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-[#12131a] border border-white/[0.1] text-[10px] sm:text-[11px] font-mono tracking-widest uppercase text-zinc-300"
+              className="inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-[#12131a] border border-white/[0.1] text-[10px] sm:text-[11px] font-mono tracking-widest uppercase text-zinc-300 shadow-[0_0_20px_rgba(212,255,0,0.06)] animate-subtle-float"
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-[#d4ff00] animate-pulse" />
-              <span>APEXGEN // BESPOKE DIGITAL ATELIER</span>
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#d4ff00] opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#d4ff00]" />
+              </span>
+              <span className="text-zinc-200 font-bold">APEXGEN // BESPOKE DIGITAL ATELIER</span>
               <span className="text-zinc-600 hidden sm:inline">|</span>
-              <span className="text-[#d4ff00] hidden sm:inline">SUB-SECOND EXECUTION</span>
+              <span className="text-[#d4ff00] hidden sm:inline tracking-wider">SUB-SECOND EXECUTION</span>
             </motion.div>
 
-            {/* Monumental Sculptural Typography */}
+            {/* Monumental Kinetic Sculptural Typography */}
             <div className="space-y-2 sm:space-y-2.5 lg:space-y-2 xl:space-y-2.5">
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="text-3xl sm:text-5xl md:text-6xl lg:text-[2.65rem] xl:text-[3.25rem] 2xl:text-[3.85rem] font-black leading-[0.93] tracking-[-0.04em] text-white uppercase"
-              >
-                <span className="block tracking-[-0.04em]">WE ENGINEER</span>
-                <span className="block tracking-[-0.04em] text-white">
-                  DIGITAL EXPERIENCES
+              <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[2.65rem] xl:text-[3.25rem] 2xl:text-[3.85rem] font-black leading-[0.93] tracking-[-0.04em] text-white uppercase select-none">
+                {/* Line 01: WE ENGINEER */}
+                <span className="block overflow-hidden py-0.5">
+                  <span className="inline-flex flex-wrap gap-x-2.5 sm:gap-x-3.5">
+                    {['WE', 'ENGINEER'].map((word, i) => (
+                      <motion.span
+                        key={word}
+                        initial={{ y: '120%', opacity: 0, rotateX: 30 }}
+                        animate={{ y: '0%', opacity: 1, rotateX: 0 }}
+                        transition={{ duration: 0.75, delay: 0.1 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                        whileHover={{ y: -3, color: '#d4ff00', transition: { duration: 0.15 } }}
+                        className="inline-block cursor-default transition-colors duration-200"
+                      >
+                        {word}
+                      </motion.span>
+                    ))}
+                  </span>
                 </span>
-                <span className="block tracking-[-0.04em] text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-100 to-[#d4ff00]">
-                  THAT MOVE BUSINESSES.
+
+                {/* Line 02: DIGITAL EXPERIENCES */}
+                <span className="block overflow-hidden py-0.5">
+                  <span className="inline-flex flex-wrap gap-x-2.5 sm:gap-x-3.5 text-white">
+                    {['DIGITAL', 'EXPERIENCES'].map((word, i) => (
+                      <motion.span
+                        key={word}
+                        initial={{ y: '120%', opacity: 0, rotateX: 30 }}
+                        animate={{ y: '0%', opacity: 1, rotateX: 0 }}
+                        transition={{ duration: 0.75, delay: 0.25 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                        whileHover={{ y: -3, color: '#ffffff', transition: { duration: 0.15 } }}
+                        className="inline-block cursor-default transition-colors duration-200"
+                      >
+                        {word}
+                      </motion.span>
+                    ))}
+                  </span>
                 </span>
-              </motion.h1>
+
+                {/* Line 03: THAT MOVE + DYNAMIC ROLLING IMPACT WORD */}
+                <span className="block overflow-hidden py-0.5">
+                  <span className="inline-flex flex-wrap items-baseline gap-x-2.5 sm:gap-x-3.5">
+                    {['THAT', 'MOVE'].map((word, i) => (
+                      <motion.span
+                        key={word}
+                        initial={{ y: '120%', opacity: 0, rotateX: 30 }}
+                        animate={{ y: '0%', opacity: 1, rotateX: 0 }}
+                        transition={{ duration: 0.75, delay: 0.42 + i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                        whileHover={{ y: -3, color: '#d4ff00', transition: { duration: 0.15 } }}
+                        className="inline-block cursor-default transition-colors duration-200 text-white"
+                      >
+                        {word}
+                      </motion.span>
+                    ))}
+
+                    {/* Next-Level 3D Vertical Kinetic Rolling Word Ticker */}
+                    <span className="relative inline-block overflow-hidden align-baseline min-w-[200px] sm:min-w-[280px] lg:min-w-[340px] xl:min-w-[400px]">
+                      <AnimatePresence mode="wait">
+                        <motion.span
+                          key={impactWords[impactIndex]}
+                          initial={{ y: '120%', opacity: 0, filter: 'blur(6px)' }}
+                          animate={{ y: '0%', opacity: 1, filter: 'blur(0px)' }}
+                          exit={{ y: '-120%', opacity: 0, filter: 'blur(6px)' }}
+                          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                          className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-100 to-[#d4ff00] animate-text-shimmer animate-volt-glow font-black"
+                        >
+                          {impactWords[impactIndex]}
+                        </motion.span>
+                      </AnimatePresence>
+                    </span>
+                  </span>
+                </span>
+              </h1>
 
               <motion.p
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="text-xs sm:text-sm lg:text-[13px] xl:text-sm text-zinc-300 font-light max-w-xl leading-relaxed"
+                transition={{ duration: 0.7, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                className="text-xs sm:text-sm lg:text-[13px] xl:text-sm text-zinc-300 font-light max-w-xl leading-relaxed flex items-start gap-2.5"
               >
-                No templates. No slow builders. ApexGen designs and engineers bespoke web flagships, frictionless WhatsApp commerce, and custom reservation systems for ambitious brands in Sri Lanka and worldwide.
+                <span className="inline-block w-1 h-3.5 bg-[#d4ff00] rounded-full shrink-0 mt-1 animate-pulse" />
+                <span>
+                  No templates. No slow builders. ApexGen designs and engineers bespoke web flagships, frictionless WhatsApp commerce, and custom reservation systems for ambitious brands in Sri Lanka and worldwide.
+                </span>
               </motion.p>
             </div>
 

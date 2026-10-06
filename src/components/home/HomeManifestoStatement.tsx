@@ -55,7 +55,7 @@ export function HomeManifestoStatement() {
           <h2 className="text-monolith text-white font-black leading-[0.92]">
             <span className="block text-zinc-500">GOOD DESIGN GETS ATTENTION.</span>
             <span className="block text-white">GREAT EXPERIENCES</span>
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-200 to-[#d4ff00]">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-200 to-[#d4ff00] animate-text-shimmer animate-volt-glow">
               MOVE PEOPLE TO ACT.
             </span>
           </h2>
