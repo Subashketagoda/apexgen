@@ -93,14 +93,14 @@ export function CinematicLoader({ onComplete }: CinematicLoaderProps) {
             },
           }}
           onClick={handleFinish}
-          className="fixed inset-0 z-[100] w-screen h-screen bg-[#050505] text-[#F5F5F5] flex flex-col justify-between p-8 sm:p-14 select-none cursor-pointer"
+          className="fixed inset-0 z-[100] w-screen h-screen bg-[#08080a] text-[#f5f5f7] flex flex-col justify-between p-8 sm:p-14 select-none cursor-pointer"
           aria-live="polite"
           aria-busy={!isDone}
         >
           {/* Top Label */}
-          <div className="flex items-center justify-between text-xs font-mono tracking-widest text-neutral-500 uppercase">
-            <span>DIGITAL STUDIO</span>
-            <span>SRI LANKA &bull; GLOBAL</span>
+          <div className="flex items-center justify-between text-xs font-mono tracking-widest text-zinc-500 uppercase">
+            <span>[ APEXGEN // DIGITAL ATELIER ]</span>
+            <span>COLOMBO ⇄ GLOBAL</span>
           </div>
 
           {/* Centered Brand Experience */}
@@ -109,32 +109,32 @@ export function CinematicLoader({ onComplete }: CinematicLoaderProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="text-5xl sm:text-7xl md:text-8xl font-light tracking-[0.18em] text-[#F5F5F5] uppercase font-mono"
+              className="text-5xl sm:text-7xl md:text-8xl font-black tracking-[0.16em] text-white uppercase font-mono"
             >
-              APEXGEN
+              APEX<span className="text-[#d4ff00]">GEN</span>
             </motion.h1>
 
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-xs sm:text-sm font-mono tracking-[0.3em] text-[#8A8A8A] uppercase"
+              className="text-xs sm:text-sm font-mono tracking-[0.3em] text-zinc-400 uppercase"
             >
-              DESIGN &bull; BUILD &bull; GROW
+              WE BUILD DIGITAL EXPERIENCES THAT MOVE BUSINESSES
             </motion.div>
           </div>
 
           {/* Bottom Progress Counter: 00 — 100 */}
-          <div className="flex items-end justify-between border-t border-white/10 pt-6">
-            <div className="text-[11px] font-mono tracking-widest text-neutral-600 uppercase">
-              ESC TO SKIP
+          <div className="flex items-end justify-between border-t border-white/[0.08] pt-6">
+            <div className="text-[11px] font-mono tracking-widest text-zinc-500 uppercase">
+              ESC TO SKIP INTRO
             </div>
 
             <div className="flex items-baseline space-x-2 text-2xl sm:text-3xl font-mono text-white">
-              <span className="text-white font-semibold">
+              <span className="text-[#d4ff00] font-bold">
                 {String(progress).padStart(2, '0')}
               </span>
-              <span className="text-zinc-600">—</span>
+              <span className="text-zinc-600">/</span>
               <span className="text-zinc-500">100</span>
             </div>
           </div>

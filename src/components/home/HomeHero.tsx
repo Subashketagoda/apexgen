@@ -1,154 +1,386 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion, useScroll, useTransform, useSpring, useReducedMotion } from 'framer-motion';
-import { ArrowUpRight, ArrowRight, ChevronDown } from 'lucide-react';
-import { trackStartProjectClick } from '@/lib/analytics';
-import { Hero3DScene } from '@/components/ui/Hero3DScene';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowUpRight, ArrowDown, ExternalLink, Activity, Terminal, ShieldCheck, Zap } from 'lucide-react';
+import { siteConfig } from '@/data/siteConfig';
 
 export function HomeHero() {
-  const heroRef = useRef<HTMLElement>(null);
-  const reduceMotion = useReducedMotion();
-  const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const [activeProjectIdx, setActiveProjectIdx] = useState(0);
+  const [currentTime, setCurrentTime] = useState('');
 
-  const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '12%']);
-  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
-  const contentY = useTransform(scrollYProgress, [0, 0.75], ['0px', '-36px']);
-  const contentOp = useTransform(scrollYProgress, [0, 0.85], [1, 0.25]);
-  const glowOp = useTransform(scrollYProgress, [0, 0.6], [1, 0.2]);
+  const projects = siteConfig.realProjects;
+  const activeProject = projects[activeProjectIdx];
 
-  const smoothBgY = useSpring(bgY, { stiffness: 70, damping: 24 });
-  const smoothContY = useSpring(contentY, { stiffness: 70, damping: 24 });
+  // Live Colombo Time
+  useEffect(() => {
+    const updateClock = () => {
+      const now = new Date();
+      setCurrentTime(
+        now.toLocaleTimeString('en-US', {
+          timeZone: 'Asia/Colombo',
+          hour12: false,
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+        })
+      );
+    };
+    updateClock();
+    const interval = setInterval(updateClock, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Subtle interactive grid canvas
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let animationFrameId: number;
+    let width = (canvas.width = canvas.parentElement?.clientWidth || window.innerWidth);
+    let height = (canvas.height = canvas.parentElement?.clientHeight || window.innerHeight);
+
+    let mouseX = width * 0.7;
+    let mouseY = height * 0.4;
+    let targetX = mouseX;
+    let targetY = mouseY;
+
+    const handleResize = () => {
+      if (!canvas || !canvas.parentElement) return;
+      width = canvas.width = canvas.parentElement.clientWidth;
+      height = canvas.height = canvas.parentElement.clientHeight;
+    };
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      targetX = e.clientX - rect.left;
+      targetY = e.clientY - rect.top;
+    };
+
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('mousemove', handleMouseMove);
+
+    const spacing = 64;
+    const cols = Math.ceil(width / spacing) + 1;
+    const rows = Math.ceil(height / spacing) + 1;
+
+    const render = () => {
+      mouseX += (targetX - mouseX) * 0.06;
+      mouseY += (targetY - mouseY) * 0.06;
+
+      ctx.clearRect(0, 0, width, height);
+      ctx.lineWidth = 0.5;
+
+      for (let i = 0; i < cols; i++) {
+        for (let j = 0; j < rows; j++) {
+          const x = i * spacing;
+          const y = j * spacing;
+
+          const dx = x - mouseX;
+          const dy = y - mouseY;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const maxDist = 240;
+
+          let alpha = 0.035;
+          let cross = 2;
+
+          if (dist < maxDist) {
+            const factor = 1 - dist / maxDist;
+            alpha = 0.035 + factor * 0.3;
+            cross = 2 + factor * 3;
+
+            if (dist < 120) {
+              ctx.strokeStyle = `rgba(212, 255, 0, ${(1 - dist / 120) * 0.12})`;
+              ctx.beginPath();
+              ctx.moveTo(x, y);
+              ctx.lineTo(mouseX, mouseY);
+              ctx.stroke();
+            }
+          }
+
+          ctx.strokeStyle = dist < maxDist ? `rgba(212, 255, 0, ${alpha})` : `rgba(255, 255, 255, ${alpha})`;
+          ctx.beginPath();
+          ctx.moveTo(x - cross, y);
+          ctx.lineTo(x + cross, y);
+          ctx.moveTo(x, y - cross);
+          ctx.lineTo(x, y + cross);
+          ctx.stroke();
+        }
+      }
+
+      animationFrameId = requestAnimationFrame(render);
+    };
+
+    render();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('mousemove', handleMouseMove);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
 
   return (
-    <section
-      ref={heroRef}
-      className="relative min-h-[100svh] lg:min-h-screen pt-20 sm:pt-22 lg:pt-24 pb-8 flex flex-col justify-between overflow-hidden bg-[#050507]"
-    >
-      <motion.div
-        style={reduceMotion ? undefined : { y: smoothBgY, scale: bgScale }}
-        className="absolute inset-0 z-0"
-      >
-        <Image
-          src="/images/atmosphere/cinematic-world.jpg"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className={`object-cover object-[68%_42%] opacity-80 ${reduceMotion ? '' : 'hero-world-kenburns'}`}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b sm:bg-gradient-to-r from-[#050507]/85 sm:from-[#050507] via-[#050507]/60 sm:via-[#050507]/78 to-[#050507]/40 sm:to-[#050507]/25" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#050507] via-transparent to-[#050507]/50" />
-      </motion.div>
-
-      <motion.div
-        style={{ opacity: glowOp }}
-        className="absolute top-[8%] right-[-6%] w-[72vw] max-w-[820px] h-[72vw] max-h-[820px] rounded-full bg-gradient-radial from-[#3B82F6]/35 via-[#8B5CF6]/18 to-transparent blur-[90px] pointer-events-none z-[1]"
+    <section className="relative min-h-[100svh] pt-28 sm:pt-32 pb-12 flex flex-col justify-between overflow-hidden bg-[#08080a] border-b border-white/[0.08]">
+      {/* 01: Ambient Canvas Coordinate Field */}
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 z-0 pointer-events-none opacity-50"
       />
-      <div className="absolute bottom-[-12%] left-[-8%] w-[520px] h-[420px] rounded-full bg-[#8B5CF6]/18 blur-[110px] pointer-events-none z-[1]" />
 
-      <Hero3DScene />
-
-      <div className="absolute inset-0 pointer-events-none z-[3] mix-blend-overlay opacity-[0.045] film-grain" />
-      <div className="hero-vignette z-[3]" />
-
-      <motion.div
-        style={reduceMotion ? undefined : { y: smoothContY, opacity: contentOp }}
-        className="relative z-10 max-w-[1600px] mx-auto px-4 sm:px-8 md:px-12 w-full mt-2 sm:mt-4 mb-auto"
-      >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-4 items-center">
-          <div className="lg:col-span-7 space-y-4 sm:space-y-6">
-            <h1 className="text-[34px] xs:text-4xl sm:text-6xl md:text-[80px] lg:text-[96px] xl:text-[108px] font-black tracking-tight leading-[0.92] sm:leading-[0.88] text-[#F5F5F7] uppercase drop-shadow-[0_2px_16px_rgba(5,5,7,0.7)]">
-              <motion.span
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.85, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-                className="block"
-              >
-                We build
-              </motion.span>
-              <motion.span
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.85, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                className="block text-gradient-silver"
-              >
-                digital
-              </motion.span>
-              <motion.span
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.85, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="block bg-gradient-to-r from-white via-[#C084FC] to-[#3B82F6] bg-clip-text text-transparent"
-              >
-                experiences
-              </motion.span>
-              <motion.span
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.85, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                className="block text-white/90"
-              >
-                that move businesses forward.
-              </motion.span>
-            </h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.85, delay: 0.78 }}
-              className="text-sm sm:text-lg md:text-xl text-zinc-300/90 max-w-xl leading-relaxed drop-shadow-[0_1px_8px_rgba(5,5,7,0.8)]"
-            >
-              From premium business websites to custom digital systems, ApexGen transforms business ideas into powerful online experiences.
-            </motion.p>
-
+      {/* Hero Master Grid (Asymmetric Split: Monumental Masthead + Living Telemetry) */}
+      <div className="relative z-10 max-w-[1520px] mx-auto px-4 sm:px-6 md:px-10 w-full my-auto py-6 sm:py-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+          
+          {/* Left Column: Monumental Editorial Statement (7 cols) */}
+          <div className="lg:col-span-7 space-y-8 sm:space-y-10">
+            
+            {/* Architectural Index Tag */}
             <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.85, delay: 0.92 }}
-              className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-1 sm:pt-0"
+              initial={{ opacity: 0, x: -15 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="inline-flex items-center gap-3 px-3.5 py-1.5 rounded-full bg-[#12131a] border border-white/[0.1] text-[11px] font-mono tracking-widest uppercase text-zinc-300"
             >
-              <Link
-                href="/work"
-                className="group inline-flex items-center justify-center space-x-2.5 px-7 sm:px-8 py-3.5 sm:py-4 rounded-full btn-cta-primary text-xs font-mono font-bold tracking-wider w-full sm:w-auto"
+              <span className="w-2 h-2 rounded-full bg-[#d4ff00] animate-pulse" />
+              <span>APEXGEN // BESPOKE DIGITAL ATELIER</span>
+              <span className="text-zinc-600 hidden sm:inline">|</span>
+              <span className="text-[#d4ff00] hidden sm:inline">SUB-SECOND EXECUTION</span>
+            </motion.div>
+
+            {/* Monumental Sculptural Typography */}
+            <div className="space-y-6">
+              <motion.h1
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="text-monolith text-white font-black"
               >
-                <span>EXPLORE OUR WORK</span>
-                <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </Link>
-              <Link
-                href="/start-a-project"
-                onClick={() => trackStartProjectClick('hero_primary')}
-                className="group inline-flex items-center justify-center space-x-2.5 px-7 sm:px-8 py-3.5 sm:py-4 rounded-full btn-physical text-xs font-mono font-semibold tracking-wider text-zinc-200 hover:text-white w-full sm:w-auto"
+                <span className="block tracking-[-0.04em]">WE ENGINEER</span>
+                <span className="block tracking-[-0.04em] text-white">
+                  DIGITAL EXPERIENCES
+                </span>
+                <span className="block tracking-[-0.04em] text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-100 to-[#d4ff00]">
+                  THAT MOVE BUSINESSES.
+                </span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                className="text-base sm:text-xl text-zinc-300 font-light max-w-xl leading-relaxed"
               >
-                <span>START A PROJECT</span>
-                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-              </Link>
+                No templates. No slow builders. ApexGen designs and engineers bespoke web flagships, frictionless WhatsApp commerce, and custom reservation systems for ambitious brands in Sri Lanka and worldwide.
+              </motion.p>
+            </div>
+
+            {/* Action Buttons & Leadership Tag */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="space-y-4 pt-2"
+            >
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+                <Link
+                  href="#contact"
+                  className="btn-volt text-sm py-4 px-8 tracking-wider font-mono font-bold flex items-center justify-center gap-2 group"
+                >
+                  <span>START A PROJECT</span>
+                  <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </Link>
+
+                <Link
+                  href="#work"
+                  className="btn-architectural text-sm py-4 px-8 tracking-wider font-mono flex items-center justify-center gap-2 group"
+                >
+                  <span>EXPLORE WORK</span>
+                  <ArrowDown className="w-4 h-4 text-[#d4ff00] transition-transform group-hover:translate-y-0.5" />
+                </Link>
+              </div>
+
+              <div className="text-xs font-mono text-zinc-500 flex items-center gap-2">
+                <span>FOUNDER & CREATIVE TECHNOLOGIST:</span>
+                <span className="text-zinc-300 font-medium">SUBHASH KETAGODA</span>
+                <span>•</span>
+                <span>COLOMBO {currentTime && `[${currentTime} IST]`}</span>
+              </div>
             </motion.div>
           </div>
 
-          <div className="lg:col-span-5 hidden lg:block min-h-[420px]" />
+          {/* Right Column: Living Telemetry Specimen Console (5 cols) */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.85, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5 relative"
+          >
+            {/* Terminal Enclosure */}
+            <div className="bg-[#0e0f14] border border-white/[0.12] rounded-2xl overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.9)] relative">
+              
+              {/* Terminal Top Masthead */}
+              <div className="px-5 py-3.5 bg-[#14161f] border-b border-white/[0.08] flex items-center justify-between text-xs font-mono">
+                <div className="flex items-center gap-2 text-zinc-300">
+                  <Terminal className="w-3.5 h-3.5 text-[#d4ff00]" />
+                  <span className="font-bold">APX-TELEMETRY // LIVE SPECIMEN</span>
+                </div>
+                <div className="flex items-center gap-2 text-[10px] text-zinc-400">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span>LATENCY &lt; 0.8s</span>
+                </div>
+              </div>
+
+              {/* Interactive Specimen Selector Tabs */}
+              <div className="grid grid-cols-3 border-b border-white/[0.08] bg-[#0b0c10] text-[11px] font-mono">
+                {projects.map((p, idx) => (
+                  <button
+                    key={p.id}
+                    onClick={() => setActiveProjectIdx(idx)}
+                    className={`py-2.5 px-3 text-center transition-all cursor-pointer truncate border-r last:border-r-0 border-white/[0.08] ${
+                      activeProjectIdx === idx
+                        ? 'bg-[#14161f] text-[#d4ff00] font-bold shadow-inner'
+                        : 'text-zinc-400 hover:text-white hover:bg-white/[0.02]'
+                    }`}
+                  >
+                    0{idx + 1} {p.title.split(' ')[0]}
+                  </button>
+                ))}
+              </div>
+
+              {/* Active Specimen Preview Showcase */}
+              <div className="p-5 sm:p-6 space-y-5">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeProject.id}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3 }}
+                    className="space-y-4"
+                  >
+                    {/* Image Viewport Frame */}
+                    <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden border border-white/[0.1] bg-[#050507] group">
+                      <Image
+                        src={activeProject.heroImage}
+                        alt={activeProject.title}
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 480px"
+                        className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0e0f14]/80 via-transparent to-transparent pointer-events-none" />
+
+                      {/* Domain pill */}
+                      <a
+                        href={activeProject.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="absolute bottom-3 left-3 z-10 flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#08080a]/90 backdrop-blur-md border border-white/[0.15] text-[10px] font-mono text-zinc-300 hover:text-[#d4ff00] transition-colors"
+                      >
+                        <span>{activeProject.domain}</span>
+                        <ExternalLink className="w-2.5 h-2.5 text-[#d4ff00]" />
+                      </a>
+                    </div>
+
+                    {/* Metadata Readout */}
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between text-xs font-mono">
+                        <span className="text-[#d4ff00] font-bold">{activeProject.title}</span>
+                        <span className="text-zinc-400">{activeProject.category}</span>
+                      </div>
+                      <p className="text-xs text-zinc-300 font-light line-clamp-2">
+                        {activeProject.tagline || activeProject.description}
+                      </p>
+                    </div>
+
+                    {/* Deliverables Pills */}
+                    <div className="flex flex-wrap gap-1.5 pt-1">
+                      {activeProject.technologies?.slice(0, 3).map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-2 py-0.5 rounded bg-white/[0.04] border border-white/[0.06] text-[10px] font-mono text-zinc-400"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+
+                {/* Specimen Terminal Footer */}
+                <div className="pt-3 border-t border-white/[0.08] flex items-center justify-between text-[11px] font-mono">
+                  <span className="text-zinc-500">PRODUCTION VERIFIED</span>
+                  <Link
+                    href="#work"
+                    className="text-[#d4ff00] hover:underline flex items-center gap-1 font-bold"
+                  >
+                    <span>VIEW CASE STUDY →</span>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
-      </motion.div>
+      </div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.2 }}
-        className="relative z-10 max-w-[1600px] mx-auto px-4 sm:px-8 md:px-12 w-full flex items-end justify-between text-[10px] sm:text-[11px] font-mono tracking-[0.18em] uppercase text-zinc-500 pt-6 sm:pt-4"
-      >
-        <span className="text-zinc-400">Design. Build. Grow.</span>
-        <Link href="#overview" className="group inline-flex flex-col items-center gap-1.5 sm:gap-2 text-zinc-400 hover:text-white">
-          <span>Scroll</span>
-          <span className="relative h-8 sm:h-10 w-px overflow-hidden bg-white/15">
-            <span className="absolute inset-x-0 h-4 bg-gradient-to-b from-transparent via-white to-transparent animate-[light-trail-y_2.6s_ease-in-out_infinite]" />
-          </span>
-          <ChevronDown className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
-        </Link>
-      </motion.div>
+      {/* Bottom Integrated Architectural Datum Bar */}
+      <div className="relative z-10 max-w-[1520px] mx-auto px-4 sm:px-6 md:px-10 w-full pt-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/[0.08] border border-white/[0.08] rounded-xl overflow-hidden backdrop-blur-md">
+          <div className="bg-[#0e0f14]/90 p-4 sm:p-5 space-y-1">
+            <div className="text-[10px] font-mono tracking-widest text-zinc-500 uppercase">
+              SPECIMEN 01
+            </div>
+            <div className="text-xl sm:text-2xl font-black text-white font-mono">
+              CARGO PIZZA
+            </div>
+            <div className="text-xs text-zinc-400">
+              Handcrafted woodfired pizza & takeaway
+            </div>
+          </div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none z-[3] bg-gradient-to-b from-transparent via-[#050507]/70 to-[#050507]" />
+          <div className="bg-[#0e0f14]/90 p-4 sm:p-5 space-y-1">
+            <div className="text-[10px] font-mono tracking-widest text-zinc-500 uppercase">
+              SPECIMEN 02
+            </div>
+            <div className="text-xl sm:text-2xl font-black text-white font-mono">
+              69 STUDIO
+            </div>
+            <div className="text-xs text-zinc-400">
+              Creative tech & bespoke POS solutions
+            </div>
+          </div>
+
+          <div className="bg-[#0e0f14]/90 p-4 sm:p-5 space-y-1">
+            <div className="text-[10px] font-mono tracking-widest text-zinc-500 uppercase">
+              SPECIMEN 03
+            </div>
+            <div className="text-xl sm:text-2xl font-black text-white font-mono">
+              DINEPRO
+            </div>
+            <div className="text-xs text-zinc-400">
+              Hospitality consulting & advisory
+            </div>
+          </div>
+
+          <div className="bg-[#0e0f14]/90 p-4 sm:p-5 space-y-1">
+            <div className="text-[10px] font-mono tracking-widest text-[#d4ff00] uppercase">
+              COMMERCIAL BASIS
+            </div>
+            <div className="text-xl sm:text-2xl font-black text-white font-mono">
+              LKR 49,900+
+            </div>
+            <div className="text-xs text-zinc-400">
+              Transparent, scope-defined pricing
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

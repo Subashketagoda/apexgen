@@ -1,138 +1,157 @@
 'use client';
 
-import React, { useState } from 'react';
-import Link from 'next/link';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Check, Sparkles } from 'lucide-react';
-import { pricingPlans } from '@/data/pricing';
-import { trackStartProjectClick } from '@/lib/analytics';
+import { Check, ArrowUpRight, MessageSquare, Sparkles } from 'lucide-react';
+import { siteConfig } from '@/data/siteConfig';
+import { formatWhatsAppUrl } from '@/lib/utils';
 
 export function HomePricing() {
-  const [hoveredTier, setHoveredTier] = useState<string | null>('business');
+  const plans = siteConfig.pricingPlans;
 
   return (
-    <section id="pricing" className="py-32 sm:py-48 px-4 sm:px-8 md:px-16 max-w-[1600px] mx-auto scroll-mt-24 section-pricing-bg rounded-3xl my-6">
-      {/* Header */}
-      <div className="flex flex-col lg:flex-row lg:items-end justify-between pb-16 border-b border-white/[0.08] gap-8 mb-20 sm:mb-28">
-        <div className="space-y-4 max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[11px] font-mono tracking-widest text-[#8B8B96] uppercase">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#22D3EE] animate-pulse shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
-            <span>06 / INVESTMENT ARCHITECTURE</span>
+    <section id="pricing" className="relative py-24 sm:py-32 bg-[#08080a] border-b border-white/[0.08] overflow-hidden">
+      {/* Background architectural grid */}
+      <div className="absolute inset-0 architectural-grid opacity-15 pointer-events-none" />
+
+      <div className="max-w-[1520px] mx-auto px-4 sm:px-6 md:px-10 relative z-10 space-y-16 sm:space-y-24">
+        
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-white/[0.08]">
+          <div className="space-y-3">
+            <div className="text-[11px] font-mono tracking-[0.25em] text-[#d4ff00] uppercase flex items-center gap-2">
+              <span>[ 05 // COMMERCIAL FRAMEWORK ]</span>
+            </div>
+            <h2 className="text-section-title text-white">
+              INVESTMENT TIERS
+            </h2>
           </div>
-          <h2 className="text-5xl sm:text-7xl lg:text-[7vw] font-black tracking-tight text-[#F5F5F7] uppercase leading-[0.92]">
-            TRANSPARENT <br />
-            <span className="text-gradient-silver">PRICING.</span>
-          </h2>
+          <div className="space-y-1 max-w-md">
+            <p className="text-sm sm:text-base text-zinc-300 font-light">
+              Clear, transparent LKR pricing with zero hidden surcharges. All tiers include bespoke design, sub-second Next.js code, and dedicated launch support.
+            </p>
+            <p className="text-xs font-mono text-zinc-500">
+              *Custom enterprise quotes available for complex web applications.
+            </p>
+          </div>
         </div>
 
-        <p className="max-w-md text-sm sm:text-base text-zinc-400 font-light leading-relaxed">
-          Zero hidden costs. Zero recurring platform taxes. Fixed sprint milestones with 100% intellectual property and source code handoff.
-        </p>
-      </div>
+        {/* 3 Luxury Architectural Columns */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+          {plans.map((plan, idx) => {
+            const isPopular = plan.isPopular;
 
-      {/* Three Large Vertical Luxury Panels */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch">
-        {pricingPlans.map((plan, idx) => {
-          const isBusiness = plan.id === 'business';
-          const isHovered = hoveredTier === plan.id;
-
-          return (
-            <motion.div
-              key={plan.id}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.8, delay: idx * 0.12, ease: [0.16, 1, 0.3, 1] }}
-              onMouseEnter={() => setHoveredTier(plan.id)}
-              className={`group relative rounded-3xl p-8 sm:p-12 transition-all duration-500 flex flex-col justify-between overflow-hidden cursor-pointer ${
-                isBusiness
-                  ? 'bg-gradient-to-b from-[#0B0B10] to-[#080B18] border border-[#8B5CF6]/50 shadow-[0_25px_80px_rgba(139,92,246,0.18)] ring-1 ring-[#3B82F6]/30'
-                  : 'bg-[#0B0B10]/95 border border-white/[0.08] hover:border-[#8B5CF6]/30 shadow-xl'
-              }`}
-            >
-              {/* Atmospheric volumetric lighting behind the recommended package */}
-              {isBusiness && (
-                <div className="absolute -inset-2 rounded-3xl bg-gradient-to-b from-[#8B5CF6]/30 via-[#3B82F6]/20 to-transparent blur-2xl pointer-events-none -z-10 opacity-70" />
-              )}
-
-              {/* Background Ambient Lighting Change on Hover */}
-              <div
-                className={`absolute inset-0 bg-gradient-to-b ${
-                  isBusiness
-                    ? 'from-[#3B82F6]/15 via-[#8B5CF6]/10 to-transparent'
-                    : 'from-[#3B82F6]/[0.04] to-transparent'
-                } pointer-events-none opacity-50 group-hover:opacity-100 transition-opacity duration-500`}
-              />
-
-              <div className="relative z-10 space-y-8">
-                {/* Panel Top: Tier Name & Tag */}
-                <div className="flex items-center justify-between pb-6 border-b border-white/[0.08]">
-                  <div className="space-y-1">
-                    <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest block">
-                      TIER // 0{idx + 1}
-                    </span>
-                    <h3 className="text-2xl sm:text-3xl font-light text-white uppercase tracking-tight">
-                      {plan.name}
-                    </h3>
+            return (
+              <motion.div
+                key={plan.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                className={`relative rounded-2xl flex flex-col justify-between p-7 sm:p-9 transition-all duration-400 ${
+                  isPopular
+                    ? 'bg-[#12131a] border-2 border-[#d4ff00] shadow-[0_0_40px_rgba(212,255,0,0.15)] -translate-y-2'
+                    : 'bg-[#0e0f14] border border-white/[0.08] hover:border-white/[0.2] shadow-[0_12px_36px_rgba(0,0,0,0.7)]'
+                }`}
+              >
+                {/* Popular Highlight Badge */}
+                {isPopular && (
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-[#d4ff00] text-[#08080a] text-[10px] font-mono font-bold tracking-widest uppercase shadow-lg">
+                    ★ MOST POPULAR CHOICE
                   </div>
+                )}
 
-                  {plan.badge && (
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-[#8B5CF6] to-[#3B82F6] text-white font-mono text-[10px] font-bold uppercase tracking-wider shadow-md">
-                      <Sparkles className="w-3 h-3 text-[#22D3EE]" />
-                      {plan.badge}
-                    </span>
-                  )}
-                </div>
-
-                {/* Massive Typography Price */}
-                <div className="space-y-2">
-                  <div className="text-4xl sm:text-5xl lg:text-6xl font-light font-mono text-white tracking-tight">
-                    {plan.price}
-                  </div>
-                  <div className="text-xs font-mono text-zinc-400">
-                    EST. SPRINT TIMELINE: {plan.timeline}
-                  </div>
-                  <p className="text-sm text-zinc-400 font-light leading-relaxed pt-2">
-                    {plan.valueProposition}
-                  </p>
-                </div>
-
-                {/* Minimal Elegant Deliverables List */}
-                <div className="pt-6 border-t border-white/[0.08] space-y-3">
-                  <div className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest mb-3">
-                    CORE DELIVERABLES
-                  </div>
-                  {plan.deliverables.map((item, i) => (
-                    <div key={i} className="flex items-start space-x-3 text-xs sm:text-sm text-zinc-300 font-light">
-                      <Check className="w-4 h-4 text-[#22D3EE] shrink-0 mt-0.5" />
-                      <span className="leading-snug">{item}</span>
+                <div className="space-y-6">
+                  {/* Tier Title & Price */}
+                  <div className="space-y-3 pb-6 border-b border-white/[0.08]">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-mono tracking-widest text-zinc-400 uppercase">
+                        {plan.name}
+                      </span>
+                      {plan.badge && !isPopular && (
+                        <span className="text-[10px] font-mono tracking-wider text-zinc-400 bg-white/[0.05] px-2 py-0.5 rounded">
+                          {plan.badge}
+                        </span>
+                      )}
                     </div>
-                  ))}
-                </div>
-              </div>
 
-              {/* Panel CTA */}
-              <div className="relative z-10 pt-10 mt-8 border-t border-white/[0.08] space-y-3">
-                <Link
-                  href={plan.ctaHref}
-                  onClick={() => trackStartProjectClick(`pricing_${plan.id}`)}
-                  className={`w-full py-4 rounded-full text-xs font-mono tracking-wider uppercase font-semibold flex items-center justify-center space-x-2 transition-all duration-300 ${
-                    isBusiness
-                      ? 'btn-cta-primary text-white shadow-[0_0_30px_rgba(139,92,246,0.35)]'
-                      : 'btn-physical text-white hover:text-white'
-                  }`}
-                >
-                  <span>{plan.ctaLabel}</span>
-                  <ArrowUpRight className="w-4 h-4" />
-                </Link>
+                    <div className="space-y-1">
+                      <div className="text-3xl sm:text-4xl font-black text-white font-mono tracking-tight">
+                        {plan.price}
+                      </div>
+                      <div className="text-xs font-mono text-zinc-400">
+                        TIMELINE: {plan.timeline}
+                      </div>
+                    </div>
 
-                <div className="text-center text-[11px] font-mono text-zinc-500">
-                  Ideal for: {plan.idealFor}
+                    <p className="text-xs sm:text-sm text-zinc-300 font-light leading-relaxed">
+                      {plan.description}
+                    </p>
+                  </div>
+
+                  {/* Target Audience */}
+                  <div className="p-3 rounded-lg bg-white/[0.02] border border-white/[0.05] text-xs text-zinc-300 font-light">
+                    <span className="font-mono text-zinc-500 uppercase text-[10px] block mb-1">BEST SUITED FOR:</span>
+                    {plan.idealFor}
+                  </div>
+
+                  {/* Features List */}
+                  <div className="space-y-3 pt-2">
+                    <div className="text-[10px] font-mono tracking-widest text-zinc-500 uppercase">
+                      INCLUDED DELIVERABLES
+                    </div>
+                    <ul className="space-y-2 text-xs sm:text-sm text-zinc-300">
+                      {plan.features.map((feature, fIdx) => (
+                        <li key={fIdx} className="flex items-start gap-2.5">
+                          <Check className={`w-4 h-4 shrink-0 mt-0.5 ${isPopular ? 'text-[#d4ff00]' : 'text-zinc-400'}`} />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          );
-        })}
+
+                {/* Bottom Actions */}
+                <div className="pt-8 border-t border-white/[0.08] space-y-3 mt-8">
+                  <div className="flex items-center justify-between text-[11px] font-mono text-zinc-400 pb-2">
+                    <span>{plan.revisions}</span>
+                    <span>{plan.supportDuration}</span>
+                  </div>
+
+                  <a
+                    href={`#contact`}
+                    className={`w-full py-3.5 rounded-full text-xs font-mono font-bold tracking-wider uppercase flex items-center justify-center gap-2 transition-all ${
+                      isPopular
+                        ? 'btn-volt'
+                        : 'btn-architectural hover:border-[#d4ff00]'
+                    }`}
+                  >
+                    <span>SELECT {plan.name}</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </a>
+
+                  <a
+                    href={formatWhatsAppUrl(
+                      siteConfig.contact.whatsappNumber,
+                      `Hello Subhash, I am interested in the ${plan.name} package (${plan.price}).`
+                    )}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full text-center text-[11px] font-mono text-zinc-400 hover:text-[#d4ff00] transition-colors flex items-center justify-center gap-1.5 py-1"
+                  >
+                    <MessageSquare className="w-3 h-3 text-[#d4ff00]" />
+                    <span>Inquire via WhatsApp</span>
+                  </a>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* Commercial Disclaimer */}
+        <div className="text-center text-xs font-mono text-zinc-500 max-w-xl mx-auto">
+          {siteConfig.pricingDisclaimer}
+        </div>
       </div>
     </section>
   );

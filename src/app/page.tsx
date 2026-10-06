@@ -6,15 +6,12 @@ import { CustomCursor } from '@/components/ui/CustomCursor';
 import { Navbar } from '@/components/ui/Navbar';
 import { WhatsAppButton } from '@/components/ui/WhatsAppButton';
 import { HomeHero } from '@/components/home/HomeHero';
-import { HomeMetricsStrip } from '@/components/home/HomeMetricsStrip';
-import { HomeIntroduction } from '@/components/home/HomeIntroduction';
 import { HomeMarquee3D } from '@/components/home/HomeMarquee3D';
 import { HomeFeaturedWork } from '@/components/home/HomeFeaturedWork';
 import { HomeServicesSection } from '@/components/home/HomeServicesSection';
 import { HomeManifestoStatement } from '@/components/home/HomeManifestoStatement';
 import { HomeProcess } from '@/components/home/HomeProcess';
 import { HomePricing } from '@/components/home/HomePricing';
-import { HomeTechEcosystem } from '@/components/home/HomeTechEcosystem';
 import { HomeFaq } from '@/components/home/HomeFaq';
 import { HomeProjectCta } from '@/components/home/HomeProjectCta';
 import { Footer } from '@/components/ui/Footer';
@@ -34,59 +31,50 @@ export default function Home() {
 
   return (
     <>
-      {/* 01 — Cinematic Loading Experience (APEXGEN 00 — 100) */}
+      {/* 01: Minimalist Studio Intro Loader */}
       <CinematicLoader />
 
-      {/* 02 — Contextual Custom Cursor */}
+      {/* 02: Architectural Custom Cursor */}
       <CustomCursor />
 
-      {/* 03 — Floating WhatsApp Action */}
+      {/* 03: Floating Direct WhatsApp Trigger */}
       <WhatsAppButton />
 
-      {/* Main Studio Canvas: Cinematic Black Digital Universe */}
-      <div className="relative min-h-screen bg-[#050507] text-[#F5F5F7] selection:bg-white selection:text-black">
-        {/* Navigation */}
+      {/* Main Architectural Studio Canvas */}
+      <div className="relative min-h-screen bg-[#08080a] text-[#f5f5f7] selection:bg-[#d4ff00] selection:text-[#08080a]">
+        {/* Navigation Dock */}
         <Navbar />
 
         <main>
-          {/* Section 1: Hero — Signature 3D Centerpiece Digital Core + Editorial Headline */}
+          {/* Section 01: Command Deck Hero */}
           <HomeHero />
 
-          {/* Section 2: Metrics Strip — Single Sleek Rounded Glass Card */}
-          <HomeMetricsStrip />
-
-          {/* Section 3: Introduction — "WE DON'T BUILD WEBSITES. WE BUILD DIGITAL PRESENCE." */}
-          <HomeIntroduction />
-
-          {/* Section 4: 3D Marquee — Multi-Layer Infinite Typography System */}
+          {/* Section 02: Architectural Kinetic Ticker */}
           <HomeMarquee3D />
 
-          {/* Section 5: Selected Work — Asymmetric Editorial Art Gallery */}
+          {/* Section 03: Selected Work & Production Archive (Cargo Pizza, 69 Studio, DinePro) */}
           <HomeFeaturedWork />
 
-          {/* Section 6: Services — Enormous Interactive Vertical List (01–06) with 3D Visual Reveal */}
+          {/* Section 04: Capabilities & Services Matrix (01–06) */}
           <HomeServicesSection />
 
-          {/* Section 7: Manifesto — Full-Screen Black Statement ("DESIGN IS NOT DECORATION...") */}
+          {/* Section 05: Studio Manifesto & Why ApexGen (6 Core Principles) */}
           <HomeManifestoStatement />
 
-          {/* Section 8: Process — Futuristic Vertical Timeline with Glowing Tracking Line */}
+          {/* Section 06: Sprint Pipeline (Discover, Design, Build, Launch, Grow) */}
           <HomeProcess />
 
-          {/* Section 9: Pricing — Three Large Vertical Luxury Panels */}
+          {/* Section 07: Investment Tiers (Starter, Business, Premium) */}
           <HomePricing />
 
-          {/* Section 10: Technology Ecosystem — Spatial 3D Floating Arrangement */}
-          <HomeTechEcosystem />
-
-          {/* Section 11: FAQ Accordions */}
+          {/* Section 08: Studio Clarity FAQ */}
           <HomeFaq />
 
-          {/* Section 12: Final CTA — "LET'S BUILD WHAT'S NEXT." Full Viewport Portal */}
+          {/* Section 09: Project Intake Terminal & Direct Channels */}
           <HomeProjectCta />
         </main>
 
-        {/* Monolithic Luxury Footer */}
+        {/* Monolithic Studio Footer */}
         <Footer />
       </div>
     </>

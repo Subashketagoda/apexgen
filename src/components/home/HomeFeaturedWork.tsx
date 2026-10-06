@@ -1,387 +1,432 @@
 'use client';
 
 import React, { useState } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowUpRight, ExternalLink, Sparkles, Layers, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { ArrowUpRight, ExternalLink, Sparkles, Check, Smartphone, Utensils, Monitor, Building2 } from 'lucide-react';
+import { siteConfig } from '@/data/siteConfig';
+import { ProjectCaseStudy } from '@/types';
+import { ProjectDetailModal } from '@/components/projects/ProjectDetailModal';
 
 export function HomeFeaturedWork() {
-  const [hoveredProject, setHoveredProject] = useState<string | null>(null);
+  const [activeModalProject, setActiveModalProject] = useState<ProjectCaseStudy | null>(null);
+
+  const cargoPizza = siteConfig.realProjects.find((p) => p.id === 'cargo-pizzeria') || siteConfig.realProjects[0];
+  const studio69 = siteConfig.realProjects.find((p) => p.id === '69-studio') || siteConfig.realProjects[1];
+  const dinepro = siteConfig.realProjects.find((p) => p.id === 'dinepro-advisors') || siteConfig.realProjects[2];
 
   return (
-    <section id="work" className="relative py-16 sm:py-28 px-4 sm:px-8 md:px-12 max-w-[1600px] mx-auto scroll-mt-24">
-      <div className="absolute inset-0 section-works-bg rounded-[2rem] pointer-events-none z-0" />
-      <div className="absolute left-[10%] top-[8%] w-[480px] h-[480px] rounded-full bg-[#8B5CF6]/10 blur-[130px] pointer-events-none z-0" />
+    <>
+      <section id="work" className="relative py-24 sm:py-36 bg-[#08080a] border-b border-white/[0.08] overflow-hidden">
+        {/* Background architectural grid */}
+        <div className="absolute inset-0 architectural-grid opacity-15 pointer-events-none" />
 
-      {/* Editorial Exhibition Header */}
-      <div className="relative z-10 flex flex-col lg:flex-row lg:items-end justify-between pb-10 sm:pb-16 border-b border-white/[0.08] gap-6 sm:gap-8 mb-12 sm:mb-24">
-        <div className="space-y-4 max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[11px] font-mono tracking-widest text-[#8B8B96] uppercase">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#22D3EE] animate-pulse shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
-            <span>02 / SELECTED WORK • ART GALLERY</span>
-          </div>
-          <h2 className="text-4xl sm:text-6xl lg:text-[6.4vw] font-black tracking-tight text-[#F5F5F7] uppercase leading-[0.92]">
-            Selected work. <br />
-            <span className="text-gradient-silver">Real digital experiences.</span>
-          </h2>
-        </div>
-
-        <div className="max-w-md space-y-4">
-          <p className="text-sm sm:text-base text-zinc-400 font-light leading-relaxed">
-            Every digital flagship is conceived as a bespoke spatial art piece. Zero generic templates. Built with rigorous Next.js 16 edge architecture for category leaders.
-          </p>
-          <div className="text-xs font-mono text-zinc-500 uppercase tracking-widest">
-            FOUR PRODUCTION CASE STUDIES // LIVE CLIENTS
-          </div>
-        </div>
-      </div>
-
-      {/* ASYMMETRIC GALLERY LAYOUT */}
-      <div className="relative z-10 space-y-16 sm:space-y-28">
-        
-        {/* ========================================================
-            PROJECT 01: CARGO PIZZA
-            Composition: 70% Viewport Width Visual on Left + Vertical Metadata on Right
-           ======================================================== */}
-        <motion.article
-          initial={{ opacity: 0, y: 60 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          onMouseEnter={() => setHoveredProject('cargo-pizza')}
-          onMouseLeave={() => setHoveredProject(null)}
-          data-cursor="open"
-          className="group relative grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center"
-        >
-          {/* Ambient Lighting on Hover */}
-          <div className="absolute -inset-10 bg-amber-500/5 rounded-3xl blur-3xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-
-          {/* Left: 70% Dominant Visual */}
-          <div className="lg:col-span-8 relative">
-            <div className="relative aspect-[16/10] w-full rounded-[1.5rem] overflow-hidden glass-project-frame group-hover:border-[#8B5CF6]/45 transition-all duration-700">
-              <Image
-                src="/images/projects/cargo-pizzeria-real.png"
-                alt="Cargo Pizza Digital Flagship"
-                fill
-                sizes="(max-width: 1280px) 100vw, 1100px"
-                className="object-cover object-top transition-transform duration-1000 ease-out group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
-
-              {/* Verified Tag Badge */}
-              <div className="absolute bottom-6 left-6 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/10 text-xs font-mono text-amber-300">
-                <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-                <span>DIRECT WHATSAPP ORDERING ENGINE</span>
+        <div className="max-w-[1520px] mx-auto px-4 sm:px-6 md:px-10 relative z-10 space-y-24 sm:space-y-36">
+          
+          {/* Section Masthead: Architectural Index */}
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 pb-10 border-b border-white/[0.08]">
+            <div className="space-y-4 max-w-2xl">
+              <div className="inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[10px] font-mono tracking-widest text-[#d4ff00] uppercase">
+                <span>[ EXHIBIT // PRODUCTION SPECIMENS ]</span>
               </div>
+              <h2 className="text-section-title text-white">
+                VERIFIED PRODUCTION BUILDS
+              </h2>
             </div>
-          </div>
-
-          {/* Right: Vertical Editorial Metadata & Big Typography */}
-          <div className="lg:col-span-4 space-y-8 relative z-10">
-            <div className="flex items-center space-x-3 text-xs font-mono text-zinc-500">
-              <span className="text-xl text-white font-bold">01</span>
-              <span>//</span>
-              <span className="text-amber-400 uppercase tracking-widest">FOOD & COMMERCE</span>
-              <span>•</span>
-              <span>2024</span>
-            </div>
-
-            <div className="space-y-3">
-              <h3 className="text-4xl sm:text-6xl font-light text-white uppercase tracking-tight group-hover:translate-x-2 transition-transform duration-500">
-                CARGO <br />
-                <span className="font-normal text-amber-200">PIZZA.</span>
-              </h3>
-              <p className="text-sm sm:text-base text-zinc-400 font-light leading-relaxed">
-                A cinematic restaurant flagship featuring instant dynamic menu curation, zero-commission WhatsApp cart checkout, and sub-second edge distribution.
+            <div className="max-w-md space-y-2 font-mono text-xs text-zinc-400">
+              <p>
+                Each project in our archive is an active production website engineered with custom Next.js architecture, real-time conversion systems, and sub-second edge speeds.
               </p>
-            </div>
-
-            {/* Vertical Specs Metadata */}
-            <div className="space-y-2 pt-4 border-t border-white/[0.08] text-xs font-mono text-zinc-400">
-              <div className="flex justify-between py-1 border-b border-white/[0.04]">
-                <span className="text-zinc-500">CLIENT</span>
-                <span className="text-white">CARGO PIZZA COLOMBO</span>
-              </div>
-              <div className="flex justify-between py-1 border-b border-white/[0.04]">
-                <span className="text-zinc-500">ARCHITECTURE</span>
-                <span className="text-white">NEXT.JS 16 • TAILWIND</span>
-              </div>
-              <div className="flex justify-between py-1 border-b border-white/[0.04]">
-                <span className="text-zinc-500">COMMISSION CUT</span>
-                <span className="text-emerald-400">0% SAVED</span>
-              </div>
-            </div>
-
-            {/* Actions */}
-            <div className="flex items-center gap-4 pt-4">
-              <a
-                href="https://cargopizzeria.online/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full btn-physical text-xs font-mono text-zinc-200 hover:text-white"
-              >
-                <span>LIVE PLATFORM</span>
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
-
-              <Link
-                href="/work/cargo-pizza"
-                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full btn-physical-white text-xs font-mono font-bold tracking-wider"
-              >
-                <span>CASE STUDY</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
-          </div>
-        </motion.article>
-
-
-        {/* ========================================================
-            PROJECT 02: 69 STUDIO
-            Composition: Inverted Layout — Right 65% Visual + Left Monumental Typography
-           ======================================================== */}
-        <motion.article
-          initial={{ opacity: 0, y: 60 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          onMouseEnter={() => setHoveredProject('69-studio')}
-          onMouseLeave={() => setHoveredProject(null)}
-          data-cursor="open"
-          className="group relative grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center"
-        >
-          {/* Ambient Lighting on Hover */}
-          <div className="absolute -inset-10 bg-[#3B82F6]/10 rounded-3xl blur-3xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-
-          {/* Left: Monumental Offset Typography & Specs */}
-          <div className="lg:col-span-5 space-y-8 order-2 lg:order-1 relative z-10">
-            <div className="flex items-center space-x-3 text-xs font-mono text-zinc-500">
-              <span className="text-xl text-[#F5F5F7] font-bold">02</span>
-              <span>//</span>
-              <span className="text-[#3B82F6] uppercase tracking-widest">CREATIVE AGENCY</span>
-              <span>•</span>
-              <span>2024</span>
-            </div>
-
-            <div className="space-y-3">
-              <h3 className="text-4xl sm:text-6xl font-light text-white uppercase tracking-tight group-hover:-translate-x-2 transition-transform duration-500">
-                69 <br />
-                <span className="font-normal text-sky-200">STUDIO.</span>
-              </h3>
-              <p className="text-sm sm:text-base text-zinc-400 font-light leading-relaxed">
-                A dark obsidian creative agency showcase. Built with tactile spatial typography, responsive 3D perspective grids, and ultra-fluid micro-interactions.
-              </p>
-            </div>
-
-            <div className="space-y-2 pt-4 border-t border-white/[0.08] text-xs font-mono text-zinc-400">
-              <div className="flex justify-between py-1 border-b border-white/[0.04]">
-                <span className="text-zinc-500">CLIENT</span>
-                <span className="text-white">69 STUDIO CREATIVE</span>
-              </div>
-              <div className="flex justify-between py-1 border-b border-white/[0.04]">
-                <span className="text-zinc-500">AESTHETIC</span>
-                <span className="text-white">SPATIAL OBSIDIAN</span>
-              </div>
-              <div className="flex justify-between py-1 border-b border-white/[0.04]">
-                <span className="text-zinc-500">MOTION</span>
-                <span className="text-sky-300">GPU ACCELERATED</span>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-4 pt-4">
-              <a
-                href="https://69studiobysubash.online/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full btn-physical text-xs font-mono text-zinc-200 hover:text-white"
-              >
-                <span>LIVE PLATFORM</span>
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
-
-              <Link
-                href="/work/69-studio"
-                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full btn-physical-white text-xs font-mono font-bold tracking-wider"
-              >
-                <span>CASE STUDY</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
-          </div>
-
-          {/* Right: Viewport Visual Frame */}
-          <div className="lg:col-span-7 order-1 lg:order-2 relative">
-            <div className="relative aspect-[16/10] w-full rounded-[1.5rem] overflow-hidden glass-project-frame group-hover:border-[#3B82F6]/45 transition-all duration-700">
-              <Image
-                src="/images/projects/69-studio-real.png"
-                alt="69 Studio Flagship"
-                fill
-                sizes="(max-width: 1280px) 100vw, 1000px"
-                className="object-cover object-top transition-transform duration-1000 ease-out group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
-
-              <div className="absolute bottom-6 left-6 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/10 text-xs font-mono text-sky-300">
-                <Sparkles className="w-3.5 h-3.5 text-sky-400" />
-                <span>SPATIAL 3D DIGITAL SHOWCASE</span>
+              <div className="text-[10px] text-zinc-500 uppercase">
+                NO CONCEPT PLACEHOLDERS • ZERO RECYCLED TEMPLATES
               </div>
             </div>
           </div>
-        </motion.article>
 
-
-        {/* ========================================================
-            PROJECT 03: DINEPRO ADVISERS
-            Composition: Monumental Wide Panoramic Visual + Bottom Coordinates Strip
-           ======================================================== */}
-        <motion.article
-          initial={{ opacity: 0, y: 60 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          onMouseEnter={() => setHoveredProject('dinepro-advisors')}
-          onMouseLeave={() => setHoveredProject(null)}
-          data-cursor="open"
-          className="group relative space-y-8"
-        >
-          <div className="absolute -inset-10 bg-yellow-500/5 rounded-3xl blur-3xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-
-          {/* Panoramic Wide Visual (75% Viewport Dominance) */}
-          <div className="relative aspect-[16/10] sm:aspect-[21/9] w-full rounded-[1.6rem] overflow-hidden glass-project-frame group-hover:border-[#8B5CF6]/40 transition-all duration-700">
-            <Image
-              src="/images/projects/dinepro-advisors-real.png"
-              alt="DinePro Advisers Luxury Advisory"
-              fill
-              sizes="(max-width: 1600px) 100vw, 1500px"
-              className="object-cover object-top transition-transform duration-1000 ease-out group-hover:scale-103"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none" />
-
-            {/* Overlaid Headline & Client */}
-            <div className="absolute bottom-8 left-8 sm:bottom-12 sm:left-12 right-8 flex flex-col md:flex-row md:items-end justify-between gap-6 z-10">
-              <div className="space-y-2">
-                <div className="text-xs font-mono text-yellow-400 uppercase tracking-widest">
-                  03 // HOSPITALITY CONSULTING FLAGSHIP
+          {/* ─────────────────────────────────────────────────────────────
+              EXHIBIT 01: CARGO PIZZA (Food & Hospitality / WhatsApp Commerce)
+              Asymmetric composition: Left heavy visual, Right architectural docket
+             ───────────────────────────────────────────────────────────── */}
+          <article className="relative bg-[#0e0f14] border border-white/[0.1] rounded-3xl overflow-hidden shadow-[0_30px_70px_rgba(0,0,0,0.85)]">
+            <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
+              
+              {/* Visual Showcase (7 cols) */}
+              <div className="lg:col-span-7 relative min-h-[380px] sm:min-h-[500px] lg:min-h-[580px] bg-[#050507] p-6 sm:p-10 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-white/[0.08]">
+                {/* Top Badge */}
+                <div className="flex items-center justify-between z-10">
+                  <span className="px-3.5 py-1.5 rounded-full bg-[#08080a]/90 border border-amber-500/30 text-[10px] font-mono text-amber-400 font-bold uppercase tracking-widest">
+                    01 // GASTRONOMY & COMMERCE
+                  </span>
+                  <a
+                    href={cargoPizza.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.06] border border-white/[0.1] text-xs font-mono text-zinc-300 hover:text-white hover:border-[#d4ff00] transition-colors"
+                  >
+                    <span>{cargoPizza.domain}</span>
+                    <ExternalLink className="w-3 h-3 text-[#d4ff00]" />
+                  </a>
                 </div>
-                <h3 className="text-3xl sm:text-5xl lg:text-6xl font-light text-white uppercase tracking-tight">
-                  DINEPRO <span className="font-normal text-yellow-100">ADVISERS.</span>
-                </h3>
-              </div>
 
-              <div className="flex items-center gap-4">
-                <a
-                  href="https://dineproadvisors.online/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-5 py-2.5 rounded-full btn-physical text-xs font-mono text-white flex items-center gap-2"
+                {/* Primary Screen Device Mockup */}
+                <div className="relative my-auto w-full aspect-[16/10] rounded-xl overflow-hidden border border-white/[0.12] shadow-2xl group cursor-pointer"
+                  onClick={() => setActiveModalProject(cargoPizza)}
                 >
-                  <span>LIVE PLATFORM</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
+                  <Image
+                    src={cargoPizza.heroImage}
+                    alt="Cargo Pizza live production platform"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 800px"
+                    className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#08080a]/70 via-transparent to-transparent pointer-events-none" />
+                  
+                  {/* Floating Touch Pill */}
+                  <div className="absolute bottom-4 left-4 z-10 px-3 py-1.5 rounded-full bg-[#08080a]/90 border border-white/[0.2] text-[10px] font-mono text-zinc-300">
+                    MOBILE-FIRST ORDERING &bull; 20+ PIZZA VARIETIES
+                  </div>
+                </div>
 
-                <Link
-                  href="/work/dinepro-advisors"
-                  className="px-6 py-2.5 rounded-full btn-physical-white text-xs font-mono font-bold tracking-wider flex items-center gap-2"
+                {/* Bottom Spec Footer */}
+                <div className="flex items-center justify-between text-[11px] font-mono text-zinc-500 pt-2 z-10">
+                  <span>HOSTED: GLOBAL EDGE CDN</span>
+                  <span>SPEED: 0.74s FCP</span>
+                </div>
+              </div>
+
+              {/* Architectural Docket (5 cols) */}
+              <div className="lg:col-span-5 p-8 sm:p-12 flex flex-col justify-between space-y-8 bg-[#0e0f14]">
+                <div className="space-y-6">
+                  <div className="space-y-2">
+                    <span className="text-xs font-mono text-amber-400 uppercase tracking-widest">
+                      WOODFIRED PIZZA FLAGSHIP
+                    </span>
+                    <h3 className="text-3xl sm:text-4xl font-black text-white tracking-tight uppercase">
+                      {cargoPizza.title}
+                    </h3>
+                  </div>
+
+                  <p className="text-sm sm:text-base text-zinc-300 font-light leading-relaxed">
+                    {cargoPizza.overview}
+                  </p>
+
+                  {/* Challenge & Commercial Impact Box */}
+                  <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] space-y-2">
+                    <div className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider">
+                      THE COMMERCIAL PROBLEM SOLVED:
+                    </div>
+                    <p className="text-xs text-zinc-300 font-light leading-relaxed">
+                      {cargoPizza.challenge}
+                    </p>
+                  </div>
+
+                  {/* Key Features List */}
+                  <div className="space-y-2 pt-2">
+                    <div className="text-[10px] font-mono tracking-widest text-zinc-500 uppercase">
+                      KEY DELIVERABLES
+                    </div>
+                    <ul className="space-y-1.5 text-xs text-zinc-300 font-light">
+                      {cargoPizza.features.slice(0, 4).map((f, i) => (
+                        <li key={i} className="flex items-start gap-2">
+                          <Check className="w-3.5 h-3.5 text-[#d4ff00] shrink-0 mt-0.5" />
+                          <span>{f}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Tech stack chips */}
+                  <div className="flex flex-wrap gap-1.5 pt-1">
+                    {(cargoPizza.technologies || []).map((t) => (
+                      <span key={t} className="px-2.5 py-1 rounded bg-[#14161f] border border-white/[0.08] text-[10px] font-mono text-zinc-300">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Action Trigger */}
+                <div className="pt-6 border-t border-white/[0.08] flex items-center gap-3">
+                  <button
+                    onClick={() => setActiveModalProject(cargoPizza)}
+                    className="btn-volt text-xs py-3.5 px-6 flex items-center gap-2 font-bold cursor-pointer"
+                  >
+                    <span>EXPLORE CASE STUDY</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </button>
+
+                  <a
+                    href={cargoPizza.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-architectural text-xs py-3.5 px-5 flex items-center gap-2"
+                  >
+                    <span>VISIT LIVE</span>
+                    <ExternalLink className="w-3 h-3 text-zinc-400" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          {/* ─────────────────────────────────────────────────────────────
+              EXHIBIT 02: 69 STUDIO BY SUBHASH (Creative Tech & POS Systems)
+              Reverse asymmetric composition: Docket on Left, Deep Visual on Right
+             ───────────────────────────────────────────────────────────── */}
+          <article className="relative bg-[#0e0f14] border border-white/[0.1] rounded-3xl overflow-hidden shadow-[0_30px_70px_rgba(0,0,0,0.85)]">
+            <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
+              
+              {/* Architectural Docket (5 cols) */}
+              <div className="lg:col-span-5 p-8 sm:p-12 flex flex-col justify-between space-y-8 bg-[#0e0f14] order-2 lg:order-1 border-t lg:border-t-0 lg:border-r border-white/[0.08]">
+                <div className="space-y-6">
+                  <div className="space-y-2">
+                    <span className="text-xs font-mono text-[#00f0ff] uppercase tracking-widest">
+                      CREATIVE TECHNOLOGY & POS SYSTEMS
+                    </span>
+                    <h3 className="text-3xl sm:text-4xl font-black text-white tracking-tight uppercase">
+                      {studio69.title}
+                    </h3>
+                  </div>
+
+                  <p className="text-sm sm:text-base text-zinc-300 font-light leading-relaxed">
+                    {studio69.overview}
+                  </p>
+
+                  {/* Challenge Box */}
+                  <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] space-y-2">
+                    <div className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider">
+                      SYSTEM CAPABILITY SHOWCASE:
+                    </div>
+                    <p className="text-xs text-zinc-300 font-light leading-relaxed">
+                      Custom inventory & point of sale software showcase paired with obsidian cybernetic motion design and multi-channel lead capture.
+                    </p>
+                  </div>
+
+                  {/* Key Features List */}
+                  <div className="space-y-2 pt-2">
+                    <div className="text-[10px] font-mono tracking-widest text-zinc-500 uppercase">
+                      ENGINEERING SCOPE
+                    </div>
+                    <ul className="space-y-1.5 text-xs text-zinc-300 font-light">
+                      {studio69.features.slice(0, 4).map((f, i) => (
+                        <li key={i} className="flex items-start gap-2">
+                          <Check className="w-3.5 h-3.5 text-[#00f0ff] shrink-0 mt-0.5" />
+                          <span>{f}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Tech stack chips */}
+                  <div className="flex flex-wrap gap-1.5 pt-1">
+                    {(studio69.technologies || []).map((t) => (
+                      <span key={t} className="px-2.5 py-1 rounded bg-[#14161f] border border-white/[0.08] text-[10px] font-mono text-zinc-300">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Action Trigger */}
+                <div className="pt-6 border-t border-white/[0.08] flex items-center gap-3">
+                  <button
+                    onClick={() => setActiveModalProject(studio69)}
+                    className="btn-volt text-xs py-3.5 px-6 flex items-center gap-2 font-bold cursor-pointer"
+                  >
+                    <span>EXPLORE CASE STUDY</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </button>
+
+                  <a
+                    href={studio69.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-architectural text-xs py-3.5 px-5 flex items-center gap-2"
+                  >
+                    <span>VISIT LIVE</span>
+                    <ExternalLink className="w-3 h-3 text-zinc-400" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Visual Showcase (7 cols) */}
+              <div className="lg:col-span-7 relative min-h-[380px] sm:min-h-[500px] lg:min-h-[580px] bg-[#050507] p-6 sm:p-10 flex flex-col justify-between order-1 lg:order-2">
+                {/* Top Badge */}
+                <div className="flex items-center justify-between z-10">
+                  <span className="px-3.5 py-1.5 rounded-full bg-[#08080a]/90 border border-cyan-500/30 text-[10px] font-mono text-cyan-400 font-bold uppercase tracking-widest">
+                    02 // CREATIVE ENGINEERING
+                  </span>
+                  <a
+                    href={studio69.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.06] border border-white/[0.1] text-xs font-mono text-zinc-300 hover:text-white hover:border-[#00f0ff] transition-colors"
+                  >
+                    <span>{studio69.domain}</span>
+                    <ExternalLink className="w-3 h-3 text-[#00f0ff]" />
+                  </a>
+                </div>
+
+                {/* Primary Screen Device Mockup */}
+                <div className="relative my-auto w-full aspect-[16/10] rounded-xl overflow-hidden border border-white/[0.12] shadow-2xl group cursor-pointer"
+                  onClick={() => setActiveModalProject(studio69)}
                 >
-                  <span>CASE STUDY</span>
-                  <ArrowUpRight className="w-3.5 h-3.5" />
-                </Link>
+                  <Image
+                    src={studio69.heroImage}
+                    alt="69 Studio by Subhash production platform"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 800px"
+                    className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#08080a]/70 via-transparent to-transparent pointer-events-none" />
+
+                  <div className="absolute bottom-4 left-4 z-10 px-3 py-1.5 rounded-full bg-[#08080a]/90 border border-white/[0.2] text-[10px] font-mono text-zinc-300">
+                    OBSIDIAN INTERFACE &bull; BESPOKE POS SOLUTIONS
+                  </div>
+                </div>
+
+                {/* Bottom Spec Footer */}
+                <div className="flex items-center justify-between text-[11px] font-mono text-zinc-500 pt-2 z-10">
+                  <span>FOUNDER: SUBHASH KETAGODA</span>
+                  <span>SPEED: 0.68s FCP</span>
+                </div>
               </div>
             </div>
-          </div>
-        </motion.article>
+          </article>
 
+          {/* ─────────────────────────────────────────────────────────────
+              EXHIBIT 03: DINEPRO ADVISERS (Hospitality Advisory & Booking)
+              Asymmetric composition: Left heavy visual, Right architectural docket
+             ───────────────────────────────────────────────────────────── */}
+          <article className="relative bg-[#0e0f14] border border-white/[0.1] rounded-3xl overflow-hidden shadow-[0_30px_70px_rgba(0,0,0,0.85)]">
+            <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
+              
+              {/* Visual Showcase (7 cols) */}
+              <div className="lg:col-span-7 relative min-h-[380px] sm:min-h-[500px] lg:min-h-[580px] bg-[#050507] p-6 sm:p-10 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-white/[0.08]">
+                {/* Top Badge */}
+                <div className="flex items-center justify-between z-10">
+                  <span className="px-3.5 py-1.5 rounded-full bg-[#08080a]/90 border border-yellow-500/30 text-[10px] font-mono text-yellow-300 font-bold uppercase tracking-widest">
+                    03 // STRATEGIC CONSULTING
+                  </span>
+                  <a
+                    href={dinepro.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.06] border border-white/[0.1] text-xs font-mono text-zinc-300 hover:text-white hover:border-[#d4ff00] transition-colors"
+                  >
+                    <span>{dinepro.domain}</span>
+                    <ExternalLink className="w-3 h-3 text-[#d4ff00]" />
+                  </a>
+                </div>
 
-        {/* ========================================================
-            PROJECT 04: NOT AMANTHA PERERA
-            Composition: Split Asymmetric Spread + Media Platform Feel
-           ======================================================== */}
-        <motion.article
-          initial={{ opacity: 0, y: 60 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          onMouseEnter={() => setHoveredProject('not-amantha-perera')}
-          onMouseLeave={() => setHoveredProject(null)}
-          data-cursor="open"
-          className="group relative grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center"
-        >
-          <div className="absolute -inset-10 bg-[#8B5CF6]/10 rounded-3xl blur-3xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                {/* Primary Screen Device Mockup */}
+                <div className="relative my-auto w-full aspect-[16/10] rounded-xl overflow-hidden border border-white/[0.12] shadow-2xl group cursor-pointer"
+                  onClick={() => setActiveModalProject(dinepro)}
+                >
+                  <Image
+                    src={dinepro.heroImage}
+                    alt="DinePro Advisers production platform"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 800px"
+                    className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#08080a]/70 via-transparent to-transparent pointer-events-none" />
 
-          {/* Left: 70% Viewport Visual */}
-          <div className="lg:col-span-7 relative">
-            <div className="relative aspect-[16/10] w-full rounded-[1.5rem] overflow-hidden glass-project-frame group-hover:border-[#8B5CF6]/45 transition-all duration-700">
-              <Image
-                src="/images/projects/not-amantha-perera.png"
-                alt="Not Amantha Perera Content Platform"
-                fill
-                sizes="(max-width: 1280px) 100vw, 1000px"
-                className="object-cover object-top transition-transform duration-1000 ease-out group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute bottom-4 left-4 z-10 px-3 py-1.5 rounded-full bg-[#08080a]/90 border border-white/[0.2] text-[10px] font-mono text-zinc-300">
+                    ADVISORY CATALOG &bull; ONLINE STRATEGY BOOKING
+                  </div>
+                </div>
 
-              <div className="absolute bottom-6 left-6 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/10 text-xs font-mono text-violet-300">
-                <Sparkles className="w-3.5 h-3.5 text-violet-400" />
-                <span>CONTENT ARCHITECTURE & BRAND FLAGSHIP</span>
+                {/* Bottom Spec Footer */}
+                <div className="flex items-center justify-between text-[11px] font-mono text-zinc-500 pt-2 z-10">
+                  <span>DISCIPLINE: RESTAURANT STRATEGY</span>
+                  <span>SPEED: 0.79s FCP</span>
+                </div>
+              </div>
+
+              {/* Architectural Docket (5 cols) */}
+              <div className="lg:col-span-5 p-8 sm:p-12 flex flex-col justify-between space-y-8 bg-[#0e0f14]">
+                <div className="space-y-6">
+                  <div className="space-y-2">
+                    <span className="text-xs font-mono text-yellow-300 uppercase tracking-widest">
+                      RESTAURANT & HOSPITALITY ADVISORY
+                    </span>
+                    <h3 className="text-3xl sm:text-4xl font-black text-white tracking-tight uppercase">
+                      {dinepro.title}
+                    </h3>
+                  </div>
+
+                  <p className="text-sm sm:text-base text-zinc-300 font-light leading-relaxed">
+                    {dinepro.overview}
+                  </p>
+
+                  {/* Challenge Box */}
+                  <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] space-y-2">
+                    <div className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider">
+                      CONVERSION ARCHITECTURE:
+                    </div>
+                    <p className="text-xs text-zinc-300 font-light leading-relaxed">
+                      {dinepro.challenge}
+                    </p>
+                  </div>
+
+                  {/* Key Features List */}
+                  <div className="space-y-2 pt-2">
+                    <div className="text-[10px] font-mono tracking-widest text-zinc-500 uppercase">
+                      PRACTICE AREA DELIVERABLES
+                    </div>
+                    <ul className="space-y-1.5 text-xs text-zinc-300 font-light">
+                      {dinepro.features.slice(0, 4).map((f, i) => (
+                        <li key={i} className="flex items-start gap-2">
+                          <Check className="w-3.5 h-3.5 text-[#d4ff00] shrink-0 mt-0.5" />
+                          <span>{f}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Tech stack chips */}
+                  <div className="flex flex-wrap gap-1.5 pt-1">
+                    {(dinepro.technologies || []).map((t) => (
+                      <span key={t} className="px-2.5 py-1 rounded bg-[#14161f] border border-white/[0.08] text-[10px] font-mono text-zinc-300">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Action Trigger */}
+                <div className="pt-6 border-t border-white/[0.08] flex items-center gap-3">
+                  <button
+                    onClick={() => setActiveModalProject(dinepro)}
+                    className="btn-volt text-xs py-3.5 px-6 flex items-center gap-2 font-bold cursor-pointer"
+                  >
+                    <span>EXPLORE CASE STUDY</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </button>
+
+                  <a
+                    href={dinepro.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-architectural text-xs py-3.5 px-5 flex items-center gap-2"
+                  >
+                    <span>VISIT LIVE</span>
+                    <ExternalLink className="w-3 h-3 text-zinc-400" />
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
+          </article>
 
-          {/* Right: Narrative & Direct Link */}
-          <div className="lg:col-span-5 space-y-8 relative z-10">
-            <div className="flex items-center space-x-3 text-xs font-mono text-zinc-500">
-              <span className="text-xl text-[#F5F5F7] font-bold">04</span>
-              <span>//</span>
-              <span className="text-[#8B5CF6] uppercase tracking-widest">PERSONAL BRAND & MEDIA</span>
-              <span>•</span>
-              <span>2024</span>
-            </div>
+        </div>
+      </section>
 
-            <div className="space-y-3">
-              <h3 className="text-4xl sm:text-6xl font-light text-white uppercase tracking-tight group-hover:translate-x-2 transition-transform duration-500">
-                NOT AMANTHA <br />
-                <span className="font-normal text-violet-200">PERERA.</span>
-              </h3>
-              <p className="text-sm sm:text-base text-zinc-400 font-light leading-relaxed">
-                A bespoke personal media and content flagship. Tailored with clean mobile ergonomics, fluid video embeds, and sub-second edge distribution.
-              </p>
-            </div>
-
-            <div className="space-y-2 pt-4 border-t border-white/[0.08] text-xs font-mono text-zinc-400">
-              <div className="flex justify-between py-1 border-b border-white/[0.04]">
-                <span className="text-zinc-500">PLATFORM</span>
-                <span className="text-white">NOTAMANTHAPERERA.ONLINE</span>
-              </div>
-              <div className="flex justify-between py-1 border-b border-white/[0.04]">
-                <span className="text-zinc-500">ERGONOMICS</span>
-                <span className="text-white">100% FLUID MOBILE FIRST</span>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-4 pt-4">
-              <a
-                href="https://notamanthaperera.online/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full btn-physical text-xs font-mono text-zinc-200 hover:text-white"
-              >
-                <span>LIVE PLATFORM</span>
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
-
-              <Link
-                href="/work/not-amantha-perera"
-                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full btn-physical-white text-xs font-mono font-bold tracking-wider"
-              >
-                <span>CASE STUDY</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
-          </div>
-        </motion.article>
-
-      </div>
-    </section>
+      {/* Full Case Study Modal */}
+      <ProjectDetailModal
+        project={activeModalProject}
+        onClose={() => setActiveModalProject(null)}
+      />
+    </>
   );
 }

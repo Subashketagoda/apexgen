@@ -133,11 +133,30 @@ export default function StartAProjectPage() {
       setCurrentStep(7);
       trackInquirySubmit(formData.requiredService, formData.budgetRange);
 
+      const waText = encodeURIComponent(
+        `*NEW PROJECT BRIEF — APEXGEN STUDIO*\n\n` +
+        `• Ref: ${assignedId}\n` +
+        `• Name: ${formData.name}\n` +
+        `• Business: ${formData.businessName || 'Independent'}\n` +
+        `• Looking For: ${formData.requiredService}\n` +
+        `• Budget: ${formData.budgetRange}\n` +
+        `• Timeline: ${formData.projectTimeline}\n` +
+        `• Phone: ${formData.whatsapp}\n` +
+        `• Details: ${formData.projectDescription}\n\n` +
+        `_Submitted via apexgen.website/start-a-project_`
+      );
+      const cleanNum = siteConfig.contact.whatsappNumber.replace(/[^0-9]/g, '');
+      const waUrl = `https://wa.me/${cleanNum}?text=${waText}`;
+
+      if (typeof window !== 'undefined') {
+        window.open(waUrl, '_blank', 'noopener,noreferrer');
+      }
+
       confetti({
         particleCount: 80,
         spread: 75,
         origin: { y: 0.6 },
-        colors: ['#FF5E00', '#FFA86B', '#FFFFFF', '#D44E00'],
+        colors: ['#d4ff00', '#ffffff', '#00f0ff'],
       });
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'An unexpected error occurred.';

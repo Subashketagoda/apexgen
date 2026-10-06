@@ -1,79 +1,135 @@
 'use client';
 
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { ArrowUpRight, Check, X, ShieldAlert, ShieldCheck } from 'lucide-react';
+import { siteConfig } from '@/data/siteConfig';
 
 export function HomeManifestoStatement() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end end'],
-  });
-
-  // Stage 1: "DESIGN IS NOT DECORATION."
-  // Stage 2: "IT IS HOW PEOPLE EXPERIENCE YOUR BUSINESS."
-  const phase1Opacity = useTransform(scrollYProgress, [0.05, 0.25, 0.45, 0.52], [0, 1, 1, 0]);
-  const phase1Scale = useTransform(scrollYProgress, [0.05, 0.45], [0.95, 1.05]);
-
-  const phase2Opacity = useTransform(scrollYProgress, [0.55, 0.68, 0.88, 0.98], [0, 1, 1, 0.8]);
-  const phase2Scale = useTransform(scrollYProgress, [0.55, 0.95], [0.95, 1.04]);
+  const comparisons = [
+    {
+      domain: 'CODEBASE ARCHITECTURE',
+      industry: 'Recycled WordPress themes, 40+ third-party plugins, slow database queries.',
+      apexgen: 'Clean Next.js App Router, Turbopack, and zero bloated plugins.',
+    },
+    {
+      domain: 'LOADING VELOCITY',
+      industry: '3.5s to 6.0s load times resulting in 50%+ bounce rates on mobile.',
+      apexgen: 'Sub-second (< 0.8s) worldwide delivery via global Edge CDN routing.',
+    },
+    {
+      domain: 'DESIGN AUTHENTICITY',
+      industry: 'Generic corporate templates that make your brand look identical to competitors.',
+      apexgen: '100% bespoke art direction crafted specifically for your commercial niche.',
+    },
+    {
+      domain: 'CONVERSION INTENT',
+      industry: 'Clumsy email forms that go into spam folders with zero mobile focus.',
+      apexgen: 'Direct 1-click WhatsApp checkout funnels and frictionless reservation engines.',
+    },
+    {
+      domain: 'TECHNICAL DISCOVERABILITY',
+      industry: 'Ignored or basic meta tags with zero structured data schema.',
+      apexgen: 'Google Schema.org JSON-LD (LocalBusiness, Organization) and OpenGraph out of the box.',
+    },
+    {
+      domain: 'STUDIO RELATIONSHIP',
+      industry: 'Junior account managers and opaque communication with weeks of silence.',
+      apexgen: 'Direct direction and technical partnership with founder Subhash Ketagoda.',
+    },
+  ];
 
   return (
-    <div
-      ref={containerRef}
-      className="relative h-[240vh] bg-[#050507] text-[#F5F5F7] selection:bg-white selection:text-black border-t border-b border-white/[0.06]"
-    >
-      <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden px-6 sm:px-12">
-        {/* Subtle cinematic technical background */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.07)_0%,transparent_70%)] pointer-events-none" />
+    <section id="about" className="relative py-28 sm:py-36 bg-[#08080a] border-b border-white/[0.08] overflow-hidden">
+      {/* Background architectural grid */}
+      <div className="absolute inset-0 architectural-grid opacity-15 pointer-events-none" />
 
-        {/* Ambient fine coordinates */}
-        <div className="absolute top-10 left-10 flex items-center space-x-3 text-[11px] font-mono text-[#8B8B96] uppercase">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#8B5CF6]" />
-          <span>APEXGEN MANIFESTO // 04</span>
-        </div>
-        <div className="absolute bottom-10 right-10 text-[11px] font-mono text-[#8B8B96] hidden sm:block">
-          CRAFTED IN COLOMBO / DEPLOYED GLOBALLY
-        </div>
-
-        {/* PHASE 1: DESIGN IS NOT DECORATION */}
-        <motion.div
-          style={{ opacity: phase1Opacity, scale: phase1Scale }}
-          className="absolute text-center max-w-5xl mx-auto space-y-4 px-4"
-        >
-          <div className="text-[12px] font-mono tracking-widest text-[#8B8B96] uppercase mb-4">
-            AXIOM 01
+      <div className="max-w-[1520px] mx-auto px-4 sm:px-6 md:px-10 relative z-10 space-y-20 sm:space-y-28">
+        
+        {/* Full-Screen Scale Statement Header */}
+        <div className="space-y-8 max-w-5xl">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[10px] font-mono tracking-widest text-[#d4ff00] uppercase">
+            <span>[ AXIOM // THE APEXGEN DIFFERENCE ]</span>
           </div>
-          <h2 className="text-4xl sm:text-6xl md:text-8xl lg:text-[7vw] font-black uppercase tracking-tight leading-[0.95]">
-            <span className="block text-[#8B8B96]">DESIGN</span>
-            <span className="block text-zinc-500">IS</span>
-            <span className="block text-red-400/90 font-mono tracking-normal">NOT</span>
-            <span className="block text-[#F5F5F7] drop-shadow-[0_0_40px_rgba(255,255,255,0.4)]">DECORATION.</span>
-          </h2>
-        </motion.div>
 
-        {/* PHASE 2: IT IS HOW PEOPLE EXPERIENCE YOUR BUSINESS */}
-        <motion.div
-          style={{ opacity: phase2Opacity, scale: phase2Scale }}
-          className="absolute text-center max-w-6xl mx-auto space-y-6 px-4"
-        >
-          <div className="text-[12px] font-mono tracking-widest text-[#3B82F6] uppercase mb-4">
-            AXIOM 02
-          </div>
-          <h2 className="text-4xl sm:text-6xl md:text-8xl lg:text-[6.5vw] font-black uppercase tracking-tight leading-[0.98]">
-            <span className="block text-[#8B8B96]">IT IS</span>
-            <span className="block text-[#F5F5F7]">HOW PEOPLE</span>
-            <span className="block bg-gradient-to-r from-[#3B82F6] via-[#C084FC] to-[#8B5CF6] bg-clip-text text-transparent drop-shadow-[0_0_35px_rgba(59,130,246,0.35)]">
-              EXPERIENCE
+          <h2 className="text-monolith text-white font-black leading-[0.92]">
+            <span className="block text-zinc-500">GOOD DESIGN GETS ATTENTION.</span>
+            <span className="block text-white">GREAT EXPERIENCES</span>
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-200 to-[#d4ff00]">
+              MOVE PEOPLE TO ACT.
             </span>
-            <span className="block text-[#F5F5F7]">YOUR BUSINESS.</span>
           </h2>
-          <p className="text-sm sm:text-base font-mono text-[#8B8B96] uppercase tracking-widest max-w-xl mx-auto pt-4">
-            Every click, every transition, every frame either earns customer trust or forfeits it.
+
+          <p className="text-lg sm:text-2xl text-zinc-300 font-light max-w-3xl leading-relaxed">
+            Most business websites fail not because of aesthetics, but because they are slow, difficult to navigate on mobile, and disconnected from real commercial customer behavior. We engineered ApexGen to solve this.
           </p>
-        </motion.div>
+        </div>
+
+        {/* Asymmetrical Ledger: The Standard Agency Way vs. The ApexGen Engine */}
+        <div className="bg-[#0e0f14] border border-white/[0.1] rounded-3xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.85)]">
+          {/* Table Header */}
+          <div className="grid grid-cols-1 md:grid-cols-12 border-b border-white/[0.08] bg-[#14161f] text-xs font-mono">
+            <div className="md:col-span-3 p-4 sm:p-6 text-zinc-400 font-bold uppercase tracking-wider">
+              ENGINEERING CRITERIA
+            </div>
+            <div className="md:col-span-4 p-4 sm:p-6 text-zinc-500 border-t md:border-t-0 md:border-l border-white/[0.08] uppercase tracking-wider flex items-center gap-2">
+              <ShieldAlert className="w-3.5 h-3.5 text-zinc-500" />
+              <span>THE STANDARD AGENCY WAY</span>
+            </div>
+            <div className="md:col-span-5 p-4 sm:p-6 text-[#d4ff00] border-t md:border-t-0 md:border-l border-white/[0.08] uppercase tracking-wider font-bold flex items-center gap-2 bg-[#d4ff00]/[0.03]">
+              <ShieldCheck className="w-4 h-4 text-[#d4ff00]" />
+              <span>THE APEXGEN STANDARD</span>
+            </div>
+          </div>
+
+          {/* Ledger Rows */}
+          <div className="divide-y divide-white/[0.06]">
+            {comparisons.map((c, idx) => (
+              <div
+                key={idx}
+                className="grid grid-cols-1 md:grid-cols-12 text-xs sm:text-sm transition-colors hover:bg-white/[0.01]"
+              >
+                {/* Domain */}
+                <div className="md:col-span-3 p-4 sm:p-6 font-mono font-bold text-white flex items-center">
+                  <span>{c.domain}</span>
+                </div>
+
+                {/* Industry */}
+                <div className="md:col-span-4 p-4 sm:p-6 text-zinc-500 font-light leading-relaxed border-t md:border-t-0 md:border-l border-white/[0.06] flex items-center gap-3">
+                  <X className="w-4 h-4 text-zinc-600 shrink-0 hidden sm:block" />
+                  <span>{c.industry}</span>
+                </div>
+
+                {/* ApexGen */}
+                <div className="md:col-span-5 p-4 sm:p-6 text-zinc-200 font-medium leading-relaxed border-t md:border-t-0 md:border-l border-white/[0.06] flex items-center gap-3 bg-[#d4ff00]/[0.02]">
+                  <Check className="w-4 h-4 text-[#d4ff00] shrink-0 hidden sm:block" />
+                  <span>{c.apexgen}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Founder Signature Statement Strip */}
+        <div className="p-8 sm:p-10 rounded-2xl bg-[#0e0f14] border border-white/[0.08] flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div className="space-y-2 max-w-xl">
+            <div className="text-[10px] font-mono tracking-widest text-[#d4ff00] uppercase">
+              STUDIO CREED &bull; SUBHASH KETAGODA
+            </div>
+            <div className="text-xl font-bold text-white tracking-tight">
+              &ldquo;We partner with a selective roster of brands each quarter to ensure focused creative direction, zero delegation to junior contractors, and sub-second execution.&rdquo;
+            </div>
+          </div>
+
+          <a
+            href="#contact"
+            className="btn-volt py-3.5 px-8 text-xs font-mono font-bold whitespace-nowrap"
+          >
+            <span>RESERVE Q2 ENGAGEMENT</span>
+            <ArrowUpRight className="w-3.5 h-3.5 ml-1" />
+          </a>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

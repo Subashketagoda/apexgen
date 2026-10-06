@@ -117,10 +117,10 @@ export function CustomCursor() {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.6, opacity: 0 }}
             transition={{ type: 'spring', damping: 24, stiffness: 350 }}
-            className="pointer-events-none fixed left-0 top-0 px-4 py-2 rounded-full bg-white text-black flex items-center space-x-2 font-mono text-[10px] uppercase font-bold tracking-widest shadow-[0_0_25px_rgba(255,255,255,0.3)] backdrop-blur-md"
+            className="pointer-events-none fixed left-0 top-0 px-4 py-2 rounded-full bg-[#d4ff00] text-[#08080a] flex items-center space-x-2 font-mono text-[10px] uppercase font-bold tracking-widest shadow-[0_0_25px_rgba(212,255,0,0.4)] backdrop-blur-md"
           >
             <span>{cursorLabel}</span>
-            <span className="text-black font-black">&rarr;</span>
+            <span className="text-[#08080a] font-black">&rarr;</span>
           </motion.div>
         ) : cursorMode === 'pointer' ? (
           <motion.div
@@ -130,7 +130,7 @@ export function CustomCursor() {
             animate={{ scale: 1.35, opacity: 1 }}
             exit={{ scale: 0.8, opacity: 0 }}
             transition={{ type: 'spring', damping: 25, stiffness: 380 }}
-            className="pointer-events-none fixed left-0 top-0 w-8 h-8 rounded-full border border-white/60 bg-white/[0.08] shadow-[0_0_15px_rgba(255,255,255,0.2)]"
+            className="pointer-events-none fixed left-0 top-0 w-8 h-8 rounded-full border border-[#d4ff00]/60 bg-[#d4ff00]/[0.08] shadow-[0_0_15px_rgba(212,255,0,0.25)]"
           />
         ) : (
           <motion.div

@@ -135,11 +135,30 @@ export function InquiryFormSection() {
       setLeadRef(assignedLeadId);
       trackInquirySubmit(formData.requiredService, formData.budgetRange);
 
+      const text = encodeURIComponent(
+        `*NEW PROJECT INQUIRY — APEXGEN STUDIO*\n\n` +
+        `• Name: ${formData.name}\n` +
+        `• Business: ${formData.businessName || 'Independent'}\n` +
+        `• Phone: ${formData.phone}\n` +
+        `• Email: ${formData.email}\n` +
+        `• Service: ${formData.requiredService}\n` +
+        `• Budget: ${formData.budgetRange}\n` +
+        `• Timeline: ${formData.projectTimeline}\n` +
+        `• Details: ${formData.projectDescription}\n\n` +
+        `_Submitted via apexgen.website_`
+      );
+      const cleanNumber = siteConfig.contact.whatsappNumber.replace(/[^0-9]/g, '');
+      const waUrl = `https://wa.me/${cleanNumber}?text=${text}`;
+
+      if (typeof window !== 'undefined') {
+        window.open(waUrl, '_blank', 'noopener,noreferrer');
+      }
+
       confetti({
         particleCount: 70,
         spread: 70,
         origin: { y: 0.65 },
-        colors: ['#FF5E00', '#FFA86B', '#FFFFFF', '#D44E00'],
+        colors: ['#d4ff00', '#ffffff', '#00f0ff'],
       });
     } catch (err: unknown) {
       const errorMessage =

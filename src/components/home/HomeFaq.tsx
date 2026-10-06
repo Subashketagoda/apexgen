@@ -1,9 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ChevronDown, MessageCircle } from 'lucide-react';
+import { ChevronDown, MessageSquare } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { siteConfig } from '@/data/site';
+import { siteConfig } from '@/data/siteConfig';
+import { formatWhatsAppUrl } from '@/lib/utils';
 
 interface FaqItem {
   question: string;
@@ -27,17 +28,17 @@ export function HomeFaq() {
     {
       question: 'Do you create 100% custom designs?',
       answer:
-        'Yes, unconditionally. Every ApexGen website starts from a completely blank Figma canvas. We develop tailored visual identities, editorial typography hierarchies, and bespoke user flows specifically for your commercial niche. We never use recycled templates or pre-made themes.',
+        'Yes, unconditionally. Every ApexGen website starts from a completely blank canvas. We develop tailored visual identities, editorial typography hierarchies, and bespoke user flows specifically for your commercial niche. We never use recycled templates or pre-made themes.',
     },
     {
       question: 'Are websites mobile-first and responsive?',
       answer:
-        'Every single interface is engineered mobile-first. Over 70% of web traffic in Sri Lanka and globally originates from smartphones; our layouts are tested rigorously for thumb reach, touch ergonomics, fluid typography, and sub-second load times across every device size.',
+        'Every single interface is engineered mobile-first. Over 80% of web traffic in Sri Lanka and globally originates from smartphones; our layouts are tested rigorously for thumb reach, touch ergonomics, fluid typography, and sub-second load times across every device size.',
     },
     {
       question: 'Is technical SEO and Google Indexing included?',
       answer:
-        'Yes, technical SEO is baked into our engineering core. We implement semantic HTML5, Schema.org JSON-LD structured data (Organization, LocalBusiness, Breadcrumbs, FAQ), dynamic XML sitemaps, robots directives, OpenGraph meta previews, and Core Web Vitals optimization so your site is ready for Google search indexing.',
+        'Yes, technical SEO is baked into our engineering core. We implement semantic HTML5, Schema.org JSON-LD structured data (Organization, LocalBusiness), dynamic XML sitemaps, robots directives, OpenGraph meta previews, and Core Web Vitals optimization so your site is ready for Google search indexing.',
     },
     {
       question: 'Can you redesign an existing website without losing SEO rank?',
@@ -47,101 +48,112 @@ export function HomeFaq() {
     {
       question: 'Do you provide ongoing support and warranty?',
       answer:
-        'All client projects include a 30-day post-launch technical warranty covering bug fixes and minor adjustments. Beyond delivery, we provide optional maintenance, hosting and domain DNS management, performance monitoring, and continuous feature expansion packages.',
+        'All client projects include a post-launch technical warranty covering bug fixes and minor adjustments. Beyond delivery, we provide optional maintenance, hosting and domain DNS management, performance monitoring, and continuous feature expansion packages.',
     },
     {
       question: 'How do we start a project?',
       answer:
-        'You can begin immediately by clicking "Start a Project" and completing our 2-minute project questionnaire. Alternatively, you can start a conversation directly with our studio leadership on WhatsApp at +94 77 028 9139. We respond with a tailored proposal within 24 hours.',
+        `You can begin immediately by completing our project intake terminal above. Alternatively, you can start a conversation directly with our studio leadership on WhatsApp at ${siteConfig.contact.whatsappDisplay}. We respond with a tailored proposal within 24 hours.`,
     },
   ];
 
   return (
-    <section id="faq" className="py-28 sm:py-36 lg:py-48 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto border-t border-white/[0.08] scroll-mt-24 relative overflow-hidden">
-      {/* Background Architectural Grid */}
-      <div className="absolute inset-0 studio-grid pointer-events-none opacity-20" />
+    <section id="faq" className="relative py-24 sm:py-32 bg-[#08080a] border-b border-white/[0.08] overflow-hidden">
+      {/* Background architectural grid */}
+      <div className="absolute inset-0 architectural-grid opacity-15 pointer-events-none" />
 
-      {/* Section Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between pb-16 sm:pb-20 border-b border-white/[0.08] gap-6">
-        <div className="space-y-4 max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[11px] font-mono tracking-widest text-zinc-400 uppercase">
-            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-            <span>CLARITY & ASSURANCE</span>
+      <div className="max-w-[1520px] mx-auto px-4 sm:px-6 md:px-10 relative z-10 space-y-16 sm:space-y-24">
+        
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-white/[0.08]">
+          <div className="space-y-3">
+            <div className="text-[11px] font-mono tracking-[0.25em] text-[#d4ff00] uppercase flex items-center gap-2">
+              <span>[ 07 // FREQUENTLY ASKED QUESTIONS ]</span>
+            </div>
+            <h2 className="text-section-title text-white">
+              STUDIO CLARITY
+            </h2>
           </div>
-          <h2 className="text-3xl sm:text-5xl md:text-6xl font-light tracking-[-0.035em] text-white uppercase leading-[1.05]">
-            Your questions, <br />
-            <span className="text-gradient-silver font-normal">answered transparently.</span>
-          </h2>
+          <p className="text-sm sm:text-base text-zinc-400 font-light max-w-md">
+            Everything you need to know about our craftsmanship, delivery milestones, pricing terms, and ongoing support.
+          </p>
         </div>
 
-        <a
-          href={`https://wa.me/${siteConfig.contact.whatsappNumber.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(
-            'Hello ApexGen Studio, I have a question regarding your web design and development services.'
-          )}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/[0.05] border border-white/[0.1] text-xs font-mono text-zinc-300 hover:text-white hover:bg-white/[0.1] transition-all self-start md:self-auto"
-        >
-          <MessageCircle className="w-3.5 h-3.5 text-zinc-400" />
-          <span>Ask on WhatsApp</span>
-        </a>
-      </div>
+        {/* Accordion List */}
+        <div className="max-w-4xl mx-auto space-y-3">
+          {faqs.map((faq, index) => {
+            const isOpen = openIndex === index;
 
-      {/* Sleek Accordion Cards matching Reference Image Philosophy */}
-      <div className="mt-12 sm:mt-16 max-w-4xl mx-auto space-y-4">
-        {faqs.map((faq, index) => {
-          const isOpen = openIndex === index;
-
-          return (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-30px' }}
-              transition={{ duration: 0.5, delay: index * 0.04 }}
-              className={`rounded-2xl transition-all duration-300 border overflow-hidden ${
-                isOpen
-                  ? 'studio-card-elevated border-white/[0.2]'
-                  : 'studio-card border-white/[0.06] hover:border-white/[0.14]'
-              }`}
-            >
-              <button
-                type="button"
-                onClick={() => setOpenIndex(isOpen ? null : index)}
-                className="w-full p-6 sm:p-7 flex items-center justify-between text-left cursor-pointer focus:outline-none"
-                aria-expanded={isOpen}
+            return (
+              <div
+                key={index}
+                className={`rounded-xl border transition-all duration-300 overflow-hidden ${
+                  isOpen
+                    ? 'bg-[#12131a] border-[#d4ff00]/40 shadow-[0_4px_20px_rgba(0,0,0,0.5)]'
+                    : 'bg-[#0e0f14] border-white/[0.08] hover:border-white/[0.18]'
+                }`}
               >
-                <span className="text-base sm:text-lg font-light text-white tracking-tight pr-6">
-                  {faq.question}
-                </span>
-                <div
-                  className={`p-1.5 rounded-full border transition-transform duration-300 shrink-0 ${
-                    isOpen
-                      ? 'bg-white text-black border-white rotate-180'
-                      : 'bg-white/[0.04] text-zinc-400 border-white/[0.08]'
-                  }`}
+                <button
+                  type="button"
+                  onClick={() => setOpenIndex(isOpen ? null : index)}
+                  className="w-full py-5 px-6 sm:px-8 text-left flex items-center justify-between gap-4 cursor-pointer focus:outline-none"
+                  aria-expanded={isOpen}
                 >
-                  <ChevronDown className="w-4 h-4" />
-                </div>
-              </button>
+                  <span className="flex items-center gap-4">
+                    <span className="text-xs font-mono text-zinc-500">
+                      0{index + 1}
+                    </span>
+                    <span
+                      className={`text-base sm:text-lg font-bold tracking-tight transition-colors ${
+                        isOpen ? 'text-white' : 'text-zinc-300 hover:text-white'
+                      }`}
+                    >
+                      {faq.question}
+                    </span>
+                  </span>
 
-              <AnimatePresence initial={false}>
-                {isOpen && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                  >
-                    <div className="px-6 sm:px-7 pb-6 sm:pb-7 pt-2 border-t border-white/[0.06] text-sm text-zinc-400 leading-relaxed font-normal">
-                      {faq.answer}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          );
-        })}
+                  <ChevronDown
+                    className={`w-4 h-4 shrink-0 transition-transform duration-300 ${
+                      isOpen ? 'rotate-180 text-[#d4ff00]' : 'text-zinc-500'
+                    }`}
+                  />
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-6 sm:px-8 pb-6 pt-1 text-sm sm:text-base text-zinc-300 font-light leading-relaxed border-t border-white/[0.04]">
+                        {faq.answer}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Direct WhatsApp Callout */}
+        <div className="text-center pt-4">
+          <a
+            href={formatWhatsAppUrl(
+              siteConfig.contact.whatsappNumber,
+              'Hello Subhash, I have a specific question about an ApexGen website project.'
+            )}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-xs font-mono text-zinc-400 hover:text-[#d4ff00] transition-colors"
+          >
+            <MessageSquare className="w-3.5 h-3.5 text-[#d4ff00]" />
+            <span>HAVE AN UNANSWERED QUESTION? ASK SUBHASH DIRECTLY ON WHATSAPP →</span>
+          </a>
+        </div>
       </div>
     </section>
   );

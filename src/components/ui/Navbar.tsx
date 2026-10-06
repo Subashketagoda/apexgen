@@ -4,12 +4,10 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { Menu, X, ArrowUpRight, MessageSquare } from 'lucide-react';
 import { Logo } from '@/components/ui/Logo';
-import { MagneticButton } from '@/components/animation/MagneticButton';
-import { ScrollProgressBar } from '@/components/animation/ScrollProgressBar';
 import { siteConfig } from '@/data/site';
-import { trackStartProjectClick } from '@/lib/analytics';
+import { formatWhatsAppUrl } from '@/lib/utils';
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -18,13 +16,12 @@ export function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 25);
+      setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Prevent background scroll when mobile menu is active
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -36,188 +33,150 @@ export function Navbar() {
     };
   }, [mobileMenuOpen]);
 
-  // Center links matching reference: WORK, CAPABILITIES, PROCESS, PRICING, CONTACT
   const navLinks = [
-    { label: 'WORK', href: '/work' },
-    { label: 'CAPABILITIES', href: '/services' },
-    { label: 'PROCESS', href: '/process' },
-    { label: 'PRICING', href: '/pricing' },
-    { label: 'CONTACT', href: '/contact' },
+    { label: 'WORK', href: '#work' },
+    { label: 'SERVICES', href: '#services' },
+    { label: 'PROCESS', href: '#process' },
+    { label: 'PRICING', href: '#pricing' },
+    { label: 'ABOUT', href: '#about' },
+    { label: 'CONTACT', href: '#contact' },
   ];
 
   return (
     <>
-      <ScrollProgressBar />
-
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ease-out ${
           isScrolled
-            ? 'py-3.5 bg-[#050508]/85 backdrop-blur-xl border-b border-white/[0.08] shadow-[0_12px_40px_rgba(0,0,0,0.85)]'
-            : 'py-6 sm:py-7 bg-transparent border-b border-transparent'
+            ? 'py-3 bg-[#08080a]/90 backdrop-blur-xl border-b border-white/[0.08] shadow-[0_12px_32px_rgba(0,0,0,0.8)]'
+            : 'py-5 sm:py-6 bg-transparent border-b border-transparent'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 flex items-center justify-between">
-          {/* Left: APEXGEN logo / wordmark */}
+        <div className="max-w-[1520px] mx-auto px-4 sm:px-6 md:px-10 flex items-center justify-between">
+          {/* Left: Brand Lockup */}
           <Link
             href="/"
-            className="group flex items-center focus:outline-none transition-transform duration-300 hover:scale-[1.02]"
+            className="group flex items-center gap-3 focus:outline-none"
             aria-label="ApexGen Home"
           >
             <Logo variant="full" size="md" />
           </Link>
 
-          {/* Center: Work, Capabilities, Process, Pricing, Contact */}
-          <nav className="hidden md:flex items-center px-6 py-2 rounded-full bg-white/[0.03] border border-white/[0.06] backdrop-blur-md space-x-7 text-[12px] font-mono tracking-wider text-zinc-400">
+          {/* Center: Monospaced Swiss Navigation */}
+          <nav className="hidden lg:flex items-center gap-1 px-4 py-1.5 rounded-full bg-[#12131a]/80 border border-white/[0.08] backdrop-blur-md text-[11px] font-mono tracking-widest text-zinc-400">
             {navLinks.map((link) => {
-              const isActive = pathname === link.href || pathname?.startsWith(link.href + '/');
+              const isActive = pathname === link.href;
               return (
                 <Link
                   key={link.label}
                   href={link.href}
-                  className={`transition-colors duration-200 py-0.5 relative group inline-block cursor-pointer ${
-                    isActive ? 'text-white font-semibold' : 'hover:text-white'
+                  className={`px-3 py-1 rounded-full transition-all duration-200 relative group cursor-pointer ${
+                    isActive
+                      ? 'text-white bg-white/10 font-bold'
+                      : 'hover:text-[#d4ff00] hover:bg-white/[0.04]'
                   }`}
                 >
                   <span>{link.label}</span>
-                  <span
-                    className={`absolute -bottom-1 left-0 h-[1.5px] bg-white transition-all duration-300 ease-out ${
-                      isActive ? 'w-full' : 'w-0 group-hover:w-full'
-                    }`}
-                  />
                 </Link>
               );
             })}
           </nav>
 
-          {/* Right: Let's Talk CTA Button */}
-          <div className="hidden md:flex items-center space-x-4">
-            <MagneticButton as="div" strength={0.25} ariaLabel="Let's talk">
-              <Link
-                href="/contact"
-                onClick={() => trackStartProjectClick('navbar_desktop')}
-                className="group relative inline-flex items-center space-x-2 px-6 py-2.5 rounded-full btn-glossy-white text-xs font-mono font-semibold tracking-wider transition-all duration-300 active:scale-95 cursor-pointer"
-              >
-                <span className="relative z-10 transition-transform duration-300 group-hover:translate-x-0.5">
-                  LET&apos;S TALK
-                </span>
-                <ArrowUpRight className="relative z-10 w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </Link>
-            </MagneticButton>
+          {/* Right: Studio Status & Action */}
+          <div className="hidden sm:flex items-center gap-4">
+            {/* Live Studio Status Pill */}
+            <div className="hidden xl:flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.06] text-[10px] font-mono tracking-wider text-zinc-400">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#d4ff00] animate-pulse" />
+              <span>COLOMBO ⇄ GLOBAL</span>
+            </div>
+
+            <Link
+              href="#contact"
+              className="btn-volt text-[11px] py-2 px-5 tracking-wider font-mono font-bold"
+            >
+              <span>START A PROJECT</span>
+              <ArrowUpRight className="w-3.5 h-3.5 ml-1" />
+            </Link>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center space-x-2.5">
+          {/* Mobile Menu Trigger */}
+          <div className="flex sm:hidden items-center gap-3">
             <Link
-              href="/start-a-project"
-              onClick={() => trackStartProjectClick('navbar_mobile')}
-              className="px-3.5 py-1.5 rounded-full text-[12px] tracking-wide bg-white text-black font-medium transition-colors active:scale-95"
+              href="#contact"
+              className="btn-volt text-[10px] py-1.5 px-3 font-mono font-bold"
             >
-              Start
+              START
             </Link>
             <button
-              type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-white/90 hover:text-white rounded-xl bg-white/[0.06] border border-white/[0.1] active:scale-95 focus:outline-none transition-all cursor-pointer"
-              aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
-              aria-expanded={mobileMenuOpen}
+              className="p-2 rounded-lg bg-[#12131a] border border-white/[0.1] text-zinc-300 hover:text-white focus:outline-none"
+              aria-label="Toggle navigation menu"
             >
-              {mobileMenuOpen ? <X className="w-5 h-5 text-white" /> : <Menu className="w-5 h-5 text-white" />}
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
       </header>
 
-      {/* Mobile Fullscreen Animated Menu Drawer */}
+      {/* Full-Screen Architectural Mobile Drawer */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 bg-[#040407]/98 backdrop-blur-2xl flex flex-col justify-between p-6 sm:p-10 z-[9999] md:hidden overflow-y-auto"
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed inset-0 z-40 bg-[#08080a] pt-24 pb-8 px-6 flex flex-col justify-between overflow-y-auto"
           >
-            {/* Top Bar */}
-            <div className="flex items-center justify-between pb-6 border-b border-white/[0.08]">
-              <Link
-                href="/"
-                onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center"
-                aria-label="ApexGen Home"
-              >
-                <Logo variant="full" size="sm" />
-              </Link>
+            {/* Background grid */}
+            <div className="absolute inset-0 architectural-grid opacity-20 pointer-events-none" />
 
-              <button
-                type="button"
-                onClick={() => setMobileMenuOpen(false)}
-                className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-white/80 hover:text-white rounded-full bg-white/10 border border-white/15 focus:outline-none cursor-pointer"
-                aria-label="Close menu"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
+            <div className="relative z-10 space-y-8">
+              <div className="text-[10px] font-mono tracking-[0.25em] text-[#d4ff00] uppercase">
+                [ INDEX // ARCHITECTURE ]
+              </div>
 
-            {/* Navigation Links with Large Editorial Typography */}
-            <div className="space-y-4 py-8">
-              <span className="text-[11px] font-mono tracking-widest text-zinc-500 uppercase block">
-                NAVIGATION
-              </span>
-              <nav className="flex flex-col space-y-3">
-                {navLinks.map((link) => (
+              <div className="flex flex-col space-y-4">
+                {navLinks.map((link, idx) => (
                   <Link
                     key={link.label}
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="text-3xl sm:text-4xl font-light tracking-tight text-white hover:text-zinc-300 transition-colors py-2 flex items-center justify-between group"
+                    className="text-3xl font-black tracking-tight text-white hover:text-[#d4ff00] transition-colors flex items-center justify-between py-2 border-b border-white/[0.06]"
                   >
                     <span>{link.label}</span>
-                    <ArrowUpRight className="w-5 h-5 text-zinc-600 group-hover:text-white transition-colors" />
+                    <span className="text-xs font-mono text-zinc-500">0{idx + 1}</span>
                   </Link>
                 ))}
-                <Link
-                  href="/about"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-3xl sm:text-4xl font-light tracking-tight text-white hover:text-zinc-300 transition-colors py-2 flex items-center justify-between group"
-                >
-                  <span>About</span>
-                  <ArrowUpRight className="w-5 h-5 text-zinc-600 group-hover:text-white transition-colors" />
-                </Link>
-                <Link
-                  href="/contact"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-3xl sm:text-4xl font-light tracking-tight text-white hover:text-zinc-300 transition-colors py-2 flex items-center justify-between group"
-                >
-                  <span>Contact</span>
-                  <ArrowUpRight className="w-5 h-5 text-zinc-600 group-hover:text-white transition-colors" />
-                </Link>
-              </nav>
+              </div>
             </div>
 
-            {/* Bottom Actions */}
-            <div className="pt-6 border-t border-white/[0.08] space-y-4">
-              <Link
-                href="/start-a-project"
-                onClick={() => setMobileMenuOpen(false)}
-                className="w-full py-4 rounded-full bg-white text-black font-semibold text-xs font-mono uppercase tracking-wider flex items-center justify-center space-x-2 active:scale-98 transition-transform"
-              >
-                <span>START A PROJECT</span>
-                <ArrowUpRight className="w-4 h-4 text-black" />
-              </Link>
+            <div className="relative z-10 pt-8 border-t border-white/[0.08] space-y-4">
+              <div className="flex items-center justify-between text-xs font-mono text-zinc-400">
+                <span>FOUNDER: SUBHASH KETAGODA</span>
+                <span className="text-[#d4ff00]">AVAILABLE Q2</span>
+              </div>
 
-              <div className="flex flex-col items-center gap-2 pt-2 text-center">
+              <div className="grid grid-cols-2 gap-3">
                 <a
-                  href="tel:0789656969"
-                  className="text-xs font-mono text-zinc-300 hover:text-white"
+                  href={formatWhatsAppUrl(
+                    siteConfig.contact.whatsappNumber,
+                    'Hello Subhash, I would like to inquire about an ApexGen project.'
+                  )}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-architectural py-3 text-xs flex items-center justify-center gap-2"
                 >
-                  Direct Call: 078 965 6969
+                  <MessageSquare className="w-3.5 h-3.5 text-[#d4ff00]" />
+                  <span>WHATSAPP</span>
                 </a>
-                <a
-                  href={`mailto:${siteConfig.contact.email}`}
-                  className="text-xs font-mono text-zinc-500 hover:text-zinc-300"
+
+                <Link
+                  href="#contact"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="btn-volt py-3 text-xs flex items-center justify-center"
                 >
-                  {siteConfig.contact.email}
-                </a>
+                  <span>INQUIRE NOW</span>
+                </Link>
               </div>
             </div>
           </motion.div>
