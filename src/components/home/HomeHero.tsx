@@ -264,10 +264,11 @@ export function HomeHero() {
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
                 <Link
                   href="#contact"
-                  className="btn-volt text-xs py-3 px-6 tracking-wider font-mono font-bold flex items-center justify-center gap-2 group"
+                  className="btn-volt text-xs py-3 px-6 tracking-wider font-mono font-bold flex items-center justify-center gap-2 group relative overflow-hidden"
                 >
-                  <span>START A PROJECT</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <div className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12 animate-laser-sweep pointer-events-none" />
+                  <span className="relative z-10">START A PROJECT</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 relative z-10 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </Link>
 
                 <Link
@@ -361,12 +362,17 @@ export function HomeHero() {
                       )}
                       <div className="absolute inset-0 bg-gradient-to-t from-[#0e0f14]/80 via-transparent to-transparent pointer-events-none" />
 
+                      {/* Cybernetic Scanline Overlay */}
+                      <div className="absolute inset-0 pointer-events-none overflow-hidden z-10">
+                        <div className="w-full h-12 bg-gradient-to-b from-transparent via-[#d4ff00]/15 to-transparent animate-scanline" />
+                      </div>
+
                       {/* Domain pill */}
                       <a
                         href={activeProject.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="absolute bottom-2.5 left-2.5 z-10 flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#08080a]/90 backdrop-blur-md border border-white/[0.15] text-[10px] font-mono text-zinc-300 hover:text-[#d4ff00] transition-colors"
+                        className="absolute bottom-2.5 left-2.5 z-20 flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#08080a]/90 backdrop-blur-md border border-white/[0.15] text-[10px] font-mono text-zinc-300 hover:text-[#d4ff00] transition-colors"
                       >
                         <span>{activeProject.domain}</span>
                         <ExternalLink className="w-2.5 h-2.5 text-[#d4ff00]" />
@@ -417,11 +423,12 @@ export function HomeHero() {
       {/* Bottom Integrated Architectural Datum Bar */}
       <div className="relative z-10 max-w-[1520px] mx-auto px-4 sm:px-6 md:px-10 w-full pt-1 pb-1">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/[0.08] border border-white/[0.08] rounded-xl overflow-hidden backdrop-blur-md">
-          <div className="bg-[#0e0f14]/90 p-2.5 sm:p-3 lg:py-2 lg:px-3.5 xl:py-2.5 xl:px-4 space-y-0.5">
-            <div className="text-[9px] sm:text-[10px] font-mono tracking-widest text-zinc-500 uppercase">
-              SPECIMEN 01
+          <div className="bg-[#0e0f14]/90 hover:bg-[#14161f] p-2.5 sm:p-3 lg:py-2 lg:px-3.5 xl:py-2.5 xl:px-4 space-y-0.5 transition-all duration-300 group cursor-default">
+            <div className="flex items-center justify-between text-[9px] sm:text-[10px] font-mono tracking-widest text-zinc-500 uppercase">
+              <span>SPECIMEN 01</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-400 group-hover:scale-125 transition-transform" />
             </div>
-            <div className="text-sm sm:text-base lg:text-base xl:text-lg font-black text-white font-mono">
+            <div className="text-sm sm:text-base lg:text-base xl:text-lg font-black text-white group-hover:text-[#d4ff00] transition-colors font-mono">
               CARGO PIZZA
             </div>
             <div className="text-[10px] sm:text-[11px] text-zinc-400 truncate">
@@ -429,11 +436,12 @@ export function HomeHero() {
             </div>
           </div>
 
-          <div className="bg-[#0e0f14]/90 p-2.5 sm:p-3 lg:py-2 lg:px-3.5 xl:py-2.5 xl:px-4 space-y-0.5">
-            <div className="text-[9px] sm:text-[10px] font-mono tracking-widest text-zinc-500 uppercase">
-              SPECIMEN 02
+          <div className="bg-[#0e0f14]/90 hover:bg-[#14161f] p-2.5 sm:p-3 lg:py-2 lg:px-3.5 xl:py-2.5 xl:px-4 space-y-0.5 transition-all duration-300 group cursor-default">
+            <div className="flex items-center justify-between text-[9px] sm:text-[10px] font-mono tracking-widest text-zinc-500 uppercase">
+              <span>SPECIMEN 02</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#00f0ff] group-hover:scale-125 transition-transform" />
             </div>
-            <div className="text-sm sm:text-base lg:text-base xl:text-lg font-black text-white font-mono">
+            <div className="text-sm sm:text-base lg:text-base xl:text-lg font-black text-white group-hover:text-[#d4ff00] transition-colors font-mono">
               69 STUDIO
             </div>
             <div className="text-[10px] sm:text-[11px] text-zinc-400 truncate">
@@ -441,11 +449,12 @@ export function HomeHero() {
             </div>
           </div>
 
-          <div className="bg-[#0e0f14]/90 p-2.5 sm:p-3 lg:py-2 lg:px-3.5 xl:py-2.5 xl:px-4 space-y-0.5">
-            <div className="text-[9px] sm:text-[10px] font-mono tracking-widest text-zinc-500 uppercase">
-              SPECIMEN 03
+          <div className="bg-[#0e0f14]/90 hover:bg-[#14161f] p-2.5 sm:p-3 lg:py-2 lg:px-3.5 xl:py-2.5 xl:px-4 space-y-0.5 transition-all duration-300 group cursor-default">
+            <div className="flex items-center justify-between text-[9px] sm:text-[10px] font-mono tracking-widest text-zinc-500 uppercase">
+              <span>SPECIMEN 03</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 group-hover:scale-125 transition-transform" />
             </div>
-            <div className="text-sm sm:text-base lg:text-base xl:text-lg font-black text-white font-mono">
+            <div className="text-sm sm:text-base lg:text-base xl:text-lg font-black text-white group-hover:text-[#d4ff00] transition-colors font-mono">
               DINEPRO
             </div>
             <div className="text-[10px] sm:text-[11px] text-zinc-400 truncate">
@@ -453,11 +462,12 @@ export function HomeHero() {
             </div>
           </div>
 
-          <div className="bg-[#0e0f14]/90 p-2.5 sm:p-3 lg:py-2 lg:px-3.5 xl:py-2.5 xl:px-4 space-y-0.5">
-            <div className="text-[9px] sm:text-[10px] font-mono tracking-widest text-[#d4ff00] uppercase">
-              COMMERCIAL BASIS
+          <div className="bg-[#0e0f14]/90 hover:bg-[#14161f] p-2.5 sm:p-3 lg:py-2 lg:px-3.5 xl:py-2.5 xl:px-4 space-y-0.5 transition-all duration-300 group cursor-default">
+            <div className="flex items-center justify-between text-[9px] sm:text-[10px] font-mono tracking-widest text-[#d4ff00] uppercase">
+              <span>COMMERCIAL BASIS</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#d4ff00] animate-pulse" />
             </div>
-            <div className="text-sm sm:text-base lg:text-base xl:text-lg font-black text-white font-mono">
+            <div className="text-sm sm:text-base lg:text-base xl:text-lg font-black text-white group-hover:text-[#d4ff00] transition-colors font-mono">
               LKR 49,900+
             </div>
             <div className="text-[10px] sm:text-[11px] text-zinc-400 truncate">

@@ -192,13 +192,18 @@ export function HomeServicesSection() {
                 transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                 className="bg-[#0e0f14] border border-white/[0.12] rounded-2xl p-6 sm:p-10 space-y-8 shadow-[0_20px_50px_rgba(0,0,0,0.8)] relative overflow-hidden"
               >
+                {/* Cybernetic Scanline Overlay */}
+                <div className="absolute inset-0 pointer-events-none overflow-hidden z-10 opacity-60">
+                  <div className="w-full h-12 bg-gradient-to-b from-transparent via-[#d4ff00]/10 to-transparent animate-scanline" />
+                </div>
+
                 {/* Decorative technical stamp */}
                 <div className="absolute top-6 right-6 text-[10px] font-mono text-zinc-600 tracking-widest uppercase hidden sm:block">
                   SPEC // APX-{currentService.number}
                 </div>
 
                 {/* Head */}
-                <div className="space-y-3">
+                <div className="space-y-3 relative z-20">
                   <div className="flex items-center gap-3 text-xs font-mono text-[#d4ff00]">
                     <span>SERVICE {currentService.number}</span>
                     <span className="text-zinc-600">•</span>
@@ -213,7 +218,7 @@ export function HomeServicesSection() {
                 </div>
 
                 {/* Deliverables List */}
-                <div className="space-y-4 pt-4 border-t border-white/[0.08]">
+                <div className="space-y-4 pt-4 border-t border-white/[0.08] relative z-20">
                   <div className="text-xs font-mono tracking-widest text-zinc-400 uppercase">
                     KEY DELIVERABLES
                   </div>
@@ -221,7 +226,7 @@ export function HomeServicesSection() {
                     {currentService.deliverables.map((item, dIdx) => (
                       <div
                         key={dIdx}
-                        className="flex items-start gap-2.5 p-3 rounded-lg bg-white/[0.02] border border-white/[0.06] text-xs text-zinc-300"
+                        className="flex items-start gap-2.5 p-3 rounded-lg bg-white/[0.02] border border-white/[0.06] text-xs text-zinc-300 hover:border-[#d4ff00]/30 hover:bg-white/[0.04] transition-colors"
                       >
                         <Check className="w-4 h-4 text-[#d4ff00] shrink-0 mt-0.5" />
                         <span>{item}</span>
@@ -231,12 +236,12 @@ export function HomeServicesSection() {
                 </div>
 
                 {/* Tags & Ideal For */}
-                <div className="space-y-3 pt-4 border-t border-white/[0.08]">
+                <div className="space-y-3 pt-4 border-t border-white/[0.08] relative z-20">
                   <div className="flex flex-wrap gap-2">
                     {currentService.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-3 py-1 rounded-full bg-[#12131a] border border-white/[0.1] text-[11px] font-mono text-zinc-300"
+                        className="px-3 py-1 rounded-full bg-[#12131a] border border-white/[0.1] text-[11px] font-mono text-zinc-300 hover:border-[#d4ff00]/40 transition-colors"
                       >
                         {tag}
                       </span>
@@ -249,7 +254,7 @@ export function HomeServicesSection() {
                 </div>
 
                 {/* Direct Action Trigger */}
-                <div className="pt-6 border-t border-white/[0.08] flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+                <div className="pt-6 border-t border-white/[0.08] flex flex-col sm:flex-row items-stretch sm:items-center gap-4 relative z-20">
                   <a
                     href={formatWhatsAppUrl(
                       siteConfig.contact.whatsappNumber,
@@ -257,15 +262,16 @@ export function HomeServicesSection() {
                     )}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-volt py-3.5 px-6 text-xs flex items-center justify-center gap-2"
+                    className="btn-volt py-3.5 px-6 text-xs flex items-center justify-center gap-2 relative overflow-hidden group"
                   >
-                    <MessageSquare className="w-3.5 h-3.5" />
-                    <span>INQUIRE ABOUT {currentService.title}</span>
+                    <div className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12 animate-laser-sweep pointer-events-none" />
+                    <MessageSquare className="w-3.5 h-3.5 relative z-10" />
+                    <span className="relative z-10">INQUIRE ABOUT {currentService.title}</span>
                   </a>
 
                   <a
                     href="#contact"
-                    className="btn-architectural py-3.5 px-6 text-xs flex items-center justify-center gap-2"
+                    className="btn-architectural py-3.5 px-6 text-xs flex items-center justify-center gap-2 hover:border-[#d4ff00]/40 transition-colors"
                   >
                     <span>START A PROJECT</span>
                     <ArrowUpRight className="w-3.5 h-3.5 text-zinc-400" />

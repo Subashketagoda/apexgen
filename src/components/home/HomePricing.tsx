@@ -47,17 +47,22 @@ export function HomePricing() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className={`relative rounded-2xl flex flex-col justify-between p-7 sm:p-9 transition-all duration-400 ${
+                whileHover={{ y: isPopular ? -10 : -5 }}
+                transition={{ duration: 0.45, delay: idx * 0.1 }}
+                className={`relative rounded-2xl flex flex-col justify-between p-7 sm:p-9 transition-all duration-300 ${
                   isPopular
-                    ? 'bg-[#12131a] border-2 border-[#d4ff00] shadow-[0_0_40px_rgba(212,255,0,0.15)] -translate-y-2'
-                    : 'bg-[#0e0f14] border border-white/[0.08] hover:border-white/[0.2] shadow-[0_12px_36px_rgba(0,0,0,0.7)]'
+                    ? 'bg-[#12131a] border-2 border-[#d4ff00] shadow-[0_0_40px_rgba(212,255,0,0.18)] -translate-y-2'
+                    : 'bg-[#0e0f14] border border-white/[0.08] hover:border-white/[0.25] shadow-[0_12px_36px_rgba(0,0,0,0.7)]'
                 }`}
               >
                 {/* Popular Highlight Badge */}
                 {isPopular && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-[#d4ff00] text-[#08080a] text-[10px] font-mono font-bold tracking-widest uppercase shadow-lg">
-                    ★ MOST POPULAR CHOICE
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-[#d4ff00] text-[#08080a] text-[10px] font-mono font-bold tracking-widest uppercase shadow-lg overflow-hidden relative">
+                    <div className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/50 to-transparent -skew-x-12 animate-laser-sweep pointer-events-none" />
+                    <span className="relative z-10 flex items-center gap-1.5">
+                      <Sparkles className="w-3 h-3 text-[#08080a]" />
+                      <span>MOST POPULAR CHOICE</span>
+                    </span>
                   </div>
                 )}
 
@@ -120,14 +125,17 @@ export function HomePricing() {
 
                   <a
                     href={`#contact`}
-                    className={`w-full py-3.5 rounded-full text-xs font-mono font-bold tracking-wider uppercase flex items-center justify-center gap-2 transition-all ${
+                    className={`w-full py-3.5 rounded-full text-xs font-mono font-bold tracking-wider uppercase flex items-center justify-center gap-2 transition-all relative overflow-hidden group ${
                       isPopular
                         ? 'btn-volt'
                         : 'btn-architectural hover:border-[#d4ff00]'
                     }`}
                   >
-                    <span>SELECT {plan.name}</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
+                    {isPopular && (
+                      <div className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12 animate-laser-sweep pointer-events-none" />
+                    )}
+                    <span className="relative z-10">SELECT {plan.name}</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 relative z-10" />
                   </a>
 
                   <a

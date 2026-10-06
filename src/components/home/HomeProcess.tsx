@@ -32,6 +32,9 @@ export function HomeProcess() {
 
         {/* 5-Step Architectural Sprint Pipeline */}
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4 lg:gap-6 relative">
+          {/* Animated Laser Datum Connection Beam (Desktop) */}
+          <div className="hidden md:block absolute top-[52px] left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-[#d4ff00]/30 to-transparent pointer-events-none z-0" />
+
           {steps.map((step, idx) => (
             <motion.div
               key={step.number}
@@ -39,21 +42,27 @@ export function HomeProcess() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="bg-[#0e0f14] border border-white/[0.08] hover:border-[#d4ff00]/40 rounded-xl p-6 sm:p-7 flex flex-col justify-between space-y-6 transition-all duration-300 group hover:-translate-y-1 shadow-[0_8px_24px_rgba(0,0,0,0.6)]"
+              className="bg-[#0e0f14] border border-white/[0.08] hover:border-[#d4ff00]/50 hover:bg-[#12131a] rounded-xl p-6 sm:p-7 flex flex-col justify-between space-y-6 transition-all duration-300 group hover:-translate-y-1.5 shadow-[0_8px_24px_rgba(0,0,0,0.6)] hover:shadow-[0_16px_36px_rgba(212,255,0,0.08)] relative z-10"
             >
               <div className="space-y-4">
                 {/* Step Index & Phase */}
                 <div className="flex items-center justify-between border-b border-white/[0.06] pb-3">
-                  <span className="text-xs font-mono font-bold text-[#d4ff00]">
-                    {step.number}
-                  </span>
-                  <span className="text-[10px] font-mono tracking-wider text-zinc-500 uppercase">
+                  <div className="flex items-center gap-2">
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-radar-ring absolute inline-flex h-full w-full rounded-full bg-[#d4ff00] opacity-0 group-hover:opacity-75 transition-opacity" />
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-[#d4ff00]" />
+                    </span>
+                    <span className="text-xs font-mono font-bold text-[#d4ff00]">
+                      {step.number}
+                    </span>
+                  </div>
+                  <span className="text-[10px] font-mono tracking-wider text-zinc-500 uppercase group-hover:text-zinc-300 transition-colors">
                     {step.duration}
                   </span>
                 </div>
 
                 {/* Title */}
-                <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+                <h3 className="text-xl sm:text-2xl font-black text-white group-hover:text-[#d4ff00] transition-colors tracking-tight">
                   {step.title}
                 </h3>
 

@@ -123,18 +123,20 @@ export function HomeCapabilitiesAndTools() {
             {/* Tools Grid (2 columns x 4 rows) */}
             <div className="grid grid-cols-2 gap-4">
               {tools.map((tool, idx) => (
-                <div
+                <motion.div
                   key={idx}
-                  className="p-3.5 rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-white/[0.16] hover:bg-white/[0.05] transition-all flex items-center gap-3 group"
+                  whileHover={{ y: -3, scale: 1.02 }}
+                  transition={{ duration: 0.2 }}
+                  className="p-3.5 rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-[#d4ff00]/40 hover:bg-white/[0.06] transition-colors flex items-center gap-3 group cursor-default"
                 >
-                  <div className="w-8 h-8 rounded-lg bg-white/[0.06] flex items-center justify-center text-zinc-300 group-hover:text-white shrink-0">
+                  <div className="w-8 h-8 rounded-lg bg-white/[0.06] flex items-center justify-center text-zinc-300 group-hover:text-[#d4ff00] group-hover:bg-[#d4ff00]/10 transition-colors shrink-0">
                     <Cpu className="w-3.5 h-3.5" />
                   </div>
                   <div className="overflow-hidden">
-                    <div className="text-xs font-semibold text-white truncate">{tool.name}</div>
+                    <div className="text-xs font-semibold text-white group-hover:text-[#d4ff00] transition-colors truncate">{tool.name}</div>
                     <div className="text-[10px] font-mono text-zinc-400 truncate">{tool.category}</div>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </motion.div>

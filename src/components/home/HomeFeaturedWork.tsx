@@ -161,17 +161,18 @@ export function HomeFeaturedWork() {
                 <div className="pt-6 border-t border-white/[0.08] flex items-center gap-3">
                   <button
                     onClick={() => setActiveModalProject(cargoPizza)}
-                    className="btn-volt text-xs py-3.5 px-6 flex items-center gap-2 font-bold cursor-pointer"
+                    className="btn-volt text-xs py-3.5 px-6 flex items-center gap-2 font-bold cursor-pointer relative overflow-hidden group"
                   >
-                    <span>EXPLORE CASE STUDY</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
+                    <div className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12 animate-laser-sweep pointer-events-none" />
+                    <span className="relative z-10">EXPLORE CASE STUDY</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 relative z-10" />
                   </button>
 
                   <a
                     href={cargoPizza.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-architectural text-xs py-3.5 px-5 flex items-center gap-2"
+                    className="btn-architectural text-xs py-3.5 px-5 flex items-center gap-2 hover:border-[#d4ff00]/40 transition-colors"
                   >
                     <span>VISIT LIVE</span>
                     <ExternalLink className="w-3 h-3 text-zinc-400" />
@@ -243,17 +244,18 @@ export function HomeFeaturedWork() {
                 <div className="pt-6 border-t border-white/[0.08] flex items-center gap-3">
                   <button
                     onClick={() => setActiveModalProject(studio69)}
-                    className="btn-volt text-xs py-3.5 px-6 flex items-center gap-2 font-bold cursor-pointer"
+                    className="btn-volt text-xs py-3.5 px-6 flex items-center gap-2 font-bold cursor-pointer relative overflow-hidden group"
                   >
-                    <span>EXPLORE CASE STUDY</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
+                    <div className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12 animate-laser-sweep pointer-events-none" />
+                    <span className="relative z-10">EXPLORE CASE STUDY</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 relative z-10" />
                   </button>
 
                   <a
                     href={studio69.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-architectural text-xs py-3.5 px-5 flex items-center gap-2"
+                    className="btn-architectural text-xs py-3.5 px-5 flex items-center gap-2 hover:border-[#00f0ff]/40 transition-colors"
                   >
                     <span>VISIT LIVE</span>
                     <ExternalLink className="w-3 h-3 text-zinc-400" />
@@ -280,7 +282,7 @@ export function HomeFeaturedWork() {
                 </div>
 
                 {/* Primary Screen Device Mockup */}
-                <div className="relative my-auto w-full aspect-[16/10] rounded-xl overflow-hidden border border-white/[0.12] shadow-2xl group cursor-pointer"
+                <div className="relative my-auto w-full aspect-[16/10] rounded-xl overflow-hidden border border-white/[0.12] shadow-2xl group cursor-pointer bg-black"
                   onClick={() => setActiveModalProject(studio69)}
                 >
                   <Image
@@ -292,7 +294,12 @@ export function HomeFeaturedWork() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#08080a]/70 via-transparent to-transparent pointer-events-none" />
 
-                  <div className="absolute bottom-4 left-4 z-10 px-3 py-1.5 rounded-full bg-[#08080a]/90 border border-white/[0.2] text-[10px] font-mono text-zinc-300">
+                  {/* Cybernetic Scanline Overlay */}
+                  <div className="absolute inset-0 pointer-events-none overflow-hidden z-10 opacity-50">
+                    <div className="w-full h-12 bg-gradient-to-b from-transparent via-[#00f0ff]/15 to-transparent animate-scanline" />
+                  </div>
+
+                  <div className="absolute bottom-4 left-4 z-20 px-3 py-1.5 rounded-full bg-[#08080a]/90 border border-white/[0.2] text-[10px] font-mono text-zinc-300">
                     OBSIDIAN INTERFACE &bull; BESPOKE POS SOLUTIONS
                   </div>
                 </div>
@@ -332,7 +339,7 @@ export function HomeFeaturedWork() {
                 </div>
 
                 {/* Primary Screen Device Mockup */}
-                <div className="relative my-auto w-full aspect-[16/10] rounded-xl overflow-hidden border border-white/[0.12] shadow-2xl group cursor-pointer"
+                <div className="relative my-auto w-full aspect-[16/10] rounded-xl overflow-hidden border border-white/[0.12] shadow-2xl group cursor-pointer bg-black"
                   onClick={() => setActiveModalProject(dinepro)}
                 >
                   <Image
@@ -344,7 +351,12 @@ export function HomeFeaturedWork() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#08080a]/70 via-transparent to-transparent pointer-events-none" />
 
-                  <div className="absolute bottom-4 left-4 z-10 px-3 py-1.5 rounded-full bg-[#08080a]/90 border border-white/[0.2] text-[10px] font-mono text-zinc-300">
+                  {/* Cybernetic Scanline Overlay */}
+                  <div className="absolute inset-0 pointer-events-none overflow-hidden z-10 opacity-50">
+                    <div className="w-full h-12 bg-gradient-to-b from-transparent via-[#d4ff00]/15 to-transparent animate-scanline" />
+                  </div>
+
+                  <div className="absolute bottom-4 left-4 z-20 px-3 py-1.5 rounded-full bg-[#08080a]/90 border border-white/[0.2] text-[10px] font-mono text-zinc-300">
                     ADVISORY CATALOG &bull; ONLINE STRATEGY BOOKING
                   </div>
                 </div>
@@ -411,17 +423,18 @@ export function HomeFeaturedWork() {
                 <div className="pt-6 border-t border-white/[0.08] flex items-center gap-3">
                   <button
                     onClick={() => setActiveModalProject(dinepro)}
-                    className="btn-volt text-xs py-3.5 px-6 flex items-center gap-2 font-bold cursor-pointer"
+                    className="btn-volt text-xs py-3.5 px-6 flex items-center gap-2 font-bold cursor-pointer relative overflow-hidden group"
                   >
-                    <span>EXPLORE CASE STUDY</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
+                    <div className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12 animate-laser-sweep pointer-events-none" />
+                    <span className="relative z-10">EXPLORE CASE STUDY</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 relative z-10" />
                   </button>
 
                   <a
                     href={dinepro.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-architectural text-xs py-3.5 px-5 flex items-center gap-2"
+                    className="btn-architectural text-xs py-3.5 px-5 flex items-center gap-2 hover:border-[#d4ff00]/40 transition-colors"
                   >
                     <span>VISIT LIVE</span>
                     <ExternalLink className="w-3 h-3 text-zinc-400" />

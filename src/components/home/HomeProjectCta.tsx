@@ -172,11 +172,12 @@ export function HomeProjectCta() {
                 <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
                   <button
                     onClick={handleOpenWhatsAppDirect}
-                    className="btn-volt py-3.5 px-8 text-xs flex items-center gap-2 font-bold cursor-pointer"
+                    className="relative overflow-hidden group btn-volt py-3.5 px-8 text-xs flex items-center gap-2 font-bold cursor-pointer"
                   >
-                    <MessageSquare className="w-4 h-4" />
-                    <span>OPEN WHATSAPP CHAT NOW</span>
-                    <ArrowUpRight className="w-4 h-4 ml-1" />
+                    <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-laser-sweep pointer-events-none" />
+                    <MessageSquare className="w-4 h-4 relative z-10" />
+                    <span className="relative z-10">OPEN WHATSAPP CHAT NOW</span>
+                    <ArrowUpRight className="w-4 h-4 ml-1 relative z-10 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                   </button>
 
                   <button
@@ -318,18 +319,19 @@ export function HomeProjectCta() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="btn-volt py-4 px-8 text-xs flex items-center justify-center gap-2 cursor-pointer font-bold disabled:opacity-50"
+                    className="relative overflow-hidden group btn-volt py-4 px-8 text-xs flex items-center justify-center gap-2 cursor-pointer font-bold disabled:opacity-50"
                   >
+                    <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-laser-sweep pointer-events-none" />
                     {isSubmitting ? (
                       <>
                         <Loader2 className="w-4 h-4 animate-spin" />
-                        <span>LINKING TO WHATSAPP...</span>
+                        <span className="relative z-10">LINKING TO WHATSAPP...</span>
                       </>
                     ) : (
                       <>
-                        <MessageSquare className="w-4 h-4" />
-                        <span>SEND INQUIRY VIA WHATSAPP</span>
-                        <ArrowUpRight className="w-4 h-4 ml-0.5" />
+                        <MessageSquare className="w-4 h-4 relative z-10" />
+                        <span className="relative z-10">SEND INQUIRY VIA WHATSAPP</span>
+                        <ArrowUpRight className="w-4 h-4 ml-0.5 relative z-10 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                       </>
                     )}
                   </button>
