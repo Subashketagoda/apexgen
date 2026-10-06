@@ -234,16 +234,28 @@ export default async function ProjectCaseStudyPage({ params }: PageProps) {
               </div>
             </div>
 
-            {/* Real Screenshot Viewport */}
+            {/* Real Screenshot or Video Viewport */}
             <div className="relative aspect-[16/9] w-full overflow-hidden bg-black">
-              <Image
-                src={project.heroImage}
-                alt={`${project.title} — ${project.category} flagship website hero interface designed by ApexGen and Subhash Ketagoda`}
-                fill
-                priority
-                className="object-cover object-top"
-                sizes="(max-width: 1280px) 100vw, 1280px"
-              />
+              {project.videoUrl ? (
+                <video
+                  src={project.videoUrl}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  controls
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <Image
+                  src={project.heroImage}
+                  alt={`${project.title} — ${project.category} flagship website hero interface designed by ApexGen and Subhash Ketagoda`}
+                  fill
+                  priority
+                  className="object-cover object-top"
+                  sizes="(max-width: 1280px) 100vw, 1280px"
+                />
+              )}
             </div>
           </div>
         </section>

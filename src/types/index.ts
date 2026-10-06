@@ -39,6 +39,7 @@ export interface ProjectCaseStudy {
   liveUrl?: string;
   domain?: string;
   heroImage: string;
+  videoUrl?: string;
   galleryImages: string[];
   metrics?: ProjectMetric[];
 }

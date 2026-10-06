@@ -198,6 +198,7 @@ export const siteConfig = {
       accentColor: '#f59e0b',
       year: '2026',
       heroImage: '/images/projects/cargo-pizzeria-screenshot.jpg',
+      videoUrl: '/videos/cargo-galaxy-s24-recording.mp4',
       galleryImages: ['/images/projects/cargo-pizzeria-screenshot.jpg', '/images/projects/cargo-pizzeria-real.png'],
     },
     {

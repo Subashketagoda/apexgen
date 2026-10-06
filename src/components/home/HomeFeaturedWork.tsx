@@ -69,21 +69,33 @@ export function HomeFeaturedWork() {
                 </div>
 
                 {/* Primary Screen Device Mockup */}
-                <div className="relative my-auto w-full aspect-[16/10] rounded-xl overflow-hidden border border-white/[0.12] shadow-2xl group cursor-pointer"
+                <div className="relative my-auto w-full aspect-[16/10] rounded-xl overflow-hidden border border-white/[0.12] shadow-2xl group cursor-pointer bg-black"
                   onClick={() => setActiveModalProject(cargoPizza)}
                 >
-                  <Image
-                    src={cargoPizza.heroImage}
-                    alt="Cargo Pizza live production platform"
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 800px"
-                    className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#08080a]/70 via-transparent to-transparent pointer-events-none" />
+                  {cargoPizza.videoUrl ? (
+                    <video
+                      src={cargoPizza.videoUrl}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
+                  ) : (
+                    <Image
+                      src={cargoPizza.heroImage}
+                      alt="Cargo Pizza live production platform"
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 800px"
+                      className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#08080a]/60 via-transparent to-transparent pointer-events-none" />
                   
                   {/* Floating Touch Pill */}
-                  <div className="absolute bottom-4 left-4 z-10 px-3 py-1.5 rounded-full bg-[#08080a]/90 border border-white/[0.2] text-[10px] font-mono text-zinc-300">
-                    MOBILE-FIRST ORDERING &bull; 20+ PIZZA VARIETIES
+                  <div className="absolute bottom-4 left-4 z-10 px-3 py-1.5 rounded-full bg-[#08080a]/90 border border-white/[0.2] text-[10px] font-mono text-zinc-300 flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#d4ff00] animate-pulse" />
+                    <span>GALAXY S24 ULTRA RECORDING &bull; LIVE MOBILE COMMERCE</span>
                   </div>
                 </div>
 

@@ -113,15 +113,27 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
               </div>
             </div>
 
-            {/* Real Project Screenshot Banner */}
+            {/* Real Project Screenshot / Video Banner */}
             <div className="relative aspect-[16/9] w-full rounded-xl overflow-hidden border border-white/[0.1] bg-[#050507] shadow-2xl">
-              <Image
-                src={project.heroImage}
-                alt={project.title}
-                fill
-                sizes="(max-width: 1024px) 100vw, 900px"
-                className="object-cover object-top"
-              />
+              {project.videoUrl ? (
+                <video
+                  src={project.videoUrl}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  controls
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <Image
+                  src={project.heroImage}
+                  alt={project.title}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 900px"
+                  className="object-cover object-top"
+                />
+              )}
               <div className="absolute inset-0 bg-gradient-to-t from-[#0e0f14]/80 via-transparent to-transparent pointer-events-none" />
               
               {project.liveUrl && (

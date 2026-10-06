@@ -338,16 +338,27 @@ export function HomeHero() {
                     transition={{ duration: 0.25 }}
                     className="space-y-2.5"
                   >
-                    {/* Image Viewport Frame */}
+                    {/* Image / Video Viewport Frame */}
                     <div className="relative aspect-[16/9] max-h-[160px] xl:max-h-[195px] w-full rounded-xl overflow-hidden border border-white/[0.1] bg-[#050507] group">
-                      <Image
-                        src={activeProject.heroImage}
-                        alt={activeProject.title}
-                        fill
-                        priority
-                        sizes="(max-width: 1024px) 100vw, 480px"
-                        className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                      />
+                      {activeProject.videoUrl ? (
+                        <video
+                          src={activeProject.videoUrl}
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                          className="w-full h-full object-cover object-top"
+                        />
+                      ) : (
+                        <Image
+                          src={activeProject.heroImage}
+                          alt={activeProject.title}
+                          fill
+                          priority
+                          sizes="(max-width: 1024px) 100vw, 480px"
+                          className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                        />
+                      )}
                       <div className="absolute inset-0 bg-gradient-to-t from-[#0e0f14]/80 via-transparent to-transparent pointer-events-none" />
 
                       {/* Domain pill */}

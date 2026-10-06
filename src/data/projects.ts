@@ -14,6 +14,7 @@ export interface ProjectItem {
   year: string;
   thumbnail: string;
   heroImage: string;
+  videoUrl?: string;
   gallery: string[];
   technologies: string[];
   liveUrl: string;
@@ -47,6 +48,7 @@ export const projectsData: ProjectItem[] = [
     year: '2026',
     thumbnail: '/images/projects/cargo-pizzeria-real.png',
     heroImage: '/images/projects/cargo-pizzeria-real.png',
+    videoUrl: '/videos/cargo-galaxy-s24-recording.mp4',
     gallery: [
       '/images/projects/cargo-pizzeria-real.png',
       '/images/projects/cargo-pizzeria-screenshot.jpg',
